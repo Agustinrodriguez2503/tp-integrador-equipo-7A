@@ -20,7 +20,7 @@ namespace negocio
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=tpIntegradorEquipo7a; integrated security=true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=Integrador; integrated security=true");
             comando = new SqlCommand();
         }
 
