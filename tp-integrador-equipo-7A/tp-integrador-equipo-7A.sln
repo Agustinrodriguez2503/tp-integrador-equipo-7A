@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tp-integrador", "tp-integrador\tp-integrador.csproj", "{EE9F237C-E08A-433F-8147-A2939AFFA534}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dominio", "dominio\dominio.csproj", "{C60566D8-1C3C-408E-A463-DA21BF7611F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negocio", "negocio\negocio.csproj", "{D9F4B385-1E26-427D-ACEA-9A123E51EF43}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE9F237C-E08A-433F-8147-A2939AFFA534}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE9F237C-E08A-433F-8147-A2939AFFA534}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE9F237C-E08A-433F-8147-A2939AFFA534}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE9F237C-E08A-433F-8147-A2939AFFA534}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C60566D8-1C3C-408E-A463-DA21BF7611F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C60566D8-1C3C-408E-A463-DA21BF7611F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C60566D8-1C3C-408E-A463-DA21BF7611F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C60566D8-1C3C-408E-A463-DA21BF7611F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9F4B385-1E26-427D-ACEA-9A123E51EF43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9F4B385-1E26-427D-ACEA-9A123E51EF43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9F4B385-1E26-427D-ACEA-9A123E51EF43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9F4B385-1E26-427D-ACEA-9A123E51EF43}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C5F51D0-887A-4A65-BED8-F173D3FBBDDC}
+	EndGlobalSection
+EndGlobal
