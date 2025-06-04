@@ -46,3 +46,9 @@ C:\Users\maria\Desktop\El ultimo de los ultimos\tp-web-equipo-7a\dominio\obj\Deb
 C:\Users\maria\Desktop\El ultimo de los ultimos\tp-web-equipo-7a\dominio\obj\Debug\dominio.csproj.CoreCompileInputs.cache
 C:\Users\maria\Desktop\El ultimo de los ultimos\tp-web-equipo-7a\dominio\obj\Debug\dominio.dll
 C:\Users\maria\Desktop\El ultimo de los ultimos\tp-web-equipo-7a\dominio\obj\Debug\dominio.pdb
+C:\Users\maria\Desktop\VETERINARIOOOOOO\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\bin\Debug\dominio.dll
+C:\Users\maria\Desktop\VETERINARIOOOOOO\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\bin\Debug\dominio.pdb
+C:\Users\maria\Desktop\VETERINARIOOOOOO\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.csproj.AssemblyReference.cache
+C:\Users\maria\Desktop\VETERINARIOOOOOO\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.csproj.CoreCompileInputs.cache
+C:\Users\maria\Desktop\VETERINARIOOOOOO\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.dll
+C:\Users\maria\Desktop\VETERINARIOOOOOO\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.pdb

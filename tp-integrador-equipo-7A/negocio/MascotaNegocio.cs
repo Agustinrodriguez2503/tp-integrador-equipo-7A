@@ -10,31 +10,31 @@ namespace negocio
 {
     public class MascotaNegocio
     {
-        public List<Mascota> listar()
+        public List<Mascota> listar(string dni)
         {
             List<Mascota> lista = new List<Mascota>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("Select IDMascota, IDDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo, FechaRegistro, Activo From MASCOTA");
+                datos.setearConsulta("Select IDMascota, DNIDueño, Nombre, Edad, Peso, Tipo, Raza, Sexo, Activo From MASCOTA WHERE DNIDueño = " + dni);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Mascota aux = new Mascota();
                     aux.IDMascota = (int)datos.Lector["IDMascota"];
-                    aux.IDDueño = (int)datos.Lector["IDDueño"];
+                    aux.DNIDueño = (string)datos.Lector["DNIDueño"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Edad = (int)datos.Lector["Edad"];
 
-                    aux.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
-                    aux.Peso = (float)datos.Lector["Peso"];
+                    //aux.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
+                    aux.Peso = (decimal)datos.Lector["Peso"];
                     aux.Tipo = (string)datos.Lector["Tipo"];
                     aux.Raza = (string)datos.Lector["Raza"];
                     aux.Sexo = (string)datos.Lector["Sexo"];
 
-                    aux.FechaRegistro = (DateTime)datos.Lector["FechaRegistro"];
+                    //aux.FechaRegistro = (DateTime)datos.Lector["FechaRegistro"];
                     aux.Activo = (bool)datos.Lector["Activo"];
 
                     lista.Add(aux);
@@ -59,8 +59,8 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("Insert into MASCOTA (IDDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo,Raza,Sexo,FechaRegistro, Activo) values (@iddueño, @nombre, @edad, @fechaNacimiento, @peso, @tipo, @raza, @sexo, @fechaRegistro, @activo)");
-                datos.setearParametro("@iddueño", nuevo.IDDueño);
+                datos.setearConsulta("Insert into MASCOTA (DNIDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo,Raza,Sexo,FechaRegistro, Activo) values (@dnidueño, @nombre, @edad, @fechaNacimiento, @peso, @tipo, @raza, @sexo, @fechaRegistro, @activo)");
+                datos.setearParametro("@dnidueño", nuevo.DNIDueño);
                 datos.setearParametro("@nombre", nuevo.Nombre);
                 datos.setearParametro("@edad", nuevo.Edad);
                 datos.setearParametro("@fechaNacimiento", nuevo.FechaNacimiento);
