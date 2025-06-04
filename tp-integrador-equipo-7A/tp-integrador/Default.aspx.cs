@@ -13,5 +13,10 @@ namespace tp_integrador
         {
 
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
