@@ -10,7 +10,8 @@ namespace dominio
     public class Mascota
     {
         public int IDMascota { get; set; }
-        public string DNIDueño { get; set; }
+        public string DniDueño { get; set; }
+        public int IDFicha { get; set; }
         public string Nombre { get; set; }
         public int Edad { get; set; }
         public DateTime FechaNacimiento { get; set; }
