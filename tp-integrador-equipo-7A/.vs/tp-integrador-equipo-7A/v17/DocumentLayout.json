@@ -1,62 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\",
+  "WorkspaceRootPath": "C:\\Users\\maria\\Desktop\\Programacion TP\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\agustin\\desktop\\tp-integrador\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\paginaprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\paginaprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\maria\\desktop\\programacion tp\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\recepcionistamasterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\recepcionistamasterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\agustin\\desktop\\tp-integrador\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\paginaprincipalmasterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\maria\\desktop\\programacion tp\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\recepcionista_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\recepcionista_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|C:\\Users\\maria\\Desktop\\Programacion TP\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\paginaprincipalmasterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
       "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\paginaprincipalmasterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\agustin\\desktop\\tp-integrador\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\paginaprincipalmasterpage.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\paginaprincipalmasterpage.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\agustin\\desktop\\tp-integrador\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\iniciarsesion.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\iniciarsesion.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\agustin\\desktop\\tp-integrador\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\iniciarsesion.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|C:\\Users\\maria\\Desktop\\Programacion TP\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\iniciarsesion.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\iniciarsesion.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|c:\\users\\agustin\\desktop\\tp-integrador\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\negocio\\usuarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|solutionrelative:negocio\\usuarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\rolnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|solutionrelative:negocio\\rolnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\recepcionistanegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|solutionrelative:negocio\\recepcionistanegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\mascotanegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|solutionrelative:negocio\\mascotanegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\mascota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|solutionrelative:dominio\\mascota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\recepcionista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|solutionrelative:dominio\\recepcionista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|solutionrelative:dominio\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|solutionrelative:dominio\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|solutionrelative:negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,28 +26,41 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PaginaPrincipalMasterPage.Master.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\PaginaPrincipalMasterPage.Master.cs",
-              "RelativeDocumentMoniker": "tp-integrador\\PaginaPrincipalMasterPage.Master.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\PaginaPrincipalMasterPage.Master.cs",
-              "RelativeToolTip": "tp-integrador\\PaginaPrincipalMasterPage.Master.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAmwAwAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T21:18:44.24Z",
+              "DocumentIndex": 1,
+              "Title": "Recepcionista_PagPrincipal.aspx",
+              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion TP\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Recepcionista_PagPrincipal.aspx",
+              "RelativeDocumentMoniker": "tp-integrador\\Recepcionista_PagPrincipal.aspx",
+              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion TP\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Recepcionista_PagPrincipal.aspx",
+              "RelativeToolTip": "tp-integrador\\Recepcionista_PagPrincipal.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-06-06T22:03:03.615Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "RecepcionistaMasterPage.Master",
+              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion TP\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\RecepcionistaMasterPage.Master",
+              "RelativeDocumentMoniker": "tp-integrador\\RecepcionistaMasterPage.Master",
+              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion TP\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\RecepcionistaMasterPage.Master",
+              "RelativeToolTip": "tp-integrador\\RecepcionistaMasterPage.Master",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-06-06T22:01:44.532Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "PaginaPrincipalMasterPage.Master",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\PaginaPrincipalMasterPage.Master",
+              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion TP\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\PaginaPrincipalMasterPage.Master",
               "RelativeDocumentMoniker": "tp-integrador\\PaginaPrincipalMasterPage.Master",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\PaginaPrincipalMasterPage.Master",
+              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion TP\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\PaginaPrincipalMasterPage.Master",
               "RelativeToolTip": "tp-integrador\\PaginaPrincipalMasterPage.Master",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
@@ -97,151 +70,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "IniciarSesion.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\IniciarSesion.aspx.cs",
-              "RelativeDocumentMoniker": "tp-integrador\\IniciarSesion.aspx.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\IniciarSesion.aspx.cs",
-              "RelativeToolTip": "tp-integrador\\IniciarSesion.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T21:17:14.016Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "IniciarSesion.aspx",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\IniciarSesion.aspx",
+              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion TP\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\IniciarSesion.aspx",
               "RelativeDocumentMoniker": "tp-integrador\\IniciarSesion.aspx",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\IniciarSesion.aspx",
+              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion TP\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\IniciarSesion.aspx",
               "RelativeToolTip": "tp-integrador\\IniciarSesion.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-06-06T21:06:55.362Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PaginaPrincipal.aspx",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\PaginaPrincipal.aspx",
-              "RelativeDocumentMoniker": "tp-integrador\\PaginaPrincipal.aspx",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\PaginaPrincipal.aspx",
-              "RelativeToolTip": "tp-integrador\\PaginaPrincipal.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-06T21:02:11.289Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Rol.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Rol.cs",
-              "RelativeDocumentMoniker": "dominio\\Rol.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Rol.cs",
-              "RelativeToolTip": "dominio\\Rol.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T17:54:53.327Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "RolNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\RolNegocio.cs",
-              "RelativeDocumentMoniker": "negocio\\RolNegocio.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\RolNegocio.cs",
-              "RelativeToolTip": "negocio\\RolNegocio.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACAAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T17:55:51.244Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UsuarioNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\UsuarioNegocio.cs",
-              "RelativeDocumentMoniker": "negocio\\UsuarioNegocio.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\UsuarioNegocio.cs",
-              "RelativeToolTip": "negocio\\UsuarioNegocio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T17:55:33.225Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "RecepcionistaNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\RecepcionistaNegocio.cs",
-              "RelativeDocumentMoniker": "negocio\\RecepcionistaNegocio.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\RecepcionistaNegocio.cs",
-              "RelativeToolTip": "negocio\\RecepcionistaNegocio.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFwAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T17:55:18.104Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Recepcionista.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Recepcionista.cs",
-              "RelativeDocumentMoniker": "dominio\\Recepcionista.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Recepcionista.cs",
-              "RelativeToolTip": "dominio\\Recepcionista.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T17:53:31.261Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Usuario.cs",
-              "RelativeDocumentMoniker": "dominio\\Usuario.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Usuario.cs",
-              "RelativeToolTip": "dominio\\Usuario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T17:54:17.841Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Mascota.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Mascota.cs",
-              "RelativeDocumentMoniker": "dominio\\Mascota.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Mascota.cs",
-              "RelativeToolTip": "dominio\\Mascota.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T21:43:50.837Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "MascotaNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\MascotaNegocio.cs",
-              "RelativeDocumentMoniker": "negocio\\MascotaNegocio.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\MascotaNegocio.cs",
-              "RelativeToolTip": "negocio\\MascotaNegocio.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAawBsAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T21:07:41.991Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "AccesoDatos.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\AccesoDatos.cs",
-              "RelativeDocumentMoniker": "negocio\\AccesoDatos.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\tp-integrador\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\AccesoDatos.cs",
-              "RelativeToolTip": "negocio\\AccesoDatos.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAABhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T20:17:20.458Z"
             }
           ]
         }
