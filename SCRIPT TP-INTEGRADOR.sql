@@ -27,7 +27,7 @@ GO
 
 -- TABLA RECEPCIONISTAS
 CREATE TABLE Recepcionistas(
-    Legajo BIGINT PRIMARY KEY IDENTITY (100,1),
+    Legajo INT PRIMARY KEY IDENTITY (100,1),
     Usuario VARCHAR(25) UNIQUE,
     Nombre VARCHAR(25) NOT NULL,
     Apellido VARCHAR(25) NOT NULL,
@@ -69,7 +69,7 @@ GO
 
 -- TABLA MASCOTAS
 CREATE TABLE Mascotas(
-    IDMascota BIGINT PRIMARY KEY IDENTITY (1,1),
+    IDMascota INT PRIMARY KEY IDENTITY (1,1),
     DniDueño VARCHAR(10) NOT NULL,
     Nombre VARCHAR(25) NOT NULL,
     Edad INT,
@@ -86,9 +86,9 @@ GO
 
 -- TABLA TURNOS
 CREATE TABLE Turnos(
-    IDTurno BIGINT PRIMARY KEY IDENTITY (1,1),
+    IDTurno INT PRIMARY KEY IDENTITY (1,1),
     MatriculaVeterinario VARCHAR(10) NOT NULL,
-    IDMascota BIGINT NOT NULL,
+    IDMascota INT NOT NULL,
     FechaHora DATETIME UNIQUE,
     Activo BIT DEFAULT 1,
     FOREIGN KEY (MatriculaVeterinario) REFERENCES Veterinarios(Matricula),
@@ -99,7 +99,7 @@ GO
 -- TABLA FICHACONSULTA
 CREATE TABLE FichaConsulta(
     IDConsulta INT PRIMARY KEY IDENTITY (1,1),
-    IDTurno BIGINT UNIQUE NOT NULL,
+    IDTurno INT UNIQUE NOT NULL,
     Descripcion VARCHAR(500) NOT NULL,
     Activo BIT DEFAULT 1,
     FOREIGN KEY (IDTurno) REFERENCES Turnos(IDTurno)
@@ -108,9 +108,9 @@ GO
 
 -- TABLA COBROS
 CREATE TABLE Cobros(
-    IDCobro BIGINT PRIMARY KEY IDENTITY (1,1),
-    IDTurno BIGINT NOT NULL,
-    LegajoRecepcionista BIGINT NOT NULL,
+    IDCobro INT PRIMARY KEY IDENTITY (1,1),
+    IDTurno INT NOT NULL,
+    LegajoRecepcionista INT NOT NULL,
     FormaPago VARCHAR(30),
     Costo DECIMAL(10,2) CHECK (Costo >= 0),
     Activo BIT DEFAULT 1,

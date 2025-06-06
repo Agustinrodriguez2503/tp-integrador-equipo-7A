@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -17,7 +18,8 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("Select IDMascota, DniDueño, IDFicha, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo, FechaRegistro, Activo From MASCOTA WHERE DniDueño = @dni");
+                datos.setearConsulta("Select IDMascota, DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo, FechaRegistro, Activo From Mascotas where DniDueño = @dni" );
+                datos.setearParametro("@dni", dni);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -25,7 +27,6 @@ namespace negocio
                     Mascota aux = new Mascota();
                     aux.IDMascota = (int)datos.Lector["IDMascota"];
                     aux.DniDueño = (string)datos.Lector["DniDueño"];
-                    aux.IDFicha = (int)datos.Lector["IDFicha"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Edad = (int)datos.Lector["Edad"];
                     aux.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
@@ -37,7 +38,6 @@ namespace negocio
                     aux.Activo = (bool)datos.Lector["Activo"];
 
                     lista.Add(aux);
-
                 }
 
                 return lista;
@@ -58,9 +58,8 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("Insert into MASCOTA (DniDueño, IDFicha, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo, FechaRegistro, Activo) values (@dnidueño, @idficha, @nombre, @edad, @fechaNacimiento, @peso, @tipo, @raza, @sexo, @fechaRegistro, @activo)");
+                datos.setearConsulta("INSERT INTO Mascotas (DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo) VALUES ('@dnidueño', '@nombre', @edad, '@fechaNacimiento', @peso, @tipo, @raza, @sexo)");
                 datos.setearParametro("@dnidueño", nuevo.DniDueño);
-                datos.setearParametro("@idficha", nuevo.IDFicha);
                 datos.setearParametro("@nombre", nuevo.Nombre);
                 datos.setearParametro("@edad", nuevo.Edad);
                 datos.setearParametro("@fechaNacimiento", nuevo.FechaNacimiento);
@@ -69,9 +68,7 @@ namespace negocio
                 datos.setearParametro("@raza", nuevo.Raza);
                 datos.setearParametro("@sexo", nuevo.Sexo);
                 datos.setearParametro("@fechaRegistro", nuevo.FechaRegistro);
-                datos.setearParametro("@activo", nuevo.Activo);
                 datos.ejecutarAccion();
-
 
             }
             catch (Exception ex)

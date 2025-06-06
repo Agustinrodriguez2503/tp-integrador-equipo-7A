@@ -16,7 +16,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio, CantMascotas, Activo FROM Dueños");
+                datos.setearConsulta("Select Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio, Activo From Dueños");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -26,12 +26,9 @@ namespace negocio
                     aux.Usuario = (string)datos.Lector["Usuario"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Apellido = (string)datos.Lector["Apellido"];
-
                     aux.Telefono = (string)datos.Lector["Telefono"];
                     aux.Correo = (string)datos.Lector["Correo"];
                     aux.Domicilio = (string)datos.Lector["Domicilio"];
-
-                    aux.CantidadMascotas = (int)datos.Lector["CantMascotas"];
                     aux.Activo = (bool)datos.Lector["Activo"];
 
                     lista.Add(aux);
@@ -55,7 +52,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("INSERT INTO DUEÑO (Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio, CantMascotas) VALUES (@dni, @Usuario, @nombre, @apellido, @telefono, @correo, @domicilio, @cantMasc)");
+                datos.setearConsulta("INSERT INTO Dueños (Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio) VALUES ('@dni', '@usuario', '@nombre', '@apellido', '@telefono', '@correo', '@domicilio')");
                 datos.setearParametro("@dni", nuevo.Dni);
                 datos.setearParametro("@usuario", nuevo.Usuario);
                 datos.setearParametro("@nombre", nuevo.Nombre);
@@ -63,7 +60,6 @@ namespace negocio
                 datos.setearParametro("@telefono" , nuevo.Telefono);
                 datos.setearParametro("@correo", nuevo.Correo);
                 datos.setearParametro("@domicilio", nuevo.Domicilio);
-                datos.setearParametro("@cantMasc", nuevo.CantidadMascotas);
                 datos.ejecutarAccion();
 
 
