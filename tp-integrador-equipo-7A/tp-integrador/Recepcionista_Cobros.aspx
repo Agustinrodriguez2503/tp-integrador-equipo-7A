@@ -146,7 +146,7 @@
             <asp:Button
                 ID="btnRegistrarCobro"
                 runat="server"
-                Text= Registrar Cobro'
+                Text= Registrar Cobro
                 CssClass="btn btn-cobro-hover btn-lg fw-semibold shadow-sm"
                 UseSubmitBehavior="false" />
         </div>

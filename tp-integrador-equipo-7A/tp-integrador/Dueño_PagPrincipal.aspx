@@ -33,7 +33,68 @@
             font-weight: 600;
             font-size: 1.25rem;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: auto;
+            max-width: 600px;
+            text-align: left;
+            position: relative;
+        }
+
+        .cerrar {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
     </style>
+
+    <script>
+        // MODAL DE REGISTRO DE MASCOTA
+        function abrirModalRegistroMascota() {
+            document.getElementById("modalAltaMascota").style.display = "block";
+        }
+
+        function cerrarModalRegistroMascota() {
+            document.getElementById("modalAltaMascota").style.display = "none";
+        }
+
+        //// MODAL DE RECUPERO
+        //function abrirModalRecupero() {
+        //    document.getElementById("modalRecupero").style.display = "block";
+        //}
+
+        //function cerrarModalRecupero() {
+        //    document.getElementById("modalRecupero").style.display = "none";
+        //}
+
+        // Cierra el modal si se hace clic fuera
+        window.onclick = function (event) {
+            const modalRegistroMascota = document.getElementById("modalAltaMascota");
+            const modalRecupero = document.getElementById("modalRecupero");
+
+            if (event.target === modalRegistroMascota) {
+                cerrarModalRegistroMascota();
+            }
+        }
+    </script>
+
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -43,7 +104,7 @@
 
         <div class="row g-4 justify-content-center">
             <div class="col-md-6 col-lg-4">
-                <a href="" class="card-link-custom">
+                <a href="#" onclick="abrirModalRegistroMascota()" class="card-link-custom">
                     <div class="card custom-card h-100 text-center card-verde-agua">
                         <div class="card-body">
                             <h5 class="card-title">ALTA DE MASCOTA</h5>
@@ -92,4 +153,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal de alta de mascota -->
+    <div id="modalAltaMascota" class="modal">
+        <div class="modal-content">
+            <span class="cerrar" onclick="cerrarModalRegistroMascota()">&times;</span>
+            <h3 class="fw-bold text-center">Registro de mascota</h3>
+            <h4>Ingrese los datos de su mascota.</h4>
+            <form>
+                <asp:TextBox ID="txtNombreMascota" placeholder="Nombre" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtEdadMascota" placeholder="Edad" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtFechaNacimientoMascota" placeholder="Fecha de nacimiento" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtPesoMascota" placeholder="Peso" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtTipoMascota" placeholder="Tipo" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtRazaMascota" placeholder="Raza" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtSexoMascota" placeholder="Sexo" runat="server" class="form-control mb-2"></asp:TextBox>
+
+                <asp:Button ID="btnRegistroMascota" class="btn btn-success w-100 fw-bold" runat="server" Text="Registrar mascota" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" onclick="btnRegistroMascota_Click" />
+
+            </form>
+        </div>
+    </div>
+
 </asp:Content>

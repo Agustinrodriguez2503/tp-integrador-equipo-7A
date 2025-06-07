@@ -18,7 +18,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("Select IDMascota, DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo, FechaRegistro, Activo From Mascotas where DniDueño = @dni" );
+                datos.setearConsulta("Select IDMascota, DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo, FechaRegistro, Activo From Mascotas where DniDueño = @dni");
                 datos.setearParametro("@dni", dni);
                 datos.ejecutarLectura();
 
@@ -58,7 +58,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("INSERT INTO Mascotas (DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo) VALUES ('@dnidueño', '@nombre', @edad, '@fechaNacimiento', @peso, @tipo, @raza, @sexo)");
+                datos.setearConsulta("INSERT INTO Mascotas (DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo) VALUES (@dnidueño, @nombre, @edad, @fechaNacimiento, @peso, @tipo, @raza, @sexo)");
                 datos.setearParametro("@dnidueño", nuevo.DniDueño);
                 datos.setearParametro("@nombre", nuevo.Nombre);
                 datos.setearParametro("@edad", nuevo.Edad);
@@ -67,7 +67,7 @@ namespace negocio
                 datos.setearParametro("@tipo", nuevo.Tipo);
                 datos.setearParametro("@raza", nuevo.Raza);
                 datos.setearParametro("@sexo", nuevo.Sexo);
-                datos.setearParametro("@fechaRegistro", nuevo.FechaRegistro);
+
                 datos.ejecutarAccion();
 
             }
@@ -81,5 +81,34 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public string TraerDniUsuario(string usuario)
+        {
+            string dni;
+            string mensaje = "No se encontro DNI.";
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT D.Dni FROM Dueños D Inner Join Usuarios U ON D.Usuario = U.Usuario Where U.Usuario = @usuario");
+                datos.setearParametro("@usuario", usuario);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    dni = (string)datos.Lector["Dni"];
+                    return dni;
+                }
+                else
+                {
+                    return mensaje;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }
