@@ -48,6 +48,7 @@
     <Compile Include="RecepcionistaNegocio.cs" />
     <Compile Include="RolNegocio.cs" />
     <Compile Include="UsuarioNegocio.cs" />
+    <Compile Include="VeterinarioNegocio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dominio\dominio.csproj">

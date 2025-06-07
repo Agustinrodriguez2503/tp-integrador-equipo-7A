@@ -9,12 +9,12 @@ namespace dominio
     public class Veterinario
     {
         public string Matricula { get; set; }
-        public int Usuario { get; set; }
+        public string Usuario { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Dni { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
-        public bool Activo { get; set; }
+        public bool Estado { get; set; }
     }
 }
