@@ -30,7 +30,7 @@ namespace negocio
                     aux.DNI = (string)datos.Lector["Dni"];
                     aux.Telefono = (string)datos.Lector["Telefono"];
                     aux.Correo = (string)datos.Lector["Correo"];
-                    aux.Estado = (bool)datos.Lector["Avtivo"];
+                    aux.Estado = (bool)datos.Lector["Activo"];
 
                     lista.Add(aux);
                 }

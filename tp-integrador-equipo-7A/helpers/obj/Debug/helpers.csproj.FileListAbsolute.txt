@@ -9,3 +9,14 @@ C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integra
 C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\obj\Debug\helpers.csproj.Up2Date
 C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\obj\Debug\helpers.dll
 C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\obj\Debug\helpers.pdb
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\helpers.dll
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\helpers.pdb
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\dominio.dll
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\negocio.dll
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\dominio.pdb
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\negocio.pdb
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\obj\Debug\helpers.csproj.AssemblyReference.cache
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\obj\Debug\helpers.csproj.CoreCompileInputs.cache
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\obj\Debug\helpers.csproj.Up2Date
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\obj\Debug\helpers.dll
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\obj\Debug\helpers.pdb

@@ -8,12 +8,9 @@ namespace dominio
 {
     public class Ficha
     {
-        public int IdFicha { get; set; }
-        public int IdMascota { get; set; }
-        public int IdVeterinario { get; set; }
-        public string Diagnostico { get; set; }
+        public int IdConsulta { get; set; }
+        public int IdTurno { get; set; }
         public string Descripcion { get; set; }
-        public DateTime Fecha { get; set; }
         public bool Activo { get; set; }
     }
 }

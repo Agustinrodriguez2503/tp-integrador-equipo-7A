@@ -9,9 +9,9 @@ namespace dominio
     public class Turno
     {
         public int IdTurno { get; set; }
-        public int IdDueño { get; set; }
-        public int IdVeterinario { get; set; }
-        public DateTime Fecha { get; set; }
+        public int MatriculaVeterinario { get; set; }
+        public int IdMascota { get; set; }
+        public DateTime FechaHora { get; set; }
         public bool Activo { get; set; }
     }
 }

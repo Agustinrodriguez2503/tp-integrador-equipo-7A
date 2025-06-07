@@ -39,7 +39,7 @@ namespace tp_integrador
                     }
                     else if (usuario.Rol == 3)
                     {
-                        //Response.Redirect("Veterinario_PagPrincipal.aspx", false);
+                        Response.Redirect("Veterinario_PagPrincipal.aspx", false);
                     }
                 }
                 lblMensaje.Text = "Usuario o contraseña incorrecta.";

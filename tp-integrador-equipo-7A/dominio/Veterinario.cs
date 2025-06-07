@@ -8,12 +8,11 @@ namespace dominio
 {
     public class Veterinario
     {
-        public int IdVeterinario { get; set; }
+        public string Matricula { get; set; }
         public int Usuario { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Dni { get; set; }
-        public string Matricula { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public bool Activo { get; set; }

@@ -22,3 +22,9 @@ C:\Users\maria\Desktop\Programacion TPIntegrador Ultimo\tp-integrador-equipo-7A\
 C:\Users\maria\Desktop\Programacion TPIntegrador Ultimo\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.csproj.CoreCompileInputs.cache
 C:\Users\maria\Desktop\Programacion TPIntegrador Ultimo\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.dll
 C:\Users\maria\Desktop\Programacion TPIntegrador Ultimo\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.pdb
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\bin\Debug\dominio.dll
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\bin\Debug\dominio.pdb
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.csproj.AssemblyReference.cache
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.csproj.CoreCompileInputs.cache
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.dll
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.pdb
