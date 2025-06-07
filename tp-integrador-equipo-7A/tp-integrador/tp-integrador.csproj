@@ -124,6 +124,7 @@
     <Content Include="Images\logo_veterinaria.png" />
     <Content Include="IniciarSesion.aspx" />
     <Content Include="PaginaPrincipal.aspx" />
+    <Content Include="Recepcionista_Cobros.aspx" />
     <Content Include="Recepcionista_PagPrincipal.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -236,6 +237,13 @@
     </Compile>
     <Compile Include="RecepcionistaMasterPage.Master.designer.cs">
       <DependentUpon>RecepcionistaMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcionista_Cobros.aspx.cs">
+      <DependentUpon>Recepcionista_Cobros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recepcionista_Cobros.aspx.designer.cs">
+      <DependentUpon>Recepcionista_Cobros.aspx</DependentUpon>
     </Compile>
     <Compile Include="Recepcionista_PagPrincipal.aspx.cs">
       <DependentUpon>Recepcionista_PagPrincipal.aspx</DependentUpon>

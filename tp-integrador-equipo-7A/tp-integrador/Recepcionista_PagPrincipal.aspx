@@ -41,7 +41,7 @@
 
     <div class="row g-4 justify-content-center">
         <div class="col-md-6 col-lg-4">
-            <a href="turnos.aspx" class="card-link-custom">
+            <a href="turno.aspx" class="card-link-custom">
                 <div class="card custom-card h-100 text-center card-verde-agua">
                     <div class="card-body">
                         <h5 class="card-title">TURNOS</h5>
@@ -50,7 +50,7 @@
             </a>
         </div>
         <div class="col-md-6 col-lg-4">
-            <a href="cobros.aspx" class="card-link-custom">
+            <a href="Recepcionista_Cobros.aspx" class="card-link-custom">
                 <div class="card custom-card h-100 text-center card-verde-agua">
                     <div class="card-body">
                         <h5 class="card-title">COBROS</h5>

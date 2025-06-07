@@ -113,6 +113,7 @@ CREATE TABLE Cobros(
     LegajoRecepcionista INT NOT NULL,
     FormaPago VARCHAR(30),
     Costo DECIMAL(10,2) CHECK (Costo >= 0),
+	NroComprobante VARCHAR(20) NOT NULL DEFAULT 'SIN-COMPROBANTE',
     Activo BIT DEFAULT 1,
     FOREIGN KEY (IDTurno) REFERENCES Turnos(IDTurno),
     FOREIGN KEY (LegajoRecepcionista) REFERENCES Recepcionistas(Legajo)
@@ -178,9 +179,9 @@ INSERT INTO FichaConsulta (IDTurno, Descripcion) VALUES
 (3, 'Chequeo general, sin novedades.');
 
 -- COBROS (turnos anteriores 1, 2 y 3, recepcionistas con legajo 100 y 101)
-INSERT INTO Cobros (IDTurno, LegajoRecepcionista, FormaPago, Costo, Activo) VALUES
+INSERT INTO Cobros (IDTurno, LegajoRecepcionista, FormaPago, Costo, NroComprobante, Activo) VALUES
 (1, 100, 'Efectivo', 3500.00, 1),
-(2, 100, 'Tarjeta', 4000.00, 1),
-(3, 101, 'Transferencia', 3200.00, 1);
+(2, 100, 'Tarjeta', 4000.00, 'T-0001', 1),
+(3, 101, 'Transferencia', 'C-0222', 3200.00, 1);
 
 
