@@ -29,7 +29,18 @@ namespace tp_integrador
                 if (negocio.Loguear(usuario))
                 {
                     Session.Add("usuario", usuario);
-                    Response.Redirect("Dueño_PagPrincipal.aspx", false);
+                    if(usuario.Rol == 1)
+                    {
+                        Response.Redirect("Dueño_PagPrincipal.aspx", false);
+                    }
+                    else if (usuario.Rol == 2)
+                    {
+                        Response.Redirect("Recepcionista_PagPrincipal.aspx", false);
+                    }
+                    else if (usuario.Rol == 3)
+                    {
+                        //Response.Redirect("Veterinario_PagPrincipal.aspx", false);
+                    }
                 }
                 lblMensaje.Text = "Usuario o contraseña incorrecta.";
                 lblMensaje.ForeColor = System.Drawing.Color.Red;

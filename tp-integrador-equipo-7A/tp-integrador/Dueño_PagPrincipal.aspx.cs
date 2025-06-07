@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using dominio;
+using helpers;
 
 namespace tp_integrador
 {
@@ -12,8 +13,7 @@ namespace tp_integrador
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Usuario usuario = Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
-            if (!(usuario != null && usuario.User != null))
+            if (!(Seguridad.sesionActiva(Session["usuario"])))
                 Response.Redirect("IniciarSesion.aspx", false);
         }
     }

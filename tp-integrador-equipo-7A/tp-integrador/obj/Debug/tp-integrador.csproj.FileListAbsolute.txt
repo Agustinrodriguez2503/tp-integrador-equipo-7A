@@ -618,3 +618,5 @@ C:\Users\maria\Desktop\Programacion TPIntegrador Ultimo\tp-integrador-equipo-7A\
 C:\Users\maria\Desktop\Programacion TPIntegrador Ultimo\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\obj\Debug\tp-integ.AC736151.Up2Date
 C:\Users\maria\Desktop\Programacion TPIntegrador Ultimo\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\obj\Debug\tp-integrador.dll
 C:\Users\maria\Desktop\Programacion TPIntegrador Ultimo\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\obj\Debug\tp-integrador.pdb
+C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\bin\helpers.dll
+C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\bin\helpers.pdb
