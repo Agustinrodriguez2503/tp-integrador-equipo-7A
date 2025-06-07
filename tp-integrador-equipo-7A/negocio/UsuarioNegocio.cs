@@ -49,12 +49,12 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                //Inserta en la Tabla Articulos
+                //Inserta en la Tabla USUARIOS
                 datos.setearConsulta("INSERT INTO Usuarios (Usuario, IDRol, Clave) VALUES (@User, @IdRol, @Clave)");
                 datos.setearParametro("@User", nuevo.User);
                 datos.setearParametro("@IdRol", nuevo.Rol);
                 datos.setearParametro("@Clave", nuevo.Pass);
-
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

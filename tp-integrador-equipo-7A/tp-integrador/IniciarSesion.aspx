@@ -1,6 +1,87 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaPrincipalMasterPage.Master" AutoEventWireup="true" CodeBehind="IniciarSesion.aspx.cs" Inherits="tp_integrador.IniciarSesion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .enlace-registro-recupero {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+            .enlace-registro-recupero a {
+                font-size: 14px;
+                color: lightseagreen;
+                text-decoration: none;
+            }
+
+                .enlace-registro-recupero a:hover {
+                    text-decoration: underline;
+                }
+
+        /* Estilo del modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: auto;
+            max-width: 600px;
+            text-align: left;
+            position: relative;
+        }
+
+        .cerrar {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        // MODAL DE REGISTRO
+        function abrirModalRegistro() {
+            document.getElementById("modalRegistro").style.display = "block";
+        }
+
+        function cerrarModalRegistro() {
+            document.getElementById("modalRegistro").style.display = "none";
+        }
+
+        // MODAL DE RECUPERO
+        function abrirModalRecupero() {
+            document.getElementById("modalRecupero").style.display = "block";
+        }
+
+        function cerrarModalRecupero() {
+            document.getElementById("modalRecupero").style.display = "none";
+        }
+
+        // Cierra el modal si se hace clic fuera
+        window.onclick = function (event) {
+            const modalRegistro = document.getElementById("modalRegistro");
+            const modalRecupero = document.getElementById("modalRecupero");
+
+            if (event.target === modalRegistro) {
+                cerrarModalRegistro();
+            }
+            if (event.target === modalRecupero) {
+                cerrarModalRecupero();
+            }
+        }
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="banner mt-3"></div>
@@ -15,95 +96,14 @@
                         <asp:TextBox ID="txtUsuario" placeholder="Usuario" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="mb-3">
-                        <asp:TextBox ID="txtClave" placeholder="Contraseña" runat="server" CssClass="form-control" TextMode="Password" ></asp:TextBox>
+                        <asp:TextBox ID="txtClave" placeholder="Contraseña" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                     </div>
-                    <asp:Button ID="btnIniciar" runat="server" Text="Iniciar Sesión" class="btn btn-primary fw-bold" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" onclick="btnIniciar_Click" />
+                    <asp:Button ID="btnIniciar" runat="server" Text="Iniciar Sesión" class="btn btn-primary fw-bold" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" OnClick="btnIniciar_Click" />
                     <div>
-                    <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" Visible="False"></asp:Label>
+                        <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" Visible="False"></asp:Label>
                         <div class="enlace-registro-recupero">
                             <a href="#" onclick="abrirModalRegistro()">¿Aun no tenés cuenta? Registrate!</a>
                         </div>
-
-                        <style>
-                            .enlace-registro-recupero {
-                                margin-top: 10px;
-                                text-align: left;
-                            }
-
-                                .enlace-registro-recupero a {
-                                    font-size: 14px;
-                                    color: lightseagreen;
-                                    text-decoration: none;
-                                }
-
-                                    .enlace-registro-recupero a:hover {
-                                        text-decoration: underline;
-                                    }
-
-                            /* Estilo del modal */
-                            .modal {
-                                display: none;
-                                position: fixed;
-                                z-index: 999;
-                                left: 0;
-                                top: 0;
-                                width: 100%;
-                                height: 100%;
-                                background-color: rgba(0,0,0,0.5);
-                            }
-
-                            .modal-content {
-                                background-color: #fff;
-                                margin: 10% auto;
-                                padding: 20px;
-                                border-radius: 8px;
-                                width: auto;
-                                max-width: 600px;
-                                text-align: left;
-                                position: relative;
-                            }
-
-                            .cerrar {
-                                position: absolute;
-                                top: 10px;
-                                right: 15px;
-                                font-size: 20px;
-                                cursor: pointer;
-                            }
-                        </style>
-
-                        <script>
-                            // MODAL DE REGISTRO
-                            function abrirModalRegistro() {
-                                document.getElementById("modalRegistro").style.display = "block";
-                            }
-
-                            function cerrarModalRegistro() {
-                                document.getElementById("modalRegistro").style.display = "none";
-                            }
-
-                            // MODAL DE RECUPERO
-                            function abrirModalRecupero() {
-                                document.getElementById("modalRecupero").style.display = "block";
-                            }
-
-                            function cerrarModalRecupero() {
-                                document.getElementById("modalRecupero").style.display = "none";
-                            }
-
-                            // Cierra el modal si se hace clic fuera
-                            window.onclick = function (event) {
-                                const modalRegistro = document.getElementById("modalRegistro");
-                                const modalRecupero = document.getElementById("modalRecupero");
-
-                                if (event.target === modalRegistro) {
-                                    cerrarModalRegistro();
-                                }
-                                if (event.target === modalRecupero) {
-                                    cerrarModalRecupero();
-                                }
-                            }
-                        </script>
 
                         <div class="enlace-registro-recupero">
                             <a href="#" onclick="abrirModalRecupero()">¿Olvidaste tu clave? Recuperá tu usuario!</a>
@@ -128,9 +128,10 @@
                 <asp:TextBox ID="txtTelefono" placeholder="Teléfono" runat="server" class="form-control mb-2"></asp:TextBox>
                 <asp:TextBox ID="txtCorreo" placeholder="Correo" runat="server" class="form-control mb-2"></asp:TextBox>
                 <asp:TextBox ID="txtUsuarioRegistro" placeholder="Usuario" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtClaveRegistro" placeholder="Clave" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtClaveRegistro" placeholder="Clave" runat="server" class="form-control mb-2" TextMode="Password" ></asp:TextBox>
 
-                <asp:Button ID="btnRegistro" class="btn btn-success w-100 fw-bold" runat="server" Text="Registrarse" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" />
+                <asp:Button ID="btnRegistro" class="btn btn-success w-100 fw-bold" runat="server" Text="Registrarse" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" onclick="btnRegistro_Click"/>
+
             </form>
         </div>
     </div>

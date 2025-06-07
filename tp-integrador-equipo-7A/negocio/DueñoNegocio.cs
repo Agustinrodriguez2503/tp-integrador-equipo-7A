@@ -47,21 +47,22 @@ namespace negocio
             }
         }
 
-        public void Agregar(Dueño nuevo)
+        public void Agregar(Dueño nuevoDueño, Usuario nuevoUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
-                datos.setearConsulta("INSERT INTO Dueños (Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio) VALUES ('@dni', '@usuario', '@nombre', '@apellido', '@telefono', '@correo', '@domicilio')");
-                datos.setearParametro("@dni", nuevo.Dni);
-                datos.setearParametro("@usuario", nuevo.Usuario);
-                datos.setearParametro("@nombre", nuevo.Nombre);
-                datos.setearParametro("@apellido", nuevo.Apellido);
-                datos.setearParametro("@telefono" , nuevo.Telefono);
-                datos.setearParametro("@correo", nuevo.Correo);
-                datos.setearParametro("@domicilio", nuevo.Domicilio);
+                usuarioNegocio.Agregar(nuevoUsuario);
+                datos.setearConsulta("INSERT INTO Dueños (Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio) VALUES (@dni, @usuario, @nombre, @apellido, @telefono, @correo, @domicilio)");
+                datos.setearParametro("@dni", nuevoDueño.Dni);
+                datos.setearParametro("@usuario", nuevoDueño.Usuario);
+                datos.setearParametro("@nombre", nuevoDueño.Nombre);
+                datos.setearParametro("@apellido", nuevoDueño.Apellido);
+                datos.setearParametro("@telefono" , nuevoDueño.Telefono);
+                datos.setearParametro("@correo", nuevoDueño.Correo);
+                datos.setearParametro("@domicilio", nuevoDueño.Domicilio);
                 datos.ejecutarAccion();
-
 
             }
             catch (Exception ex)

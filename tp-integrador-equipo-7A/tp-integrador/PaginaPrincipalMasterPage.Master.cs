@@ -15,9 +15,14 @@ namespace tp_integrador
 
             Response.Write("<script>console.log('Página actual: " + pagina + "');</script>");
 
-            if (pagina == "IniciarSesion") // reemplazá por el nombre real de tu página
+            if (pagina == "IniciarSesion")
             {
                 contenedorLogin.Visible = false;
+            }
+            if (pagina == "Dueño_PagPrincipal")
+            {
+                contenedorLogin.Visible = false;
+                contenedorInicio.Visible = false;
             }
 
         }
