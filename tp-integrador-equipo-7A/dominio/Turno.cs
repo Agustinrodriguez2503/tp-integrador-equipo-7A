@@ -9,7 +9,7 @@ namespace dominio
     public class Turno
     {
         public int IdTurno { get; set; }
-        public int MatriculaVeterinario { get; set; }
+        public string MatriculaVeterinario { get; set; }
         public int IdMascota { get; set; }
         public DateTime FechaHora { get; set; }
         public bool Activo { get; set; }

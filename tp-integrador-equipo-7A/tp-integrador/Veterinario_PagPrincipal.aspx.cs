@@ -12,8 +12,8 @@ namespace tp_integrador
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Seguridad.sesionActiva(Session["usuario"])))
-                Response.Redirect("IniciarSesion.aspx", false);
+            //if (!(Seguridad.sesionActiva(Session["usuario"])))
+            //    Response.Redirect("IniciarSesion.aspx", false);
         }
     }
 }
