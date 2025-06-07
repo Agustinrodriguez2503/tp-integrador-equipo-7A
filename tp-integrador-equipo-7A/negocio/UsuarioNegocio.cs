@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using dominio;
 
 namespace negocio
 {
-    internal class UsuarioNegocio
+    public class UsuarioNegocio
     {
         public List<Usuario> Listar()
         {
@@ -26,7 +27,6 @@ namespace negocio
                     aux.Rol = (int)datos.Lector["IDRol"];
                     aux.Pass = (string)datos.Lector["Clave"];
                     aux.Estado = (bool)datos.Lector["Activa"];
-
 
                     lista.Add(aux);
                 }
@@ -87,6 +87,34 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+        public bool Loguear(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Select Usuario, IDRol, Clave, Activa From Usuarios Where Usuario = @user AND Clave = @pass");
+                datos.setearParametro("@user", usuario.User);
+                datos.setearParametro("@pass", usuario.Pass);
+
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    usuario.Rol = (int)datos.Lector["IDRol"];
+                    usuario.Estado = (bool)datos.Lector["Activa"];
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally 
+            { 
+                datos.cerrarConexion(); 
             }
         }
     }

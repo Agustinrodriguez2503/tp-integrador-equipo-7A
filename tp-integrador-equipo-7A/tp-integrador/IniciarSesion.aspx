@@ -12,14 +12,14 @@
                     <h1 class="text-center fw-bold">INICIAR SESIÓN</h1>
                     <h4 class="mb-3">Ingrese sus datos para iniciar sesión.</h4>
                     <div class="mb-3">
-                        <asp:TextBox ID="tbxUsuario" placeholder="Usuario" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtUsuario" placeholder="Usuario" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="mb-3">
-                        <asp:TextBox ID="tbxClave" placeholder="Contraseña" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtClave" placeholder="Contraseña" runat="server" CssClass="form-control" TextMode="Password" ></asp:TextBox>
                     </div>
-                    <asp:Button ID="btnIniciar" runat="server" Text="Iniciar Sesión" class="btn btn-primary fw-bold" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" />
+                    <asp:Button ID="btnIniciar" runat="server" Text="Iniciar Sesión" class="btn btn-primary fw-bold" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" onclick="btnIniciar_Click" />
                     <div>
-
+                    <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" Visible="False"></asp:Label>
                         <div class="enlace-registro-recupero">
                             <a href="#" onclick="abrirModalRegistro()">¿Aun no tenés cuenta? Registrate!</a>
                         </div>
@@ -127,8 +127,8 @@
                 <asp:TextBox ID="txtDomicilio" placeholder="Domicilio" runat="server" class="form-control mb-2"></asp:TextBox>
                 <asp:TextBox ID="txtTelefono" placeholder="Teléfono" runat="server" class="form-control mb-2"></asp:TextBox>
                 <asp:TextBox ID="txtCorreo" placeholder="Correo" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtUsuario" placeholder="Usuario" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtClave" placeholder="Clave" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtUsuarioRegistro" placeholder="Usuario" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtClaveRegistro" placeholder="Clave" runat="server" class="form-control mb-2"></asp:TextBox>
 
                 <asp:Button ID="btnRegistro" class="btn btn-success w-100 fw-bold" runat="server" Text="Registrarse" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" />
             </form>

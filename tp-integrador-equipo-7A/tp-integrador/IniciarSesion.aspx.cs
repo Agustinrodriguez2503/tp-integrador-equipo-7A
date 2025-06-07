@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using dominio;
+using negocio;
 
 namespace tp_integrador
 {
@@ -12,6 +16,30 @@ namespace tp_integrador
         protected void Page_Load(object sender, EventArgs e)
         {
             
+        }
+
+        protected void btnIniciar_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = new Usuario();
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            try
+            {
+                usuario.User = txtUsuario.Text;
+                usuario.Pass = txtClave.Text;
+                if (negocio.Loguear(usuario))
+                {
+                    Session.Add("usuario", usuario);
+                    Response.Redirect("Dueño_PagPrincipal.aspx", false);
+                }
+                lblMensaje.Text = "Usuario o contraseña incorrecta.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Visible = true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
