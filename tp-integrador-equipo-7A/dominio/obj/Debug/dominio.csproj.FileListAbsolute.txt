@@ -10,3 +10,9 @@ C:\Users\maria\Desktop\Programacion TP\tp-integrador-equipo-7A\tp-integrador-equ
 C:\Users\maria\Desktop\Programacion TP\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.csproj.CoreCompileInputs.cache
 C:\Users\maria\Desktop\Programacion TP\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.dll
 C:\Users\maria\Desktop\Programacion TP\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.pdb
+C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\bin\Debug\dominio.dll
+C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\bin\Debug\dominio.pdb
+C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.csproj.AssemblyReference.cache
+C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.csproj.CoreCompileInputs.cache
+C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.dll
+C:\Users\agustin\Desktop\TP-INTEGRADOR-PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\dominio\obj\Debug\dominio.pdb
