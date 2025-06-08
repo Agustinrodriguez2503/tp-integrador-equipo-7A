@@ -7,17 +7,26 @@ using dominio;
 
 namespace negocio
 {
-    internal class VeterinarioNegocio
+    public class VeterinarioNegocio
     {
-        public List<Veterinario> listar()
+        public List<Veterinario> listar(string matricula = "")
         {
             List<Veterinario> lista = new List<Veterinario>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Veterinarios");
-                datos.ejecutarLectura();
+                if (matricula != "")
+                {
+                    datos.setearConsulta("SELECT Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Veterinarios WHERE Matricula = @matricula");
+                    datos.setearParametro("@matricula", matricula);
+                }
+                else
+                {
+                    datos.setearConsulta("SELECT Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Veterinarios");
+
+                }
+                    datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {

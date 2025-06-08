@@ -18,9 +18,62 @@ namespace negocio
 
             try
             {
+
                 datos.setearConsulta("Select IDMascota, DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo, FechaRegistro, Activo From Mascotas where DniDueño = @dni");
                 datos.setearParametro("@dni", dni);
                 datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Mascota aux = new Mascota();
+                    aux.IDMascota = (int)datos.Lector["IDMascota"];
+                    aux.DniDueño = (string)datos.Lector["DniDueño"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Edad = (int)datos.Lector["Edad"];
+                    aux.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
+                    aux.Peso = (decimal)datos.Lector["Peso"];
+                    aux.Tipo = (string)datos.Lector["Tipo"];
+                    aux.Raza = (string)datos.Lector["Raza"];
+                    aux.Sexo = (string)datos.Lector["Sexo"];
+                    aux.FechaRegistro = (DateTime)datos.Lector["FechaRegistro"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public List<Mascota> listar_Uno_o_Todos(int idMascota = -1)
+        {
+            List<Mascota> lista = new List<Mascota>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                if(idMascota != -1)
+                {
+                    datos.setearConsulta("Select IDMascota, DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo, FechaRegistro, Activo From Mascotas where IDMascota = @idMascota");
+                    datos.setearParametro("@idMascota", idMascota);
+
+                }
+                else
+                {
+                    datos.setearConsulta("Select IDMascota, DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo, FechaRegistro, Activo From Mascotas");
+
+                }
+
+                    datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {

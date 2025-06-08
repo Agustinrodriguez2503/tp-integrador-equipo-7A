@@ -7,17 +7,27 @@ using dominio;
 
 namespace negocio
 {
-    internal class TurnoNegocio
+    public class TurnoNegocio
     {
-        public List<Turno> listar()
+        public List<Turno> listar(string estado = "")
         {
             List<Turno> lista = new List<Turno>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Activo FROM Turnos");
-                datos.ejecutarLectura();
+                if(estado == "")
+                {
+                    datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos");
+
+                }
+                else
+                {
+                    datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE Estado = @estado" );
+                    datos.setearParametro("@estado", estado);
+                }
+
+                    datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
@@ -26,6 +36,7 @@ namespace negocio
                     aux.MatriculaVeterinario = (string)datos.Lector["MatriculaVeterinario"];
                     aux.IdMascota = (int)datos.Lector["IDMascota"];
                     aux.FechaHora = (DateTime)datos.Lector["FechaHora"];
+                    aux.Estado = (string)datos.Lector["Estado"];
                     aux.Activo = (bool)datos.Lector["Activo"];
 
                     lista.Add(aux);

@@ -9,15 +9,24 @@ namespace negocio
 {
     public class DueñoNegocio
     {
-        public List<Dueño> listar()
+        public List<Dueño> listar(string dni = "")
         {
             List<Dueño> lista = new List<Dueño>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("Select Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio, Activo From Dueños");
-                datos.ejecutarLectura();
+                if (dni == "")
+                {
+                    datos.setearConsulta("Select Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio, Activo From Dueños");
+                }
+                else
+                {
+                    datos.setearConsulta("Select Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio, Activo From Dueños WHERE Dni = @dni");
+                    datos.setearParametro("@dni", dni);
+                }
+
+                    datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {

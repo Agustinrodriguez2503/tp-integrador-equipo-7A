@@ -3,6 +3,31 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
+        /*------DropDown de turnos------*/
+        .ddl-estetico {
+            width: 100%;
+            padding: 0.6rem;
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ced4da;
+            background-color: #f8f9fa;
+            color: #212529;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+            .ddl-estetico:hover {
+                border-color: #20c997;
+                background-color: #e9f7f3;
+            }
+
+            .ddl-estetico:focus {
+                outline: none;
+                border-color: #20c997;
+                box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.25);
+            }
+/*--------------------------------------------------------------------------------*/
+
         .text-verde-agua {
             color: #20c997;
         }
@@ -46,7 +71,7 @@
         .card-header i {
             font-size: 1.2rem;
         }
-
+        /*---------------BOTON--------------------*/
         .btn-cobro-hover {
             background-color: white;
             color: #20c997;
@@ -82,7 +107,9 @@
 
         <!-- SELECCIÓN DE TURNO -->
         <div class="mb-4">
-            <asp:DropDownList ID="ddlTurnos" runat="server" CssClass="form-label fw-semibold"></asp:DropDownList>
+            <asp:DropDownList ID="ddlTurnos" runat="server" 
+                CssClass="form-label fw-semibold ddl-estetico" 
+                AutoPostBack="true" OnSelectedIndexChanged="ddlTurnos_SelectedIndexChanged"></asp:DropDownList>
         </div>
 
         <!-- RESUMEN DEL TURNO -->
@@ -97,7 +124,7 @@
                     <div class="col-md-4">
                         <div class="info-box">
                             <asp:Label ID="lblVeterinario" runat="server" CssClass="label">Veterinario</asp:Label>
-                            <asp:Label ID="lblNombreVete" runat="server" CssClass="value">Dra. Maria Sol</asp:Label>
+                            <asp:Label ID="lblNombreVete" runat="server" CssClass="value"></asp:Label>
                             <asp:Label ID="lblMatriculaVete" runat="server" CssClass="text-muted small">M.N.3668</asp:Label>
                         </div>
                     </div>
@@ -105,8 +132,8 @@
                     <div class="col-md-4">
                         <div class="info-box">
                             <asp:Label ID="lblMascota" runat="server" CssClass="label">Mascota</asp:Label>
-                            <asp:Label ID="lblNombreMascota" runat="server" CssClass="value">Bonnie</asp:Label>
-                            <asp:Label ID="lblDatoMascota" runat="server" CssClass="text-muted small">Bulldog Frances</asp:Label>
+                            <asp:Label ID="lblNombreMascota" runat="server" CssClass="value"></asp:Label>
+                            <asp:Label ID="lblDatoMascota" runat="server" CssClass="text-muted small"></asp:Label>
 
                         </div>
                     </div>
@@ -114,8 +141,8 @@
                     <div class="col-md-4">
                         <div class="info-box">
                             <asp:Label ID="lblDuenio" runat="server" CssClass="label">Dueño</asp:Label>
-                            <asp:Label ID="lblNombreDuenio" runat="server" CssClass="value">Agustin Rodriguez</asp:Label>
-                            <asp:Label ID="lblDatoDuenio" runat="server" CssClass="text-muted small">📞 15-6325-6523</asp:Label>
+                            <asp:Label ID="lblNombreDuenio" runat="server" CssClass="value"></asp:Label>
+                            <asp:Label ID="lblDatoDuenio" runat="server" CssClass="text-muted small"></asp:Label>
                         </div>
                     </div>
 
@@ -146,8 +173,9 @@
             <asp:Button
                 ID="btnRegistrarCobro"
                 runat="server"
-                Text= Registrar Cobro
+                Text="Registrar Cobro"
                 CssClass="btn btn-cobro-hover btn-lg fw-semibold shadow-sm"
+                OnClick="btnRegistrarCobro_Click"
                 UseSubmitBehavior="false" />
         </div>
 

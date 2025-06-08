@@ -90,6 +90,7 @@ CREATE TABLE Turnos(
     MatriculaVeterinario VARCHAR(10) NOT NULL,
     IDMascota INT NOT NULL,
     FechaHora DATETIME UNIQUE,
+	Estado VARCHAR(10) NOT NULL DEFAULT 'PENDIENTE',
     Activo BIT DEFAULT 1,
     FOREIGN KEY (MatriculaVeterinario) REFERENCES Veterinarios(Matricula),
     FOREIGN KEY (IDMascota) REFERENCES Mascotas(IDMascota)
@@ -179,9 +180,9 @@ INSERT INTO FichaConsulta (IDTurno, Descripcion) VALUES
 (3, 'Chequeo general, sin novedades.');
 
 -- COBROS (turnos anteriores 1, 2 y 3, recepcionistas con legajo 100 y 101)
-INSERT INTO Cobros (IDTurno, LegajoRecepcionista, FormaPago, Costo, NroComprobante, Activo) VALUES
-(1, 100, 'Efectivo', 3500.00, 1),
-(2, 100, 'Tarjeta', 4000.00, 'T-0001', 1),
-(3, 101, 'Transferencia', 'C-0222', 3200.00, 1);
+INSERT INTO Cobros (IDTurno, LegajoRecepcionista, FormaPago, Costo, NroComprobante) VALUES
+(1, 100, 'Efectivo', 3500.00, 'SIN-COMPROBANTE'),
+(2, 100, 'Tarjeta', 4000.00, 'T-0001'),
+(3, 101, 'Transferencia', 3200.00,'C-0222');
 
-
+drop database TpIntegradorVeterinarias
