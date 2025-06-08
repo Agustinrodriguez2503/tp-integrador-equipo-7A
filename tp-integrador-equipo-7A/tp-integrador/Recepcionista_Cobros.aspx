@@ -125,7 +125,7 @@
                         <div class="info-box">
                             <asp:Label ID="lblVeterinario" runat="server" CssClass="label">Veterinario</asp:Label>
                             <asp:Label ID="lblNombreVete" runat="server" CssClass="value"></asp:Label>
-                            <asp:Label ID="lblMatriculaVete" runat="server" CssClass="text-muted small">M.N.3668</asp:Label>
+                            <asp:Label ID="lblMatriculaVete" runat="server" CssClass="text-muted small"></asp:Label>
                         </div>
                     </div>
 

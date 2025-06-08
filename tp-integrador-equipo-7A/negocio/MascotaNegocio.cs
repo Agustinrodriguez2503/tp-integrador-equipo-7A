@@ -18,7 +18,6 @@ namespace negocio
 
             try
             {
-
                 datos.setearConsulta("Select IDMascota, DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo, FechaRegistro, Activo From Mascotas where DniDueño = @dni");
                 datos.setearParametro("@dni", dni);
                 datos.ejecutarLectura();
@@ -54,6 +53,7 @@ namespace negocio
             }
         }
 
+
         public List<Mascota> listar_Uno_o_Todos(int idMascota = -1)
         {
             List<Mascota> lista = new List<Mascota>();
@@ -61,7 +61,7 @@ namespace negocio
 
             try
             {
-                if(idMascota != -1)
+                if (idMascota != -1)
                 {
                     datos.setearConsulta("Select IDMascota, DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo, FechaRegistro, Activo From Mascotas where IDMascota = @idMascota");
                     datos.setearParametro("@idMascota", idMascota);
@@ -73,7 +73,7 @@ namespace negocio
 
                 }
 
-                    datos.ejecutarLectura();
+                datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {

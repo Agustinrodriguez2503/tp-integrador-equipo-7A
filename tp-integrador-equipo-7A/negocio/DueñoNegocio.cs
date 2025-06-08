@@ -56,6 +56,52 @@ namespace negocio
             }
         }
 
+        public List<Dueño> listarPorUser(string usuario = "")
+        {
+            List<Dueño> lista = new List<Dueño>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                if (usuario != "")
+                {
+                    datos.setearConsulta("Select Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio, Activo From Dueños Where Usuario = @usuario");
+                    datos.setearParametro("@usuario", usuario);
+                }
+                else
+                {
+                    datos.setearConsulta("Select Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio, Activo From Dueños");
+                }
+
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Dueño aux = new Dueño();
+                    aux.Dni = (string)datos.Lector["Dni"];
+                    aux.Usuario = (string)datos.Lector["Usuario"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.Correo = (string)datos.Lector["Correo"];
+                    aux.Domicilio = (string)datos.Lector["Domicilio"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void Agregar(Dueño nuevoDueño, Usuario nuevoUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
