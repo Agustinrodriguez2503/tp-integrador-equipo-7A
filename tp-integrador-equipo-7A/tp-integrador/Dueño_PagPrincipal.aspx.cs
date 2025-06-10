@@ -40,10 +40,42 @@ namespace tp_integrador
                 }
             }
         }
+        protected void btnRegistroMascota_Click(object sender, EventArgs e)
+        {
+            Mascota mascota = new Mascota();
+            MascotaNegocio mascotaNegocio = new MascotaNegocio();
+            DueñoNegocio dueñoNegocio = new DueñoNegocio();
+            Dueño dueño = new Dueño();
+            try
+            {
+                if (Session["usuario"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["usuario"];
+                    dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
+
+                    mascota.DniDueño = dueño.Dni;
+                    mascota.Nombre = txtNombreMascota.Text;
+                    mascota.Edad = int.Parse(txtEdadMascota.Text);
+                    mascota.FechaNacimiento = DateTime.Parse(txtFechaNacimientoMascota.Text);
+                    mascota.Peso = decimal.Parse(txtPesoMascota.Text);
+                    mascota.Tipo = txtTipoMascota.Text;
+                    mascota.Raza = txtRazaMascota.Text;
+                    mascota.Sexo = ddlSexoMascota.Text;
+
+                    mascotaNegocio.Agregar(mascota);
+
+                    gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
+                    gvMascotas.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             MascotaNegocio mascotaNegocio = new MascotaNegocio();
-
             try
             {
                 LinkButton btn = (LinkButton)sender;
@@ -110,29 +142,22 @@ namespace tp_integrador
                 throw ex;
             }
         }
-        protected void btnRegistroMascota_Click(object sender, EventArgs e)
+        protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            Mascota mascota = new Mascota();
             MascotaNegocio mascotaNegocio = new MascotaNegocio();
-            DueñoNegocio dueñoNegocio = new DueñoNegocio();
-            Dueño dueño = new Dueño();
             try
             {
-                if (Session["usuario"] != null)
+                LinkButton btn = (LinkButton)sender;
+                int id = int.Parse(btn.CommandArgument);
+
+                if (id > 0)
                 {
+                    Mascota nueva = new Mascota();
+                    mascotaNegocio.Eliminar(id);
+
                     Usuario usuario = (Usuario)Session["usuario"];
-                    dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
-
-                    mascota.DniDueño = dueño.Dni;
-                    mascota.Nombre = txtNombreMascota.Text;
-                    mascota.Edad = int.Parse(txtEdadMascota.Text);
-                    mascota.FechaNacimiento = DateTime.Parse(txtFechaNacimientoMascota.Text);
-                    mascota.Peso = decimal.Parse(txtPesoMascota.Text);
-                    mascota.Tipo = txtTipoMascota.Text;
-                    mascota.Raza = txtRazaMascota.Text;
-                    mascota.Sexo = ddlSexoMascota.Text;
-
-                    mascotaNegocio.Agregar(mascota);
+                    DueñoNegocio dueñoNegocio = new DueñoNegocio();
+                    Dueño dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
 
                     gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
                     gvMascotas.DataBind();
@@ -140,8 +165,10 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
         }
+
     }
 }
