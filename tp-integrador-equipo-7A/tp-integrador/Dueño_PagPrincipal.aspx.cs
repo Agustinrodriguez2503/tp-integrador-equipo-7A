@@ -44,8 +44,6 @@ namespace tp_integrador
             }
 
         }
-
-
         protected void btnRegistroMascota_Click(object sender, EventArgs e)
         {
             Mascota mascota = new Mascota();
@@ -58,7 +56,7 @@ namespace tp_integrador
                 if (Session["usuario"] != null)
                 {
                     Usuario usuario = (Usuario)Session["usuario"];
-                    dueño = dueñoNegocio.listar(usuario.User)[0];
+                    dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
 
                     mascota.DniDueño = dueño.Dni;
                     mascota.Nombre = txtNombreMascota.Text;
@@ -70,6 +68,69 @@ namespace tp_integrador
                     mascota.Sexo = ddlSexoMascota.Text;
 
                     mascotaNegocio.Agregar(mascota);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            MascotaNegocio mascotaNegocio = new MascotaNegocio();
+
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                int id = int.Parse(btn.CommandArgument);
+
+                if (mascotaNegocio.listar_Uno_o_Todos(id).Count > 0)
+                {
+                    Mascota nueva = new Mascota();
+                    nueva = mascotaNegocio.listar_Uno_o_Todos(id)[0];
+
+                    txtModificarNombre.Text = nueva.Nombre;
+                    txtModificarEdad.Text = nueva.Edad.ToString();
+                    txtModificarNacimiento.Text = nueva.FechaNacimiento.ToString("yyyy-MM-dd");
+                    txtModificarPeso.Text = nueva.Peso.ToString();
+                    txtModificarTipo.Text = nueva.Tipo;
+                    txtModificarRaza.Text = nueva.Raza;
+                    ddlModificarSexo.SelectedValue = nueva.Sexo;
+
+                    ViewState["IDMascotaModificacion"] = id;
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "abrirModalModificacionMascota();", true);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
+        protected void btnGuardarMascota_Click(object sender, EventArgs e)
+        {
+            Mascota mascota = new Mascota();
+            MascotaNegocio mascotaNegocio = new MascotaNegocio();
+
+            try
+            {
+                int idMascota;
+                if (ViewState["IDMascotaModificacion"] != null)
+                {
+                    idMascota = (int)ViewState["IDMascotaModificacion"];
+                    mascota = mascotaNegocio.listar_Uno_o_Todos(idMascota)[0];
+
+                    mascota.Nombre = txtModificarNombre.Text;
+                    mascota.Edad = int.Parse(txtModificarEdad.Text);
+                    mascota.FechaNacimiento = DateTime.Parse(txtModificarNacimiento.Text);
+                    mascota.Peso = int.Parse(txtModificarPeso.Text);
+                    mascota.Tipo = txtModificarTipo.Text;
+                    mascota.Raza = txtModificarRaza.Text;
+                    mascota.Sexo = ddlModificarSexo.Text;
+                    mascotaNegocio.Modificar(mascota);
                 }
             }
             catch (Exception ex)

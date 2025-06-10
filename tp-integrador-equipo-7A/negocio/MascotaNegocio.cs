@@ -53,7 +53,6 @@ namespace negocio
             }
         }
 
-
         public List<Mascota> listar_Uno_o_Todos(int idMascota = -1)
         {
             List<Mascota> lista = new List<Mascota>();
@@ -132,6 +131,34 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+
+        public void Modificar(Mascota mascota)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Mascotas SET Nombre = @nombre, Edad = @edad, FechaNacimiento = @fechanacimiento, Peso = @peso, Tipo = @tipo, Raza = @raza, Sexo = @sexo WHERE IDMascota = @id");
+                datos.setearParametro("@id", mascota.IDMascota);
+                datos.setearParametro("@nombre", mascota.Nombre);
+                datos.setearParametro("@edad", mascota.Edad);
+                datos.setearParametro("@fechanacimiento", mascota.FechaNacimiento);
+                datos.setearParametro("@peso", mascota.Peso);
+                datos.setearParametro("@tipo", mascota.Tipo);
+                datos.setearParametro("@raza", mascota.Raza);
+                datos.setearParametro("@sexo", mascota.Sexo);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally 
+            { 
+                datos.cerrarConexion(); 
             }
         }
 

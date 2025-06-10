@@ -100,6 +100,15 @@
             document.getElementById("modalDatosCliente").style.display = "none";
         }
 
+        // MODAL DE REGISTRO DE MASCOTA
+        function abrirModalModificacionMascota() {
+            document.getElementById("modalModificacionMascota").style.display = "block";
+        }
+
+        function cerrarModalModificacionMascota() {
+            document.getElementById("modalModificacionMascota").style.display = "none";
+        }
+
         // Cierra el modal si se hace clic fuera
         window.onclick = function (event) {
             const modalRegistroMascota = document.getElementById("modalAltaMascota");
@@ -110,6 +119,9 @@
             }
             if (event.target === modalModificacionCliente) {
                 cerrarModalDatosCliente();
+            }
+            if (event.target === modalModificacionMascota) {
+                cerrarModalModificacionMascota();
             }
         }
     </script>
@@ -158,8 +170,10 @@
             <i class="bi bi-file-earmark-text"></i> Ficha
                             </asp:LinkButton>
 
-                            <asp:LinkButton ID="btnModificar" runat="server" CssClass="btn btn-success btn-sm fw-bold">
-            <i class="bi bi-pencil-square"></i> Modificar
+                            <asp:LinkButton ID="btnModificar" runat="server" CssClass="btn btn-success btn-sm fw-bold"
+                                CommandArgument='<%# Eval("IDMascota") %>'
+                                OnClick="btnModificar_Click">
+    <i class="bi bi-pencil-square"></i> Modificar
                             </asp:LinkButton>
 
                             <asp:LinkButton ID="btnEliminar" runat="server"
@@ -204,6 +218,32 @@
         </div>
     </div>
 
+    <!-- Modal de modificación de mascota -->
+    <div id="modalModificacionMascota" class="modal">
+        <div class="modal-content">
+            <span class="cerrar" onclick="cerrarModalModificacionMascota()">&times;</span>
+            <h3 class="fw-bold text-center">Registro de mascota</h3>
+            <p class="text-muted text-center">Ingrese los datos de su mascota.</p>
+            <form>
+                <asp:TextBox ID="txtModificarNombre" placeholder="" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtModificarEdad" placeholder="" runat="server" class="form-control mb-2" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtModificarNacimiento" placeholder="" runat="server" class="form-control mb-2" TextMode="Date"></asp:TextBox>
+                <asp:TextBox ID="txtModificarPeso" placeholder="" runat="server" class="form-control mb-2" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtModificarTipo" placeholder="" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtModificarRaza" placeholder="" runat="server" class="form-control mb-2"></asp:TextBox>
+                <asp:DropDownList ID="ddlModificarSexo" runat="server" CssClass="form-control mb-2">
+                    <asp:ListItem Text="Seleccione el sexo" Value="" Disabled="true" Selected="true" />
+                    <asp:ListItem Text="Macho" Value="Macho" />
+                    <asp:ListItem Text="Hembra" Value="Hembra" />
+                </asp:DropDownList>
+
+                <asp:Button ID="btnGuardarMascota" onclick="btnGuardarMascota_Click" class="btn btn-success w-100 fw-bold" runat="server" Text="Modificar mascota" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" />
+            </form>
+        </div>
+    </div>
+
+
+
     <!-- Modal de alta de mascota -->
     <div id="modalAltaMascota" class="modal">
         <div class="modal-content">
@@ -242,7 +282,7 @@
                 <asp:TextBox ID="txtCorreo" placeholder="Correo" runat="server" class="form-control mb-2"></asp:TextBox>
                 <asp:TextBox ID="txtDomicilio" placeholder="Domicilio" runat="server" class="form-control mb-2"></asp:TextBox>
 
-                <asp:Button ID="btnModificarDueño" class="btn btn-success w-100 fw-bold" runat="server" Text="Guardar datos" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black"/>
+                <asp:Button ID="btnModificarDueño" class="btn btn-success w-100 fw-bold" runat="server" Text="Guardar datos" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" />
             </form>
         </div>
     </div>
