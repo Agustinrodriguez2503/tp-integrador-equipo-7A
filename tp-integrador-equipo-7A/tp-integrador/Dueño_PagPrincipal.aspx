@@ -109,21 +109,6 @@
             document.getElementById("modalModificacionMascota").style.display = "none";
         }
 
-        // Cierra el modal si se hace clic fuera
-        window.onclick = function (event) {
-            const modalRegistroMascota = document.getElementById("modalAltaMascota");
-            const modalModificacionCliente = document.getElementById("modalDatosCliente");
-
-            if (event.target === modalRegistroMascota) {
-                cerrarModalRegistroMascota();
-            }
-            if (event.target === modalModificacionCliente) {
-                cerrarModalDatosCliente();
-            }
-            if (event.target === modalModificacionMascota) {
-                cerrarModalModificacionMascota();
-            }
-        }
     </script>
 
 </asp:Content>
@@ -222,27 +207,27 @@
     <div id="modalModificacionMascota" class="modal">
         <div class="modal-content">
             <span class="cerrar" onclick="cerrarModalModificacionMascota()">&times;</span>
-            <h3 class="fw-bold text-center">Registro de mascota</h3>
-            <p class="text-muted text-center">Ingrese los datos de su mascota.</p>
-            <form>
-                <asp:TextBox ID="txtModificarNombre" placeholder="" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtModificarEdad" placeholder="" runat="server" class="form-control mb-2" TextMode="Number"></asp:TextBox>
-                <asp:TextBox ID="txtModificarNacimiento" placeholder="" runat="server" class="form-control mb-2" TextMode="Date"></asp:TextBox>
-                <asp:TextBox ID="txtModificarPeso" placeholder="" runat="server" class="form-control mb-2" TextMode="Number"></asp:TextBox>
-                <asp:TextBox ID="txtModificarTipo" placeholder="" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtModificarRaza" placeholder="" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:DropDownList ID="ddlModificarSexo" runat="server" CssClass="form-control mb-2">
+            <h3 class="fw-bold text-center">Modificación de mascota</h3>
+            <p class="text-muted text-center">Actualice los datos de su mascota.</p>
+
+            <asp:Panel runat="server">
+                <asp:TextBox ID="txtNombreMascotaMod" placeholder="Nombre" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtEdadMascotaMod" placeholder="Edad (años)" runat="server" CssClass="form-control mb-2" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtFechaNacimientoMascotaMod" placeholder="Fecha de nacimiento" runat="server" CssClass="form-control mb-2" TextMode="Date"></asp:TextBox>
+                <asp:TextBox ID="txtPesoMascotaMod" placeholder="Peso (kg)" runat="server" CssClass="form-control mb-2" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtTipoMascotaMod" placeholder="Tipo" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtRazaMascotaMod" placeholder="Raza" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+
+                <asp:DropDownList ID="ddlSexoMascotaMod" runat="server" CssClass="form-control mb-2">
                     <asp:ListItem Text="Seleccione el sexo" Value="" Disabled="true" Selected="true" />
                     <asp:ListItem Text="Macho" Value="Macho" />
                     <asp:ListItem Text="Hembra" Value="Hembra" />
                 </asp:DropDownList>
 
-                <asp:Button ID="btnGuardarMascota" onclick="btnGuardarMascota_Click" class="btn btn-success w-100 fw-bold" runat="server" Text="Modificar mascota" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" />
-            </form>
+                <asp:Button ID="btnModificarMascota" runat="server" Text="Guardar cambios" CssClass="btn btn-primary w-100 fw-bold" OnClick="btnGuardarMascota_Click" />
+            </asp:Panel>
         </div>
     </div>
-
-
 
     <!-- Modal de alta de mascota -->
     <div id="modalAltaMascota" class="modal">
@@ -250,7 +235,7 @@
             <span class="cerrar" onclick="cerrarModalRegistroMascota()">&times;</span>
             <h3 class="fw-bold text-center">Registro de mascota</h3>
             <p class="text-muted text-center">Ingrese los datos de su mascota.</p>
-            <form>
+            <asp:Panel ID="panelAltaMascota" runat="server">
                 <asp:TextBox ID="txtNombreMascota" placeholder="Nombre" runat="server" class="form-control mb-2"></asp:TextBox>
                 <asp:TextBox ID="txtEdadMascota" placeholder="Edad (años)" runat="server" class="form-control mb-2" TextMode="Number"></asp:TextBox>
                 <asp:TextBox ID="txtFechaNacimientoMascota" placeholder="Fecha de nacimiento" runat="server" class="form-control mb-2" TextMode="Date"></asp:TextBox>
@@ -264,26 +249,27 @@
                 </asp:DropDownList>
 
                 <asp:Button ID="btnRegistroMascota" class="btn btn-success w-100 fw-bold" runat="server" Text="Registrar mascota" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" OnClick="btnRegistroMascota_Click" />
-            </form>
+            </asp:Panel>
         </div>
     </div>
 
-    <!-- Modal de datos de cliente -->
+    <!-- Modal de datos del cliente -->
     <div id="modalDatosCliente" class="modal">
         <div class="modal-content">
             <span class="cerrar" onclick="cerrarModalDatosCliente()">&times;</span>
             <h3 class="fw-bold text-center">Mis datos</h3>
-            <p class="text-muted text-center">Modifique los datos que desee.</p>
-            <form>
-                <asp:TextBox ID="txtDni" placeholder="DNI" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtNombre" placeholder="Nombre" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtApellido" placeholder="Apellido" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtTelefono" placeholder="Teléfono" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtCorreo" placeholder="Correo" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtDomicilio" placeholder="Domicilio" runat="server" class="form-control mb-2"></asp:TextBox>
+            <p class="text-muted text-center">Modifique sus datos personales.</p>
 
-                <asp:Button ID="btnModificarDueño" class="btn btn-success w-100 fw-bold" runat="server" Text="Guardar datos" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" />
-            </form>
+            <asp:Panel runat="server">
+                <asp:TextBox ID="txtNombreCliente" placeholder="Nombre" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtApellidoCliente" placeholder="Apellido" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtTelefonoCliente" placeholder="Teléfono" runat="server" CssClass="form-control mb-2" TextMode="Phone"></asp:TextBox>
+                <asp:TextBox ID="txtDireccionCliente" placeholder="Dirección" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                <asp:TextBox ID="txtCorreoCliente" placeholder="Correo electrónico" runat="server" CssClass="form-control mb-2" TextMode="Email"></asp:TextBox>
+                <asp:TextBox ID="txtDniCliente" placeholder="DNI" runat="server" CssClass="form-control mb-2" TextMode="Number"></asp:TextBox>
+
+                <asp:Button ID="btnGuardarDatosCliente" runat="server" Text="Guardar datos" CssClass="btn btn-success w-100 fw-bold" />
+            </asp:Panel>
         </div>
     </div>
 

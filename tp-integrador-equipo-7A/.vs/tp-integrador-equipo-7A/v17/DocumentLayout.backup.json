@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\agustin\\Desktop\\progara\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|c:\\users\\agustin\\desktop\\progara\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\negocio\\mascotanegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|solutionrelative:negocio\\mascotanegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\agustin\\desktop\\progara\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\due\u00F1o_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\due\u00F1o_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\agustin\\desktop\\progara\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\due\u00F1o_pagprincipal.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\due\u00F1o_pagprincipal.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|C:\\Users\\agustin\\Desktop\\progara\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\due\u00F1o_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\due\u00F1o_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,14 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MascotaNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\progara\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\MascotaNegocio.cs",
-              "RelativeDocumentMoniker": "negocio\\MascotaNegocio.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\progara\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\MascotaNegocio.cs",
-              "RelativeToolTip": "negocio\\MascotaNegocio.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAxwJcAAAAAAAAAAAAAAA==",
+              "Title": "Due\u00F1o_PagPrincipal.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\progara\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Due\u00F1o_PagPrincipal.aspx.cs",
+              "RelativeDocumentMoniker": "tp-integrador\\Due\u00F1o_PagPrincipal.aspx.cs",
+              "ToolTip": "C:\\Users\\agustin\\Desktop\\progara\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Due\u00F1o_PagPrincipal.aspx.cs",
+              "RelativeToolTip": "tp-integrador\\Due\u00F1o_PagPrincipal.aspx.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAlwG0AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T15:22:09.299Z",
+              "WhenOpened": "2025-06-10T14:53:32.909Z",
               "EditorCaption": ""
             },
             {
@@ -48,19 +44,6 @@
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-06-10T15:01:55.997Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Due\u00F1o_PagPrincipal.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\agustin\\Desktop\\progara\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Due\u00F1o_PagPrincipal.aspx.cs",
-              "RelativeDocumentMoniker": "tp-integrador\\Due\u00F1o_PagPrincipal.aspx.cs",
-              "ToolTip": "C:\\Users\\agustin\\Desktop\\progara\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Due\u00F1o_PagPrincipal.aspx.cs",
-              "RelativeToolTip": "tp-integrador\\Due\u00F1o_PagPrincipal.aspx.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAlwHYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T14:53:32.909Z",
               "EditorCaption": ""
             }
           ]

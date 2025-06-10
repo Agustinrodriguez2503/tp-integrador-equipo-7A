@@ -33,76 +33,85 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.GridView gvMascotas;
 
         /// <summary>
-        /// Control txtModificarNombre.
+        /// Control txtNombreMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModificarNombre;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreMascotaMod;
 
         /// <summary>
-        /// Control txtModificarEdad.
+        /// Control txtEdadMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModificarEdad;
+        protected global::System.Web.UI.WebControls.TextBox txtEdadMascotaMod;
 
         /// <summary>
-        /// Control txtModificarNacimiento.
+        /// Control txtFechaNacimientoMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModificarNacimiento;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaNacimientoMascotaMod;
 
         /// <summary>
-        /// Control txtModificarPeso.
+        /// Control txtPesoMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModificarPeso;
+        protected global::System.Web.UI.WebControls.TextBox txtPesoMascotaMod;
 
         /// <summary>
-        /// Control txtModificarTipo.
+        /// Control txtTipoMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModificarTipo;
+        protected global::System.Web.UI.WebControls.TextBox txtTipoMascotaMod;
 
         /// <summary>
-        /// Control txtModificarRaza.
+        /// Control txtRazaMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModificarRaza;
+        protected global::System.Web.UI.WebControls.TextBox txtRazaMascotaMod;
 
         /// <summary>
-        /// Control ddlModificarSexo.
+        /// Control ddlSexoMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlModificarSexo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSexoMascotaMod;
 
         /// <summary>
-        /// Control btnGuardarMascota.
+        /// Control btnModificarMascota.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarMascota;
+        protected global::System.Web.UI.WebControls.Button btnModificarMascota;
+
+        /// <summary>
+        /// Control panelAltaMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelAltaMascota;
 
         /// <summary>
         /// Control txtNombreMascota.
@@ -177,66 +186,66 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.Button btnRegistroMascota;
 
         /// <summary>
-        /// Control txtDni.
+        /// Control txtNombreCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDni;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreCliente;
 
         /// <summary>
-        /// Control txtNombre.
+        /// Control txtApellidoCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.WebControls.TextBox txtApellidoCliente;
 
         /// <summary>
-        /// Control txtApellido.
+        /// Control txtTelefonoCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApellido;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoCliente;
 
         /// <summary>
-        /// Control txtTelefono.
+        /// Control txtDireccionCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTelefono;
+        protected global::System.Web.UI.WebControls.TextBox txtDireccionCliente;
 
         /// <summary>
-        /// Control txtCorreo.
+        /// Control txtCorreoCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorreo;
+        protected global::System.Web.UI.WebControls.TextBox txtCorreoCliente;
 
         /// <summary>
-        /// Control txtDomicilio.
+        /// Control txtDniCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDomicilio;
+        protected global::System.Web.UI.WebControls.TextBox txtDniCliente;
 
         /// <summary>
-        /// Control btnModificarDueño.
+        /// Control btnGuardarDatosCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarDueño;
+        protected global::System.Web.UI.WebControls.Button btnGuardarDatosCliente;
     }
 }
