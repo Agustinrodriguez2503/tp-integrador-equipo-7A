@@ -8,7 +8,7 @@ using dominio;
 
 namespace negocio
 {
-    internal class RecepcionistaNegocio
+    public class RecepcionistaNegocio
     {
         public List<Recepcionista> listar()
         {
@@ -36,6 +36,44 @@ namespace negocio
                 }
 
                 return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public Recepcionista buscarRecepcionista_Usuario(string usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Recepcionista seleccionado = new Recepcionista();
+
+            try
+            {
+                datos.setearConsulta("SELECT Legajo, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Recepcionistas WHERE Usuario = @usuario");
+                datos.setearParametro("@usuario", usuario);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+
+                    seleccionado.Legajo = (int)datos.Lector["Legajo"];
+                    seleccionado.Usuario = (string)datos.Lector["Usuario"];
+                    seleccionado.Nombre = (string)datos.Lector["Nombre"];
+                    seleccionado.Apellido = (string)datos.Lector["Apellido"];
+                    seleccionado.DNI = (string)datos.Lector["Dni"];
+                    seleccionado.Telefono = (string)datos.Lector["Telefono"];
+                    seleccionado.Correo = (string)datos.Lector["Correo"];
+                    seleccionado.Estado = (bool)datos.Lector["Activo"];
+
+
+                }
+
+                return seleccionado;
             }
             catch (Exception ex)
             {

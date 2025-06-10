@@ -16,5 +16,10 @@ namespace dominio
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public bool Estado { get; set; }
+        public string nombreCompleto()
+        {
+            return Nombre + " " + Apellido;
+        }
+
     }
 }

@@ -105,15 +105,6 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.Label lblDatoDuenio;
 
         /// <summary>
-        /// Control tbxComprobante.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxComprobante;
-
-        /// <summary>
         /// Control ddlFormaPago.
         /// </summary>
         /// <remarks>
@@ -121,6 +112,15 @@ namespace tp_integrador
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFormaPago;
+
+        /// <summary>
+        /// Control tbxComprobante.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxComprobante;
 
         /// <summary>
         /// Control tbxImporte.

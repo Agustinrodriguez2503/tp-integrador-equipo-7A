@@ -37,7 +37,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container my-5">
     <h1 class="text-center mb-3">¡BIENVENIDO/A!</h1>
-    <h3 class="text-center text-secondary mb-5">Maria Sol Desimone</h3>
+    <h3 class="text-center text-secondary mb-5" runat ="server" id="recepcionista"></h3>
+
 
     <div class="row g-4 justify-content-center">
         <div class="col-md-6 col-lg-4">

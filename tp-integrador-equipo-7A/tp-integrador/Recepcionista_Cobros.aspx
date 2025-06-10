@@ -26,7 +26,7 @@
                 border-color: #20c997;
                 box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.25);
             }
-/*--------------------------------------------------------------------------------*/
+        /*--------------------------------------------------------------------------------*/
 
         .text-verde-agua {
             color: #20c997;
@@ -107,9 +107,10 @@
 
         <!-- SELECCIÓN DE TURNO -->
         <div class="mb-4">
-            <asp:DropDownList ID="ddlTurnos" runat="server" 
-                CssClass="form-label fw-semibold ddl-estetico" 
-                AutoPostBack="true" OnSelectedIndexChanged="ddlTurnos_SelectedIndexChanged"></asp:DropDownList>
+            <asp:DropDownList ID="ddlTurnos" runat="server"
+                CssClass="form-label fw-semibold ddl-estetico"
+                AutoPostBack="true" OnSelectedIndexChanged="ddlTurnos_SelectedIndexChanged">
+            </asp:DropDownList>
         </div>
 
         <!-- RESUMEN DEL TURNO -->
@@ -153,13 +154,18 @@
         <!-- FORMULARIO DE COBRO -->
         <div class="row g-4">
             <div class="col-md-4">
-                <label class="form-label fw-semibold">Nro. Comprobante</label>
-                <asp:TextBox ID="tbxComprobante" runat="server" CssClass="form-control shadow-sm"></asp:TextBox>
+                <label class="form-label fw-semibold">Forma de Pago</label>
+                <asp:DropDownList ID="ddlFormaPago" runat="server" CssClass="form-select shadow-sm" OnSelectedIndexChanged="ddlFormaPago_SelectedIndexChanged" AutoPostBack="true">
+                    <asp:ListItem Text="-- Seleccionar --" Value="" />
+                    <asp:ListItem Text="Efectivo" />
+                    <asp:ListItem Text="Tarjeta" />
+                    <asp:ListItem Text="Transferencia" />
+                </asp:DropDownList>
             </div>
 
             <div class="col-md-4">
-                <label class="form-label fw-semibold">Forma de Pago</label>
-                <asp:DropDownList ID="ddlFormaPago" runat="server" CssClass="form-select shadow-sm"></asp:DropDownList>
+                <label class="form-label fw-semibold">Nro. Comprobante</label>
+                <asp:TextBox ID="tbxComprobante" runat="server" CssClass="form-control shadow-sm" Enabled="false"></asp:TextBox>
             </div>
 
             <div class="col-md-4">
@@ -180,4 +186,5 @@
         </div>
 
     </div>
+
 </asp:Content>
