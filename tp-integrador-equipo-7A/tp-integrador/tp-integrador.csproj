@@ -184,6 +184,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Turnos.aspx" />
     <Content Include="Veterinario_FichasMedicas.aspx" />
     <Content Include="Veterinario_PagPrincipal.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -252,6 +253,13 @@
     </Compile>
     <Compile Include="Recepcionista_PagPrincipal.aspx.designer.cs">
       <DependentUpon>Recepcionista_PagPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Turnos.aspx.cs">
+      <DependentUpon>Turnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Turnos.aspx.designer.cs">
+      <DependentUpon>Turnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="VeterinarioMasterPage.Master.cs">
       <DependentUpon>VeterinarioMasterPage.Master</DependentUpon>

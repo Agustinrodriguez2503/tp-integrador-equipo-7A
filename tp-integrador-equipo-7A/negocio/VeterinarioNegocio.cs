@@ -23,7 +23,7 @@ namespace negocio
                 }
                 else
                 {
-                    datos.setearConsulta("SELECT Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Veterinarios");
+                    datos.setearConsulta("SELECT Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, UrlImagen,Activo FROM Veterinarios");
 
                 }
                     datos.ejecutarLectura();
@@ -38,6 +38,7 @@ namespace negocio
                     aux.Dni = (string)datos.Lector["Dni"];
                     aux.Telefono = (string)datos.Lector["Telefono"];
                     aux.Correo = (string)datos.Lector["Correo"];
+                    aux.Imagen = (string)datos.Lector["UrlImagen"];
                     aux.Estado = (bool)datos.Lector["Activo"];
 
                     lista.Add(aux);

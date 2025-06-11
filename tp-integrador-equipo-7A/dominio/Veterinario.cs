@@ -15,6 +15,7 @@ namespace dominio
         public string Dni { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
+        public string Imagen { get; set; }
         public bool Estado { get; set; }
 
         public string nombreCompleto()

@@ -1,4 +1,9 @@
+---- Para Eliminar la Base de Datos.
+--ALTER DATABASE TpIntegradorVeterinarias SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+--DROP DATABASE TpIntegradorVeterinarias;
 
+
+----------------------------------------------------------------------------------------
 -- CREAR LA BASE DE DATOS
 CREATE DATABASE TpIntegradorVeterinarias
 COLLATE Latin1_General_CI_AI;
@@ -48,6 +53,7 @@ CREATE TABLE Veterinarios(
     Dni VARCHAR(10) NOT NULL UNIQUE,
     Telefono VARCHAR(20),
     Correo VARCHAR(50),
+	UrlImagen VARCHAR(500) NOT NULL DEFAULT '',
     Activo BIT DEFAULT 1,
     FOREIGN KEY (Usuario) REFERENCES Usuarios(Usuario)
 );
@@ -138,10 +144,10 @@ INSERT INTO Usuarios (Usuario, IDRol, Clave) VALUES
 ('due3', 1, 'clavedue3');
 
 -- VETERINARIOS
-INSERT INTO Veterinarios (Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo) VALUES
-('VET001', 'vet1', 'Ana', 'Pérez', '30000001', '1111-1111', 'ana@vet.com'),
-('VET002', 'vet2', 'Luis', 'Gomez', '30000002', '2222-2222', 'luis@vet.com'),
-('VET003', 'vet3', 'Clara', 'Suárez', '30000003', '3333-3333', 'clara@vet.com');
+INSERT INTO Veterinarios (Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, UrlImagen) VALUES
+('VET001', 'vet1', 'Ana', 'Pérez', '30000001', '1111-1111', 'ana@vet.com', 'https://nervet.cl/wp-content/uploads/2023/05/Eliana-Gaymer-500x500.jpg'),
+('VET002', 'vet2', 'Luis', 'Gomez', '30000002', '2222-2222', 'luis@vet.com', 'https://hospitalveterinarioretiro.com/wp-content/uploads/2024/09/MONICA-1024x1024.jpg'),
+('VET003', 'vet3', 'Clara', 'Suárez', '30000003', '3333-3333', 'clara@vet.com', 'https://img1.wsimg.com/isteam/ip/29eafd7f-23ea-4d2e-aaf9-9adb56ec59ff/3.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:365,h:365,cg:true');
 
 -- RECEPCIONISTAS
 INSERT INTO Recepcionistas (Usuario, Nombre, Apellido, Dni, Telefono, Correo) VALUES
@@ -185,4 +191,4 @@ INSERT INTO Cobros (IDTurno, LegajoRecepcionista, FormaPago, Costo, NroComproban
 (2, 100, 'Tarjeta', 4000.00, 'T-0001'),
 (3, 101, 'Transferencia', 3200.00,'C-0222');
 
-drop database TpIntegradorVeterinarias
+
