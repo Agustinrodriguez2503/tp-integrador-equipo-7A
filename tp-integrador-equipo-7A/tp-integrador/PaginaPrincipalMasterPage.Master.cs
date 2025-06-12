@@ -25,6 +25,11 @@ namespace tp_integrador
                 contenedorInicio.Visible = false;
             }
 
+            if (pagina == "Dueño_RecuperoPassword")
+            {
+                contenedorLogin.Visible = false;
+                contenedorInicio.Visible = false;
+            }
         }
     }
 }

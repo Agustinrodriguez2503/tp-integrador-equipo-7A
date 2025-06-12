@@ -10,15 +10,24 @@ namespace negocio
 {
     public class UsuarioNegocio
     {
-        public List<Usuario> Listar()
+        public List<Usuario> ListarUnoTodos(string usuario = "")
         {
             List<Usuario> lista = new List<Usuario>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT Usuario, IDRol, Clave, Activa FROM Usuarios");
-                datos.ejecutarLectura();
+                if (usuario != null)
+                {
+                    datos.setearConsulta("SELECT Usuario, IDRol, Clave, Activa FROM Usuarios WHERE Usuario = @usuario");
+                    datos.setearParametro("@usuario", usuario);
+                    datos.ejecutarLectura();
+                }
+                else
+                {
+                    datos.setearConsulta("SELECT Usuario, IDRol, Clave, Activa FROM Usuarios");
+                    datos.ejecutarLectura();
+                }
 
                 while (datos.Lector.Read())
                 {
@@ -43,7 +52,6 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-
         public void Agregar(Usuario nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -66,16 +74,15 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-
         public void Modificar(Usuario modificar)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 // Modifica en tabla Articulos
-                datos.setearConsulta("UPDATE Usuarios SET Clave = '' WHERE Usuario = @User");
-                datos.setearParametro("@User", modificar.User);
-                datos.setearParametro("@Clave", modificar.Pass);
+                datos.setearConsulta("UPDATE Usuarios SET Clave = @clave WHERE Usuario = @user");
+                datos.setearParametro("@user", modificar.User);
+                datos.setearParametro("@clave", modificar.Pass);
                 datos.ejecutarAccion();
 
             }

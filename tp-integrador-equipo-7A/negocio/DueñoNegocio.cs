@@ -65,7 +65,7 @@ namespace negocio
             {
                 if (usuario != "")
                 {
-                    datos.setearConsulta("Select Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio, Activo From Dueños Where Usuario = @usuario");
+                    datos.setearConsulta("Select Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio, Activo From Dueños Where Usuario = @usuario OR Correo = @usuario");
                     datos.setearParametro("@usuario", usuario);
                 }
                 else

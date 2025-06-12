@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using dominio;
 using negocio;
+using helpers;
 
 namespace tp_integrador
 {
@@ -74,6 +75,34 @@ namespace tp_integrador
                 dueñoNegocio.Agregar(dueño, usuario);
 
                 Response.Redirect("Dueño_PagPrincipal.aspx", false);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        protected void btnRecuperarClave_Click(object sender, EventArgs e)
+        {
+            DueñoNegocio dueñoNegocio = new DueñoNegocio();
+            Dueño dueño = new Dueño();
+            
+            string contacto = txtCorreoUsuario.Text;
+            string correo;
+            string nombre;
+
+            try
+            {
+                if(contacto != null)
+                {
+                    dueño = dueñoNegocio.listarPorUser(contacto)[0];
+                    nombre = dueño.nombreCompleto();
+                    correo = dueño.Correo;
+
+                    Session.Add("contacto",contacto);
+                    Servicios.enviarMailRecupero(correo, nombre);
+                }
             }
             catch (Exception ex)
             {
