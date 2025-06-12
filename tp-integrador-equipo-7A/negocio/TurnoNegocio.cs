@@ -56,6 +56,47 @@ namespace negocio
             }
         }
 
+        public List<Turno> listar_turnosOcupados(string matricula)
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE Estado = @estado");
+                datos.setearParametro("@matricula", matricula);
+
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Turno aux = new Turno();
+                    aux.IdTurno = (int)datos.Lector["IDTurno"];
+                    aux.MatriculaVeterinario = (string)datos.Lector["MatriculaVeterinario"];
+                    aux.IdMascota = (int)datos.Lector["IDMascota"];
+                    aux.FechaHora = (DateTime)datos.Lector["FechaHora"];
+                    aux.Estado = (string)datos.Lector["Estado"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void Agregar(Turno nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
