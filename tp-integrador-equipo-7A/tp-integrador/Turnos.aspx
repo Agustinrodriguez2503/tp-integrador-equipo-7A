@@ -21,50 +21,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%--    <div class="container mt-5 px-4">
-        <div class="row g-4">
-            <% foreach (dominio.Veterinario vete in listaVeterinario)
-                { %>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card h-100 shadow border-0 rounded-4 overflow-hidden">
-                    <img src="<%: vete.Imagen %>" class="card-img-top img-fluid" alt="Veterinario" style="height: 250px; object-fit: cover;">
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-semibold mb-1"><%: vete.nombreCompleto() %></h5>
-                        <p class="card-text text-muted mb-0">Matrícula: <%: vete.Matricula %></p>
-                    </div>
-                </div>
-            </div>
-            <% } %>
-        </div>
 
-        <div class="row justify-content-center mt-4">
-            <div class="col-auto">
-                <div class="btn-group">
-                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Opciones
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Ver Todos</a></li>
-                        <li><a class="dropdown-item" href="#">Ordenar por nombre</a></li>
-                        <li><a class="dropdown-item" href="#">Filtrar por especialidad</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-auto">
-                <div class="btn-group">
-                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Más acciones
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Agregar nuevo</a></li>
-                        <li><a class="dropdown-item" href="#">Exportar listado</a></li>
-                        <li><a class="dropdown-item" href="#">Ayuda</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>--%>
 
     <!-- Contenedor principal con margen superior -->
     <div class="container mt-5 px-4">
@@ -79,21 +36,29 @@
 
         <!-- Cards de veterinarios -->
         <div class="row g-4" id="veterinarios">
-            <!-- CARD DE EJEMPLO -->
-            <% foreach (dominio.Veterinario vete in listaVeterinario)
-                { %>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card card-selectable h-100 shadow border-0 rounded-4 overflow-hidden">
-                    <img src="<%: vete.Imagen %>" class="card-img-top img-fluid" alt="Veterinario" style="height: 250px; object-fit: cover;">
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-semibold mb-1"><%: vete.nombreCompleto() %></h5>
-                        <p class="card-text text-muted mb-0">Matrícula: <%: vete.Matricula %></p>
-                    </div>
-                </div>
-            </div>
-            <% } %>
+            <asp:Repeater runat="server" ID="repVeterinarios">
+                <ItemTemplate>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <asp:LinkButton
+                            runat="server"
+                            CssClass="text-decoration-none text-reset d-block h-100"
+                            CommandArgument='<%#Eval("Matricula") %>'
+                            OnCommand="seleccionarVeterinario_Command">
 
+                            <div class="card card-selectable h-100 shadow border-0 rounded-4 overflow-hidden">
+                                <img src="<%#Eval("Imagen") %>" class="card-img-top img-fluid" alt="Veterinario" style="height: 250px; object-fit: cover;">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title fw-semibold mb-1"><%#Eval("Nombre") + " " + Eval("Apellido") %></h5>
+                                    <p class="card-text text-muted mb-0">Matrícula: <%#Eval("Matricula") %></p>
+                                </div>
+                            </div>
+                        </asp:LinkButton>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
+
+        
 
         <!-- Turnos disponibles (placeholder visual) -->
         <div class="row mt-5" id="turnosDisponibles">

@@ -64,7 +64,7 @@ namespace negocio
             try
             {
 
-                datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE Estado = @estado");
+                datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE MatriculaVeterinario = @matricula AND Estado = 'PENDIENTE'");
                 datos.setearParametro("@matricula", matricula);
 
 

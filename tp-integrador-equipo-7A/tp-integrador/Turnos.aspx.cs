@@ -18,6 +18,8 @@ namespace tp_integrador
             {
                 VeterinarioNegocio negocioVeterinario = new VeterinarioNegocio();
                 listaVeterinario = negocioVeterinario.listar();
+                repVeterinarios.DataSource = listaVeterinario;
+                repVeterinarios.DataBind();
 
             }
             catch (Exception ex)
@@ -27,5 +29,12 @@ namespace tp_integrador
             }
 
         }
+
+        protected void seleccionarVeterinario_Command(object sender, CommandEventArgs e)
+        {
+            string matricula = e.CommandArgument.ToString();
+
+        }
+
     }
 }

@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\turnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\turnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\maria\\desktop\\programacion - 12-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\turnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\turnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|c:\\users\\maria\\desktop\\programacion - 12-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\dominio\\veterinario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|solutionrelative:dominio\\veterinario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|c:\\users\\maria\\desktop\\programacion - 12-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|solutionrelative:negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|c:\\users\\maria\\desktop\\programacion - 12-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\negocio\\veterinarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\veterinarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|solutionrelative:negocio\\veterinarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BACDD235-D264-4004-9B71-1FCCD2DE9171}|helpers\\helpers.csproj|c:\\users\\maria\\desktop\\programacion - 12-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\helpers\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BACDD235-D264-4004-9B71-1FCCD2DE9171}|helpers\\helpers.csproj|C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\helpers\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BACDD235-D264-4004-9B71-1FCCD2DE9171}|helpers\\helpers.csproj|solutionrelative:helpers\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\maria\\desktop\\programacion - 12-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\turnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\turnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,50 +34,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TurnoNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\TurnoNegocio.cs",
-              "RelativeDocumentMoniker": "negocio\\TurnoNegocio.cs",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\TurnoNegocio.cs",
-              "RelativeToolTip": "negocio\\TurnoNegocio.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAswEMAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T21:26:07.553Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "VeterinarioNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\VeterinarioNegocio.cs",
-              "RelativeDocumentMoniker": "negocio\\VeterinarioNegocio.cs",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\VeterinarioNegocio.cs",
-              "RelativeToolTip": "negocio\\VeterinarioNegocio.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAswDoAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T21:24:58.526Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Servicios.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\helpers\\Servicios.cs",
-              "RelativeDocumentMoniker": "helpers\\Servicios.cs",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\helpers\\Servicios.cs",
-              "RelativeToolTip": "helpers\\Servicios.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Veterinario.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Veterinario.cs",
+              "RelativeDocumentMoniker": "dominio\\Veterinario.cs",
+              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Veterinario.cs",
+              "RelativeToolTip": "dominio\\Veterinario.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T20:31:00.655Z",
+              "WhenOpened": "2025-06-13T02:20:25.185Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Turnos.aspx",
               "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Turnos.aspx",
               "RelativeDocumentMoniker": "tp-integrador\\Turnos.aspx",
@@ -78,6 +60,57 @@
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-06-12T20:19:22.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Turnos.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Turnos.aspx.cs",
+              "RelativeDocumentMoniker": "tp-integrador\\Turnos.aspx.cs",
+              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Turnos.aspx.cs",
+              "RelativeToolTip": "tp-integrador\\Turnos.aspx.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAmwBUAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T02:13:24.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TurnoNegocio.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\TurnoNegocio.cs",
+              "RelativeDocumentMoniker": "negocio\\TurnoNegocio.cs",
+              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\TurnoNegocio.cs",
+              "RelativeToolTip": "negocio\\TurnoNegocio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEIAAACkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T21:26:07.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VeterinarioNegocio.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\VeterinarioNegocio.cs",
+              "RelativeDocumentMoniker": "negocio\\VeterinarioNegocio.cs",
+              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\VeterinarioNegocio.cs",
+              "RelativeToolTip": "negocio\\VeterinarioNegocio.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAswDoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T21:24:58.526Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Servicios.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\helpers\\Servicios.cs",
+              "RelativeDocumentMoniker": "helpers\\Servicios.cs",
+              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion - 12-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\helpers\\Servicios.cs",
+              "RelativeToolTip": "helpers\\Servicios.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T20:31:00.655Z",
               "EditorCaption": ""
             }
           ]
