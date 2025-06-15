@@ -250,7 +250,6 @@
     </Compile>
     <Compile Include="Recepcionista_Cobros.aspx.cs">
       <DependentUpon>Recepcionista_Cobros.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Recepcionista_Cobros.aspx.designer.cs">
       <DependentUpon>Recepcionista_Cobros.aspx</DependentUpon>

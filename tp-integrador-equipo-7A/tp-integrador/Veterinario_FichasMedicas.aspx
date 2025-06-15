@@ -36,20 +36,22 @@
             </div>
 
             <div style="background-color: white; padding: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
-                <asp:TextBox runat="server" ID="txtFiltroFicha" AutoPostBack="True"
+                <asp:TextBox runat="server" ID="txtFiltroFicha" AutoPostBack="true"
                     PlaceHolder="DNI Dueño"
-                    CssClass="form-control"
+                    CssClass="form-control" OnTextChanged="txtFiltroFicha_TextChanged"
                     Style="flex: 1; min-width: 180px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);" />
-                <asp:DropDownList ID="ddlFiltroFicha" runat="server" AutoPostBack="True"
+                <asp:DropDownList ID="ddlFiltroFicha" runat="server" AutoPostBack="false"
                     CssClass="form-control"
                     Style="flex: 1; min-width: 180px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: white; cursor: pointer; box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);">
                     <asp:ListItem Text="Filtrar por Mascota..." Value=""></asp:ListItem>
-                    <asp:ListItem Text="Mascota1" Value="Mascota1"></asp:ListItem>
-                    <asp:ListItem Text="Mascota2" Value="Mascota2"></asp:ListItem>
                 </asp:DropDownList>
-                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary"
+
+
+                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click"
                     Style="background-color: #20c997; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;"
                     onmouseover="this.style.backgroundColor='#1a9f78'" onmouseout="this.style.backgroundColor='#20c997'" />
+
+
             </div>
         </div>
 
@@ -97,15 +99,15 @@
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                         <div>
                             <label style="font-weight: bold;">Nombre:</label>
-                            <asp:Label ID="lblDueño" runat="server"></asp:Label>
+                            <asp:Label ID="lblNombreDueño" runat="server"></asp:Label>
                         </div>
                         <div>
                             <label style="font-weight: bold;">Telefono:</label>
-                            <asp:Label ID="lblTelefono" runat="server"></asp:Label>
+                            <asp:Label ID="lblTelefonoDueño" runat="server"></asp:Label>
                         </div>
                         <div>
                             <label style="font-weight: bold;">Correo:</label>
-                            <asp:Label ID="lblCorreo" runat="server"></asp:Label>
+                            <asp:Label ID="lblCorreoDueño" runat="server"></asp:Label>
                         </div>
                     </div>
                 </div>
@@ -118,47 +120,24 @@
             </div>
 
             <div style="background-color: white; padding: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <%if (listaFichas != null)
+                    { %>
+                <% foreach (dominio.Ficha ficha in listaFichas)
+                    { %>
 
-
-                <%--
-                <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9;">
-                    <h5 style="margin-top: 0; color: #333;">Registrar Nueva Visita:</h5>
-                    <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center;">
+                    <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; background-color: #fefefe; margin-bottom: 15px;">
+                        <div style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #eee;">
+                            <label class="field-label">Fecha:</label>
+                            <label><%: ficha.Turno.FechaHora.ToString("dd/MM/yyyy") %></label>
+                        </div>
                         <div>
-                            <label style="font-weight: bold;">Fecha:</label>
-                            <asp:TextBox ID="txtFechaVisita" runat="server" TextMode="Date" CssClass="form-control" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></asp:TextBox>
+                            <label class="field-label">Comentarios del Veterinario:</label>
+                            <label><%: ficha.Descripcion %></label>
                         </div>
-                        <div style="flex-grow: 1;">
-                            <label style="font-weight: bold;">Comentarios:</label>
-                            <asp:TextBox ID="txtComentarios" runat="server" TextMode="MultiLine" Rows="3" Columns="50" CssClass="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></asp:TextBox>
-                        </div>
-                        <asp:Button ID="btnAgregarVisita" runat="server" Text="Agregar Visita" OnClick="btnAgregarVisita_Click" CssClass="btn btn-primary"
-                            style="background-color: #20c997; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;"
-                            onmouseover="this.style.backgroundColor='#1a9f78'" onmouseout="this.style.backgroundColor='#20c997'"/>
                     </div>
-                </div>
-                --%>
 
-                <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; background-color: #fefefe; margin-bottom: 15px;">
-                    <div style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #eee;">
-                        <label style="font-weight: bold; display: block; margin-bottom: 5px;">Fecha:</label>
-                        <asp:Label ID="lblFechaUltimaVisita" runat="server" Text="05/06/2025"></asp:Label>
-                    </div>
-                    <div>
-                        <label style="font-weight: bold; display: block; margin-bottom: 5px;">Comentarios del Veterinario:</label>
-                        <asp:Label ID="lblComentariosUltimaVisita" runat="server" Text="Revisión general, se aplicó la vacuna anual y se desparasitó. La mascota se encuentra en excelente estado de salud y su peso es adecuado para su edad."></asp:Label>
-                    </div>
-                </div>
-                <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; background-color: #fefefe;">
-                    <div style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #eee;">
-                        <label style="font-weight: bold; display: block; margin-bottom: 5px;">Fecha:</label>
-                        <asp:Label ID="lblFechaPenultimaVisita" runat="server" Text="15/12/2024"></asp:Label>
-                    </div>
-                    <div>
-                        <label style="font-weight: bold; display: block; margin-bottom: 5px;">Comentarios del Veterinario:</label>
-                        <asp:Label ID="lblComentariosPenultimaVisita" runat="server" Text="Visita de control por pequeña tos, se recetó jarabe por 5 días. La tos desapareció, sin complicaciones."></asp:Label>
-                    </div>
-                </div>
+                <% } %>
+                <% } %>
             </div>
         </div>
     </div>

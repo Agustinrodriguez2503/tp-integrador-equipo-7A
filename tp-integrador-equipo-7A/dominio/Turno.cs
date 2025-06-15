@@ -10,7 +10,8 @@ namespace dominio
     {
         public int IdTurno { get; set; }
         public string MatriculaVeterinario { get; set; }
-        public int IdMascota { get; set; }
+        //public int IdMascota { get; set; }
+        public Mascota Mascota { get; set; }
         public DateTime FechaHora { get; set; }
         public string Estado { get; set; }
         public bool Activo { get; set; }

@@ -9,7 +9,8 @@ namespace dominio
     public class Ficha
     {
         public int IdConsulta { get; set; }
-        public int IdTurno { get; set; }
+        //public int IdTurno { get; set; }
+        public Turno Turno { get; set; }
         public string Descripcion { get; set; }
         public bool Activo { get; set; }
     }
