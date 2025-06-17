@@ -19,9 +19,11 @@
             }
     </style>
 
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
     <!-- Contenedor principal con margen superior -->
     <div class="container mt-5 px-4">
@@ -58,21 +60,23 @@
             </asp:Repeater>
         </div>
 
-        
+        <%--Mostrar turnos disponibles--%>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
 
-        <!-- Turnos disponibles (placeholder visual) -->
-        <div class="row mt-5" id="turnosDisponibles">
-            <div class="col">
-                <h4 class="fw-semibold mb-3">Turnos disponibles</h4>
-                <ul class="list-group">
-                    <li class="list-group-item">Lunes 10/06 - 10:00 hs</li>
-                    <li class="list-group-item">Miércoles 12/06 - 15:30 hs</li>
-                    <li class="list-group-item">Viernes 14/06 - 09:00 hs</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+                <div "row mb-4">   
+                    <asp:GridView ID="dgvTurnos" runat="server" CssClass="table" 
+                        OnSelectedIndexChanged="dgvTurnos_SelectedIndexChanged" 
+                        OnPageIndexChanging="dgvTurnos_PageIndexChanging" 
+                        AllowPaging="true" PageSize="5" AutoGenerateColumns="false">
+                         <Columns>
+                            <asp:BoundField HeaderText="Turnos Disponibles" DataField="Turno" 
+                             DataFormatString="{0:dddd dd/MM/yyyy - HH:mm}" HtmlEncode="false" />
 
-
-
+                            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Seleccionar Turno" />
+                          </Columns>
+                    </asp:GridView>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
 </asp:Content>

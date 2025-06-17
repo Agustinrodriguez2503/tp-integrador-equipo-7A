@@ -19,7 +19,7 @@ namespace dominio
         public string Tipo { get; set; }
         public string Raza { get; set; }
         public string Sexo { get; set; }
-        [DisplayName("Fecha de nacimiento")]
+        [DisplayName("Fecha de Registro")]
         public DateTime FechaRegistro { get; set; }
         public bool Activo { get; set; }
     }

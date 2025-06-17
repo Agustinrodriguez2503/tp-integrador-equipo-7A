@@ -21,19 +21,12 @@ namespace helpers
                 // Solo lunes a sábado
                 if (dia.DayOfWeek != DayOfWeek.Sunday)
                 {
-                    // Turnos de 8:00 a 14:00
-                    for (int hora = 8; hora < 14; hora++)
+                    // Turnos de 9:00 a 18:00
+                    for (int hora = 9; hora < 18; hora++)
                     {
                         turnos.Add(dia.AddHours(hora));
-                        turnos.Add(dia.AddHours(hora).AddMinutes(30));
                     }
 
-                    // Turnos de 14:00 a 20:00
-                    for (int hora = 14; hora < 20; hora++)
-                    {
-                        turnos.Add(dia.AddHours(hora));
-                        turnos.Add(dia.AddHours(hora).AddMinutes(30));
-                    }
                 }
             }
 
