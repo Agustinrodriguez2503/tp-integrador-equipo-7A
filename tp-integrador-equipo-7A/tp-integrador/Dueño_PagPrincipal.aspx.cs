@@ -238,5 +238,38 @@ namespace tp_integrador
                 throw ex;
             }
         }
+
+        protected void btnFicha_Click(object sender, EventArgs e)
+        {
+            Dueño dueño = new Dueño();
+            DueñoNegocio dueñoNegocio = new DueñoNegocio();
+            try
+            {
+                //PASAJE DNI
+                if (Session["usuario"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["usuario"];
+                    dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
+
+                    string dni = dueño.Dni;
+                    Session.Add("DniDueño", dni);
+                    Response.Redirect("Veterinario_FichasMedicas.aspx", false);
+                }
+
+                //PASAJE IDMascota
+                //LinkButton btn = (LinkButton)sender;
+                //int idMascota = int.Parse(btn.CommandArgument);
+
+                //Session.Add("IDMascota", idMascota);
+                //Response.Redirect("Veterinario_FichasMedicas.aspx", false);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

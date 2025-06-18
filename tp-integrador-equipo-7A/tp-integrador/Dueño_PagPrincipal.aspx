@@ -153,7 +153,9 @@
                                 <i class="bi bi-calendar-check"></i> Turno
                             </asp:LinkButton>
 
-                            <asp:LinkButton ID="btnFicha" runat="server" CssClass="btn btn-info btn-sm fw-bold">
+                            <asp:LinkButton ID="btnFicha" runat="server" CssClass="btn btn-info btn-sm fw-bold"
+                                CommandArgument='<%# Eval("IDMascota") %>'
+                                OnClick="btnFicha_Click">
                                 <i class="bi bi-file-earmark-text"></i> Ficha
                             </asp:LinkButton>
 
