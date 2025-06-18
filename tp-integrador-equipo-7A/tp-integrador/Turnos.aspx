@@ -64,19 +64,22 @@
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
 
-                <div "row mb-4">   
-                    <asp:GridView ID="dgvTurnos" runat="server" CssClass="table" 
-                        OnSelectedIndexChanged="dgvTurnos_SelectedIndexChanged" 
-                        OnPageIndexChanging="dgvTurnos_PageIndexChanging" 
-                        AllowPaging="true" PageSize="5" AutoGenerateColumns="false">
-                         <Columns>
+                <div class="row g-4">   
+                    <asp:GridView ID="dgvTurnos" runat="server" CssClass="table"
+                        OnSelectedIndexChanged="dgvTurnos_SelectedIndexChanged"
+                        OnPageIndexChanging="dgvTurnos_PageIndexChanging"
+                        AllowPaging="true" PageSize="5" AutoGenerateColumns="false"
+                        DataKeyNames="Turno">
+                        <Columns>
                             <asp:BoundField HeaderText="Turnos Disponibles" DataField="Turno" 
-                             DataFormatString="{0:dddd dd/MM/yyyy - HH:mm}" HtmlEncode="false" />
-
+                                DataFormatString="{0:dddd dd/MM/yyyy - HH:mm}" HtmlEncode="false" />
                             <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Seleccionar Turno" />
-                          </Columns>
+                        </Columns>
                     </asp:GridView>
+                    <asp:Label ID="lblMensaje" runat="server" CssClass="alert alert-info d-block mt-3" Visible="false"></asp:Label>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
+
+    </div>
 </asp:Content>

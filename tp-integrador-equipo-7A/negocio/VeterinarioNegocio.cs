@@ -18,7 +18,7 @@ namespace negocio
             {
                 if (matricula != "")
                 {
-                    datos.setearConsulta("SELECT Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Veterinarios WHERE Matricula = @matricula");
+                    datos.setearConsulta("SELECT Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, UrlImagen,Activo FROM Veterinarios WHERE Matricula = @matricula");
                     datos.setearParametro("@matricula", matricula);
                 }
                 else

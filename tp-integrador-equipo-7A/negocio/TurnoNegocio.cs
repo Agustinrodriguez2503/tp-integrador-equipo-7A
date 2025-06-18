@@ -105,8 +105,7 @@ namespace negocio
             try
             {
 
-                datos.setearConsulta("INSERT INTO Turnos (IDTurno, MatriculaVeterinario, IDMascota, FechaHora) VALUES (@IDTurno, @MatriculaVeterinario, @IDMascota, @FechaHora)");
-                datos.setearParametro("@IDTurno", nuevo.IdTurno);
+                datos.setearConsulta("INSERT INTO Turnos (MatriculaVeterinario, IDMascota, FechaHora) VALUES (@MatriculaVeterinario, @IDMascota, @FechaHora)");
                 datos.setearParametro("@MatriculaVeterinario", nuevo.MatriculaVeterinario);
                 datos.setearParametro("@IDMascota", nuevo.Mascota.IDMascota);
                 datos.setearParametro("@FechaHora", nuevo.FechaHora);
