@@ -180,7 +180,7 @@
                 ID="btnRegistrarCobro"
                 runat="server"
                 Text="Registrar Cobro"
-                CssClass="btn btn-cobro-hover btn-lg fw-semibold shadow-sm"
+                CssClass="btn-cobro-hover btn-lg fw-semibold shadow-sm"
                 OnClick="btnRegistrarCobro_Click"
                 UseSubmitBehavior="false" />
         </div>
