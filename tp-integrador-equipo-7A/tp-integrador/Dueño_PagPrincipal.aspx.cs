@@ -169,6 +169,74 @@ namespace tp_integrador
                 throw ex;
             }
         }
+        protected void datosCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Dueño dueño = new Dueño();
+                DueñoNegocio dueñoNegocio = new DueñoNegocio();
+                if (Session["usuario"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["usuario"];
+                    dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
 
+                    txtNombreCliente.Text = dueño.Nombre;
+                    txtApellidoCliente.Text = dueño.Apellido;
+                    txtTelefonoCliente.Text = dueño.Telefono;
+                    txtDireccionCliente.Text = dueño.Domicilio;
+                    txtCorreoCliente.Text = dueño.Correo;
+                    txtDniCliente.Text = dueño.Dni;
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "abrirModalDatosCliente();", true);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        protected void btnGuardarDatosCliente_Click(object sender, EventArgs e)
+        {
+            Dueño dueño = new Dueño();
+            DueñoNegocio dueñoNegocio = new DueñoNegocio();
+            try
+            {
+                if (Session["usuario"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["usuario"];
+                    dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
+
+                    dueño.Nombre = txtNombreCliente.Text;
+                    dueño.Apellido = txtApellidoCliente.Text;
+                    dueño.Telefono = txtTelefonoCliente.Text;
+                    dueño.Domicilio = txtDireccionCliente.Text;
+                    dueño.Correo = txtCorreoCliente.Text;
+
+                    dueñoNegocio.Modificar(dueño);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        protected void btnTurno_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                int idMascota = int.Parse(btn.CommandArgument);
+
+                Session.Add("IDMascota", idMascota);
+                Response.Redirect("Turnos.aspx", false);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

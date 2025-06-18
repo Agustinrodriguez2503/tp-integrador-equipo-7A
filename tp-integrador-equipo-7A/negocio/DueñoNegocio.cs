@@ -26,7 +26,7 @@ namespace negocio
                     datos.setearParametro("@dni", dni);
                 }
 
-                    datos.ejecutarLectura();
+                datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
@@ -114,7 +114,7 @@ namespace negocio
                 datos.setearParametro("@usuario", nuevoDueño.Usuario);
                 datos.setearParametro("@nombre", nuevoDueño.Nombre);
                 datos.setearParametro("@apellido", nuevoDueño.Apellido);
-                datos.setearParametro("@telefono" , nuevoDueño.Telefono);
+                datos.setearParametro("@telefono", nuevoDueño.Telefono);
                 datos.setearParametro("@correo", nuevoDueño.Correo);
                 datos.setearParametro("@domicilio", nuevoDueño.Domicilio);
                 datos.ejecutarAccion();
@@ -128,6 +128,35 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+
+        public void Modificar(Dueño dueño)
+        {
+            {
+                AccesoDatos datos = new AccesoDatos();
+                try
+                {
+                    // Modifica en tabla Dueño
+                    datos.setearConsulta("UPDATE Dueños SET Nombre = @nombre, Apellido = @apellido, Telefono = @telefono, Domicilio = @domicilio, Correo = @correo WHERE Dni = @dni");
+                    datos.setearParametro("@dni", dueño.Dni);
+                    datos.setearParametro("@nombre", dueño.Nombre);
+                    datos.setearParametro("@apellido", dueño.Apellido);
+                    datos.setearParametro("@telefono", dueño.Telefono);
+                    datos.setearParametro("@domicilio", dueño.Domicilio);
+                    datos.setearParametro("@correo", dueño.Correo);
+                    datos.ejecutarAccion();
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
             }
         }
     }
