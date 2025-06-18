@@ -188,6 +188,7 @@
     <Content Include="Turnos.aspx" />
     <Content Include="Veterinario_FichasMedicas.aspx" />
     <Content Include="Veterinario_PagPrincipal.aspx" />
+    <Content Include="Veterinario_TurnosPendientes.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -289,6 +290,13 @@
     </Compile>
     <Compile Include="Veterinario_PagPrincipal.aspx.designer.cs">
       <DependentUpon>Veterinario_PagPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Veterinario_TurnosPendientes.aspx.cs">
+      <DependentUpon>Veterinario_TurnosPendientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Veterinario_TurnosPendientes.aspx.designer.cs">
+      <DependentUpon>Veterinario_TurnosPendientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
