@@ -29,7 +29,7 @@ namespace tp_integrador
                     Usuario usuario = (Usuario)Session["usuario"];
                     dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
 
-                    lblBienvenido.Text = dueño.Nombre + " " + dueño.Apellido;
+                    lblBienvenido.Text = dueño.nombreCompleto();
                     gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
                     gvMascotas.DataBind();
                 }

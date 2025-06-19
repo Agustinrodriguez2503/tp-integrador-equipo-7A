@@ -16,71 +16,7 @@
                 .enlace-registro-recupero a:hover {
                     text-decoration: underline;
                 }
-
-        /* Estilo del modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: auto;
-            max-width: 600px;
-            text-align: left;
-            position: relative;
-        }
-
-        .cerrar {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 20px;
-            cursor: pointer;
-        }
     </style>
-
-    <script>
-        // MODAL DE REGISTRO
-        function abrirModalRegistro() {
-            document.getElementById("modalRegistro").style.display = "block";
-        }
-
-        function cerrarModalRegistro() {
-            document.getElementById("modalRegistro").style.display = "none";
-        }
-
-        // MODAL DE RECUPERO
-        function abrirModalRecupero() {
-            document.getElementById("modalRecupero").style.display = "block";
-        }
-
-        function cerrarModalRecupero() {
-            document.getElementById("modalRecupero").style.display = "none";
-        }
-
-        // Cierra el modal si se hace clic fuera
-        window.onclick = function (event) {
-            const modalRegistro = document.getElementById("modalRegistro");
-            const modalRecupero = document.getElementById("modalRecupero");
-
-            if (event.target === modalRegistro) {
-                cerrarModalRegistro();
-            }
-            if (event.target === modalRecupero) {
-                cerrarModalRecupero();
-            }
-        }
-    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -102,11 +38,11 @@
                     <div>
                         <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" Visible="False"></asp:Label>
                         <div class="enlace-registro-recupero">
-                            <a href="#" onclick="abrirModalRegistro()">¿Aun no tenés cuenta? Registrate!</a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalRegistro">¿Aún no tenés cuenta? ¡Registrate!</a>
                         </div>
 
                         <div class="enlace-registro-recupero">
-                            <a href="#" onclick="abrirModalRecupero()">¿Olvidaste tu clave? Recuperá tu usuario!</a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalRecupero">¿Olvidaste tu clave? ¡Recuperá tu usuario!</a>
                         </div>
 
                     </div>
@@ -115,40 +51,53 @@
         </div>
     </div>
     <!-- Modal de registro -->
-    <div id="modalRegistro" class="modal">
-        <div class="modal-content">
-            <span class="cerrar" onclick="cerrarModalRegistro()">&times;</span>
-            <h3 class="fw-bold text-center">Registro</h3>
-            <h4>Ingrese sus datos.</h4>
-            <asp:Panel runat="server">
-                <asp:TextBox ID="txtNombre" placeholder="Nombre" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtApellido" placeholder="Apellido" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtDni" placeholder="DNI" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtTelefono" placeholder="Domicilio" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtCorreo" placeholder="Teléfono" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtDomicilio" placeholder="Correo" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtUsuarioRegistro" placeholder="Usuario" runat="server" class="form-control mb-2"></asp:TextBox>
-                <asp:TextBox ID="txtClaveRegistro" placeholder="Clave" runat="server" class="form-control mb-2" TextMode="Password"></asp:TextBox>
-
-                <asp:Button ID="Button1" class="btn btn-success w-100 fw-bold" runat="server" Text="Registrarse" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" OnClick="btnRegistro_Click" />
-            </asp:Panel>
+    <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="registroLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-4">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="registroLabel">Registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <asp:Panel runat="server">
+                        <asp:TextBox ID="txtNombre" placeholder="Nombre" runat="server" CssClass="form-control mb-2" />
+                        <asp:TextBox ID="txtApellido" placeholder="Apellido" runat="server" CssClass="form-control mb-2" />
+                        <asp:TextBox ID="txtDni" placeholder="DNI" runat="server" CssClass="form-control mb-2" />
+                        <asp:TextBox ID="txtTelefono" placeholder="Teléfono" runat="server" CssClass="form-control mb-2" />
+                        <asp:TextBox ID="txtCorreo" placeholder="Correo" runat="server" CssClass="form-control mb-2" />
+                        <asp:TextBox ID="txtDomicilio" placeholder="Domicilio" runat="server" CssClass="form-control mb-2" />
+                        <asp:TextBox ID="txtUsuarioRegistro" placeholder="Usuario" runat="server" CssClass="form-control mb-2" />
+                        <asp:TextBox ID="txtClaveRegistro" placeholder="Clave" TextMode="Password" runat="server" CssClass="form-control mb-2" />
+                        <asp:Label ID="lblError" runat="server" CssClass="text-danger" Visible="false" />
+                        <asp:Button ID="btnRegistro" runat="server" Text="Registrarse" CssClass="btn btn-success w-100 fw-bold" OnClick="btnRegistro_Click" />
+                    </asp:Panel>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Modal de recupero -->
-    <div id="modalRecupero" class="modal">
-        <div class="modal-content">
-            <span class="cerrar" onclick="cerrarModalRecupero()">&times;</span>
-            <h3 class="fw-bold text-center">Recupero de usuario</h3>
-            <h5>Ingrese correo electrónico o usuario registrado y luego haga click en "Recuperar contraseña".</h5>
+    <div class="modal fade" id="modalRecupero" tabindex="-1" aria-labelledby="recuperoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-4">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="recuperoLabel">Recupero de usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="mb-3">Ingrese correo electrónico o usuario registrado y luego haga click en "Recuperar contraseña".</h6>
 
-            <asp:Panel runat="server">
-                <asp:TextBox ID="txtCorreoUsuario" placeholder="Correo electrónico/Usuario" runat="server" class="form-control mb-2"></asp:TextBox>
+                    <asp:Panel runat="server">
+                        <asp:TextBox ID="txtCorreoUsuario" placeholder="Correo electrónico / Usuario" runat="server" CssClass="form-control mb-3" />
 
-                <asp:Button ID="btnRecuperarClave" class="btn btn-success w-100 fw-bold" runat="server" Text="Recuperar contraseña" BackColor="lightseagreen" BorderColor="lightseagreen" ForeColor="Black" OnClick="btnRecuperarClave_Click" />
-            </asp:Panel>
+                        <asp:Label ID="lblRecuperoError" runat="server" CssClass="text-danger" Visible="false" />
 
+                        <asp:Button ID="btnRecuperarClave" runat="server" Text="Recuperar contraseña" CssClass="btn btn-success w-100 fw-bold" OnClick="btnRecuperarClave_Click" />
+                    </asp:Panel>
+                </div>
+            </div>
         </div>
     </div>
+
 
 </asp:Content>

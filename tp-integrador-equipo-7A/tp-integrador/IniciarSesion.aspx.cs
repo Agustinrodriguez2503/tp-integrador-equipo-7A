@@ -57,10 +57,63 @@ namespace tp_integrador
         protected void btnRegistro_Click(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             Dueño dueño = new Dueño();
             DueñoNegocio dueñoNegocio = new DueñoNegocio();
             try
-            {
+            { 
+                if(string.IsNullOrWhiteSpace(txtUsuarioRegistro.Text) ||
+                    string.IsNullOrWhiteSpace(txtClaveRegistro.Text) ||
+                    string.IsNullOrWhiteSpace(txtDni.Text) ||
+                    string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                    string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                    string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+                    string.IsNullOrWhiteSpace(txtCorreo.Text) ||
+                    string.IsNullOrWhiteSpace(txtDomicilio.Text))
+                {
+                    lblError.Text = "Todos los campos son obligatorios.";
+                    lblError.Visible = true;
+                    MostrarModalRegistro();
+                    return;
+                }
+
+                try
+                {
+                    var email = new System.Net.Mail.MailAddress(txtCorreo.Text);
+                }
+                catch
+                {
+                    lblError.Text = "Correo electrónico inválido.";
+                    lblError.Visible = true;
+                    MostrarModalRegistro();
+                    return;                    
+                }
+
+                if(txtClaveRegistro.Text.Length < 6)
+                {
+                    lblError.Text = "La contraseña debe tener al menos 6 caracteres.";
+                    lblError.Visible = true;
+                    MostrarModalRegistro();
+                    return;
+                }
+
+                if(usuarioNegocio.ListarUnoTodos(txtUsuarioRegistro.Text).Count() > 0)
+                {
+                    lblError.Text = "Usuario existente.";
+                    lblError.Visible = true;
+                    MostrarModalRegistro();
+                    return;
+                }
+
+                if (dueñoNegocio.listar(txtDni.Text).Count() > 0) 
+                {
+                    lblError.Text = "DNI existente.";
+                    lblError.Visible = true;
+                    MostrarModalRegistro();
+                    return;
+                }
+
+
                 usuario.User = txtUsuarioRegistro.Text;
                 usuario.Pass = txtClaveRegistro.Text;
                 usuario.Rol = 1;
@@ -81,6 +134,11 @@ namespace tp_integrador
 
                 throw ex;
             }
+        }
+
+        private void MostrarModalRegistro()
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "registroModal", "var myModal = new bootstrap.Modal(document.getElementById('modalRegistro')); myModal.show();", true);
         }
 
         protected void btnRecuperarClave_Click(object sender, EventArgs e)
