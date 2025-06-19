@@ -122,7 +122,7 @@ namespace tp_integrador
                     mascota.Nombre = txtNombreMascotaMod.Text;
                     mascota.Edad = int.Parse(txtEdadMascotaMod.Text);
                     mascota.FechaNacimiento = DateTime.Parse(txtFechaNacimientoMascotaMod.Text);
-                    mascota.Peso = int.Parse(txtPesoMascotaMod.Text);
+                    mascota.Peso = decimal.Parse(txtPesoMascotaMod.Text);
                     mascota.Tipo = txtTipoMascotaMod.Text;
                     mascota.Raza = txtRazaMascotaMod.Text;
                     mascota.Sexo = ddlSexoMascotaMod.Text;

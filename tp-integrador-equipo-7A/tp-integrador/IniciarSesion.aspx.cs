@@ -16,7 +16,7 @@ namespace tp_integrador
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void btnIniciar_Click(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace tp_integrador
                 if (negocio.Loguear(usuario))
                 {
                     Session.Add("usuario", usuario);
-                    if(usuario.Rol == 1)
+                    if (usuario.Rol == 1)
                     {
                         Response.Redirect("Dueño_PagPrincipal.aspx", false);
                     }
@@ -61,8 +61,8 @@ namespace tp_integrador
             Dueño dueño = new Dueño();
             DueñoNegocio dueñoNegocio = new DueñoNegocio();
             try
-            { 
-                if(string.IsNullOrWhiteSpace(txtUsuarioRegistro.Text) ||
+            {
+                if (string.IsNullOrWhiteSpace(txtUsuarioRegistro.Text) ||
                     string.IsNullOrWhiteSpace(txtClaveRegistro.Text) ||
                     string.IsNullOrWhiteSpace(txtDni.Text) ||
                     string.IsNullOrWhiteSpace(txtNombre.Text) ||
@@ -86,10 +86,10 @@ namespace tp_integrador
                     lblError.Text = "Correo electrónico inválido.";
                     lblError.Visible = true;
                     MostrarModalRegistro();
-                    return;                    
+                    return;
                 }
 
-                if(txtClaveRegistro.Text.Length < 6)
+                if (txtClaveRegistro.Text.Length < 6)
                 {
                     lblError.Text = "La contraseña debe tener al menos 6 caracteres.";
                     lblError.Visible = true;
@@ -97,7 +97,7 @@ namespace tp_integrador
                     return;
                 }
 
-                if(usuarioNegocio.ListarUnoTodos(txtUsuarioRegistro.Text).Count() > 0)
+                if (usuarioNegocio.ListarUnoTodos(txtUsuarioRegistro.Text).Count() > 0)
                 {
                     lblError.Text = "Usuario existente.";
                     lblError.Visible = true;
@@ -105,7 +105,7 @@ namespace tp_integrador
                     return;
                 }
 
-                if (dueñoNegocio.listar(txtDni.Text).Count() > 0) 
+                if (dueñoNegocio.listar(txtDni.Text).Count() > 0)
                 {
                     lblError.Text = "DNI existente.";
                     lblError.Visible = true;
@@ -127,7 +127,20 @@ namespace tp_integrador
 
                 dueñoNegocio.Agregar(dueño, usuario);
 
-                Response.Redirect("Dueño_PagPrincipal.aspx", false);
+                Session.Add("usuario", usuario);
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso", @"
+    Swal.fire({
+        title: '¡Registro exitoso!',
+        text: 'Tu cuenta fue creada correctamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'Dueño_PagPrincipal.aspx';
+        }
+    });
+", true);
             }
             catch (Exception ex)
             {
@@ -145,20 +158,20 @@ namespace tp_integrador
         {
             DueñoNegocio dueñoNegocio = new DueñoNegocio();
             Dueño dueño = new Dueño();
-            
+
             string contacto = txtCorreoUsuario.Text;
             string correo;
             string nombre;
 
             try
             {
-                if(contacto != null)
+                if (contacto != null)
                 {
                     dueño = dueñoNegocio.listarPorUser(contacto)[0];
                     nombre = dueño.nombreCompleto();
                     correo = dueño.Correo;
 
-                    Session.Add("contacto",contacto);
+                    Session.Add("contacto", contacto);
                     Servicios.enviarMailRecupero(correo, nombre);
                 }
             }

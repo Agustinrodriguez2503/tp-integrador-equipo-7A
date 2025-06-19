@@ -20,6 +20,8 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />
+
     <div class="banner mt-3"></div>
     <div class="row mt-5">
         <div class="col-3"></div>
