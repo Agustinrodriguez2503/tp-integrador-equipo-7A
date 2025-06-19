@@ -34,7 +34,19 @@ namespace tp_integrador
                 {
                     usuario.Pass = txtConfirmarClave.Text;
                     usuarioNegocio.Modificar(usuario);
-                    lblClaves.Text = "Clave modificada exitosamente.";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "cambioClave", @"
+    Swal.fire({
+        title: '¡Modificación de clave!',
+        text: 'Su contraseña fue modificada exitosamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'IniciarSesion.aspx';
+        }
+    });
+", true);
+
                 }
                 else
                 {

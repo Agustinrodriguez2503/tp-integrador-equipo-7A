@@ -238,7 +238,6 @@ namespace tp_integrador
                 throw ex;
             }
         }
-
         protected void btnFicha_Click(object sender, EventArgs e)
         {
             Dueño dueño = new Dueño();

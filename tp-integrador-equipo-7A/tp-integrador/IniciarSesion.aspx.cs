@@ -18,7 +18,6 @@ namespace tp_integrador
         {
 
         }
-
         protected void btnIniciar_Click(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario();
@@ -53,7 +52,6 @@ namespace tp_integrador
                 throw ex;
             }
         }
-
         protected void btnRegistro_Click(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario();
@@ -148,12 +146,10 @@ namespace tp_integrador
                 throw ex;
             }
         }
-
         private void MostrarModalRegistro()
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "registroModal", "var myModal = new bootstrap.Modal(document.getElementById('modalRegistro')); myModal.show();", true);
         }
-
         protected void btnRecuperarClave_Click(object sender, EventArgs e)
         {
             DueñoNegocio dueñoNegocio = new DueñoNegocio();
@@ -173,6 +169,19 @@ namespace tp_integrador
 
                     Session.Add("contacto", contacto);
                     Servicios.enviarMailRecupero(correo, nombre);
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "envioMail", @"
+    Swal.fire({
+        title: '¡Envio de correo!',
+        text: 'Se envío un mail a su correo registrado.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'IniciarSesion.aspx';
+        }
+    });
+", true);
                 }
             }
             catch (Exception ex)
