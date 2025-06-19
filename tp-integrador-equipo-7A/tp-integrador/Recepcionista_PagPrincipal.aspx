@@ -88,13 +88,17 @@
                 </a>
             </div>
             <div class="col-md-6 col-lg-4">
-                <a href="registrar.aspx" class="card-link-custom">
+                <asp:LinkButton 
+                    ID="btnRegistrar" 
+                    runat="server" 
+                    CssClass="card-link-custom d-block text-decoration-none"
+                    OnClick="btnRegistrar_Click">
                     <div class="card custom-card h-100 text-center card-verde-agua">
                         <div class="card-body">
                             <h5 class="card-title">REGISTRAR</h5>
                         </div>
                     </div>
-                </a>
+                </asp:LinkButton>
             </div>
         </div>
 
@@ -171,6 +175,143 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
+        </div>
+
+        <%--MODAL PARA REGISTRAR UN DUEÑO--%>
+
+
+        <div class="row g-2 justify-content-center mt-1">
+            <div class="col-12 col-md-6">
+                <asp:UpdatePanel runat="server" Visible="false" ID="panelRegistrar">
+                    <ContentTemplate>
+                        <div class="container mt-5 px-4">
+                          <div class="card shadow rounded-4 border-0">
+                            <div class="card-body">
+
+                              <!-- Título principal -->
+                              <h3 class="fw-bold text-center mb-4">¿Qué desea registrar?</h3>
+
+                              <div class="row justify-content-center align-items-center g-3">
+
+                                <!-- Grupo 1: Dueño y Mascota con TextBox -->
+                                <div class="col-md-6 d-flex flex-wrap align-items-center justify-content-center gap-3">
+
+                                  <asp:Button ID="btnAgregarDueño" runat="server" Text="Dueño" CssClass="btn btn-outline-primary btn-lg rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalRegistrarDueño" />
+
+                                  <asp:Button ID="btnAgregarMascota" runat="server" Text="Mascota" CssClass="btn btn-outline-success btn-lg rounded-pill px-4" OnClick="btnAgregarMascota_Click"/>
+
+                                  <div class="input-group mt-2" style="min-width: 250px" >
+                                    <asp:TextBox ID="txtBuscarMascota" Visible="false" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-start-3" placeholder="Ingrese DNI del dueño" />
+                                    <asp:Button ID="btnBuscarMascota" Visible="false" runat="server" Text="+" CssClass="btn btn-outline-secondary btn-lg px-3 rounded-end-3" />
+                                  </div>
+
+                                </div>
+
+                                <!-- Separador visual -->
+                                <div class="col-12 my-3 text-center">
+                                  <span class="text-muted">— o —</span>
+                                </div>
+
+                                <!-- Grupo 2: Recepcionista y Veterinario -->
+                                <div class="col-md-6 d-flex flex-wrap justify-content-center gap-3">
+
+                                  <asp:Button ID="btnRecepcionista" runat="server" Text="Recepcionista" CssClass="btn btn-outline-secondary btn-lg rounded-pill px-4" />
+
+                                  <asp:Button ID="btnVeterinario" runat="server" Text="Veterinario" CssClass="btn btn-outline-dark btn-lg rounded-pill px-4" />
+
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalRegistrarDueño" tabindex="-1" aria-labelledby="modalRegistrarDueñoLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow">
+
+              <div class="modal-header bg-primary text-white rounded-top-4">
+                <h5 class="modal-title fw-semibold" id="modalRegistrarDueñoLabel">
+                  <i class="bi bi-person-lines-fill me-2"></i>Nuevo Dueño
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+              </div>
+
+              <div class="modal-body bg-light">
+                <div class="container-fluid px-4">
+                  <div class="row g-4">
+
+                    <!-- Nombre -->
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold" for="txtNombre">Nombre</label>
+                      <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: Laura" />
+                    </div>
+
+                    <!-- Apellido -->
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold" for="txtApellido">Apellido</label>
+                      <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: González" />
+                    </div>
+
+                    <!-- DNI -->
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold" for="txtDni">DNI</label>
+                      <asp:TextBox ID="txtDni" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 30123456" />
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold" for="txtTelefono">Teléfono</label>
+                      <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 11 5555-5555" />
+                    </div>
+
+                    <!-- Correo -->
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold" for="txtCorreo">Correo electrónico</label>
+                      <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" TextMode="Email" placeholder="Ej: correo@ejemplo.com" />
+                    </div>
+
+                    <!-- Domicilio -->
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold" for="txtDomicilio">Domicilio</label>
+                      <asp:TextBox ID="txtDomicilio" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: Av. Rivadavia 1234" />
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- Usuario -->
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold" for="txtUsuario">Usuario</label>
+                      <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: laura123" />
+                    </div>
+
+                    <!-- Clave -->
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold" for="txtClave">Clave</label>
+                      <asp:TextBox ID="txtClave" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" TextMode="Password" placeholder="Contraseña segura" />
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer bg-white rounded-bottom-4 d-flex justify-content-between px-4 py-3">
+                <asp:Button ID="btnRegistrarDueño" runat="server" Text="Registrar" CssClass="btn btn-success btn-lg px-4 rounded-pill" OnClick="btnRegistrarDueño_Click" />
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+
+            </div>
+          </div>
         </div>
 
 

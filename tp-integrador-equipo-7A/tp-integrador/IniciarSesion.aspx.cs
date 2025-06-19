@@ -128,17 +128,17 @@ namespace tp_integrador
                 Session.Add("usuario", usuario);
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso", @"
-    Swal.fire({
-        title: '¡Registro exitoso!',
-        text: 'Tu cuenta fue creada correctamente.',
-        icon: 'success',
-        confirmButtonText: 'Aceptar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = 'Dueño_PagPrincipal.aspx';
-        }
-    });
-", true);
+                    Swal.fire({
+                        title: '¡Registro exitoso!',
+                        text: 'Tu cuenta fue creada correctamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'Dueño_PagPrincipal.aspx';
+                        }
+                    });
+                ", true);
             }
             catch (Exception ex)
             {
@@ -171,17 +171,17 @@ namespace tp_integrador
                     Servicios.enviarMailRecupero(correo, nombre);
 
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "envioMail", @"
-    Swal.fire({
-        title: '¡Envio de correo!',
-        text: 'Se envío un mail a su correo registrado.',
-        icon: 'success',
-        confirmButtonText: 'Aceptar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = 'IniciarSesion.aspx';
-        }
-    });
-", true);
+                            Swal.fire({
+                                title: '¡Envio de correo!',
+                                text: 'Se envío un mail a su correo registrado.',
+                                icon: 'success',
+                                confirmButtonText: 'Aceptar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = 'IniciarSesion.aspx';
+                                }
+                            });
+                        ", true);
                 }
             }
             catch (Exception ex)

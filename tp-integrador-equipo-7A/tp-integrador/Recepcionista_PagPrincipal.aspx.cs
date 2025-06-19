@@ -76,5 +76,21 @@ namespace tp_integrador
             btnBuscarTurno.Enabled = true;
 
         }
+
+        protected void btnRegistrarDueño_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            panelRegistrar.Visible = true;
+        }
+
+        protected void btnAgregarMascota_Click(object sender, EventArgs e)
+        {
+            txtBuscarMascota.Visible = true;
+            btnBuscarMascota.Visible = true;
+        }
     }
 }

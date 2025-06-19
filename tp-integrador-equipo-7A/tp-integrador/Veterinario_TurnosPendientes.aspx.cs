@@ -33,7 +33,7 @@ namespace tp_integrador
                 // *** REEMPLAZA CON LA LÓGICA REAL PARA OBTENER LA MATRÍCULA ***
                 string matriculaVeterinario = "VET001";
 
-                listaOriginal = negocio.listar_turnosOcupados(matriculaVeterinario);
+                listaOriginal = negocio.listar_turnosOcupados(matriculaVeterinario, "PENDIENTE");
                 listaFiltrada = listaOriginal; // Por defecto, si no hay filtro de fecha o es inválido
 
                 // Aplicar filtro de fecha si txtFecha tiene valor y es válido

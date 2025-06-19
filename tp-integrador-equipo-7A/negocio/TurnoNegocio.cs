@@ -57,19 +57,30 @@ namespace negocio
             }
         }
 
-        public List<Turno> listar_turnosOcupados(string matricula)
+        public List<Turno> listar_turnosOcupados(string matricula, string estado = "TODO")
         {
             List<Turno> lista = new List<Turno>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
+                if(estado != "TODO")
+                {
+                    datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE MatriculaVeterinario = @matricula AND Estado = @estado AND Activo = 1");
+                    datos.setearParametro("@estado", estado);
+                    datos.setearParametro("@matricula", matricula);
 
-                datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE MatriculaVeterinario = @matricula AND Estado = 'PENDIENTE' AND Activo = 1");
-                datos.setearParametro("@matricula", matricula);
+                }
+                else
+                {
+                    datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE MatriculaVeterinario = @matricula AND Activo = 1");
+                    datos.setearParametro("@matricula", matricula);
+
+                }
 
 
-                datos.ejecutarLectura();
+
+                    datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
