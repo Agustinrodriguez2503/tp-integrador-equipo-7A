@@ -26,7 +26,7 @@ namespace negocio
                     datos.setearConsulta("SELECT Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, UrlImagen,Activo FROM Veterinarios");
 
                 }
-                    datos.ejecutarLectura();
+                datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
@@ -103,6 +103,54 @@ namespace negocio
                 datos.setearParametro("@Activo", modificar.Estado);
                 datos.ejecutarAccion();
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public List<Veterinario> listarPorUser(string usuario = "")
+        {
+            List<Veterinario> lista = new List<Veterinario>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                if (usuario != "")
+                {
+                    datos.setearConsulta("Select Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, UrlImagen, Activo " +
+                        "From Veterinarios " +
+                        "Where Usuario = @usuario OR Correo = @usuario");
+                    datos.setearParametro("@usuario", usuario);
+                }
+                else
+                {
+                    datos.setearConsulta("Select Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, UrlImagen, Activo");
+                }
+
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Veterinario aux = new Veterinario();
+                    aux.Dni = (string)datos.Lector["Dni"];
+                    aux.Usuario = (string)datos.Lector["Usuario"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.Correo = (string)datos.Lector["Correo"];
+                    aux.Imagen = (string)datos.Lector["UrlImagen"];
+                    aux.Estado = (bool)datos.Lector["Activo"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
             }
             catch (Exception ex)
             {

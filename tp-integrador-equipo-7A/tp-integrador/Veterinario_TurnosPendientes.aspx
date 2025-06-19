@@ -216,7 +216,8 @@
                 <i class="fas fa-calendar-alt" style="margin-right: 10px;"></i>Filtrar Turnos
             </div>
             <div class="filter-content">
-                <asp:TextBox ID="txtFecha" runat="server" TextMode="Date" CssClass="date-input"></asp:TextBox>
+                <asp:TextBox ID="txtFecha" runat="server" TextMode="Date" CssClass="date-input" 
+                    AutoPostBack="true" OnTextChanged="txtFecha_TextChanged"></asp:TextBox>
             </div>
         </div>
 

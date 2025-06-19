@@ -38,11 +38,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container my-5">
         <h1 class="text-center mb-3">¡BIENVENIDO/A!</h1>
-        <h3 class="text-center text-secondary mb-5">Nahuel Pablo Martínez</h3>
+        <asp:Label ID="lblBienvenidoVet" runat="server"
+            CssClass="h3 text-center text-secondary mb-5 fw-bold d-block text-dark"
+            Text=""></asp:Label>
 
         <div class="row g-4 justify-content-center">
             <div class="col-md-6 col-lg-4">
-                <a href="turnos.aspx" class="card-link-custom">
+                <a href="Veterinario_TurnosPendientes.aspx" class="card-link-custom">
                     <div class="card custom-card h-100 text-center card-verde-agua">
                         <div class="card-body">
                             <h5 class="card-title">TURNOS</h5>
@@ -51,7 +53,7 @@
                 </a>
             </div>
             <div class="col-md-6 col-lg-4">
-                <a href="cobros.aspx" class="card-link-custom">
+                <a href="Veterinario_FichasMedicas.aspx" class="card-link-custom">
                     <div class="card custom-card h-100 text-center card-verde-agua">
                         <div class="card-body">
                             <h5 class="card-title">FICHAS MÉDICAS</h5>
@@ -60,7 +62,7 @@
                 </a>
             </div>
             <div class="col-md-6 col-lg-4">
-                <a href="registrar.aspx" class="card-link-custom">
+                <a href="#" class="card-link-custom">
                     <div class="card custom-card h-100 text-center card-verde-agua">
                         <div class="card-body">
                             <h5 class="card-title">REPORTES</h5>
@@ -72,7 +74,7 @@
 
         <div class="row g-4 justify-content-right mt-2">
             <div class="col-md-6 col-lg-4">
-                <a href="reportes.aspx" class="card-link-custom">
+                <a href="#" class="card-link-custom">
                     <div class="card custom-card h-100 text-center card-verde-agua">
                         <div class="card-body">
                             <h5 class="card-title">MENSAJERÍA</h5>
