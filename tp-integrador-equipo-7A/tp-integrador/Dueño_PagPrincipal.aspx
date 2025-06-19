@@ -199,7 +199,7 @@
                             <asp:ListItem Text="Macho" Value="Macho" />
                             <asp:ListItem Text="Hembra" Value="Hembra" />
                         </asp:DropDownList>
-
+                        <asp:Label ID="lblRegistroMascota" runat="server" Text=""></asp:Label>
                         <asp:Button ID="btnRegistroMascota" class="btn btn-success w-100 fw-bold" runat="server" Text="Registrar mascota" OnClick="btnRegistroMascota_Click" />
                     </asp:Panel>
                 </div>
@@ -224,6 +224,7 @@
                         <asp:TextBox ID="txtDireccionCliente" placeholder="Dirección" runat="server" CssClass="form-control mb-2" />
                         <asp:TextBox ID="txtCorreoCliente" placeholder="Correo electrónico" runat="server" CssClass="form-control mb-2" TextMode="Email" />
                         <asp:TextBox ID="txtDniCliente" placeholder="DNI" runat="server" CssClass="form-control mb-2" TextMode="Number" ReadOnly="true" />
+                        <asp:Label ID="lblDatosCliente" runat="server" Text=""></asp:Label>
                         <asp:Button ID="btnGuardarDatosCliente" OnClick="btnGuardarDatosCliente_Click" runat="server" Text="Guardar datos" CssClass="btn btn-success w-100 fw-bold" />
                     </asp:Panel>
                 </div>

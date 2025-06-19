@@ -235,6 +235,7 @@ namespace tp_integrador
                     Usuario usuario = (Usuario)Session["usuario"];
                     dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
 
+                    
                     dueño.Nombre = txtNombreCliente.Text;
                     dueño.Apellido = txtApellidoCliente.Text;
                     dueño.Telefono = txtTelefonoCliente.Text;

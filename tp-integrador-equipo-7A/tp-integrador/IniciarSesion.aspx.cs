@@ -60,14 +60,14 @@ namespace tp_integrador
             DueñoNegocio dueñoNegocio = new DueñoNegocio();
             try
             {
-                if (string.IsNullOrWhiteSpace(txtUsuarioRegistro.Text) ||
-                    string.IsNullOrWhiteSpace(txtClaveRegistro.Text) ||
-                    string.IsNullOrWhiteSpace(txtDni.Text) ||
-                    string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                    string.IsNullOrWhiteSpace(txtApellido.Text) ||
-                    string.IsNullOrWhiteSpace(txtTelefono.Text) ||
-                    string.IsNullOrWhiteSpace(txtCorreo.Text) ||
-                    string.IsNullOrWhiteSpace(txtDomicilio.Text))
+                if (FuncionesGenericas.validaTexto(txtUsuarioRegistro.Text) ||
+                    FuncionesGenericas.validaTexto(txtClaveRegistro.Text) ||
+                    FuncionesGenericas.validaTexto(txtDni.Text) ||
+                    FuncionesGenericas.validaTexto(txtNombre.Text) ||
+                    FuncionesGenericas.validaTexto(txtApellido.Text) ||
+                    FuncionesGenericas.validaTexto(txtTelefono.Text) ||
+                    FuncionesGenericas.validaTexto(txtCorreo.Text) ||
+                    FuncionesGenericas.validaTexto(txtDomicilio.Text))
                 {
                     lblError.Text = "Todos los campos son obligatorios.";
                     lblError.Visible = true;
@@ -87,7 +87,7 @@ namespace tp_integrador
                     return;
                 }
 
-                if (txtClaveRegistro.Text.Length < 6)
+                if (FuncionesGenericas.validaClave(txtClaveRegistro.Text))
                 {
                     lblError.Text = "La contraseña debe tener al menos 6 caracteres.";
                     lblError.Visible = true;

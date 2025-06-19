@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using dominio;
+using helpers;
 using negocio;
 
 namespace tp_integrador
@@ -32,9 +33,17 @@ namespace tp_integrador
 
                 if (txtNuevaClave.Text == txtConfirmarClave.Text)
                 {
-                    usuario.Pass = txtConfirmarClave.Text;
-                    usuarioNegocio.Modificar(usuario);
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "cambioClave", @"
+                    if (!(FuncionesGenericas.validaClave(txtNuevaClave.Text)))
+                    {
+                        lblClaves.Visible = true;
+                        lblClaves.Text = "La contraseña debe tener al menos 6 caracteres.";
+                        return;
+                    }
+                    else
+                    {
+                        usuario.Pass = txtConfirmarClave.Text;
+                        usuarioNegocio.Modificar(usuario);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "cambioClave", @"
     Swal.fire({
         title: '¡Modificación de clave!',
         text: 'Su contraseña fue modificada exitosamente.',
@@ -46,6 +55,7 @@ namespace tp_integrador
         }
     });
 ", true);
+                    }
 
                 }
                 else
