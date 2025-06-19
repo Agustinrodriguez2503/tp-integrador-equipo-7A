@@ -66,6 +66,20 @@ namespace tp_integrador
 
                     gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
                     gvMascotas.DataBind();
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionMascotaExitosa", @"
+    Swal.fire({
+        title: '¡Alta de mascota exitosa.!',
+        text: 'Su mascota ha sido dada de alta exitosamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'Dueño_PagPrincipal.aspx';
+        }
+    });
+", true);
+
                 }
             }
             catch (Exception ex)
@@ -96,7 +110,7 @@ namespace tp_integrador
 
                     ViewState["IDMascotaModificacion"] = id;
 
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "abrirModalModificacionMascota();", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalModificacionMascota')); modal.show();", true);
                 }
             }
             catch (Exception ex)
@@ -134,6 +148,20 @@ namespace tp_integrador
 
                     gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
                     gvMascotas.DataBind();
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionMascotaExitosa", @"
+    Swal.fire({
+        title: '¡Modificación exitosa.!',
+        text: 'Los datos de su mascota han sido actualizados exitosamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'Dueño_PagPrincipal.aspx';
+        }
+    });
+", true);
+
                 }
 
             }
@@ -187,7 +215,7 @@ namespace tp_integrador
                     txtCorreoCliente.Text = dueño.Correo;
                     txtDniCliente.Text = dueño.Dni;
 
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "abrirModalDatosCliente();", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModalDatosCliente", "var modal = new bootstrap.Modal(document.getElementById('modalDatosCliente')); modal.show();", true);
                 }
             }
             catch (Exception ex)
@@ -214,6 +242,20 @@ namespace tp_integrador
                     dueño.Correo = txtCorreoCliente.Text;
 
                     dueñoNegocio.Modificar(dueño);
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionExitosa", @"
+    Swal.fire({
+        title: '¡Modificación exitosa.!',
+        text: 'Sus datos han sido actualizados exitosamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'Dueño_PagPrincipal.aspx';
+        }
+    });
+", true);
+
                 }
             }
             catch (Exception ex)
