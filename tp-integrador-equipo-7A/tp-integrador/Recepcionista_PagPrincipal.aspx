@@ -53,6 +53,16 @@
         .btn-cobro-hover:focus {
             outline: none;
             box-shadow: 0 0 0 0.25rem rgba(32, 201, 151, 0.3);
+        }
+
+        .btn-cobro-hover:disabled {
+            background-color: #e0e0e0; 
+            color: #888888;            
+            border-color: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
     }
 </style>
 </asp:Content>
@@ -131,11 +141,12 @@
                 </a>
             </div>
         </div>
+       
         <div class="row g-4 justify-content-center mt-5" >
             <div class="col-12 col-md-6">
                 <asp:UpdatePanel runat="server" Visible="false" ID="upPanelTurnos">
                     <ContentTemplate>
-                        <!-- Descripción del DNI -->
+                        <!-- Se solicita que se ingrese el DNI del dueño -->
                         <div class="mb-3">
                             <label for="txtDueño" class="form-label fw-semibold">Ingrese el DNI del dueño de la mascota</label>
                             <asp:TextBox 
@@ -147,13 +158,12 @@
                             <asp:Label 
                                 ID="lblDniNoValido" 
                                 runat="server" 
-                                Text="El DNI ingresado no pertenece a un Dueño registrado" 
                                 CssClass="text-danger fw-semibold mt-1" Visible="false">
                             </asp:Label>
 
                         </div>
 
-                        <!-- Título para la selección de mascota -->
+                        <!-- Luego que se ingreso el DNI se carga automaticamente el ddl -->
                         <div class="mb-3">
                             <label for="ddlMascota" class="form-label fw-semibold">Seleccioná la mascota que desea asignarle un turno</label>
                             <asp:DropDownList 
@@ -162,6 +172,12 @@
                                 CssClass="form-select form-select-lg shadow-sm rounded-3" Enabled="false" 
                                 OnSelectedIndexChanged="ddlMascota_SelectedIndexChanged" AutoPostBack="true">
                             </asp:DropDownList>
+                            <asp:Label 
+                                ID="lbl_ddlMascotas" 
+                                runat="server" 
+                                Text="Debe seleccionar una mascota para continuar." 
+                                CssClass="text-danger fw-semibold mt-1" Visible="false">
+                            </asp:Label>
                         </div>
                         <div class="mb-3 text-center">
                             <asp:Button 
@@ -177,7 +193,7 @@
             </div>
         </div>
 
-        <%--MODAL PARA REGISTRAR UN DUEÑO--%>
+        <%-- PANERL PARA REGISTRAR UN DUEÑO, MASCOTA, VETERINARIO O RECEPCIONISTA. --%>
 
 
         <div class="row g-2 justify-content-center mt-1">
@@ -235,7 +251,8 @@
 
 
 
-        <!-- Modal -->
+        <!--------------------------------------------- MODAL PARA REGISTRAR UN DUEÑO ---------------------------------------------->
+
         <div class="modal fade" id="modalRegistrarDueño" tabindex="-1" aria-labelledby="modalRegistrarDueñoLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content rounded-4 shadow">

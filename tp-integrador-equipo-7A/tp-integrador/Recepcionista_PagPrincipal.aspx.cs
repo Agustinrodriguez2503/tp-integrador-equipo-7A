@@ -27,11 +27,22 @@ namespace tp_integrador
         protected void txtDueño_TextChanged(object sender, EventArgs e)
         {
             MascotaNegocio negocioMascota = new MascotaNegocio();
+            
             try
-            {
+            {                
                 string dniDueño = txtDueño.Text;
                 List<Mascota> mascotas = new List<Mascota>();
                 mascotas = negocioMascota.listar(dniDueño);
+                lbl_ddlMascotas.Visible = false;
+                btnBuscarTurno.Enabled = false;
+                ddlMascota.Items.Clear();
+
+                if (!FuncionesGenericas.validaTexto(txtDueño.Text))
+                {
+                    lblDniNoValido.Text = "Ingrese el DNI del dueño de la mascota.";
+                    lblDniNoValido.Visible = true;
+                    return;
+                }
 
                 if(mascotas != null && mascotas.Count > 0)
                 {
@@ -45,7 +56,9 @@ namespace tp_integrador
                 }
                 else
                 {
+                    lblDniNoValido.Text = "El DNI ingresado no pertenece a un Dueño registrado.";
                     lblDniNoValido.Visible = true;
+                    ddlMascota.Enabled = false;
                 }
 
 
@@ -66,14 +79,22 @@ namespace tp_integrador
 
         protected void btnBuscarTurno_Click(object sender, EventArgs e)
         {
-            int idMascota = int.Parse(ddlMascota.SelectedItem.Value);
-            Session["IDMascota"] = idMascota;
-            Response.Redirect("Turnos.aspx", false);
+
+            if (ddlMascota.SelectedItem != null && !string.IsNullOrEmpty(ddlMascota.SelectedItem.Value))
+            {
+                int idMascota = int.Parse(ddlMascota.SelectedItem.Value);
+                Session["IDMascota"] = idMascota;
+                Response.Redirect("Turnos.aspx", false);
+
+            }
+
+            lbl_ddlMascotas.Visible = true;
         }
 
         protected void ddlMascota_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnBuscarTurno.Enabled = true;
+            lbl_ddlMascotas.Visible = false;
 
         }
 

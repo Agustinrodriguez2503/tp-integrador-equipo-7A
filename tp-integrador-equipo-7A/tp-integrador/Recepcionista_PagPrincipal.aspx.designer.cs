@@ -78,6 +78,15 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.DropDownList ddlMascota;
 
         /// <summary>
+        /// Control lbl_ddlMascotas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_ddlMascotas;
+
+        /// <summary>
         /// Control btnBuscarTurno.
         /// </summary>
         /// <remarks>
