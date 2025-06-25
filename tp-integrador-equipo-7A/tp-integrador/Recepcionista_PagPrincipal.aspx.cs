@@ -27,9 +27,9 @@ namespace tp_integrador
         protected void txtDueño_TextChanged(object sender, EventArgs e)
         {
             MascotaNegocio negocioMascota = new MascotaNegocio();
-            
+
             try
-            {                
+            {
                 string dniDueño = txtDueño.Text;
                 List<Mascota> mascotas = new List<Mascota>();
                 mascotas = negocioMascota.listar(dniDueño);
@@ -44,7 +44,7 @@ namespace tp_integrador
                     return;
                 }
 
-                if(mascotas != null && mascotas.Count > 0)
+                if (mascotas != null && mascotas.Count > 0)
                 {
                     ddlMascota.Enabled = true;
                     ddlMascota.DataSource = mascotas;
@@ -98,14 +98,28 @@ namespace tp_integrador
 
         }
 
-        protected void btnRegistrarDueño_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             panelRegistrar.Visible = true;
+        }
+        protected void btnRegistrarDueño_Click(object sender, EventArgs e)
+        {
+            //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
+            List<TextBox> campos = new List<TextBox> { txtNombre, txtApellido, txtDni, txtTelefono, txtCorreo, txtDomicilio};
+
+            //Funcion LINQ "All". En este caso pregunta si NO son nulos o tiene espcios en blanco.
+            bool todosCompletos = campos.All(c => !string.IsNullOrWhiteSpace(c.Text));
+
+            if (!todosCompletos) 
+            {
+                lblValidacion_registroDueño.Text = "Restan campos por completar.";
+                lblValidacion_registroDueño.Visible = true;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
+                return;
+            }
+
+
         }
 
         protected void btnAgregarMascota_Click(object sender, EventArgs e)

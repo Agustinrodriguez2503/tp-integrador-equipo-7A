@@ -15,6 +15,15 @@ namespace tp_integrador
     {
 
         /// <summary>
+        /// Control sm_PaginaInicialRecep.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager sm_PaginaInicialRecep;
+
+        /// <summary>
         /// Control recepcionista.
         /// </summary>
         /// <remarks>
@@ -159,6 +168,15 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.Button btnVeterinario;
 
         /// <summary>
+        /// Control upRegistrarDueño.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upRegistrarDueño;
+
+        /// <summary>
         /// Control txtNombre.
         /// </summary>
         /// <remarks>
@@ -213,22 +231,13 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.TextBox txtDomicilio;
 
         /// <summary>
-        /// Control txtUsuario.
+        /// Control lblValidacion_registroDueño.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuario;
-
-        /// <summary>
-        /// Control txtClave.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtClave;
+        protected global::System.Web.UI.WebControls.Label lblValidacion_registroDueño;
 
         /// <summary>
         /// Control btnRegistrarDueño.

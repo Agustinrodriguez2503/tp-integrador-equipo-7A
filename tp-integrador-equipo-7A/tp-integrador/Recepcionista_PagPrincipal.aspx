@@ -67,7 +67,9 @@
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager runat="server"></asp:ScriptManager>
+   
+    <asp:ScriptManager runat="server" ID="sm_PaginaInicialRecep"></asp:ScriptManager>
+    
     <div class="container my-5">
         <h1 class="text-center mb-3">¡BIENVENIDO/A!</h1>
         <h3 class="text-center text-secondary mb-5" runat ="server" id="recepcionista"></h3>
@@ -252,84 +254,90 @@
 
 
         <!--------------------------------------------- MODAL PARA REGISTRAR UN DUEÑO ---------------------------------------------->
+        <asp:UpdatePanel ID="upRegistrarDueño" runat="server" />
+            <ContentTemplate>
+                <div class="modal fade" id="modalRegistrarDueño" tabindex="-1" aria-labelledby="modalRegistrarDueñoLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content rounded-4 shadow">
 
-        <div class="modal fade" id="modalRegistrarDueño" tabindex="-1" aria-labelledby="modalRegistrarDueñoLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content rounded-4 shadow">
+                      <div class="modal-header bg-primary text-white rounded-top-4">
+                        <h5 class="modal-title fw-semibold" id="modalRegistrarDueñoLabel">
+                          <i class="bi bi-person-lines-fill me-2"></i>Nuevo Dueño
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                      </div>
 
-              <div class="modal-header bg-primary text-white rounded-top-4">
-                <h5 class="modal-title fw-semibold" id="modalRegistrarDueñoLabel">
-                  <i class="bi bi-person-lines-fill me-2"></i>Nuevo Dueño
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-              </div>
+                      <div class="modal-body bg-light">
+                        <div class="container-fluid px-4">
+                          <div class="row g-4">
 
-              <div class="modal-body bg-light">
-                <div class="container-fluid px-4">
-                  <div class="row g-4">
+                            <!-- Nombre -->
+                            <div class="col-md-6">
+                              <label class="form-label fw-semibold" for="txtNombre">Nombre</label>
+                              <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3"  placeholder="Ej: Laura" />
+                            </div>
 
-                    <!-- Nombre -->
-                    <div class="col-md-6">
-                      <label class="form-label fw-semibold" for="txtNombre">Nombre</label>
-                      <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: Laura" />
+                            <!-- Apellido -->
+                            <div class="col-md-6">
+                              <label class="form-label fw-semibold" for="txtApellido">Apellido</label>
+                              <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: González" />
+                            </div>
+
+                            <!-- DNI -->
+                            <div class="col-md-6">
+                              <label class="form-label fw-semibold" for="txtDni">DNI</label>
+                              <asp:TextBox ID="txtDni" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 30123456" />
+                            </div>
+
+                            <!-- Teléfono -->
+                            <div class="col-md-6">
+                              <label class="form-label fw-semibold" for="txtTelefono">Teléfono</label>
+                              <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 11 5555-5555" />
+                            </div>
+
+                            <!-- Correo -->
+                            <div class="col-md-6">
+                              <label class="form-label fw-semibold" for="txtCorreo">Correo electrónico</label>
+                              <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" TextMode="Email" placeholder="Ej: correo@ejemplo.com" />
+                            </div>
+
+                            <!-- Domicilio -->
+                            <div class="col-md-6">
+                              <label class="form-label fw-semibold" for="txtDomicilio">Domicilio</label>
+                              <asp:TextBox ID="txtDomicilio" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: Av. Rivadavia 1234" />
+                            </div>
+
+                            <hr class="my-4">
+            
+                            <div class="col-md-6">
+                                <asp:Label CssClass="text-danger" ID="lblValidacion_registroDueño" Visible="false" runat="server" />
+                            </div>
+
+                           <%-- <!-- Usuario -->
+                            <div class="col-md-6">
+                              <label class="form-label fw-semibold" for="txtUsuario">Usuario</label>
+                              <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: laura123" />
+                            </div>
+
+                            <!-- Clave -->
+                            <div class="col-md-6">
+                              <label class="form-label fw-semibold" for="txtClave">Clave</label>
+                              <asp:TextBox ID="txtClave" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" TextMode="Password" placeholder="Contraseña segura" />
+                            </div>--%>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="modal-footer bg-white rounded-bottom-4 d-flex justify-content-between px-4 py-3">
+                        <asp:Button ID="btnRegistrarDueño" runat="server" Text="Registrar" CssClass="btn btn-success btn-lg px-4 rounded-pill" OnClick="btnRegistrarDueño_Click" />
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+                      </div>
+
                     </div>
-
-                    <!-- Apellido -->
-                    <div class="col-md-6">
-                      <label class="form-label fw-semibold" for="txtApellido">Apellido</label>
-                      <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: González" />
-                    </div>
-
-                    <!-- DNI -->
-                    <div class="col-md-6">
-                      <label class="form-label fw-semibold" for="txtDni">DNI</label>
-                      <asp:TextBox ID="txtDni" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 30123456" />
-                    </div>
-
-                    <!-- Teléfono -->
-                    <div class="col-md-6">
-                      <label class="form-label fw-semibold" for="txtTelefono">Teléfono</label>
-                      <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 11 5555-5555" />
-                    </div>
-
-                    <!-- Correo -->
-                    <div class="col-md-6">
-                      <label class="form-label fw-semibold" for="txtCorreo">Correo electrónico</label>
-                      <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" TextMode="Email" placeholder="Ej: correo@ejemplo.com" />
-                    </div>
-
-                    <!-- Domicilio -->
-                    <div class="col-md-6">
-                      <label class="form-label fw-semibold" for="txtDomicilio">Domicilio</label>
-                      <asp:TextBox ID="txtDomicilio" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: Av. Rivadavia 1234" />
-                    </div>
-
-                    <hr class="my-4">
-
-                    <!-- Usuario -->
-                    <div class="col-md-6">
-                      <label class="form-label fw-semibold" for="txtUsuario">Usuario</label>
-                      <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: laura123" />
-                    </div>
-
-                    <!-- Clave -->
-                    <div class="col-md-6">
-                      <label class="form-label fw-semibold" for="txtClave">Clave</label>
-                      <asp:TextBox ID="txtClave" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" TextMode="Password" placeholder="Contraseña segura" />
-                    </div>
-
                   </div>
                 </div>
-              </div>
-
-              <div class="modal-footer bg-white rounded-bottom-4 d-flex justify-content-between px-4 py-3">
-                <asp:Button ID="btnRegistrarDueño" runat="server" Text="Registrar" CssClass="btn btn-success btn-lg px-4 rounded-pill" OnClick="btnRegistrarDueño_Click" />
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Cancelar</button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        
 </asp:Content>
