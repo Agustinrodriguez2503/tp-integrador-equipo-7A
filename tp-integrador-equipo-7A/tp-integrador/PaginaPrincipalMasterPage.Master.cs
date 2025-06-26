@@ -30,6 +30,7 @@ namespace tp_integrador
                 contenedorLogin.Visible = false;
                 contenedorInicio.Visible = false;
             }
+
         }
     }
 }

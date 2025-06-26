@@ -124,7 +124,7 @@ namespace tp_integrador
 
                     txtNombreMascotaMod.Text = nueva.Nombre;
                     txtEdadMascotaMod.Text = nueva.Edad.ToString();
-                    txtFechaNacimientoMascotaMod.Text = nueva.FechaNacimiento.ToString("dd/MM/yyyy");
+                    txtFechaNacimientoMascotaMod.Text = nueva.FechaNacimiento.ToString("yyyy-MM-dd");
                     txtPesoMascotaMod.Text = nueva.Peso.ToString();
                     txtTipoMascotaMod.Text = nueva.Tipo;
                     txtRazaMascotaMod.Text = nueva.Raza;

@@ -205,11 +205,75 @@ namespace tp_integrador
                 return;
             }
 
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaMascota')); modal.show();", true);
+
         }
 
         protected void txtBuscarMascota_TextChanged(object sender, EventArgs e)
         {
             lblInfoBuscarMascota.Visible = false;
+        }
+
+        protected void btnRegistroMascota_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
+                List<WebControl> controles = new List<WebControl> { txtNombreMascota, txtEdadMascota, txtFechaNacimientoMascota, txtPesoMascota, txtTipoMascota, txtRazaMascota, ddlSexoMascota };
+
+                //Funcion LINQ "All". En este caso pregunta si NO son nulos o tiene espcios en blanco y si el DDL seleccionó 1.
+                bool todosCompletos = controles.All(c =>
+                {
+                    if (c is TextBox tb)
+                        return !string.IsNullOrWhiteSpace(tb.Text);
+                    else if (c is DropDownList ddl)
+                        return ddl.SelectedIndex > 0;
+                    return true;
+                });
+
+                if (!todosCompletos)
+                {
+                    divAlertaMascota.Visible = true;
+                    lblValidacion_registroMascota.Text = "Restan campos por completar";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaMascota')); modal.show();", true);
+                    return;
+                }
+                MascotaNegocio negocioMascota = new MascotaNegocio();
+                Mascota nuevaMascota = new Mascota();
+
+                nuevaMascota.DniDueño = txtBuscarMascota.Text;
+                nuevaMascota.Nombre = txtNombreMascota.Text;
+                nuevaMascota.Edad = int.Parse(txtEdadMascota.Text);
+                nuevaMascota.FechaNacimiento = DateTime.Parse(txtFechaNacimientoMascota.Text);
+                nuevaMascota.Peso = decimal.Parse(txtPesoMascota.Text);
+                nuevaMascota.Tipo = txtTipoMascota.Text;
+                nuevaMascota.Raza = txtRazaMascota.Text;
+                nuevaMascota.Sexo = ddlSexoMascota.SelectedValue;
+
+                negocioMascota.Agregar(nuevaMascota);
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionMascotaExitosa", @"
+                        Swal.fire({
+                            title: '¡Alta de mascota exitosa!',
+                            text: 'Su mascota ha sido dada de alta exitosamente.',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = 'Recepcionista_PagPrincipal.aspx';
+                            }
+                        });
+                    ", true);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
     }
 }

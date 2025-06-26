@@ -4,9 +4,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"> <%--para icono de bootstrap--%>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    
-
-
     <style>
     .val-error {
     color: #ff4d4f;
@@ -84,7 +81,7 @@
             box-shadow: none;
             transform: none;
         }
-    }
+   
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -280,7 +277,7 @@
 
 
         <!--------------------------------------------- MODAL PARA REGISTRAR UN DUEÑO ---------------------------------------------->
-        <asp:UpdatePanel ID="upRegistrarDueño" runat="server" />
+        <asp:UpdatePanel ID="upRegistrarDueño" runat="server" >
             <ContentTemplate>
                 <div class="modal fade" id="modalRegistrarDueño" tabindex="-1" aria-labelledby="modalRegistrarDueñoLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -389,6 +386,116 @@
 
         <%-----------------------------          MODAL PARA CARGAR UNA MASCOTA      --------------------------------------%>
 
+         <asp:UpdatePanel ID="upRegistrarMascota" runat="server" >
+            <contenttemplate>
+                <div class="modal fade" id="modalAltaMascota" tabindex="-1" aria-labelledby="modalAltaMascotaLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content rounded-4 shadow">
 
+                            <div class="modal-header bg-primary text-white rounded-top-4">
+                                <h5 class="modal-title fw-semibold" id="modalAltaMascotaLabel">
+                                    <i class="bi bi-person-lines-fill me-2"></i>Nueva mascota
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                            </div>
+
+                            <div class="modal-body bg-light">
+                                <div class="container-fluid px-4">
+                                    <div class="row g-4">
+
+                                        <!-- Nombre -->
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold" for="txtNombreMascota">Nombre</label>
+                                            <asp:TextBox ID="txtNombreMascota" runat="server" ValidationGroup="registrarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: Bonnie" />
+                                            <asp:RequiredFieldValidator ID="rfvNombreMascota" runat="server" ControlToValidate="txtNombreMascota" ValidationGroup="registrarMascota" ErrorMessage="El Nombre es obligatorio."
+                                                CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                        </div>
+
+                                        <!-- Edad -->
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold" for="txtEdadMascota">Edad</label>
+                                            <asp:TextBox ID="txtEdadMascota" runat="server" ValidationGroup="registrarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: 6 (años)." TextMode="Number" />
+                                            <asp:RequiredFieldValidator ID="rfvEdadMascota" runat="server" ControlToValidate="txtEdadMascota" ValidationGroup="registrarMascota" ErrorMessage="La edad es obligatoria."
+                                                CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                            <asp:RangeValidator ID="rvEdadMascota" runat="server" ControlToValidate="txtEdadMascota"
+                                                MinimumValue="1" MaximumValue="100" Type="Integer"
+                                                ValidationGroup="registrarMascota" ErrorMessage="La edad debe ser mayor a 0."
+                                                CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                        </div>
+
+                                        <!-- Fecha de Nacimiento -->
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold" for="txtFechaNacimientoMascota">Fecha de Nacimiento</label>
+                                            <asp:TextBox ID="txtFechaNacimientoMascota" runat="server" ValidationGroup="registrarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: 02/06/19" TextMode="Date" />
+                                            <asp:RequiredFieldValidator ID="rfvFechaNacimientoMascota" runat="server" ControlToValidate="txtFechaNacimientoMascota" ValidationGroup="registrarMascota" ErrorMessage="La fecha de nacimiento es obligatoria."
+                                                CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                            <asp:RegularExpressionValidator ID="revFechaNacimiento" runat="server" ControlToValidate="txtFechaNacimientoMascota" ValidationGroup="registrarMascota" ErrorMessage="Ingrese una fecha válida: (dd/MM/yyyy)."
+                                                CssClass="text-danger small fst-italic" ValidationExpression="^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$" Display="Dynamic" />
+                                        </div>
+
+                                        <!-- Peso -->
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold" for="txtPesoMascota">Peso</label>
+                                            <asp:TextBox ID="txtPesoMascota" runat="server" ValidationGroup="registrarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: 6 (kg)." TextMode="Number" />
+                                            <asp:RequiredFieldValidator ID="rfvPesoMascota" runat="server" ControlToValidate="txtPesoMascota" ValidationGroup="registrarMascota" ErrorMessage="El peso es obligatorio."
+                                                CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                            <asp:RegularExpressionValidator ID="revPeso" runat="server" ControlToValidate="txtPesoMascota" ValidationGroup="registrarMascota" ErrorMessage="Ingrese un peso válido. (ej: 6 o 6.5)."
+                                                CssClass="text-danger small fst-italic" Display="Dynamic" ValidationExpression="^([1-9]\d{0,2})(\.\d{1,2})?$" />
+                                            <asp:RangeValidator ID="rvPeso" runat="server"
+                                                ControlToValidate="txtPesoMascota" ValidationGroup="registrarMascota"
+                                                MinimumValue="0.1" MaximumValue="999" ErrorMessage="Ingrese un peso válido mayor a 0 (ej: 6 o 6.5)."
+                                                CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                        </div>
+
+                                        <!-- Tipo -->
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold" for="txtTipoMascota">Tipo</label>
+                                            <asp:TextBox ID="txtTipoMascota" runat="server" ValidationGroup="registrarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: Perro." />
+                                            <asp:RequiredFieldValidator ID="rfvTipoMascota" runat="server" ControlToValidate="txtTipoMascota" ValidationGroup="registrarMascota" ErrorMessage="El tipo es obligatorio."
+                                                CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                        </div>
+
+                                        <!-- Raza -->
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold" for="txtRazaMascota">Raza</label>
+                                            <asp:TextBox ID="txtRazaMascota" runat="server" ValidationGroup="registrarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: Bull Dog" />
+                                            <asp:RequiredFieldValidator ID="rfvRazaMascota" runat="server" ControlToValidate="txtRazaMascota" ValidationGroup="registrarMascota" ErrorMessage="La raza es obligatorio."
+                                                CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                        </div>
+
+                                        <!-- Sexo -->
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold" for="ddlSexoMascota">Sexo</label>
+                                            <asp:DropDownList ID="ddlSexoMascota" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom">
+                                                <asp:ListItem Text="Seleccione el sexo" Value="" Disabled="true" Selected="true" />
+                                                <asp:ListItem Text="Macho" Value="Macho" />
+                                                <asp:ListItem Text="Hembra" Value="Hembra" />
+                                            </asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="rfvSexoMascota" runat="server" ControlToValidate="ddlSexoMascota" ValidationGroup="registrarMascota" ErrorMessage="El sexo es obligatorio."
+                                                CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                        </div>
+
+                                        <hr class="my-4">
+
+                                        <div id="divAlertaMascota" runat="server" visible="false" class="alert alert-danger d-flex align-items-center p-2 mb-3" role="alert">
+                                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                            <asp:Label ID="lblValidacion_registroMascota" runat="server" CssClass="m-0 text-dark" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer bg-white rounded-bottom-4 d-flex justify-content-between px-4 py-3">
+                                <asp:Button ID="btnRegistroMascota" runat="server" ValidationGroup="registrarMascota" Text="Registrar mascota" CssClass="btn btn-success btn-lg px-4 rounded-pill" CausesValidation="true" OnClick="btnRegistroMascota_Click" />
+                                <button type="button" class="btn btn-outline-secondary btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </contenttemplate>
+        </asp:UpdatePanel>
+      </div>
 
 </asp:Content>
