@@ -1,6 +1,27 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RecepcionistaMasterPage.Master" AutoEventWireup="true" CodeBehind="Recepcionista_PagPrincipal.aspx.cs" Inherits="tp_integrador.Recepcionista_PagPrincipal" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"> <%--para icono de bootstrap--%>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    
+
+
     <style>
+    .val-error {
+    color: #ff4d4f;
+    font-size: 0.875rem;
+    font-style: italic;
+    margin-top: 0.25rem;
+    display: block;
+    }
+    /*Para que el contenido del placeholder de los texbox se vean mas clarito y el cursiva*/
+    input.placeholder-custom::placeholder {
+        color: #bcbcbc !important;
+        font-style: italic;
+    }
+
+
     .card-link-custom {
         text-decoration: none;
         color: inherit;
@@ -70,6 +91,7 @@
    
     <asp:ScriptManager runat="server" ID="sm_PaginaInicialRecep"></asp:ScriptManager>
     
+    <%----------------------------------MENU PRINCIPAL----------------------------------------%>
     <div class="container my-5">
         <h1 class="text-center mb-3">¡BIENVENIDO/A!</h1>
         <h3 class="text-center text-secondary mb-5" runat ="server" id="recepcionista"></h3>
@@ -144,6 +166,7 @@
             </div>
         </div>
        
+        <%-----------------------------------P A N E R  P A R A  P E D I R  T U R N O----------------------------------%>
         <div class="row g-4 justify-content-center mt-5" >
             <div class="col-12 col-md-6">
                 <asp:UpdatePanel runat="server" Visible="false" ID="upPanelTurnos">
@@ -195,7 +218,9 @@
             </div>
         </div>
 
-        <%-- PANERL PARA REGISTRAR UN DUEÑO, MASCOTA, VETERINARIO O RECEPCIONISTA. --%>
+        
+        
+        <%-------------- PANERL PARA REGISTRAR UN DUEÑO, MASCOTA, VETERINARIO O RECEPCIONISTA. -------------------------%>
 
 
         <div class="row g-2 justify-content-center mt-1">
@@ -218,11 +243,12 @@
 
                                   <asp:Button ID="btnAgregarMascota" runat="server" Text="Mascota" CssClass="btn btn-outline-success btn-lg rounded-pill px-4" OnClick="btnAgregarMascota_Click"/>
 
+                                    <%--SE SOLICITA EL DNI DEL DUEÑO, SE CORROBORA QUE EXISTA Y SE ABRE EL MODAL PARA REGISTRAR MASCOTA--%>
                                   <div class="input-group mt-2" style="min-width: 250px" >
-                                    <asp:TextBox ID="txtBuscarMascota" Visible="false" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-start-3" placeholder="Ingrese DNI del dueño" />
-                                    <asp:Button ID="btnBuscarMascota" Visible="false" runat="server" Text="+" CssClass="btn btn-outline-secondary btn-lg px-3 rounded-end-3" />
+                                    <asp:TextBox ID="txtBuscarMascota" Visible="false" runat="server" AutoPostBack="true" OnTextChanged="txtBuscarMascota_TextChanged" CssClass="form-control form-control-lg shadow-sm rounded-start-3" placeholder="Ingrese DNI del dueño" />
+                                    <asp:Button ID="btnBuscarMascota" Visible="false" runat="server" Text="+" CssClass="btn btn-outline-secondary btn-lg px-3 rounded-end-3" OnClick="btnBuscarMascota_Click" />
                                   </div>
-
+                                    <asp:Label ID="lblInfoBuscarMascota" runat="server" CssClass="text-danger small fst-italic mt-1 ms-1 d-block" Visible="false" />
                                 </div>
 
                                 <!-- Separador visual -->
@@ -274,63 +300,82 @@
                             <!-- Nombre -->
                             <div class="col-md-6">
                               <label class="form-label fw-semibold" for="txtNombre">Nombre</label>
-                              <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3"  placeholder="Ej: Laura" />
+                              <asp:TextBox ID="txtNombre" runat="server" ValidationGroup="registrarDueño" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom"  placeholder="Ej: Laura" />
+                                <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" ValidationGroup="registrarDueño" ErrorMessage="El Nombre es obligatorio"
+                                    CssClass="text-danger small fst-italic" Display="Dynamic" />
                             </div>
 
                             <!-- Apellido -->
                             <div class="col-md-6">
                               <label class="form-label fw-semibold" for="txtApellido">Apellido</label>
-                              <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: González" />
+                              <asp:TextBox ID="txtApellido" runat="server" ValidationGroup="registrarDueño" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: González" />
+                                <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" ValidationGroup="registrarDueño" ErrorMessage="El Apellido es obligatorio"
+                                    CssClass="text-danger small fst-italic" Display="Dynamic" />
                             </div>
 
                             <!-- DNI -->
                             <div class="col-md-6">
                               <label class="form-label fw-semibold" for="txtDni">DNI</label>
-                              <asp:TextBox ID="txtDni" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 30123456" />
+                              <asp:TextBox ID="txtDni" runat="server" ValidationGroup="registrarDueño" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: 30123456" />
+                                <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ValidationGroup="registrarDueño" ErrorMessage="El D.N.I. es obligatorio"
+                                     CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="txtDni" ValidationGroup="registrarDueño" ErrorMessage="Ingrese un DNI válido (sin puntos ni letras)"
+                                     CssClass="text-danger small fst-italic" ValidationExpression="^\d{7,8}$" Display="Dynamic" />
+
+
                             </div>
 
                             <!-- Teléfono -->
                             <div class="col-md-6">
                               <label class="form-label fw-semibold" for="txtTelefono">Teléfono</label>
-                              <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 11 5555-5555" />
+                              <asp:TextBox ID="txtTelefono" runat="server" ValidationGroup="registrarDueño" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: 11 5555-5555" />
+                                <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" ValidationGroup="registrarDueño" ErrorMessage="El Telefono es obligatorio"
+                                    CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" ValidationGroup="registrarDueño" ErrorMessage="Formato invalido. Use: 11 5555-5555"
+                                  CssClass="text-danger small fst-italic" Display="Dynamic" ValidationExpression="^(\+?\d{2,3}\s?)?(\(?\d{2,4}\)?\s?-?)?\d{3,4}-?\d{4}$" />
                             </div>
 
                             <!-- Correo -->
                             <div class="col-md-6">
                               <label class="form-label fw-semibold" for="txtCorreo">Correo electrónico</label>
-                              <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" TextMode="Email" placeholder="Ej: correo@ejemplo.com" />
+                              <asp:TextBox ID="txtCorreo" runat="server" ValidationGroup="registrarDueño" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: correo@ejemplo.com" />
+                                <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ControlToValidate="txtCorreo" ValidationGroup="registrarDueño" ErrorMessage="El e-mail es obligatorio"
+                                  CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                <asp:RegularExpressionValidator  ID="revCorreo" runat="server" ValidationGroup="registrarDueño" ControlToValidate="txtCorreo" ErrorMessage="Ingrese un correo electrónico válido"
+                                    CssClass="val-error" ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" Display="Dynamic" />
                             </div>
 
                             <!-- Domicilio -->
                             <div class="col-md-6">
                               <label class="form-label fw-semibold" for="txtDomicilio">Domicilio</label>
-                              <asp:TextBox ID="txtDomicilio" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: Av. Rivadavia 1234" />
+                              <asp:TextBox ID="txtDomicilio" runat="server" ValidationGroup="registrarDueño" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: Av. Rivadavia 1234, Lanus" />
+                                <asp:RequiredFieldValidator ID="rfvDomicilio" runat="server" ControlToValidate="txtDomicilio" ValidationGroup="registrarDueño" ErrorMessage="El domicilio es obligatorio"
+                                    CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                <asp:RegularExpressionValidator ID="revDomicilio" runat="server" ControlToValidate="txtDomicilio" ValidationGroup="registrarDueño" ErrorMessage="Formato inválido. Use: Calle Altura, Localidad"
+                                   CssClass="text-danger small fst-italic" Display="Dynamic" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s\.]{3,}\s\d{1,5},\s[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,}$" />
                             </div>
 
                             <hr class="my-4">
-            
-                            <div class="col-md-6">
-                                <asp:Label CssClass="text-danger" ID="lblValidacion_registroDueño" Visible="false" runat="server" />
+                            
+                            <div id="divAlerta" runat="server" visible="false" class="alert alert-danger d-flex align-items-center p-2 mb-3" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <asp:Label ID="lblValidacion_registroDueño" runat="server" CssClass="m-0 text-dark" />
                             </div>
 
-                           <%-- <!-- Usuario -->
-                            <div class="col-md-6">
-                              <label class="form-label fw-semibold" for="txtUsuario">Usuario</label>
-                              <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: laura123" />
-                            </div>
 
+                            <%--
                             <!-- Clave -->
                             <div class="col-md-6">
                               <label class="form-label fw-semibold" for="txtClave">Clave</label>
                               <asp:TextBox ID="txtClave" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" TextMode="Password" placeholder="Contraseña segura" />
-                            </div>--%>
+                            </div>--%>--%>
 
                           </div>
                         </div>
                       </div>
 
                       <div class="modal-footer bg-white rounded-bottom-4 d-flex justify-content-between px-4 py-3">
-                        <asp:Button ID="btnRegistrarDueño" runat="server" Text="Registrar" CssClass="btn btn-success btn-lg px-4 rounded-pill" OnClick="btnRegistrarDueño_Click" />
+                        <asp:Button ID="btnRegistrarDueño" runat="server" ValidationGroup="registrarDueño" Text="Registrar" CssClass="btn btn-success btn-lg px-4 rounded-pill" CausesValidation="true" OnClick="btnRegistrarDueño_Click" />
                         <button type="button" class="btn btn-outline-secondary btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Cancelar</button>
                       </div>
 
@@ -340,4 +385,10 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         
+
+
+        <%-----------------------------          MODAL PARA CARGAR UNA MASCOTA      --------------------------------------%>
+
+
+
 </asp:Content>

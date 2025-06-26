@@ -74,9 +74,19 @@ namespace tp_integrador
 
         protected void btnTurnos_Click(object sender, EventArgs e)
         {
+            panelRegistrar.Visible = false;
             upPanelTurnos.Visible = true;
         }
 
+        protected void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            panelRegistrar.Visible = true;
+            upPanelTurnos.Visible = false;
+
+        }
+       
+        
+        
         protected void btnBuscarTurno_Click(object sender, EventArgs e)
         {
 
@@ -99,10 +109,6 @@ namespace tp_integrador
         }
 
 
-        protected void btnRegistrar_Click(object sender, EventArgs e)
-        {
-            panelRegistrar.Visible = true;
-        }
         protected void btnRegistrarDueño_Click(object sender, EventArgs e)
         {
             //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
@@ -113,11 +119,47 @@ namespace tp_integrador
 
             if (!todosCompletos) 
             {
-                lblValidacion_registroDueño.Text = "Restan campos por completar.";
-                lblValidacion_registroDueño.Visible = true;
+                divAlerta.Visible = true;
+                lblValidacion_registroDueño.Text = "Restan campos por completar";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
                 return;
             }
+
+            DueñoNegocio negocioDueño = new DueñoNegocio();
+            UsuarioNegocio negocioUsuario = new UsuarioNegocio();
+            Usuario nuevoUsuario = new Usuario();
+            Dueño nuevoDueño = new Dueño();
+
+            nuevoDueño.Nombre = txtNombre.Text.Trim();
+            nuevoDueño.Apellido = txtApellido.Text;
+            nuevoDueño.Dni = txtDni.Text.Trim();
+            nuevoDueño.Correo = txtCorreo.Text; 
+            nuevoDueño.Domicilio = txtDomicilio.Text;
+            nuevoDueño.Telefono = txtTelefono.Text;
+
+            
+            // Para generarle un usuario con su primer nombre y los ultimos 3 digitos de su DNI
+            //Obtenemos el primer nombre
+            string primerNombre = nuevoDueño.Nombre.Split(' ')[0];
+
+            //obtenemos los ultimos 3 digitos del DNI
+            string ultimos3 = nuevoDueño.Dni.Length >= 3
+                ? nuevoDueño.Dni.Substring(nuevoDueño.Dni.Length - 3)
+                : nuevoDueño.Dni;  // Si el DNI tiene menos de 3 dígitos, devuelve lo que haya
+
+            nuevoDueño.Usuario = primerNombre + ultimos3;
+            nuevoUsuario.User = primerNombre + ultimos3;
+            nuevoUsuario.Pass = txtDni.Text;
+            nuevoUsuario.Rol = 1;
+
+            // Registramos el Usuario del dueño en la Base de Datos.
+            negocioUsuario.Agregar(nuevoUsuario);
+            //Ahora podemos registrar el Dueño ya que el Usuario se encuentra registrado y es FK en Dueño.
+            negocioDueño.AgregarDueño(nuevoDueño);
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",
+                "setTimeout(function() { Swal.fire({ icon: 'success', title: '¡Registrado!', " +
+                "text: 'El dueño fue registrado correctamente.' }); }, 300);", true);
 
 
         }
@@ -126,6 +168,27 @@ namespace tp_integrador
         {
             txtBuscarMascota.Visible = true;
             btnBuscarMascota.Visible = true;
+        }
+
+
+        protected void btnBuscarMascota_Click(object sender, EventArgs e)
+        {
+            DueñoNegocio negocioDueño = new DueñoNegocio();
+            Dueño dueñoEncontrado = new Dueño();
+            dueñoEncontrado = negocioDueño.listar(txtBuscarMascota.Text).Find(x => x.Dni == txtBuscarMascota.Text);
+
+            if (dueñoEncontrado == null)
+            {
+                lblInfoBuscarMascota.Text = "El DNI ingresado no pertenece a un dueño registrado.";
+                lblInfoBuscarMascota.Visible = true;
+                return;
+            }
+
+        }
+
+        protected void txtBuscarMascota_TextChanged(object sender, EventArgs e)
+        {
+            lblInfoBuscarMascota.Visible = false;
         }
     }
 }
