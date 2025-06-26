@@ -51,85 +51,13 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.LinkButton datosCliente;
 
         /// <summary>
-        /// Control txtNombreMascotaMod.
+        /// Control upRegistrarMascota.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreMascotaMod;
-
-        /// <summary>
-        /// Control txtEdadMascotaMod.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEdadMascotaMod;
-
-        /// <summary>
-        /// Control txtFechaNacimientoMascotaMod.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaNacimientoMascotaMod;
-
-        /// <summary>
-        /// Control txtPesoMascotaMod.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPesoMascotaMod;
-
-        /// <summary>
-        /// Control txtTipoMascotaMod.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTipoMascotaMod;
-
-        /// <summary>
-        /// Control txtRazaMascotaMod.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRazaMascotaMod;
-
-        /// <summary>
-        /// Control ddlSexoMascotaMod.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSexoMascotaMod;
-
-        /// <summary>
-        /// Control btnModificarMascota.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarMascota;
-
-        /// <summary>
-        /// Control panelAltaMascota.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelAltaMascota;
+        protected global::System.Web.UI.UpdatePanel upRegistrarMascota;
 
         /// <summary>
         /// Control txtNombreMascota.
@@ -141,6 +69,15 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.TextBox txtNombreMascota;
 
         /// <summary>
+        /// Control rfvNombreMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombreMascota;
+
+        /// <summary>
         /// Control txtEdadMascota.
         /// </summary>
         /// <remarks>
@@ -148,6 +85,15 @@ namespace tp_integrador
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEdadMascota;
+
+        /// <summary>
+        /// Control rfvEdadMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEdadMascota;
 
         /// <summary>
         /// Control txtFechaNacimientoMascota.
@@ -159,6 +105,24 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.TextBox txtFechaNacimientoMascota;
 
         /// <summary>
+        /// Control rfvFechaNacimientoMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFechaNacimientoMascota;
+
+        /// <summary>
+        /// Control revFechaNacimiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revFechaNacimiento;
+
+        /// <summary>
         /// Control txtPesoMascota.
         /// </summary>
         /// <remarks>
@@ -166,6 +130,24 @@ namespace tp_integrador
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPesoMascota;
+
+        /// <summary>
+        /// Control rfvPesoMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPesoMascota;
+
+        /// <summary>
+        /// Control revPeso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPeso;
 
         /// <summary>
         /// Control txtTipoMascota.
@@ -177,6 +159,15 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.TextBox txtTipoMascota;
 
         /// <summary>
+        /// Control rfvTipoMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTipoMascota;
+
+        /// <summary>
         /// Control txtRazaMascota.
         /// </summary>
         /// <remarks>
@@ -184,6 +175,15 @@ namespace tp_integrador
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRazaMascota;
+
+        /// <summary>
+        /// Control rfvRazaMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRazaMascota;
 
         /// <summary>
         /// Control ddlSexoMascota.
@@ -195,13 +195,31 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.DropDownList ddlSexoMascota;
 
         /// <summary>
-        /// Control lblRegistroMascota.
+        /// Control rfvSexoMascota.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRegistroMascota;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSexoMascota;
+
+        /// <summary>
+        /// Control divAlertaMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAlertaMascota;
+
+        /// <summary>
+        /// Control lblValidacion_registroMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidacion_registroMascota;
 
         /// <summary>
         /// Control btnRegistroMascota.
@@ -213,75 +231,363 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.Button btnRegistroMascota;
 
         /// <summary>
-        /// Control txtNombreCliente.
+        /// Control upModificarMascota.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreCliente;
+        protected global::System.Web.UI.UpdatePanel upModificarMascota;
 
         /// <summary>
-        /// Control txtApellidoCliente.
+        /// Control txtNombreMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApellidoCliente;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreMascotaMod;
 
         /// <summary>
-        /// Control txtTelefonoCliente.
+        /// Control rfvNombreMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTelefonoCliente;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombreMascotaMod;
 
         /// <summary>
-        /// Control txtDireccionCliente.
+        /// Control txtEdadMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDireccionCliente;
+        protected global::System.Web.UI.WebControls.TextBox txtEdadMascotaMod;
 
         /// <summary>
-        /// Control txtCorreoCliente.
+        /// Control rfvEdadMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorreoCliente;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEdadMascotaMod;
 
         /// <summary>
-        /// Control txtDniCliente.
+        /// Control txtFechaNacimientoMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDniCliente;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaNacimientoMascotaMod;
 
         /// <summary>
-        /// Control lblDatosCliente.
+        /// Control rfvFechaNacimientoMascotaMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDatosCliente;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFechaNacimientoMascotaMod;
 
         /// <summary>
-        /// Control btnGuardarDatosCliente.
+        /// Control revFechaNacimientoMod.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarDatosCliente;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revFechaNacimientoMod;
+
+        /// <summary>
+        /// Control txtPesoMascotaMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPesoMascotaMod;
+
+        /// <summary>
+        /// Control rfvPesoMascotaMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPesoMascotaMod;
+
+        /// <summary>
+        /// Control revPesoMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPesoMod;
+
+        /// <summary>
+        /// Control txtTipoMascotaMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTipoMascotaMod;
+
+        /// <summary>
+        /// Control rfvTipoMascotaMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTipoMascotaMod;
+
+        /// <summary>
+        /// Control txtRazaMascotaMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRazaMascotaMod;
+
+        /// <summary>
+        /// Control rfvRazaMascotaMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRazaMascotaMod;
+
+        /// <summary>
+        /// Control ddlSexoMascotaMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSexoMascotaMod;
+
+        /// <summary>
+        /// Control rfvSexoMascotaMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSexoMascotaMod;
+
+        /// <summary>
+        /// Control divAlertaMascotaModificada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAlertaMascotaModificada;
+
+        /// <summary>
+        /// Control lblValidacion_modificacionMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidacion_modificacionMascota;
+
+        /// <summary>
+        /// Control btnGuardarMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarMascota;
+
+        /// <summary>
+        /// Control upModificarDueño.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upModificarDueño;
+
+        /// <summary>
+        /// Control txtNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+
+        /// <summary>
+        /// Control rfvNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombre;
+
+        /// <summary>
+        /// Control txtApellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtApellido;
+
+        /// <summary>
+        /// Control rfvApellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvApellido;
+
+        /// <summary>
+        /// Control txtDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDni;
+
+        /// <summary>
+        /// Control rfvDNI.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDNI;
+
+        /// <summary>
+        /// Control revDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revDni;
+
+        /// <summary>
+        /// Control txtTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTelefono;
+
+        /// <summary>
+        /// Control rfvTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTelefono;
+
+        /// <summary>
+        /// Control revTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revTelefono;
+
+        /// <summary>
+        /// Control txtCorreo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCorreo;
+
+        /// <summary>
+        /// Control rfvCorreo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCorreo;
+
+        /// <summary>
+        /// Control revCorreo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revCorreo;
+
+        /// <summary>
+        /// Control txtDomicilio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDomicilio;
+
+        /// <summary>
+        /// Control rfvDomicilio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDomicilio;
+
+        /// <summary>
+        /// Control revDomicilio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revDomicilio;
+
+        /// <summary>
+        /// Control divAlertaMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAlertaMod;
+
+        /// <summary>
+        /// Control lblValidacion_modificacionDueño.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidacion_modificacionDueño;
+
+        /// <summary>
+        /// Control btnDatosCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDatosCliente;
     }
 }

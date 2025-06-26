@@ -54,101 +54,63 @@ namespace tp_integrador
         }
         protected void btnRegistro_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario();
-            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-            Dueño dueño = new Dueño();
-            DueñoNegocio dueñoNegocio = new DueñoNegocio();
-            try
+            //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
+            List<TextBox> campos = new List<TextBox> { txtNombre, txtApellido, txtDni, txtTelefono, txtCorreo, txtDomicilio, txtClaveDueño };
+
+            //Funcion LINQ "All". En este caso pregunta si NO son nulos o tiene espcios en blanco.
+            bool todosCompletos = campos.All(c => !string.IsNullOrWhiteSpace(c.Text));
+
+            if (!todosCompletos)
             {
-                if (FuncionesGenericas.validaTexto(txtUsuarioRegistro.Text) ||
-                    FuncionesGenericas.validaTexto(txtClaveRegistro.Text) ||
-                    FuncionesGenericas.validaTexto(txtDni.Text) ||
-                    FuncionesGenericas.validaTexto(txtNombre.Text) ||
-                    FuncionesGenericas.validaTexto(txtApellido.Text) ||
-                    FuncionesGenericas.validaTexto(txtTelefono.Text) ||
-                    FuncionesGenericas.validaTexto(txtCorreo.Text) ||
-                    FuncionesGenericas.validaTexto(txtDomicilio.Text))
-                {
-                    lblError.Text = "Todos los campos son obligatorios.";
-                    lblError.Visible = true;
-                    MostrarModalRegistro();
-                    return;
-                }
-
-                try
-                {
-                    var email = new System.Net.Mail.MailAddress(txtCorreo.Text);
-                }
-                catch
-                {
-                    lblError.Text = "Correo electrónico inválido.";
-                    lblError.Visible = true;
-                    MostrarModalRegistro();
-                    return;
-                }
-
-                if (FuncionesGenericas.validaClave(txtClaveRegistro.Text))
-                {
-                    lblError.Text = "La contraseña debe tener al menos 6 caracteres.";
-                    lblError.Visible = true;
-                    MostrarModalRegistro();
-                    return;
-                }
-
-                if (usuarioNegocio.ListarUnoTodos(txtUsuarioRegistro.Text).Count() > 0)
-                {
-                    lblError.Text = "Usuario existente.";
-                    lblError.Visible = true;
-                    MostrarModalRegistro();
-                    return;
-                }
-
-                if (dueñoNegocio.listar(txtDni.Text).Count() > 0)
-                {
-                    lblError.Text = "DNI existente.";
-                    lblError.Visible = true;
-                    MostrarModalRegistro();
-                    return;
-                }
-
-
-                usuario.User = txtUsuarioRegistro.Text;
-                usuario.Pass = txtClaveRegistro.Text;
-                usuario.Rol = 1;
-                dueño.Dni = txtDni.Text;
-                dueño.Usuario = txtUsuarioRegistro.Text;
-                dueño.Nombre = txtNombre.Text;
-                dueño.Apellido = txtApellido.Text;
-                dueño.Telefono = txtTelefono.Text;
-                dueño.Correo = txtCorreo.Text;
-                dueño.Domicilio = txtDomicilio.Text;
-
-                dueñoNegocio.Agregar(dueño, usuario);
-
-                Session.Add("usuario", usuario);
-
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso", @"
-                    Swal.fire({
-                        title: '¡Registro exitoso!',
-                        text: 'Tu cuenta fue creada correctamente.',
-                        icon: 'success',
-                        confirmButtonText: 'Aceptar'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = 'Dueño_PagPrincipal.aspx';
-                        }
-                    });
-                ", true);
+                divAlerta.Visible = true;
+                lblValidacion_registroDueño.Text = "Restan campos por completar";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
+                return;
             }
-            catch (Exception ex)
+
+            DueñoNegocio negocioDueño = new DueñoNegocio();
+            UsuarioNegocio negocioUsuario = new UsuarioNegocio();
+            Usuario nuevoUsuario = new Usuario();
+            Dueño nuevoDueño = new Dueño();
+
+            nuevoDueño.Nombre = txtNombre.Text.Trim();
+            nuevoDueño.Apellido = txtApellido.Text;
+            nuevoDueño.Dni = txtDni.Text.Trim();
+            nuevoDueño.Correo = txtCorreo.Text;
+            nuevoDueño.Domicilio = txtDomicilio.Text;
+            nuevoDueño.Telefono = txtTelefono.Text;
+
+
+            // Para generarle un usuario con su primer nombre y los ultimos 3 digitos de su DNI
+            //Obtenemos el primer nombre
+            string primerNombre = nuevoDueño.Nombre.Split(' ')[0];
+
+            //obtenemos los ultimos 3 digitos del DNI
+            string ultimos3 = nuevoDueño.Dni.Length >= 3
+                ? nuevoDueño.Dni.Substring(nuevoDueño.Dni.Length - 3)
+                : nuevoDueño.Dni;  // Si el DNI tiene menos de 3 dígitos, devuelve lo que haya
+
+            if (txtClaveDueño.Text != txtClaveDueñoConfirmada.Text)
             {
-
-                throw ex;
+                divAlerta.Visible = true;
+                lblValidacion_registroDueño.Text = "Las contraseñas no coinciden.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
+                return;
             }
-        }
-        private void MostrarModalRegistro()
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "registroModal", "var myModal = new bootstrap.Modal(document.getElementById('modalRegistro')); myModal.show();", true);
+            nuevoDueño.Usuario = primerNombre + ultimos3;
+            nuevoUsuario.User = primerNombre + ultimos3;
+            nuevoUsuario.Pass = txtClaveDueñoConfirmada.Text;
+            nuevoUsuario.Rol = 1;
+
+            // Registramos el Usuario del dueño en la Base de Datos.
+            negocioUsuario.Agregar(nuevoUsuario);
+            //Ahora podemos registrar el Dueño ya que el Usuario se encuentra registrado y es FK en Dueño.
+            negocioDueño.AgregarDueño(nuevoDueño);
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",
+                "setTimeout(function() { Swal.fire({ icon: 'success', title: '¡Registrado!', " +
+                "text: 'El dueño fue registrado correctamente.' }); }, 300);", true);
+        
         }
         protected void btnRecuperarClave_Click(object sender, EventArgs e)
         {

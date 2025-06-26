@@ -102,35 +102,6 @@ namespace negocio
             }
         }
 
-        public void Agregar(Dueño nuevoDueño, Usuario nuevoUsuario)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-            try
-            {
-                usuarioNegocio.Agregar(nuevoUsuario);
-                datos.setearConsulta("INSERT INTO Dueños (Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio) VALUES (@dni, @usuario, @nombre, @apellido, @telefono, @correo, @domicilio)");
-                datos.setearParametro("@dni", nuevoDueño.Dni);
-                datos.setearParametro("@usuario", nuevoDueño.Usuario);
-                datos.setearParametro("@nombre", nuevoDueño.Nombre);
-                datos.setearParametro("@apellido", nuevoDueño.Apellido);
-                datos.setearParametro("@telefono", nuevoDueño.Telefono);
-                datos.setearParametro("@correo", nuevoDueño.Correo);
-                datos.setearParametro("@domicilio", nuevoDueño.Domicilio);
-                datos.ejecutarAccion();
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
         public void AgregarDueño(Dueño nuevoDueño)
         {
             AccesoDatos datos = new AccesoDatos();

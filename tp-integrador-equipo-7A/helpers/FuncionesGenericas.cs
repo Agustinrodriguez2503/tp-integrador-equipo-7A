@@ -35,52 +35,9 @@ namespace helpers
 
         public static bool validaTexto(string texto)
         {
-            if (string.IsNullOrEmpty(texto))
-            {
+            if (string.IsNullOrEmpty(texto)) 
                 return false;
-            }
             return true;
-        }
-        public static bool validaClave(string clave)
-        {
-            if (clave.Length < 6)
-            {
-                return false;
-            }
-            return true;
-        }
-        public static bool validaInt(string numero)
-        {
-            if(int.TryParse(numero, out int val))
-            {
-                return true;
-            }
-            else
-            { 
-                return false; 
-            }
-        }
-        public static bool validaDec(string numero)
-        {
-            if (decimal.TryParse(numero, out decimal val))
-            {
-                return true;
-            }
-            else
-            { 
-                return false;
-            }
-        }
-        public static bool validaFecha(string fecha)
-        {
-            if (DateTime.TryParse(fecha, out DateTime val))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 }

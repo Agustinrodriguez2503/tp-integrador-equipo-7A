@@ -33,14 +33,7 @@ namespace tp_integrador
 
                 if (txtNuevaClave.Text == txtConfirmarClave.Text)
                 {
-                    if (!(FuncionesGenericas.validaClave(txtNuevaClave.Text)))
-                    {
-                        lblClaves.Visible = true;
-                        lblClaves.Text = "La contraseña debe tener al menos 6 caracteres.";
-                        return;
-                    }
-                    else
-                    {
+
                         usuario.Pass = txtConfirmarClave.Text;
                         usuarioNegocio.Modificar(usuario);
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "cambioClave", @"
@@ -66,4 +59,3 @@ namespace tp_integrador
             }
         }
     }
-}
