@@ -55,7 +55,6 @@
     </div>
 
     <!-- Modal de registro -->
-
     <div class="modal fade" id="modalRegistrarDueño" tabindex="-1" aria-labelledby="modalRegistrarDueñoLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content rounded-4 shadow">
@@ -95,8 +94,6 @@
                                     CssClass="text-danger small fst-italic" Display="Dynamic" />
                                 <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="txtDni" ValidationGroup="registrarDueño" ErrorMessage="Ingrese un DNI válido (sin puntos ni letras)"
                                     CssClass="text-danger small fst-italic" ValidationExpression="^\d{7,8}$" Display="Dynamic" />
-
-
                             </div>
 
                             <!-- Teléfono -->
@@ -128,9 +125,7 @@
                                 <asp:RegularExpressionValidator ID="revDomicilio" runat="server" ControlToValidate="txtDomicilio" ValidationGroup="registrarDueño" ErrorMessage="Formato inválido. Use: Calle Altura, Localidad"
                                     CssClass="text-danger small fst-italic" Display="Dynamic" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s\.]{3,}\s\d{1,5},\s[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,}$" />
                             </div>
-
                             <hr class="my-4">
-
 
                             <!-- Clave -->
                             <div class="col-md-6">
@@ -146,7 +141,6 @@
                                 <asp:RequiredFieldValidator ID="rfvClaveDueñoConfirmar" runat="server" ControlToValidate="txtClaveDueñoConfirmada" ValidationGroup="registrarDueño" ErrorMessage="La clave es obligatoria"
                                     CssClass="text-danger small fst-italic" Display="Dynamic" />
                             </div>
-
 
                             <div id="divAlerta" runat="server" visible="false" class="alert alert-danger d-flex align-items-center p-2 mb-3" role="alert">
                                 <i class="bi bi-exclamation-triangle-fill me-2"></i>
@@ -164,8 +158,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!-- Modal de recupero -->
     <div class="modal fade" id="modalRecupero" tabindex="-1" aria-labelledby="recuperoLabel" aria-hidden="true">
@@ -189,6 +181,5 @@
             </div>
         </div>
     </div>
-
 
 </asp:Content>

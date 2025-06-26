@@ -16,18 +16,15 @@ namespace tp_integrador
         {
             if (!(Seguridad.sesionActiva(Session["usuario"])))
                 Response.Redirect("IniciarSesion.aspx", false);
-
-            if (Session["usuario"] != null)
+            else
             {
                 try
                 {
                     Mascota mascota = new Mascota();
                     MascotaNegocio mascotaNegocio = new MascotaNegocio();
-                    DueñoNegocio dueñoNegocio = new DueñoNegocio();
                     Dueño dueño = new Dueño();
 
-                    Usuario usuario = (Usuario)Session["usuario"];
-                    dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
+                    dueño = devolverDueño(dueño);
 
                     lblBienvenido.Text = dueño.nombreCompleto();
                     gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
@@ -47,24 +44,23 @@ namespace tp_integrador
                 if (Session["usuario"] == null)
                     return;
 
-                Usuario usuario = (Usuario)Session["usuario"];
-                Dueño dueño = new DueñoNegocio().listarPorUser(usuario.User)[0];
+                Dueño dueño = new Dueño();
+                dueño = devolverDueño(dueño);
                 MascotaNegocio mascotaNegocio = new MascotaNegocio();
                 Mascota mascota;
 
                 bool esModificacion = ViewState["IDMascotaModificacion"] != null;
 
-                // Validación manual (como lo tenías antes)
                 List<WebControl> controles = new List<WebControl>
-        {
-            txtNombreMascota,
-            txtEdadMascota,
-            txtFechaNacimientoMascota,
-            txtPesoMascota,
-            txtTipoMascota,
-            txtRazaMascota,
-            ddlSexoMascota
-        };
+                {
+                    txtNombreMascota,
+                    txtEdadMascota,
+                    txtFechaNacimientoMascota,
+                    txtPesoMascota,
+                    txtTipoMascota,
+                    txtRazaMascota,
+                    ddlSexoMascota
+                };
 
                 bool todosCompletos = controles.All(c =>
                 {
@@ -202,21 +198,17 @@ namespace tp_integrador
             try
             {
                 Dueño dueño = new Dueño();
-                DueñoNegocio dueñoNegocio = new DueñoNegocio();
-                if (Session["usuario"] != null)
-                {
-                    Usuario usuario = (Usuario)Session["usuario"];
-                    dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
+                dueño = devolverDueño(dueño); 
 
-                    txtNombre.Text = dueño.Nombre;
-                    txtApellido.Text = dueño.Apellido;
-                    txtTelefono.Text = dueño.Telefono;
-                    txtCorreo.Text = dueño.Correo;
-                    txtDomicilio.Text = dueño.Domicilio;
-                    txtDni.Text = dueño.Dni;
+                txtNombre.Text = dueño.Nombre;
+                txtApellido.Text = dueño.Apellido;
+                txtTelefono.Text = dueño.Telefono;
+                txtCorreo.Text = dueño.Correo;
+                txtDomicilio.Text = dueño.Domicilio;
+                txtDni.Text = dueño.Dni;
 
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModalDatosCliente", "var modal = new bootstrap.Modal(document.getElementById('modalDatosCliente')); modal.show();", true);
-                }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModalDatosCliente", "var modal = new bootstrap.Modal(document.getElementById('modalDatosCliente')); modal.show();", true);
+                
             }
             catch (Exception ex)
             {
@@ -230,49 +222,44 @@ namespace tp_integrador
             DueñoNegocio dueñoNegocio = new DueñoNegocio();
             try
             {
-                if (Session["usuario"] != null)
+                dueño = devolverDueño(dueño);
+
+                //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
+                List<TextBox> campos = new List<TextBox> { txtNombre, txtApellido, txtDni, txtTelefono, txtCorreo, txtDomicilio };
+
+                //Funcion LINQ "All". En este caso pregunta si NO son nulos o tiene espcios en blanco.
+                bool todosCompletos = campos.All(c => !string.IsNullOrWhiteSpace(c.Text));
+
+                if (!todosCompletos)
                 {
-                    Usuario usuario = (Usuario)Session["usuario"];
-                    dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
-
-                    //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
-                    List<TextBox> campos = new List<TextBox> { txtNombre, txtApellido, txtDni, txtTelefono, txtCorreo, txtDomicilio };
-
-                    //Funcion LINQ "All". En este caso pregunta si NO son nulos o tiene espcios en blanco.
-                    bool todosCompletos = campos.All(c => !string.IsNullOrWhiteSpace(c.Text));
-
-                    if (!todosCompletos)
-                    {
-                        divAlertaMod.Visible = true;
-                        lblValidacion_modificacionDueño.Text = "Restan campos por completar";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
-                        return;
-                    }
-
-                    dueño.Nombre = txtNombre.Text.Trim();
-                    dueño.Apellido = txtApellido.Text;
-                    dueño.Telefono = txtTelefono.Text;
-                    dueño.Domicilio = txtDomicilio.Text;
-                    dueño.Correo = txtCorreo.Text;
-
-                    // Modificamos el dueño.
-                    dueñoNegocio.Modificar(dueño);
-
-
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionExitosa", @"
-                        Swal.fire({
-                            title: '¡Modificación exitosa!',
-                            text: 'Sus datos han sido actualizados exitosamente.',
-                            icon: 'success',
-                            confirmButtonText: 'Aceptar'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = 'Dueño_PagPrincipal.aspx';
-                            }
-                        });
-                    ", true);
-
+                    divAlertaMod.Visible = true;
+                    lblValidacion_modificacionDueño.Text = "Restan campos por completar";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
+                    return;
                 }
+
+                dueño.Nombre = txtNombre.Text.Trim();
+                dueño.Apellido = txtApellido.Text;
+                dueño.Telefono = txtTelefono.Text;
+                dueño.Domicilio = txtDomicilio.Text;
+                dueño.Correo = txtCorreo.Text;
+
+                // Modificamos el dueño.
+                dueñoNegocio.Modificar(dueño);
+
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionExitosa", @"
+                    Swal.fire({
+                        title: '¡Modificación exitosa!',
+                        text: 'Sus datos han sido actualizados exitosamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'Dueño_PagPrincipal.aspx';
+                        }
+                    });
+                ", true);
             }
             catch (Exception ex)
             {
@@ -299,34 +286,33 @@ namespace tp_integrador
         protected void btnFicha_Click(object sender, EventArgs e)
         {
             Dueño dueño = new Dueño();
-            DueñoNegocio dueñoNegocio = new DueñoNegocio();
             try
             {
                 //PASAJE DNI
-                if (Session["usuario"] != null)
-                {
-                    Usuario usuario = (Usuario)Session["usuario"];
-                    dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
+                dueño = devolverDueño(dueño);
 
-                    string dni = dueño.Dni;
-                    Session.Add("DniDueño", dni);
-                    Response.Redirect("Veterinario_FichasMedicas.aspx", false);
-                }
-
-                //PASAJE IDMascota
-                //LinkButton btn = (LinkButton)sender;
-                //int idMascota = int.Parse(btn.CommandArgument);
-
-                //Session.Add("IDMascota", idMascota);
-                //Response.Redirect("Veterinario_FichasMedicas.aspx", false);
-
-
+                string dni = dueño.Dni;
+                Session.Add("DniDueño", dni);
+                Response.Redirect("Veterinario_FichasMedicas.aspx", false);
+                
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
+        }
+        protected Dueño devolverDueño(Dueño dueño)
+        {
+            DueñoNegocio dueñoNegocio = new DueñoNegocio();
+            if (Session["usuario"] != null)
+            {
+                Usuario usuario = (Usuario)Session["usuario"];
+                dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
+
+                return dueño;
+            }
+            return null;
         }
     }
 }

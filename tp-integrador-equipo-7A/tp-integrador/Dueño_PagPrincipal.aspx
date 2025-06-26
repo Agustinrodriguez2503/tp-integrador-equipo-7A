@@ -295,8 +295,6 @@
                                     CssClass="text-danger small fst-italic" Display="Dynamic" />
                                 <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="txtDni" ValidationGroup="ModificarDueño" ErrorMessage="Ingrese un DNI válido (sin puntos ni letras)"
                                     CssClass="text-danger small fst-italic" ValidationExpression="^\d{7,8}$" Display="Dynamic" />
-
-
                             </div>
 
                             <!-- Teléfono -->
@@ -344,7 +342,6 @@
                     <asp:Button ID="btnDatosCliente" runat="server" ValidationGroup="ModificarDueño" Text="Guardar" CssClass="btn btn-success btn-lg px-4 rounded-pill" CausesValidation="true" OnClick="btnGuardarDatosCliente_Click" />
                     <button type="button" class="btn btn-outline-secondary btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Cancelar</button>
                 </div>
-
             </div>
         </div>
     </div>
