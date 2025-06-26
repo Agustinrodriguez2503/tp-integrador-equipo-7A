@@ -96,6 +96,15 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEdadMascota;
 
         /// <summary>
+        /// Control rvEdadMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvEdadMascota;
+
+        /// <summary>
         /// Control txtFechaNacimientoMascota.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace tp_integrador
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revPeso;
+
+        /// <summary>
+        /// Control rvPeso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvPeso;
 
         /// <summary>
         /// Control txtTipoMascota.
@@ -276,6 +294,15 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEdadMascotaMod;
 
         /// <summary>
+        /// Control rvEdadMascotaMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvEdadMascotaMod;
+
+        /// <summary>
         /// Control txtFechaNacimientoMascotaMod.
         /// </summary>
         /// <remarks>
@@ -328,6 +355,15 @@ namespace tp_integrador
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revPesoMod;
+
+        /// <summary>
+        /// Control rvPesoMascotaMod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvPesoMascotaMod;
 
         /// <summary>
         /// Control txtTipoMascotaMod.

@@ -179,12 +179,16 @@
                                     <asp:TextBox ID="txtEdadMascota" runat="server" ValidationGroup="registrarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: 6 (años)." TextMode="Number" />
                                     <asp:RequiredFieldValidator ID="rfvEdadMascota" runat="server" ControlToValidate="txtEdadMascota" ValidationGroup="registrarMascota" ErrorMessage="La edad es obligatoria."
                                         CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                    <asp:RangeValidator ID="rvEdadMascota" runat="server" ControlToValidate="txtEdadMascota"
+                                        MinimumValue="1" MaximumValue="100" Type="Integer"
+                                        ValidationGroup="registrarMascota" ErrorMessage="La edad debe ser mayor a 0."
+                                        CssClass="text-danger small fst-italic" Display="Dynamic" />
                                 </div>
 
                                 <!-- Fecha de Nacimiento -->
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold" for="txtFechaNacimientoMascota">Fecha de Nacimiento</label>
-                                    <asp:TextBox ID="txtFechaNacimientoMascota" runat="server" ValidationGroup="registrarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: 02/06/19" TextMode="DateTime" />
+                                    <asp:TextBox ID="txtFechaNacimientoMascota" runat="server" ValidationGroup="registrarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: 02/06/19" TextMode="Date" />
                                     <asp:RequiredFieldValidator ID="rfvFechaNacimientoMascota" runat="server" ControlToValidate="txtFechaNacimientoMascota" ValidationGroup="registrarMascota" ErrorMessage="La fecha de nacimiento es obligatoria."
                                         CssClass="text-danger small fst-italic" Display="Dynamic" />
                                     <asp:RegularExpressionValidator ID="revFechaNacimiento" runat="server" ControlToValidate="txtFechaNacimientoMascota" ValidationGroup="registrarMascota" ErrorMessage="Ingrese una fecha válida: (dd/MM/yyyy)."
@@ -199,6 +203,11 @@
                                         CssClass="text-danger small fst-italic" Display="Dynamic" />
                                     <asp:RegularExpressionValidator ID="revPeso" runat="server" ControlToValidate="txtPesoMascota" ValidationGroup="registrarMascota" ErrorMessage="Ingrese un peso válido. (ej: 6 o 6.5)."
                                         CssClass="text-danger small fst-italic" Display="Dynamic" ValidationExpression="^([1-9]\d{0,2})(\.\d{1,2})?$" />
+                                    <asp:RangeValidator ID="rvPeso" runat="server"
+                                        ControlToValidate="txtPesoMascota" ValidationGroup="registrarMascota"
+                                        MinimumValue="0.1" MaximumValue="999" Type="Double"
+                                        ErrorMessage="Ingrese un peso válido mayor a 0 (ej: 6 o 6.5)."
+                                        CssClass="text-danger small fst-italic" Display="Dynamic" />
                                 </div>
 
                                 <!-- Tipo -->
@@ -284,6 +293,10 @@
                                     <asp:TextBox ID="txtEdadMascotaMod" runat="server" ValidationGroup="modificarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: 6 (años)." TextMode="Number" />
                                     <asp:RequiredFieldValidator ID="rfvEdadMascotaMod" runat="server" ControlToValidate="txtEdadMascotaMod" ValidationGroup="modificarMascota" ErrorMessage="La edad es obligatoria."
                                         CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                    <asp:RangeValidator ID="rvEdadMascotaMod" runat="server" ControlToValidate="txtEdadMascotaMod"
+                                        MinimumValue="1" MaximumValue="100" Type="Integer"
+                                        ValidationGroup="registrarMascota" ErrorMessage="La edad debe ser mayor a 0."
+                                        CssClass="text-danger small fst-italic" Display="Dynamic" />
                                 </div>
 
                                 <!-- Fecha de Nacimiento -->
@@ -304,6 +317,11 @@
                                         CssClass="text-danger small fst-italic" Display="Dynamic" />
                                     <asp:RegularExpressionValidator ID="revPesoMod" runat="server" ControlToValidate="txtPesoMascotaMod" ValidationGroup="modificarMascota" ErrorMessage="Ingrese un peso válido. (ej: 6 o 6.5)."
                                         CssClass="text-danger small fst-italic" Display="Dynamic" ValidationExpression="^([1-9]\d{0,2})(\.\d{1,2})?$" />
+                                    <asp:RangeValidator ID="rvPesoMascotaMod" runat="server"
+                                        ControlToValidate="txtPesoMascotaMod" ValidationGroup="registrarMascota"
+                                        MinimumValue="0.1" MaximumValue="999" Type="Double"
+                                        ErrorMessage="Ingrese un peso válido mayor a 0 (ej: 6 o 6.5)."
+                                        CssClass="text-danger small fst-italic" Display="Dynamic" />
                                 </div>
 
                                 <!-- Tipo -->

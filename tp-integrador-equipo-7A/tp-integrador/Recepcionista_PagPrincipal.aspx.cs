@@ -111,56 +111,77 @@ namespace tp_integrador
 
         protected void btnRegistrarDueño_Click(object sender, EventArgs e)
         {
-            //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
-            List<TextBox> campos = new List<TextBox> { txtNombre, txtApellido, txtDni, txtTelefono, txtCorreo, txtDomicilio};
-
-            //Funcion LINQ "All". En este caso pregunta si NO son nulos o tiene espcios en blanco.
-            bool todosCompletos = campos.All(c => !string.IsNullOrWhiteSpace(c.Text));
-
-            if (!todosCompletos) 
+            try
             {
-                divAlerta.Visible = true;
-                lblValidacion_registroDueño.Text = "Restan campos por completar";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
-                return;
+                //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
+                List<TextBox> campos = new List<TextBox> { txtNombre, txtApellido, txtDni, txtTelefono, txtCorreo, txtDomicilio };
+
+                //Funcion LINQ "All". En este caso pregunta si NO son nulos o tiene espcios en blanco.
+                bool todosCompletos = campos.All(c => !string.IsNullOrWhiteSpace(c.Text));
+
+                if (!todosCompletos)
+                {
+                    divAlerta.Visible = true;
+                    lblValidacion_registroDueño.Text = "Restan campos por completar";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
+                    return;
+                }
+
+
+                DueñoNegocio negocioDueño = new DueñoNegocio();
+                Dueño nuevoDueño = negocioDueño.listar(txtDni.Text).Find(x => x.Dni == txtDni.Text);
+
+                if (nuevoDueño != null)
+                {
+                    divAlerta.Visible = true;
+                    lblValidacion_registroDueño.Text = "Ya existe Dueño registrado con el DNI: " + txtDni.Text;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
+                    return;
+
+                }
+
+
+                UsuarioNegocio negocioUsuario = new UsuarioNegocio();
+                Usuario nuevoUsuario = new Usuario();
+                nuevoDueño = new Dueño();
+
+                nuevoDueño.Nombre = txtNombre.Text.Trim();
+                nuevoDueño.Apellido = txtApellido.Text;
+                nuevoDueño.Dni = txtDni.Text.Trim();
+                nuevoDueño.Correo = txtCorreo.Text;
+                nuevoDueño.Domicilio = txtDomicilio.Text;
+                nuevoDueño.Telefono = txtTelefono.Text;
+
+
+                // Para generarle un usuario con su primer nombre y los ultimos 3 digitos de su DNI
+                //Obtenemos el primer nombre
+                string primerNombre = nuevoDueño.Nombre.Split(' ')[0];
+
+                //obtenemos los ultimos 3 digitos del DNI
+                string ultimos3 = nuevoDueño.Dni.Length >= 3
+                    ? nuevoDueño.Dni.Substring(nuevoDueño.Dni.Length - 3)
+                    : nuevoDueño.Dni;  // Si el DNI tiene menos de 3 dígitos, devuelve lo que haya
+
+                nuevoDueño.Usuario = primerNombre + ultimos3;
+                nuevoUsuario.User = primerNombre + ultimos3;
+                nuevoUsuario.Pass = txtDni.Text;
+                nuevoUsuario.Rol = 1;
+
+                // Registramos el Usuario del dueño en la Base de Datos.
+                negocioUsuario.Agregar(nuevoUsuario);
+                //Ahora podemos registrar el Dueño ya que el Usuario se encuentra registrado y es FK en Dueño.
+                negocioDueño.AgregarDueño(nuevoDueño);
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",
+                    "setTimeout(function() { Swal.fire({ icon: 'success', title: '¡Registrado!', " +
+                    "text: 'El dueño fue registrado correctamente.' }); }, 300);", true);
+
             }
+            catch (Exception ex)
+            {
 
-            DueñoNegocio negocioDueño = new DueñoNegocio();
-            UsuarioNegocio negocioUsuario = new UsuarioNegocio();
-            Usuario nuevoUsuario = new Usuario();
-            Dueño nuevoDueño = new Dueño();
-
-            nuevoDueño.Nombre = txtNombre.Text.Trim();
-            nuevoDueño.Apellido = txtApellido.Text;
-            nuevoDueño.Dni = txtDni.Text.Trim();
-            nuevoDueño.Correo = txtCorreo.Text; 
-            nuevoDueño.Domicilio = txtDomicilio.Text;
-            nuevoDueño.Telefono = txtTelefono.Text;
-
-            
-            // Para generarle un usuario con su primer nombre y los ultimos 3 digitos de su DNI
-            //Obtenemos el primer nombre
-            string primerNombre = nuevoDueño.Nombre.Split(' ')[0];
-
-            //obtenemos los ultimos 3 digitos del DNI
-            string ultimos3 = nuevoDueño.Dni.Length >= 3
-                ? nuevoDueño.Dni.Substring(nuevoDueño.Dni.Length - 3)
-                : nuevoDueño.Dni;  // Si el DNI tiene menos de 3 dígitos, devuelve lo que haya
-
-            nuevoDueño.Usuario = primerNombre + ultimos3;
-            nuevoUsuario.User = primerNombre + ultimos3;
-            nuevoUsuario.Pass = txtDni.Text;
-            nuevoUsuario.Rol = 1;
-
-            // Registramos el Usuario del dueño en la Base de Datos.
-            negocioUsuario.Agregar(nuevoUsuario);
-            //Ahora podemos registrar el Dueño ya que el Usuario se encuentra registrado y es FK en Dueño.
-            negocioDueño.AgregarDueño(nuevoDueño);
-
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",
-                "setTimeout(function() { Swal.fire({ icon: 'success', title: '¡Registrado!', " +
-                "text: 'El dueño fue registrado correctamente.' }); }, 300);", true);
-
+                throw ex;
+            }
 
         }
 
