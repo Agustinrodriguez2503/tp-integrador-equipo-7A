@@ -42,73 +42,101 @@ namespace tp_integrador
         }
         protected void btnRegistroMascota_Click(object sender, EventArgs e)
         {
-            Mascota mascota = new Mascota();
-            MascotaNegocio mascotaNegocio = new MascotaNegocio();
-            DueñoNegocio dueñoNegocio = new DueñoNegocio();
-            Dueño dueño = new Dueño();
-
             try
             {
-                if (Session["usuario"] != null)
+                if (Session["usuario"] == null)
+                    return;
+
+                Usuario usuario = (Usuario)Session["usuario"];
+                Dueño dueño = new DueñoNegocio().listarPorUser(usuario.User)[0];
+                MascotaNegocio mascotaNegocio = new MascotaNegocio();
+                Mascota mascota;
+
+                bool esModificacion = ViewState["IDMascotaModificacion"] != null;
+
+                // Validación manual (como lo tenías antes)
+                List<WebControl> controles = new List<WebControl>
+        {
+            txtNombreMascota,
+            txtEdadMascota,
+            txtFechaNacimientoMascota,
+            txtPesoMascota,
+            txtTipoMascota,
+            txtRazaMascota,
+            ddlSexoMascota
+        };
+
+                bool todosCompletos = controles.All(c =>
                 {
-                    Usuario usuario = (Usuario)Session["usuario"];
-                    dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
+                    if (c is TextBox tb)
+                        return !string.IsNullOrWhiteSpace(tb.Text);
+                    else if (c is DropDownList ddl)
+                        return ddl.SelectedIndex > 0;
+                    return true;
+                });
 
-                    //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
-                    List<WebControl> controles = new List<WebControl> { txtNombreMascota, txtEdadMascota, txtFechaNacimientoMascota, txtPesoMascota, txtTipoMascota, txtRazaMascota, ddlSexoMascota };
+                if (!todosCompletos)
+                {
+                    divAlertaMascota.Visible = true;
+                    lblValidacion_registroMascota.Text = "Restan campos por completar";
 
-                    //Funcion LINQ "All". En este caso pregunta si NO son nulos o tiene espcios en blanco y si el DDL seleccionó 1.
-                    bool todosCompletos = controles.All(c =>
-                    {
-                        if (c is TextBox tb)
-                            return !string.IsNullOrWhiteSpace(tb.Text);
-                        else if (c is DropDownList ddl)
-                            return ddl.SelectedIndex > 0;
-                        return true;
-                    });
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaMascota')); modal.show();", true);
+                    return;
+                }
 
-                    if (!todosCompletos)
-                    {
-                        divAlertaMascota.Visible = true;
-                        lblValidacion_registroMascota.Text = "Restan campos por completar";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaMascota')); modal.show();", true);
-                        return;
-                    }
-
+                // Cargar mascota (nueva o existente)
+                if (esModificacion)
+                {
+                    int idMascota = (int)ViewState["IDMascotaModificacion"];
+                    mascota = mascotaNegocio.listar_Uno_o_Todos(idMascota)[0];
+                }
+                else
+                {
+                    mascota = new Mascota();
                     mascota.DniDueño = dueño.Dni;
-                    mascota.Nombre = txtNombreMascota.Text.Trim();
-                    mascota.Edad = int.Parse(txtEdadMascota.Text);
-                    mascota.FechaNacimiento = DateTime.Parse(txtFechaNacimientoMascota.Text);
-                    mascota.Peso = decimal.Parse(txtPesoMascota.Text);
-                    mascota.Tipo = txtTipoMascota.Text;
-                    mascota.Raza = txtRazaMascota.Text;
-                    mascota.Sexo = ddlSexoMascota.SelectedValue;
+                }
 
+                // Cargar datos comunes
+                mascota.Nombre = txtNombreMascota.Text.Trim();
+                mascota.Edad = int.Parse(txtEdadMascota.Text);
+                mascota.FechaNacimiento = DateTime.Parse(txtFechaNacimientoMascota.Text);
+                mascota.Peso = decimal.Parse(txtPesoMascota.Text);
+                mascota.Tipo = txtTipoMascota.Text;
+                mascota.Raza = txtRazaMascota.Text;
+                mascota.Sexo = ddlSexoMascota.SelectedValue;
+
+                // Alta o modificación
+                if (esModificacion)
+                    mascotaNegocio.Modificar(mascota);
+                else
                     mascotaNegocio.Agregar(mascota);
 
-                    gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
-                    gvMascotas.DataBind();
+                // Refrescar grilla
+                gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
+                gvMascotas.DataBind();
 
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionMascotaExitosa", @"
-                        Swal.fire({
-                            title: '¡Alta de mascota exitosa.!',
-                            text: 'Su mascota ha sido dada de alta exitosamente.',
-                            icon: 'success',
-                            confirmButtonText: 'Aceptar'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = 'Dueño_PagPrincipal.aspx';
-                            }
-                        });
-                    ", true);
-                }
+                // Mensaje de éxito
+                string titulo = esModificacion ? "¡Modificación exitosa!" : "¡Alta de mascota exitosa!";
+                string mensaje = esModificacion ? "Los datos de su mascota han sido actualizados." : "La mascota ha sido registrada correctamente.";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertaExito", $@"
+            Swal.fire({{
+                title: '{titulo}',
+                text: '{mensaje}',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            }}).then((result) => {{
+                if (result.isConfirmed) {{
+                    window.location.href = 'Dueño_PagPrincipal.aspx';
+                }}
+            }});", true);
+
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-        }  
+        }
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             MascotaNegocio mascotaNegocio = new MascotaNegocio();
@@ -122,17 +150,17 @@ namespace tp_integrador
                     Mascota nueva = new Mascota();
                     nueva = mascotaNegocio.listar_Uno_o_Todos(id)[0];
 
-                    txtNombreMascotaMod.Text = nueva.Nombre;
-                    txtEdadMascotaMod.Text = nueva.Edad.ToString();
-                    txtFechaNacimientoMascotaMod.Text = nueva.FechaNacimiento.ToString("yyyy-MM-dd");
-                    txtPesoMascotaMod.Text = nueva.Peso.ToString();
-                    txtTipoMascotaMod.Text = nueva.Tipo;
-                    txtRazaMascotaMod.Text = nueva.Raza;
-                    ddlSexoMascotaMod.SelectedValue = nueva.Sexo;
+                    txtNombreMascota.Text = nueva.Nombre;
+                    txtEdadMascota.Text = nueva.Edad.ToString();
+                    txtFechaNacimientoMascota.Text = nueva.FechaNacimiento.ToString("yyyy-MM-dd");
+                    txtPesoMascota.Text = nueva.Peso.ToString();
+                    txtTipoMascota.Text = nueva.Tipo;
+                    txtRazaMascota.Text = nueva.Raza;
+                    ddlSexoMascota.SelectedValue = nueva.Sexo;
 
                     ViewState["IDMascotaModificacion"] = id;
 
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalModificacionMascota')); modal.show();", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaMascota')); modal.show();", true);
                 }
             }
             catch (Exception ex)
@@ -141,77 +169,6 @@ namespace tp_integrador
                 throw ex;
             }
 
-        }
-        protected void btnGuardarMascota_Click(object sender, EventArgs e)
-        {
-            Mascota mascota = new Mascota();
-            MascotaNegocio mascotaNegocio = new MascotaNegocio();
-
-            try
-            {
-                int idMascota;
-                if (ViewState["IDMascotaModificacion"] != null)
-                {
-                    idMascota = (int)ViewState["IDMascotaModificacion"];
-                    mascota = mascotaNegocio.listar_Uno_o_Todos(idMascota)[0];
-
-                    //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
-                    List<WebControl> controles = new List<WebControl> { txtNombreMascotaMod, txtEdadMascotaMod, txtFechaNacimientoMascotaMod, txtPesoMascotaMod, txtTipoMascotaMod, txtRazaMascotaMod, ddlSexoMascotaMod };
-
-                    //Funcion LINQ "All". En este caso pregunta si NO son nulos o tiene espcios en blanco y si el DDL seleccionó 1.
-                    bool todosCompletos = controles.All(c =>
-                    {
-                        if (c is TextBox tb)
-                            return !string.IsNullOrWhiteSpace(tb.Text);
-                        else if (c is DropDownList ddl)
-                            return ddl.SelectedIndex > 0;
-                        return true;
-                    });
-
-                    if (!todosCompletos)
-                    {
-                        divAlertaMascota.Visible = true;
-                        lblValidacion_registroMascota.Text = "Restan campos por completar";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalModificacionMascota')); modal.show();", true);
-                        return;
-                    }
-
-                    mascota.Nombre = txtNombreMascotaMod.Text;
-                    mascota.Edad = int.Parse(txtEdadMascotaMod.Text);
-                    mascota.FechaNacimiento = DateTime.Parse(txtFechaNacimientoMascotaMod.Text);
-                    mascota.Peso = decimal.Parse(txtPesoMascotaMod.Text);
-                    mascota.Tipo = txtTipoMascotaMod.Text;
-                    mascota.Raza = txtRazaMascotaMod.Text;
-                    mascota.Sexo = ddlSexoMascotaMod.Text;
-                    mascotaNegocio.Modificar(mascota);
-
-                    Usuario usuario = (Usuario)Session["usuario"];
-                    DueñoNegocio dueñoNegocio = new DueñoNegocio();
-                    Dueño dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
-
-                    gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
-                    gvMascotas.DataBind();
-
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionMascotaExitosa", @"
-    Swal.fire({
-        title: '¡Modificación exitosa!',
-        text: 'Los datos de su mascota han sido actualizados exitosamente.',
-        icon: 'success',
-        confirmButtonText: 'Aceptar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = 'Dueño_PagPrincipal.aspx';
-        }
-    });
-", true);
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
