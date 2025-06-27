@@ -61,28 +61,5 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <a href="#" class="card-link-custom">
-                    <div class="card custom-card h-100 text-center card-verde-agua">
-                        <div class="card-body">
-                            <h5 class="card-title">REPORTES</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="row g-4 justify-content-right mt-2">
-            <div class="col-md-6 col-lg-4">
-                <a href="#" class="card-link-custom">
-                    <div class="card custom-card h-100 text-center card-verde-agua">
-                        <div class="card-body">
-                            <h5 class="card-title">MENSAJERÍA</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
     </div>
 </asp:Content>

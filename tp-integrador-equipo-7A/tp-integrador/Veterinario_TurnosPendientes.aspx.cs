@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using dominio;
+using helpers;
 using negocio;
+using Newtonsoft.Json.Converters;
 
 namespace tp_integrador
 {
@@ -17,82 +19,106 @@ namespace tp_integrador
             {
                 txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 CargarTurnos();
-
             }
+        }
+
+        protected void txtFecha_TextChanged(object sender, EventArgs e)
+        {
+            CargarTurnos();
         }
 
         private void CargarTurnos()
         {
             TurnoNegocio negocio = new TurnoNegocio();
             List<Turno> listaOriginal;
-            List<Turno> listaFiltrada;
-
+            Veterinario veterinario = (Veterinario)Session["veterinario"];
             try
             {
-                // Obtener la matrícula del veterinario logueado
-                // *** REEMPLAZA CON LA LÓGICA REAL PARA OBTENER LA MATRÍCULA ***
-                string matriculaVeterinario = "VET001";
-
+                string matriculaVeterinario = veterinario.Matricula;
                 listaOriginal = negocio.listar_turnosOcupados(matriculaVeterinario, "PENDIENTE");
-                listaFiltrada = listaOriginal; // Por defecto, si no hay filtro de fecha o es inválido
-
-                // Aplicar filtro de fecha si txtFecha tiene valor y es válido
-                if (!string.IsNullOrEmpty(txtFecha.Text))
+                List<Turno> listaFiltrada = listaOriginal;
+                if (!string.IsNullOrEmpty(txtFecha.Text) && DateTime.TryParse(txtFecha.Text, out DateTime fechaFiltro))
                 {
-                    DateTime fechaFiltro;
-                    if (DateTime.TryParse(txtFecha.Text, out fechaFiltro))
-                    {
-                        listaFiltrada = listaOriginal.Where(t => t.FechaHora.Date == fechaFiltro.Date).ToList();
-                    }
-                    else
-                    {
-                        // Mensaje de error si la fecha no es válida
-                        // Puedes usar un control Label en tu ASPX para mostrarlo de forma más amigable
-                        // lblMensajeError.Text = "Formato de fecha inválido.";
-                        // lblMensajeError.Visible = true;
-                        // O simplemente una alerta como antes:
-                        Response.Write("<script>alert('Formato de fecha inválido. Mostrando todos los turnos.');</script>");
-                        // No es necesario limpiar txtFecha.Text aquí, si el usuario la escribió mal, seguirá viéndola mal.
-                    }
+                    listaFiltrada = listaOriginal.Where(t => t.FechaHora.Date == fechaFiltro.Date).ToList();
                 }
-
                 gvTurnos.DataSource = listaFiltrada;
-
-                // Ocultar columnas (esta lógica ya la tenías)
-                if (gvTurnos.Columns.Count > 0)
-                {
-                    foreach (DataControlField column in gvTurnos.Columns)
-                    {
-                        if (column.HeaderText == "Matrícula Veterinario")
-                        {
-                            column.Visible = false;
-                        }
-                    }
-                }
+                gvTurnos.DataKeyNames = new string[] { "IdTurno", "FechaHora" };
                 gvTurnos.DataBind();
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('Error al cargar los turnos: " + ex.Message + "');</script>");
-                // Log.Error(ex);
             }
         }
-        protected void gvTurnos_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
+
+        protected string GetCommandArgument(object idTurnoObj, object fechaHoraObj)
         {
-            if (e.CommandName == "EliminarTurno")
+            string idTurno = idTurnoObj?.ToString() ?? "0";
+            string fechaHora = (fechaHoraObj is DateTime dt) ? dt.ToString("O") : DateTime.MinValue.ToString("O");
+            return $"{idTurno}|{fechaHora}";
+        }
+
+        protected void gvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string[] args = e.CommandArgument.ToString().Split('|');
+            int idTurno = Convert.ToInt32(args[0]);
+            DateTime fechaTurno = Convert.ToDateTime(args[1]);
+
+            if (e.CommandName == "SeleccionarParaCancelar")
             {
-                int idTurno = Convert.ToInt32(e.CommandArgument);
-                Response.Write("<script>alert('Lógica para Eliminar el turno ID: " + idTurno + "');</script>");
-            }
+                ViewState["IdTurnoParaCancelar"] = idTurno;
+                ViewState["FechaTurnoParaCancelar"] = fechaTurno;
 
+                // Muestra el modal de confirmación
+                string script = $"$('#{modalConfirmacion.ClientID}').modal('show');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", script, true);
+            }
         }
 
-        protected void txtFecha_TextChanged(object sender, EventArgs e)
+        protected void btnConfirmarCancelacion_Click(object sender, EventArgs e)
         {
-            // Cuando el texto del txtFecha cambia y AutoPostBack es true,
-            // este método se ejecuta. Simplemente llamamos a CargarTurnos()
-            // para que se aplique el filtro.
-            CargarTurnos();
+            try
+            {
+                if (ViewState["IdTurnoParaCancelar"] != null)
+                {
+                    int idTurno = (int)ViewState["IdTurnoParaCancelar"];
+                    DateTime fechaTurno = (DateTime)ViewState["FechaTurnoParaCancelar"];
+                    TurnoNegocio negocio = new TurnoNegocio();
+
+                    string correoCliente = negocio.mailEliminacion(idTurno);
+                    negocio.cancelar(idTurno, "CANCELADO");
+
+
+                    //ENVIO DE MAIL
+                    //if (!string.IsNullOrEmpty(correoCliente))
+                    //{
+                    //    try
+                    //    {
+                    //        Servicios.enviarMailTurnoEliminado(correoCliente, fechaTurno);
+                    //    }
+                    //    catch (Exception)
+                    //    {
+                    //    }
+                    //}
+
+                    ViewState["IdTurnoParaCancelar"] = null;
+                    ViewState["FechaTurnoParaCancelar"] = null;
+
+                    CargarTurnos();
+                    upTurnosGrid.Update();
+
+                    string scriptExito = $"$('#{modalConfirmacion.ClientID}').modal('hide'); " +
+                                         "$('.modal-backdrop').remove(); " +
+                                         "$('body').removeClass('modal-open'); " +
+                                         $"setTimeout(function() {{ $('#{modalExito.ClientID}').modal('show'); }}, 500);";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowSuccessModal", scriptExito, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                string scriptError = $"$('#{modalConfirmacion.ClientID}').modal('hide'); alert('Error en la operación de cancelación: {ex.Message}');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Error", scriptError, true);
+            }
         }
     }
 }

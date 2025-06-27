@@ -176,6 +176,62 @@ namespace negocio
                 throw;
             }
         }
+
+        public void cancelar(int idTurno, string cancelado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.setearConsulta("UPDATE Turnos SET Estado = @Estado WHERE IDTurno = @IDTurno");
+
+                datos.setearParametro("@IDTurno", idTurno);
+                datos.setearParametro("@Estado", cancelado);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+        public string mailEliminacion(int idTurno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string correo = null;
+            try
+            {
+                datos.setearConsulta("SELECT D.Correo FROM Turnos T, Mascotas M, Dueños D WHERE T.IDTurno = @IDTurno AND T.IDMascota = M.IDMascota AND M.DniDueño = D.Dni");
+                datos.setearParametro("@IDTurno", idTurno);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    correo = (string)datos.Lector["Correo"];
+                }
+
+                return correo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
 

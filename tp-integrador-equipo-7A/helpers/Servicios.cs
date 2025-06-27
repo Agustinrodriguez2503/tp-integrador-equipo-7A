@@ -52,5 +52,44 @@ namespace helpers
                 throw ex;
             }
         }
+
+        public static void enviarMailTurnoEliminado(string correo, DateTime fechaturno)
+        {
+            //Correo utilizado
+            string remitente = "dres.madero@gmail.com";
+            //Contraseña de aplicacion de Gmail
+            string clave = "wxuf iztg zrlg mccn";
+
+            //hardcodeo mi mail para testear
+            correo = "nahuepmartinez@gmail.com";
+
+            MailMessage mensaje = new MailMessage();
+            mensaje.From = new MailAddress(remitente);
+            mensaje.To.Add(correo);
+            mensaje.Subject = "Cancelación de turno.";
+            mensaje.IsBodyHtml = true;
+            mensaje.Body = $@"
+            <h3>Estimado/a cliente,</h3>
+            <p>Le informamos que su turno programado para el día <strong>{fechaturno.ToString("dd/MM/yyyy")} a las {fechaturno.ToString("HH:mm")} hs.</strong> ha sido cancelado.</p>
+            <p>Disculpe las molestias ocasionadas.
+            <br/><br/>
+            Atentamente,<br/>
+            Dres. Madero</p>";
+
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.Credentials = new NetworkCredential(remitente, clave);
+            smtp.EnableSsl = true;
+
+            try
+            {
+                smtp.Send(mensaje);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

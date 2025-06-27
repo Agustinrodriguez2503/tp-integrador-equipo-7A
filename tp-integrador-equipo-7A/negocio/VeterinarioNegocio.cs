@@ -146,6 +146,8 @@ namespace negocio
                     aux.Correo = (string)datos.Lector["Correo"];
                     aux.Imagen = (string)datos.Lector["UrlImagen"];
                     aux.Estado = (bool)datos.Lector["Activo"];
+                    //Agrego la matricula para poder luego usarla en session
+                    aux.Matricula = (string)datos.Lector["Matricula"];
 
                     lista.Add(aux);
                 }

@@ -27,6 +27,9 @@ namespace tp_integrador
                     Usuario usuario = (Usuario)Session["usuario"];
                     veterinario = veterinarioNegocio.listarPorUser(usuario.User)[0];
 
+                    //Me guardo en session al veterinario logueado
+                    Session["veterinario"] = veterinario;
+
                     lblBienvenidoVet.Text = veterinario.Nombre + " " + veterinario.Apellido;
                 }
                 catch (Exception ex)
