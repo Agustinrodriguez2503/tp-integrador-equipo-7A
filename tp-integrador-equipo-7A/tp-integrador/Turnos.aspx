@@ -48,7 +48,13 @@
                             OnCommand="seleccionarVeterinario_Command">
 
                             <div class="card card-selectable h-100 shadow border-0 rounded-4 overflow-hidden">
-                                <img src="<%#Eval("Imagen") %>" class="card-img-top img-fluid" alt="Veterinario" style="height: 250px; object-fit: cover;">
+                                <asp:Image 
+                                    ID="imgVet" 
+                                    runat="server" 
+                                    CssClass="card-img-top img-fluid"
+                                    ImageUrl='<%# ResolveUrl("~/Images/Veterinarios/" + Eval("Imagen")) %>' 
+                                    AlternateText="Veterinario"
+                                    Style="height: 250px; object-fit: cover;" />
                                 <div class="card-body text-center">
                                     <h5 class="card-title fw-semibold mb-1"><%#Eval("Nombre") + " " + Eval("Apellido") %></h5>
                                     <p class="card-text text-muted mb-0">Matrícula: <%#Eval("Matricula") %></p>

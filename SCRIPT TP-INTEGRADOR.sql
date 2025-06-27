@@ -130,7 +130,7 @@ GO
 ------------------------------------------------- REGISTROS! ----------------------------------------------
 
 -- ROL
-INSERT INTO Rol (Nombre) VALUES ('Dueño'), ('Recepcionista'), ('Veterinario');
+INSERT INTO Rol (Nombre) VALUES ('Dueño'), ('Recepcionista'), ('Veterinario'), ('Administrador');
 
 -- USUARIOS
 INSERT INTO Usuarios (Usuario, IDRol, Clave) VALUES

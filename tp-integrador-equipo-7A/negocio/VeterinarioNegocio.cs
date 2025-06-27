@@ -64,7 +64,7 @@ namespace negocio
             try
             {
 
-                datos.setearConsulta("INSERT INTO Veterinarios (Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo) VALUES (@Matricula, @Usuario, @Nombre, @Apellido, @Dni, @Telefono, @Correo)");
+                datos.setearConsulta("INSERT INTO Veterinarios (Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, UrlImagen) VALUES (@Matricula, @Usuario, @Nombre, @Apellido, @Dni, @Telefono, @Correo, @Imagen)");
                 datos.setearParametro("@Matricula", nuevo.Matricula);
                 datos.setearParametro("@Usuario", nuevo.Usuario);
                 datos.setearParametro("@Nombre", nuevo.Nombre);
@@ -72,6 +72,7 @@ namespace negocio
                 datos.setearParametro("@Dni", nuevo.Dni);
                 datos.setearParametro("@Telefono", nuevo.Telefono);
                 datos.setearParametro("@Correo", nuevo.Correo);
+                datos.setearParametro("@Imagen", nuevo.Imagen);
                 datos.ejecutarAccion();
 
             }

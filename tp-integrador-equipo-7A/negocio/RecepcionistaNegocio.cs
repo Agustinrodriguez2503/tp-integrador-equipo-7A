@@ -10,15 +10,25 @@ namespace negocio
 {
     public class RecepcionistaNegocio
     {
-        public List<Recepcionista> listar()
+        public List<Recepcionista> listar(string dni = "")
         {
             List<Recepcionista> lista = new List<Recepcionista>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT Legajo, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Recepcionistas");
-                datos.ejecutarLectura();
+                if (dni != "")
+                {
+                    datos.setearConsulta("SELECT Legajo, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Recepcionistas WHERE Dni = @dni");
+                    datos.setearParametro("@dni", dni);
+                }
+                else
+                {
+                    datos.setearConsulta("SELECT Legajo, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Recepcionistas");
+
+                }
+
+                    datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {

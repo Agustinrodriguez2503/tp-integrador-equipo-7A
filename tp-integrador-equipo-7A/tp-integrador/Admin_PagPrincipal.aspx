@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    
     <div class="container my-5">
         <h1 class="text-center mb-3">¡BIENVENIDO/A ADMINISTRADOR/A! </h1>
         <asp:Label ID="lblVet" runat="server"
@@ -48,6 +50,10 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+
+<div class="col-md-6 d-flex flex-wrap justify-content-center gap-3">
+    <asp:LinkButton ID="btnVeterinario" runat="server" Text="Agregar Veterinario" CssClass="btn btn-outline-dark btn-lg rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalAltaVeterinario"></asp:LinkButton>
+</div>
         <!------------------------ LISTADO DE RECEPCIONISTA ------------------------>
         <asp:Label ID="lblRec" runat="server"
             CssClass="h3 text-center text-secondary mb-5 fw-bold d-block text-dark"
@@ -92,5 +98,177 @@
             </Columns>
         </asp:GridView>
     </div>
+
+<div class="col-md-6 d-flex flex-wrap justify-content-center gap-3">
+    <asp:LinkButton ID="btnRecepcionista" runat="server" Text="Agregar Recepcionista" CssClass="btn btn-outline-dark btn-lg rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalAltaRecepcionista"></asp:LinkButton>
+</div>
+
+     <%-----------------------------          MODAL PARA CARGAR UN VETERINARIO      --------------------------------------%>
+
+ <div class="modal fade" id="modalAltaVeterinario" tabindex="-1" aria-labelledby="modalAltaVeterinarioLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg modal-dialog-centered">
+         <div class="modal-content rounded-4 shadow">
+
+             <div class="modal-header bg-primary text-white rounded-top-4">
+                 <h5 class="modal-title fw-semibold" id="modalAltaVeterinarioLabel">
+                     <i class="bi bi-person-vcard me-2"></i>Nuevo Veterinario
+                 </h5>
+                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+             </div>
+
+             <div class="modal-body bg-light">
+                 <div class="container-fluid px-4">
+                     <div class="row g-4">
+
+                         <!-- Nombre -->
+                         <div class="col-md-6">
+                             <label class="form-label fw-semibold" for="txtNombreVet">Nombre</label>
+                             <asp:TextBox ID="txtNombreVet" runat="server" ValidationGroup="registrarVeterinario" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: Sofía" />
+                             <asp:RequiredFieldValidator ID="rfvNombreVet" runat="server" ControlToValidate="txtNombreVet" ValidationGroup="registrarVeterinario" ErrorMessage="El nombre es obligatorio." CssClass="text-danger small fst-italic" Display="Dynamic" />
+                         </div>
+
+                         <!-- Apellido -->
+                         <div class="col-md-6">
+                             <label class="form-label fw-semibold" for="txtApellidoVet">Apellido</label>
+                             <asp:TextBox ID="txtApellidoVet" runat="server" ValidationGroup="registrarVeterinario" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: Fernández" />
+                             <asp:RequiredFieldValidator ID="rfvApellidoVet" runat="server" ControlToValidate="txtApellidoVet" ValidationGroup="registrarVeterinario" ErrorMessage="El apellido es obligatorio." CssClass="text-danger small fst-italic" Display="Dynamic" />
+                         </div>
+
+                         <!-- DNI -->
+                         <div class="col-md-6">
+                             <label class="form-label fw-semibold" for="txtDniVet">DNI</label>
+                             <asp:TextBox ID="txtDniVet" runat="server" ValidationGroup="registrarVeterinario" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 30123456" />
+                             <asp:RequiredFieldValidator ID="rfvDniVet" runat="server" ControlToValidate="txtDniVet" ValidationGroup="registrarVeterinario" ErrorMessage="El DNI es obligatorio." CssClass="text-danger small fst-italic" Display="Dynamic" />
+                             <asp:RegularExpressionValidator ID="revDniVet" runat="server" ControlToValidate="txtDniVet" ValidationGroup="registrarVeterinario" ErrorMessage="Ingrese un DNI válido (7 u 8 dígitos, sin puntos)" CssClass="text-danger small fst-italic" ValidationExpression="^\d{7,8}$" Display="Dynamic" />
+                         </div>
+
+                         <!-- Teléfono -->
+                         <div class="col-md-6">
+                             <label class="form-label fw-semibold" for="txtTelefonoVet">Teléfono</label>
+                             <asp:TextBox ID="txtTelefonoVet" runat="server" ValidationGroup="registrarVeterinario" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 11 5555-5555" />
+                             <asp:RequiredFieldValidator ID="rfvTelefonoVet" runat="server" ControlToValidate="txtTelefonoVet" ValidationGroup="registrarVeterinario" ErrorMessage="El teléfono es obligatorio." CssClass="text-danger small fst-italic" Display="Dynamic" />
+                             <asp:RegularExpressionValidator ID="revTelefonoVet" runat="server" ControlToValidate="txtTelefonoVet" ValidationGroup="registrarVeterinario" ErrorMessage="Formato inválido. Use: 11 5555-5555" CssClass="text-danger small fst-italic" ValidationExpression="^(\+?\d{2,3}\s?)?(\(?\d{2,4}\)?\s?-?)?\d{3,4}-?\d{4}$" Display="Dynamic" />
+                         </div>
+
+                         <!-- Correo -->
+                         <div class="col-md-6">
+                             <label class="form-label fw-semibold" for="txtCorreoVet">Correo electrónico</label>
+                             <asp:TextBox ID="txtCorreoVet" runat="server" ValidationGroup="registrarVeterinario" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: correo@ejemplo.com" />
+                             <asp:RequiredFieldValidator ID="rfvCorreoVet" runat="server" ControlToValidate="txtCorreoVet" ValidationGroup="registrarVeterinario" ErrorMessage="El correo es obligatorio." CssClass="text-danger small fst-italic" Display="Dynamic" />
+                             <asp:RegularExpressionValidator ID="revCorreoVet" runat="server" ControlToValidate="txtCorreoVet" ValidationGroup="registrarVeterinario" ErrorMessage="Correo inválido" CssClass="text-danger small fst-italic" ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" Display="Dynamic" />
+                         </div>
+
+                         <!-- Imagen URL -->
+                         <div class="col-md-6">
+                             <label class="form-label fw-semibold" for="fuImagenVet">Imagen</label>
+                             <asp:FileUpload ID="fuImagenVet" runat="server" ValidationGroup="registrarVeterinario" CssClass="form-control form-control-lg shadow-sm rounded-3" />
+                             <asp:RequiredFieldValidator ID="rfvImagenVet" runat="server" ControlToValidate="fuImagenVet" ValidationGroup="registrarVeterinario"
+                                 ErrorMessage="Debe seleccionar una imagen." CssClass="text-danger small fst-italic" Display="Dynamic" />
+                         </div>
+
+
+                          <!-- Matrícula -->
+                         <div class="col-md-6">
+                             <label class="form-label fw-semibold" for="txtMatricula">Matrícula</label>
+                             <asp:TextBox ID="txtMatricula" runat="server" ValidationGroup="registrarVeterinario" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 12345" />
+                             <asp:RequiredFieldValidator ID="rfvMatricula" runat="server" ControlToValidate="txtMatricula" ValidationGroup="registrarVeterinario" ErrorMessage="La matrícula es obligatoria." CssClass="text-danger small fst-italic" Display="Dynamic" />
+                         </div>
+
+                         <hr class="my-4" />
+
+                         <!-- Alerta -->
+                         <div id="divAlertaVeterinario" runat="server" visible="false" class="alert alert-danger d-flex align-items-center p-2 mb-3" role="alert">
+                             <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                             <asp:Label ID="lblValidacion_registroVeterinario" runat="server" CssClass="m-0 text-dark" />
+                         </div>
+
+                     </div>
+                 </div>
+             </div>
+
+             <div class="modal-footer bg-white rounded-bottom-4 d-flex justify-content-between px-4 py-3">
+                 <asp:Button ID="btnRegistroVeterinario" runat="server" ValidationGroup="registrarVeterinario" Text="Registrar Veterinario" CssClass="btn btn-success btn-lg px-4 rounded-pill" CausesValidation="true" OnClick="btnRegistroVeterinario_Click" />
+                 <button type="button" class="btn btn-outline-secondary btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+             </div>
+
+         </div>
+     </div>
+ </div>
+
+     <%-----------------------------          MODAL PARA CARGAR UN RECEPCIONISTA      --------------------------------------%>
+
+    <div class="modal fade" id="modalAltaRecepcionista" tabindex="-1" aria-labelledby="modalAltaRecepcionistaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow">
+
+                <div class="modal-header bg-secondary text-white rounded-top-4">
+                    <h5 class="modal-title fw-semibold" id="modalAltaRecepcionistaLabel">
+                        <i class="bi bi-person-fill-add me-2"></i>Nuevo Recepcionista
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body bg-light">
+                    <div class="container-fluid px-4">
+                        <div class="row g-4">
+
+                            <!-- Nombre -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="txtNombreRec">Nombre</label>
+                                <asp:TextBox ID="txtNombreRec" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: Camila" ValidationGroup="registrarRecepcionista" />
+                                <asp:RequiredFieldValidator ID="rfvNombreRec" runat="server" ControlToValidate="txtNombreRec" ErrorMessage="El nombre es obligatorio." CssClass="text-danger small fst-italic" ValidationGroup="registrarRecepcionista" Display="Dynamic" />
+                            </div>
+
+                            <!-- Apellido -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="txtApellidoRec">Apellido</label>
+                                <asp:TextBox ID="txtApellidoRec" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: Gómez" ValidationGroup="registrarRecepcionista" />
+                                <asp:RequiredFieldValidator ID="rfvApellidoRec" runat="server" ControlToValidate="txtApellidoRec" ErrorMessage="El apellido es obligatorio." CssClass="text-danger small fst-italic" ValidationGroup="registrarRecepcionista" Display="Dynamic" />
+                            </div>
+
+                            <!-- DNI -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="txtDniRec">DNI</label>
+                                <asp:TextBox ID="txtDniRec" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 30123456" ValidationGroup="registrarRecepcionista" />
+                                <asp:RequiredFieldValidator ID="rfvDniRec" runat="server" ControlToValidate="txtDniRec" ErrorMessage="El DNI es obligatorio." CssClass="text-danger small fst-italic" ValidationGroup="registrarRecepcionista" Display="Dynamic" />
+                                <asp:RegularExpressionValidator ID="revDniRec" runat="server" ControlToValidate="txtDniRec" ErrorMessage="DNI inválido. Ingresá 7 u 8 dígitos." CssClass="text-danger small fst-italic" ValidationGroup="registrarRecepcionista" ValidationExpression="^\d{7,8}$" Display="Dynamic" />
+                            </div>
+
+                            <!-- Teléfono -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="txtTelefonoRec">Teléfono</label>
+                                <asp:TextBox ID="txtTelefonoRec" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: 11 5555-5555" ValidationGroup="registrarRecepcionista" />
+                                <asp:RequiredFieldValidator ID="rfvTelefonoRec" runat="server" ControlToValidate="txtTelefonoRec" ErrorMessage="El teléfono es obligatorio." CssClass="text-danger small fst-italic" ValidationGroup="registrarRecepcionista" Display="Dynamic" />
+                                <asp:RegularExpressionValidator ID="revTelefonoRec" runat="server" ControlToValidate="txtTelefonoRec" ErrorMessage="Formato inválido. Use: 11 5555-5555" CssClass="text-danger small fst-italic" ValidationGroup="registrarRecepcionista" ValidationExpression="^(\+?\d{2,3}\s?)?(\(?\d{2,4}\)?\s?-?)?\d{3,4}-?\d{4}$" Display="Dynamic" />
+                            </div>
+
+                            <!-- Correo -->
+                            <div class="col-md-12">
+                                <label class="form-label fw-semibold" for="txtCorreoRec">Correo electrónico</label>
+                                <asp:TextBox ID="txtCorreoRec" runat="server" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: ejemplo@email.com" ValidationGroup="registrarRecepcionista" />
+                                <asp:RequiredFieldValidator ID="rfvCorreoRec" runat="server" ControlToValidate="txtCorreoRec" ErrorMessage="El correo es obligatorio." CssClass="text-danger small fst-italic" ValidationGroup="registrarRecepcionista" Display="Dynamic" />
+                                <asp:RegularExpressionValidator ID="revCorreoRec" runat="server" ControlToValidate="txtCorreoRec" ErrorMessage="Correo inválido" CssClass="text-danger small fst-italic" ValidationGroup="registrarRecepcionista" ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" Display="Dynamic" />
+                            </div>
+
+                            <!-- Alerta -->
+                            <div id="divAlertaRecepcionista" runat="server" visible="false" class="alert alert-danger d-flex align-items-center p-2 mb-3" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <asp:Label ID="lblValidacion_registroRecepcionista" runat="server" CssClass="m-0 text-dark" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer bg-white rounded-bottom-4 d-flex justify-content-between px-4 py-3">
+                    <asp:Button ID="btnRegistroRecepcionista" runat="server" Text="Registrar Recepcionista" CssClass="btn btn-secondary btn-lg px-4 rounded-pill" ValidationGroup="registrarRecepcionista" OnClick="btnRegistroRecepcionista_Click" />
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 
 </asp:Content>
