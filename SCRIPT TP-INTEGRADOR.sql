@@ -1,6 +1,6 @@
----- Para Eliminar la Base de Datos.
---ALTER DATABASE TpIntegradorVeterinarias SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
---DROP DATABASE TpIntegradorVeterinarias;
+-- Para Eliminar la Base de Datos.
+ALTER DATABASE TpIntegradorVeterinarias SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+DROP DATABASE TpIntegradorVeterinarias;
 
 
 ----------------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ CREATE TABLE Dueños(
     Nombre VARCHAR(25) NOT NULL,
     Apellido VARCHAR(25) NOT NULL,
     Telefono VARCHAR(20),
-    Correo VARCHAR(50) UNIQUE,
+    Correo VARCHAR(50),
     Domicilio VARCHAR(50),
     Activo BIT DEFAULT 1,
     FOREIGN KEY (Usuario) REFERENCES Usuarios(Usuario)
@@ -95,12 +95,14 @@ CREATE TABLE Turnos(
     IDTurno INT PRIMARY KEY IDENTITY (1,1),
     MatriculaVeterinario VARCHAR(10) NOT NULL,
     IDMascota INT NOT NULL,
-    FechaHora DATETIME UNIQUE,
-	Estado VARCHAR(10) NOT NULL DEFAULT 'PENDIENTE',
+    FechaHora DATETIME,
+    Estado VARCHAR(10) NOT NULL DEFAULT 'PENDIENTE',
     Activo BIT DEFAULT 1,
     FOREIGN KEY (MatriculaVeterinario) REFERENCES Veterinarios(Matricula),
-    FOREIGN KEY (IDMascota) REFERENCES Mascotas(IDMascota)
+    FOREIGN KEY (IDMascota) REFERENCES Mascotas(IDMascota),
+    CONSTRAINT UQ_Turnos_Matricula_Fecha UNIQUE (MatriculaVeterinario, FechaHora)
 );
+
 GO
 
 -- TABLA FICHACONSULTA
@@ -141,7 +143,8 @@ INSERT INTO Usuarios (Usuario, IDRol, Clave) VALUES
 ('rec2', 2, 'claverec2'),
 ('due1', 1, 'clavedue1'),
 ('due2', 1, 'clavedue2'),
-('due3', 1, 'clavedue3');
+('due3', 1, 'clavedue3'),
+('admin', 1, 'admin');
 
 -- VETERINARIOS
 INSERT INTO Veterinarios (Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, UrlImagen) VALUES

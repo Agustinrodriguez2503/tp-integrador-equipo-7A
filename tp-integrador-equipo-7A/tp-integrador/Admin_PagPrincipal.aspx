@@ -244,9 +244,9 @@
                             <!-- Imagen URL -->
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold" for="fuImagenVet">Imagen</label>
-                                <asp:FileUpload ID="fuImagenVet" runat="server" ValidationGroup="registrarVeterinario" CssClass="form-control form-control-lg shadow-sm rounded-3" />
-                                <asp:RequiredFieldValidator ID="rfvImagenVet" runat="server" ControlToValidate="fuImagenVet" ValidationGroup="registrarVeterinario"
-                                    ErrorMessage="Debe seleccionar una imagen." CssClass="text-danger small fst-italic" Display="Dynamic" />
+                                <asp:TextBox ID="txtImagenVet" runat="server" ValidationGroup="registrarVeterinario" CssClass="form-control form-control-lg shadow-sm rounded-3" placeholder="Ej: http://imagen.com" />
+                                <asp:RequiredFieldValidator ID="rfvImagenVet" runat="server" ControlToValidate="txtImagenVet" ValidationGroup="registrarVeterinario"
+                                    ErrorMessage="Debe informar URL de la imagen." CssClass="text-danger small fst-italic" Display="Dynamic" />
                             </div>
 
 

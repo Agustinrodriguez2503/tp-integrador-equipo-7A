@@ -54,18 +54,11 @@ namespace tp_integrador
             try
             {
                 //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
-                List<WebControl> controles = new List<WebControl> { txtNombreVet, txtApellidoVet, txtTelefonoVet, txtCorreoVet, txtDniVet, fuImagenVet, txtMatricula };
+                List<TextBox> controles = new List<TextBox> { txtNombreVet, txtApellidoVet, txtTelefonoVet, txtCorreoVet, txtDniVet, txtImagenVet, txtMatricula };
 
                 //Funcion LINQ "All". En este caso pregunta si NO son nulos o tiene espcios en blanco.
-                bool todosCompletos = controles.All(c =>
-                {
-                    if (c is TextBox tb)
-                        return !string.IsNullOrWhiteSpace(tb.Text);
-                    else if (c is FileUpload file)
-                        return file.HasFile;
+                bool todosCompletos = controles.All(c => !string.IsNullOrWhiteSpace(c.Text));
 
-                    return true;
-                });
 
                 if (!todosCompletos)
                 {
@@ -87,10 +80,7 @@ namespace tp_integrador
 
                 }
 
-                //Guardar la Imagen
-                string ruta = Server.MapPath("./Images/Veterinarios/");
-                fuImagenVet.PostedFile.SaveAs(ruta + "perfil-" + txtMatricula.Text + ".jpg");
-
+                
                 UsuarioNegocio negocioUsuario = new UsuarioNegocio();
                 Usuario nuevoUsuario = new Usuario();
                 nuevoVeterianario = new Veterinario();
@@ -101,7 +91,7 @@ namespace tp_integrador
                 nuevoVeterianario.Apellido = txtApellidoVet.Text.Trim();
                 nuevoVeterianario.Correo = txtCorreoVet.Text;
                 nuevoVeterianario.Telefono = txtTelefonoVet.Text;
-                nuevoVeterianario.Imagen = "perfil-" + txtMatricula.Text + ".jpg";
+                nuevoVeterianario.Imagen = txtImagenVet.Text;
 
                 // Para generarle un usuario con su primer nombre y los ultimos 3 digitos de su DNI
                 //Obtenemos el primer nombre

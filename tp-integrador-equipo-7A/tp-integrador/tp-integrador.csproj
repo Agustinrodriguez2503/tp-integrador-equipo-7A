@@ -159,6 +159,7 @@
     <Content Include="PaginaPrincipalMasterPage.Master" />
     <Content Include="RecepcionistaMasterPage.Master" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Styles\EstilosPropios.css" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />

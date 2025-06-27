@@ -1,0 +1,78 @@
+﻿
+/*Estilos de la pag Turnos*/
+.pager-custom a, .pager-custom span {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 2px;
+    border-radius: 50px;
+    border: 1px solid #20c997;
+    text-decoration: none;
+    color: #20c997;
+    background-color: white;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+    .pager-custom a:hover {
+        background-color: #20c997;
+        color: white;
+        text-decoration: none;
+    }
+
+.pager-custom span {
+    background-color: #20c997;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #20c997;
+}
+
+.card-selectable {
+    background-color: #d9f5f0; /* Verde agua clarito */
+    border-radius: 1rem;
+    border: 2px solid transparent;
+    border-left: 6px solid #20c997;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s;
+    box-shadow: 0 4px 12px rgba(32, 201, 151, 0.1); /* Sombra suave por defecto */
+}
+
+    .card-selectable:hover {
+        transform: translateY(-6px);
+        background-color: #bff0e6; /* Un tono más fuerte al hacer hover */
+        box-shadow: 0 10px 25px rgba(32, 201, 151, 0.25);
+    }
+
+    .card-selectable.selected {
+        background-color: #a2ded0; /* Más intenso para la card seleccionada */
+        border: 2px solid #20c997;
+        box-shadow: 0 0 0 5px rgba(32, 201, 151, 0.4);
+    }
+
+
+.titulo-pagina {
+    font-size: 2.2rem;
+    color: #343a40;
+}
+
+.subtitulo-pagina {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+.grid-turnos {
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: #e9ecef;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.alert-custom {
+    font-size: 1rem;
+    border-radius: 0.75rem;
+}

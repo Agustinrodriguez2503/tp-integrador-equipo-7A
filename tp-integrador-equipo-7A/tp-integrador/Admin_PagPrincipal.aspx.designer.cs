@@ -213,13 +213,13 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revCorreoVet;
 
         /// <summary>
-        /// Control fuImagenVet.
+        /// Control txtImagenVet.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fuImagenVet;
+        protected global::System.Web.UI.WebControls.TextBox txtImagenVet;
 
         /// <summary>
         /// Control rfvImagenVet.
