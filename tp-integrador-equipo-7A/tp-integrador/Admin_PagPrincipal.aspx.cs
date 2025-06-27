@@ -25,6 +25,7 @@ namespace tp_integrador
                     {
                         VeterinarioNegocio veterinarioNegocio = new VeterinarioNegocio();
                         RecepcionistaNegocio recepcionistaNegocio = new RecepcionistaNegocio();
+                        DueñoNegocio dueñoNegocio = new DueñoNegocio();
 
                         gvVeterinarios.DataSource = veterinarioNegocio.listar();
                         gvVeterinarios.DataBind();
@@ -32,6 +33,8 @@ namespace tp_integrador
                         gvRecepcionistas.DataSource = recepcionistaNegocio.listar();
                         gvRecepcionistas.DataBind();
 
+                        gvDueños.DataSource = dueñoNegocio.listar();
+                        gvDueños.DataBind();
                     }
                     catch (Exception ex)
                     {
@@ -44,25 +47,7 @@ namespace tp_integrador
             
         }
 
-        protected void btnModificarVet_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        protected void btnEliminarVet_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnModificarRec_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnEliminarRec_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void btnRegistroVeterinario_Click(object sender, EventArgs e)
         {
@@ -151,7 +136,40 @@ namespace tp_integrador
             }
 
         }
+        protected void btnModificarVet_Click(object sender, EventArgs e)
+        {
 
+        }
+        protected void btnHabilitarVet_Click(object sender, EventArgs e)
+        {
+            VeterinarioNegocio veterinarioNegocio = new VeterinarioNegocio();
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                string matricula = btn.CommandArgument;
+                string accion = btn.CommandName;
+
+                if (matricula != null)
+                {
+                    if (accion == "Habilitar")
+                        veterinarioNegocio.Habilitar_O_Eliminar(matricula, 1);
+                    else if (accion == "Eliminar")
+                        veterinarioNegocio.Habilitar_O_Eliminar(matricula);
+
+                    gvVeterinarios.DataSource = veterinarioNegocio.listar();
+                    gvVeterinarios.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+
+         
         protected void btnRegistroRecepcionista_Click(object sender, EventArgs e)
         {
             try
@@ -221,6 +239,25 @@ namespace tp_integrador
 
                 throw ex;
             }
+
+        }
+        protected void btnModificarRec_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnHabilitarRec_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        protected void btnModificarDueño_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnHabilitarDueño_Click(object sender, EventArgs e)
+        {
 
         }
     }

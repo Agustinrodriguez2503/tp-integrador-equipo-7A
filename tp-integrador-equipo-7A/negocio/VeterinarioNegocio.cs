@@ -165,5 +165,27 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void Habilitar_O_Eliminar(string matricula, int estado = 0)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Veterinarios SET Activo = @estado WHERE Matricula = @matricula");
+                datos.setearParametro("@estado", estado);
+                datos.setearParametro("@matricula", matricula);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
