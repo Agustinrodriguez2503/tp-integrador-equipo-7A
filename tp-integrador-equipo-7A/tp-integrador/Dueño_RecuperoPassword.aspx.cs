@@ -14,7 +14,8 @@ namespace tp_integrador
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!(Seguridad.sesionActiva(Session["usuario"])))
+                Response.Redirect("IniciarSesion.aspx", false);
         }
 
         protected void btnGuardarClave_Click(object sender, EventArgs e)
@@ -34,22 +35,20 @@ namespace tp_integrador
                 if (txtNuevaClave.Text == txtConfirmarClave.Text)
                 {
 
-                        usuario.Pass = txtConfirmarClave.Text;
-                        usuarioNegocio.Modificar(usuario);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "cambioClave", @"
-    Swal.fire({
-        title: '¡Modificación de clave!',
-        text: 'Su contraseña fue modificada exitosamente.',
-        icon: 'success',
-        confirmButtonText: 'Aceptar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = 'IniciarSesion.aspx';
-        }
-    });
-", true);
-                    }
-
+                    usuario.Pass = txtConfirmarClave.Text;
+                    usuarioNegocio.Modificar(usuario);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "cambioClave", @"
+                    Swal.fire({
+                        title: '¡Modificación de clave!',
+                        text: 'Su contraseña fue modificada exitosamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'IniciarSesion.aspx';
+                        }
+                    });
+                ", true);
                 }
                 else
                 {
@@ -59,3 +58,4 @@ namespace tp_integrador
             }
         }
     }
+}

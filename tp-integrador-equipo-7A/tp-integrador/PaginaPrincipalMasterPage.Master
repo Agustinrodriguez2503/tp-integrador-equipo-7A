@@ -47,6 +47,7 @@
                         <img src="/images/logo_sesion.png" alt="User Icon" width="50" height="50" class="me-2">
                         <a href="IniciarSesion" class="text-white text-decoration-none fs-2">Iniciar sesión</a>
                     </div>
+                  
                 </div>
             </nav>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

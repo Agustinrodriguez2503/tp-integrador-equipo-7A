@@ -314,5 +314,11 @@ namespace tp_integrador
             }
             return null;
         }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Remove("usuario");
+            Response.Redirect("IniciarSesion.aspx");
+        }
     }
 }

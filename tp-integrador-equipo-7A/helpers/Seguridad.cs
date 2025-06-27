@@ -17,5 +17,13 @@ namespace helpers
             else
                 return false;
         }
+        public static bool isAdmin(object user)
+        {
+            Usuario usuario = user != null ? (Usuario)user : null;
+            if(usuario.Rol == 4)
+                return true;
+            else
+                return false;
+        }
     }
 }

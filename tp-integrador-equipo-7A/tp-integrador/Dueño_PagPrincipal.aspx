@@ -136,13 +136,13 @@
         </div>
         <div class="row g-4 justify-content-center mt-1">
             <div class="col-md-6 col-lg-4">
-                <a href="IniciarSesion.aspx" class="card-link-custom">
+                <asp:LinkButton ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" CssClass="card-link-custom">
                     <div class="card custom-card h-100 text-center card-verde-agua">
                         <div class="card-body">
                             <h5 class="card-title">CERRAR SESIÓN</h5>
                         </div>
                     </div>
-                </a>
+                </asp:LinkButton>
             </div>
         </div>
     </div>

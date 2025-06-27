@@ -41,6 +41,10 @@ namespace tp_integrador
                     {
                         Response.Redirect("Veterinario_PagPrincipal.aspx", false);
                     }
+                    else if (usuario.Rol == 4)
+                    {
+                        Response.Redirect("Admin_PagPrincipal.aspx", false);
+                    }
                 }
                 lblMensaje.Text = "Usuario o contraseña incorrecta.";
                 lblMensaje.ForeColor = System.Drawing.Color.Red;

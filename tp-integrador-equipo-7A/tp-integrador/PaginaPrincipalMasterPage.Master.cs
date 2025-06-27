@@ -30,6 +30,11 @@ namespace tp_integrador
                 contenedorLogin.Visible = false;
                 contenedorInicio.Visible = false;
             }
+            if (pagina == "Admin_PagPrincipal")
+            {
+                contenedorLogin.Visible = false;
+                contenedorInicio.Visible = false;
+            }
 
         }
     }
