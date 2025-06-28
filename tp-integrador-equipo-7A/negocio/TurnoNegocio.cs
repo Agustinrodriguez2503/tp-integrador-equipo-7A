@@ -177,7 +177,7 @@ namespace negocio
             }
         }
 
-        public void cancelar(int idTurno, string cancelado)
+        public void modificarEstado(int idTurno, string estado)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -186,7 +186,7 @@ namespace negocio
                 datos.setearConsulta("UPDATE Turnos SET Estado = @Estado WHERE IDTurno = @IDTurno");
 
                 datos.setearParametro("@IDTurno", idTurno);
-                datos.setearParametro("@Estado", cancelado);
+                datos.setearParametro("@Estado", estado);
 
                 datos.ejecutarAccion();
 

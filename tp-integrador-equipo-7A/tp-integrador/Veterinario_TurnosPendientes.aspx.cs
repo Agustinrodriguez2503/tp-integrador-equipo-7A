@@ -106,7 +106,7 @@ namespace tp_integrador
                     TurnoNegocio negocio = new TurnoNegocio();
 
                     string correoCliente = negocio.mailEliminacion(idTurno);
-                    negocio.cancelar(idTurno, "CANCELADO");
+                    negocio.modificarEstado(idTurno, "CANCELADO");
 
 
                     //ENVIO DE MAIL

@@ -31,13 +31,14 @@ namespace tp_integrador
                 int idTurno = Convert.ToInt32(idTurnoString);
                 int idMascota = Convert.ToInt32(idMascotaString);
 
+                ViewState["IDTurno"] = idTurno;
+                ViewState["IDMascota"] = idMascota;
+
                 FichaNegocio dni = new FichaNegocio();
                 string dniDueño = dni.buscarDueño(idMascota);
 
                 MascotaNegocio negocioMascota = new MascotaNegocio();
                 listaMascotas = negocioMascota.listar(dniDueño);
-                //int idMascotaSeleccionado;
-                //bool parseSuccess = int.TryParse(ddlFiltroFicha.SelectedValue, out idMascota);
                 Mascota DatosMascota = listaMascotas.FirstOrDefault(m => m.IDMascota == idMascota);
 
                 FichaNegocio negocio = new FichaNegocio();
@@ -75,6 +76,12 @@ namespace tp_integrador
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+
+            //Page.Validate("BusquedaGroup");
+            //if (!Page.IsValid)
+            //{
+            //    return;
+            //}
             try
             {
                 string textoIngresado = txtFiltroFicha.Text.Trim();
@@ -168,9 +175,6 @@ namespace tp_integrador
             txtDescripcionVisita.Text = string.Empty;
             upModalRegistrar.Update();
 
-            // CORREGIDO: Usamos Sys.Application.add_load para garantizar que el script
-            // se ejecute después de que el UpdatePanel haya terminado su actualización.
-            // Esto resuelve los problemas de timing con el modal de Bootstrap.
             string script = "Sys.Application.add_load(function() { " +
                             $"    $('#{modalRegistrarVisita.ClientID}').modal('show'); " +
                             "});";
@@ -180,23 +184,18 @@ namespace tp_integrador
 
         protected void btnGuardarVisita_Click(object sender, EventArgs e)
         {
-            // Aquí va la lógica para guardar la nueva visita en la base de datos.
-
-            // 1. Recuperar los IDs que guardamos en el Page_Load.
             int idTurno = (int)ViewState["IDTurno"];
-            int idMascota = (int)ViewState["IDMascota"];
             string descripcion = txtDescripcionVisita.Text;
 
-            // 2. Crear un objeto Visita o llamar a tu capa de negocio para guardarlo.
-            // VisitaNegocio negocio = new VisitaNegocio();
-            // negocio.RegistrarNuevaVisita(idTurno, idMascota, descripcion, DateTime.Now);
+            //Agrego una nueva visita a la ficha de la mascota seleccionada
+            FichaNegocio fichaNegocio = new FichaNegocio();
+            fichaNegocio.Agregar(idTurno, descripcion);
 
-            // 3. Opcional: Actualizar el GridView del historial.
-            // CargarHistorial(idMascota);
-            // upHistorial.Update(); // Suponiendo que el GridView esté en un UpdatePanel llamado "upHistorial".
+            //Cambio el estado del turno seleccionado a "REALIZADO"
+            TurnoNegocio turnoNegocio = new TurnoNegocio();
+            turnoNegocio.modificarEstado(idTurno, "REALIZADO");
 
-            // 4. Script para cerrar el modal.
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Hide", "$('#modalRegistrarVisita').modal('hide');", true);
+            Response.Redirect("Veterinario_TurnosPendientes.aspx");
         }
     }
 }

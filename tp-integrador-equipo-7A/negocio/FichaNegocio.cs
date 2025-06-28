@@ -44,54 +44,55 @@ namespace negocio
         //        }
         //    }
 
-        //    public void Agregar(Ficha nuevo)
+        public void Agregar(int idTurno, string descripcion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.setearConsulta("INSERT INTO FichaConsulta (IDTurno, Descripcion) VALUES (@IDTurno, @Descripcion)");
+                //datos.setearParametro("@IDConsulta", nuevo.IdConsulta);
+                Turno turno = new Turno();
+                datos.setearParametro("@IDTurno", idTurno);
+                datos.setearParametro("@Descripcion", descripcion);
+                //datos.setearParametro("@Activo", 1);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        //public void Modificar(Ficha modificar)
+        //{
+        //    AccesoDatos datos = new AccesoDatos();
+        //    try
         //    {
-        //        AccesoDatos datos = new AccesoDatos();
-        //        try
-        //        {
 
-        //            datos.setearConsulta("INSERT INTO FichaConsulta (IDConsulta, IDTurno, Descripcion, Activo) VALUES (@IDConsulta, @IDTurno, @Descripcion, @Activo)");
-        //            datos.setearParametro("@IDConsulta", nuevo.IdConsulta);
-        //            datos.setearParametro("@IDTurno", nuevo.IdTurno);
-        //            datos.setearParametro("@Descripcion", nuevo.Descripcion);
-        //            datos.setearParametro("@Activo", 1);
-        //            datos.ejecutarAccion();
+        //        datos.setearConsulta("UPDATE FichaConsulta SET IDTurno = @IDTurno, Descripcion = @Descripcion WHERE IDConsulta = @IDConsulta");
 
-        //        }
-        //        catch (Exception ex)
-        //        {
+        //        datos.setearParametro("@IDTurno", modificar.IdTurno);
+        //        datos.setearParametro("@Descripcion", modificar.Descripcion);
+        //        datos.ejecutarAccion();
 
-        //            throw ex;
-        //        }
-        //        finally
-        //        {
-        //            datos.cerrarConexion();
-        //        }
         //    }
-
-        //    public void Modificar(Ficha modificar)
+        //    catch (Exception ex)
         //    {
-        //        AccesoDatos datos = new AccesoDatos();
-        //        try
-        //        {
 
-        //            datos.setearConsulta("UPDATE FichaConsulta SET IDTurno = @IDTurno, Descripcion = @Descripcion WHERE IDConsulta = @IDConsulta");
-
-        //            datos.setearParametro("@IDTurno", modificar.IdTurno);
-        //            datos.setearParametro("@Descripcion", modificar.Descripcion);
-        //            datos.ejecutarAccion();
-
-        //        }
-        //        catch (Exception ex)
-        //        {
-
-        //            throw ex;
-        //        }
-        //        finally
-        //        {
-        //            datos.cerrarConexion();
-        //        }
+        //        throw ex;
         //    }
+        //    finally
+        //    {
+        //        datos.cerrarConexion();
+        //    }
+        //}
 
         //Filtro por DNI del dueño y el ID de la mascota
         public List<Ficha> listarFichasPorMascota(string dni, int idMascota)

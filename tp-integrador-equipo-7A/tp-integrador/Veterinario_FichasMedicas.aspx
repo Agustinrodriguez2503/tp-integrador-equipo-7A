@@ -89,7 +89,8 @@
 
             <div style="background-color: white; padding: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
                 <asp:TextBox runat="server" ID="txtFiltroFicha" AutoPostBack="true"
-                    PlaceHolder="DNI Dueño"
+                    PlaceHolder="DNI Dueño" MaxLength="8"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                     CssClass="form-control" OnTextChanged="txtFiltroFicha_TextChanged"
                     Style="flex: 1; min-width: 180px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);" />
                 <asp:DropDownList ID="ddlFiltroFicha" runat="server" AutoPostBack="false"
@@ -100,8 +101,10 @@
 
 
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click"
-                    Style="background-color: #20c997; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;"
-                    onmouseover="this.style.backgroundColor='#1a9f78'" onmouseout="this.style.backgroundColor='#20c997'" />
+                    Style="background-color: #20c997; color: white; border: none; padding: 10px 20px; 
+                    border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;"
+                    onmouseover="this.style.backgroundColor='#1a9f78'"
+                    onmouseout="this.style.backgroundColor='#20c997'" />
 
 
             </div>
@@ -176,7 +179,7 @@
 
                 <div>
                     <asp:Button ID="btnRegistrarVisita" runat="server" Text="Registrar Visita"
-                        CssClass="btn btn-secondary" OnClick="btnRegistrarVisita_Click"/>
+                        CssClass="btn btn-secondary" OnClick="btnRegistrarVisita_Click" />
                 </div>
 
             </div>
@@ -214,10 +217,10 @@
                             <h5 class="modal-title">
                                 <i class="fas fa-notes-medical me-2"></i>Registrar Nueva Visita
                             </h5>
-<%--                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <asp:TextBox ID="txtDescripcionVisita" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="6" placeholder="Descripción de la visita..."></asp:TextBox>
+                            <asp:TextBox ID="txtDescripcionVisita" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="6" placeholder="Descripción de la Consulta"></asp:TextBox>
                         </div>
                         <div class="modal-footer">
                             <asp:Button ID="btnGuardarVisita" runat="server" Text="Registrar" OnClick="btnGuardarVisita_Click" CssClass="btn btn-principal" />
