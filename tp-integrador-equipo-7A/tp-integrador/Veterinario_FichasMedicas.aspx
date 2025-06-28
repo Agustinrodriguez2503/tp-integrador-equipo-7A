@@ -16,18 +16,70 @@
             box-sizing: border-box;
         }
 
-        .form-control {
-            width: 100%;
-            box-sizing: border-box;
+        .card-section {
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .inner-block-padding {
-            padding: 20px;
+        .card-header {
+            background-color: #20c997;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.2em;
+            font-weight: bold;
         }
+
+        .card-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-light {
+            background-color: #f8f9fa;
+            color: #212529;
+            border-color: #f8f9fa;
+        }
+
+            .btn-light:hover {
+                background-color: #e2e6ea;
+                border-color: #dae0e5;
+            }
+
+        .modal-header-principal {
+            background-color: #20c997 !important;
+            color: white;
+        }
+
+        .btn-principal {
+            background-color: #20c997 !important;
+            color: white !important;
+            border-color: #20c997 !important;
+        }
+
+            .btn-principal:hover {
+                background-color: #1a9f78 !important;
+                border-color: #1a9f78 !important;
+            }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager runat="server" ID="sm_TurnosPendientesVet"></asp:ScriptManager>
     <div class="main-content-wrapper">
 
         <div style="background-color: #f0f0f0; border-radius: 8px; font-family: Arial, sans-serif; margin-bottom: 20px;">
@@ -115,8 +167,18 @@
         </div>
 
         <div style="background-color: #f0f0f0; border-radius: 8px; font-family: Arial, sans-serif;">
-            <div style="background-color: #20c997; color: white; padding: 15px 20px; border-radius: 8px 8px 0 0; display: flex; align-items: center; font-size: 1.2em; font-weight: bold;">
-                <i class="fas fa-history" style="margin-right: 10px;"></i>Historial de Visitas Veterinarias
+            <div style="background-color: #20c997; color: white; padding: 15px 20px; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: space-between; font-size: 1.2em; font-weight: bold;">
+
+                <div style="display: flex; align-items: center;">
+                    <i class="fas fa-history" style="margin-right: 10px;"></i>
+                    <span>Historial de Visitas Veterinarias</span>
+                </div>
+
+                <div>
+                    <asp:Button ID="btnRegistrarVisita" runat="server" Text="Registrar Visita"
+                        CssClass="btn btn-secondary" OnClick="btnRegistrarVisita_Click"/>
+                </div>
+
             </div>
 
             <div style="background-color: white; padding: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
@@ -125,22 +187,48 @@
                 <% foreach (dominio.Ficha ficha in listaFichas)
                     { %>
 
-                    <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; background-color: #fefefe; margin-bottom: 15px;">
-                        <div style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #eee;">
-                            <label class="field-label">Fecha:</label>
-                            <label><%: ficha.Turno.FechaHora.ToString("dd/MM/yyyy") %></label>
-                        </div>
-                        <div>
-                            <label class="field-label">Comentarios del Veterinario:</label>
-                            <label><%: ficha.Descripcion %></label>
-                        </div>
+                <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; background-color: #fefefe; margin-bottom: 15px;">
+                    <div style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #eee;">
+                        <label class="field-label">Fecha:</label>
+                        <label><%: ficha.Turno.FechaHora.ToString("dd/MM/yyyy") %></label>
                     </div>
+                    <div>
+                        <label class="field-label">Comentarios del Veterinario:</label>
+                        <label><%: ficha.Descripcion %></label>
+                    </div>
+                </div>
 
                 <% } %>
                 <% } %>
             </div>
         </div>
     </div>
+
+    <%-- MODAL PARA REGISTRAR NUEVA VISITA --%>
+    <asp:UpdatePanel ID="upModalRegistrar" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <div class="modal fade" id="modalRegistrarVisita" runat="server" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content rounded-4 shadow">
+                        <div class="modal-header modal-header-principal rounded-top-4">
+                            <h5 class="modal-title">
+                                <i class="fas fa-notes-medical me-2"></i>Registrar Nueva Visita
+                            </h5>
+<%--                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+                        </div>
+                        <div class="modal-body">
+                            <asp:TextBox ID="txtDescripcionVisita" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="6" placeholder="Descripción de la visita..."></asp:TextBox>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnGuardarVisita" runat="server" Text="Registrar" OnClick="btnGuardarVisita_Click" CssClass="btn btn-principal" />
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
+
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,11 +17,27 @@ namespace dominio
         public string Estado { get; set; }
         public bool Activo { get; set; }
 
+        //public string DescripcionTurno
+        //{
+        //    get
+        //    {
+        //        return $"🗓️ {FechaHora:dddd dd/MM/yyyy} - ⏰ {FechaHora:HH:mm}";
+        //    }
+        //}
+
+        //Armé este para que se vean mejor los datos en la lista de turnos, eliminenlo si les rompe el código
         public string DescripcionTurno
         {
             get
             {
-                return $"🗓️ {FechaHora:dddd dd/MM/yyyy} - ⏰ {FechaHora:HH:mm}";
+                CultureInfo culturaES = new CultureInfo("es-ES");
+
+                // Hace que el día empiece con mayus
+                string diaCapitalizado = culturaES.TextInfo.ToTitleCase(FechaHora.ToString("dddd", culturaES));
+
+                string restoFecha = FechaHora.ToString("dd/MM/yyyy - ⏰ HH:mm", culturaES);
+
+                return $"🗓️ {diaCapitalizado} {restoFecha}";
             }
         }
 

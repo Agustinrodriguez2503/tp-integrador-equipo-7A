@@ -41,6 +41,19 @@ namespace tp_integrador
                 {
                     listaFiltrada = listaOriginal.Where(t => t.FechaHora.Date == fechaFiltro.Date).ToList();
                 }
+
+                if (listaFiltrada.Count == 0)
+                {
+                    DateTime fechaSeleccionada;
+                    if (DateTime.TryParse(txtFecha.Text, out fechaSeleccionada))
+                    {
+                        gvTurnos.EmptyDataText = $"No se encontraron turnos pendientes para el día {fechaSeleccionada.ToString("dd/MM/yyyy")}.";
+                    }
+                    else
+                    {
+                        gvTurnos.EmptyDataText = "No hay turnos pendientes para mostrar.";
+                    }
+                }
                 gvTurnos.DataSource = listaFiltrada;
                 gvTurnos.DataKeyNames = new string[] { "IdTurno", "FechaHora" };
                 gvTurnos.DataBind();
@@ -51,11 +64,12 @@ namespace tp_integrador
             }
         }
 
-        protected string GetCommandArgument(object idTurnoObj, object fechaHoraObj)
+        protected string GetCommandArgument(object idTurnoObj, object fechaHoraObj, object idMascotaObj)
         {
             string idTurno = idTurnoObj?.ToString() ?? "0";
             string fechaHora = (fechaHoraObj is DateTime dt) ? dt.ToString("O") : DateTime.MinValue.ToString("O");
-            return $"{idTurno}|{fechaHora}";
+            string idMascota = idMascotaObj?.ToString() ?? "0";
+            return $"{idTurno}|{fechaHora}|{idMascota}";
         }
 
         protected void gvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -63,6 +77,7 @@ namespace tp_integrador
             string[] args = e.CommandArgument.ToString().Split('|');
             int idTurno = Convert.ToInt32(args[0]);
             DateTime fechaTurno = Convert.ToDateTime(args[1]);
+            int idMascota = Convert.ToInt32(args[2]);
 
             if (e.CommandName == "SeleccionarParaCancelar")
             {
@@ -72,6 +87,11 @@ namespace tp_integrador
                 // Muestra el modal de confirmación
                 string script = $"$('#{modalConfirmacion.ClientID}').modal('show');";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", script, true);
+            }
+
+            if (e.CommandName == "IniciarTurno")
+            {
+                Response.Redirect($"Veterinario_FichasMedicas.aspx?idTurno={idTurno}&idMascota={idMascota}");
             }
         }
 
@@ -109,8 +129,7 @@ namespace tp_integrador
 
                     string scriptExito = $"$('#{modalConfirmacion.ClientID}').modal('hide'); " +
                                          "$('.modal-backdrop').remove(); " +
-                                         "$('body').removeClass('modal-open'); " +
-                                         $"setTimeout(function() {{ $('#{modalExito.ClientID}').modal('show'); }}, 500);";
+                                         "$('body').removeClass('modal-open'); ";
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowSuccessModal", scriptExito, true);
                 }
             }

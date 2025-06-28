@@ -22,6 +22,7 @@
             background-color: #f0f0f0;
             border-radius: 8px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .filter-header {
@@ -39,12 +40,16 @@
             background-color: white;
             padding: 20px;
             border-radius: 0 0 8px 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: flex-start;
             gap: 15px;
             flex-wrap: wrap;
             align-items: center;
+        }
+
+        .grid-container {
+            padding: 0;
+            border-radius: 0 0 8px 8px;
         }
 
         .date-input {
@@ -71,78 +76,61 @@
             justify-content: center;
         }
 
-            .btn i {
-                margin-right: 5px;
-            }
-
             .btn:hover {
                 background-color: #1a9f78;
             }
 
-        .btn-secondary {
-            background-color: #007bff;
-        }
-
-            .btn-secondary:hover {
-                background-color: #0056b3;
+            .btn.btn-eliminar {
+                background-color: #dc3545;
+                color: white;
             }
 
-        .card-buttons {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-        }
+                .btn.btn-eliminar:hover {
+                    background-color: #c82333;
+                }
 
-        .btn.btn-eliminar {
-            background-color: #dc3545;
-            color: white;
-        }
-
-            .btn.btn-eliminar:hover {
-                background-color: #c82333;
+            .btn.btn-iniciar {
+                background-color: #20c997;
+                color: white;
             }
 
-        @media (max-width: 768px) {
-            .filter-content {
-                flex-direction: column;
-                align-items: stretch;
-                justify-content: flex-start;
-            }
-
-            .date-input {
-                width: 100%;
-                min-width: unset;
-            }
-
-            .card-buttons {
-                justify-content: center;
-            }
-        }
+                .btn.btn-iniciar:hover {
+                    background-color: #1a9f78;
+                }
 
         .gridViewStyle {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
             background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            border-radius: 0 0 8px 8px;
             overflow: hidden;
         }
 
             .gridViewStyle th {
                 background-color: #20c997;
                 color: white;
-                padding: 12px 15px;
+                padding: 12px 20px;
                 text-align: left;
                 font-weight: bold;
                 border-bottom: 1px solid #1a9f78;
             }
 
+                .gridViewStyle th.gridCenteredHeader {
+                    text-align: center;
+                }
+
             .gridViewStyle td {
-                padding: 10px 15px;
+                padding: 10px 20px;
                 border-bottom: 1px solid #eee;
                 color: #333;
+                vertical-align: middle;
+            }
+                .gridViewStyle td.gridCellCentered {
+                    text-align: center;
+                }
+
+            .gridViewStyle tr:last-child td {
+                border-bottom: none;
             }
 
             .gridViewStyle tr:nth-child(even) {
@@ -151,7 +139,6 @@
 
             .gridViewStyle tr:hover {
                 background-color: #e6f7f2;
-                cursor: pointer;
             }
 
             .gridViewStyle .gridButtonColumn {
@@ -163,11 +150,9 @@
                     padding: 6px 12px;
                     font-size: 0.9em;
                     margin: 0 3px;
+                    min-width: 95px;
+                    box-sizing: border-box;
                 }
-
-                    .gridViewStyle .gridButtonColumn .btn.btn-eliminar {
-                        padding: 6px 12px;
-                    }
 
         .emptyDataRow {
             text-align: center;
@@ -175,28 +160,6 @@
             color: #777;
             font-style: italic;
             background-color: #fefefe;
-        }
-
-        .gridCenteredHeader {
-            text-align: center;
-        }
-
-        .gridViewStyle th {
-            background-color: #20c997;
-            color: white;
-            padding: 12px 15px;
-            text-align: left;
-            font-weight: bold;
-            border-bottom: 1px solid #1a9f78;
-        }
-
-            .gridViewStyle th.gridCenteredHeader {
-                text-align: center;
-            }
-
-        .gridViewStyle .gridButtonColumn {
-            text-align: center;
-            white-space: nowrap;
         }
 
         .buttons-flex-container {
@@ -224,22 +187,21 @@
             <ContentTemplate>
                 <div class="filter-section">
                     <div class="filter-header"><i class="fas fa-clock" style="margin-right: 10px;"></i>Turnos Pendientes</div>
-                    <div class="filter-content" style="padding: 0; border-radius: 0 0 8px 8px; box-shadow: none;">
+                    <div class="grid-container" style="margin-top: 10px;">
                         <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="gridViewStyle" OnRowCommand="gvTurnos_RowCommand">
                             <Columns>
-                                <asp:BoundField DataField="DescripcionTurno" HeaderText="Fecha y Hora" HeaderStyle-CssClass="gridCenteredHeader" />
-                                <asp:BoundField DataField="Estado" HeaderText="Estado" />
+                                <asp:BoundField DataField="DescripcionTurno" HeaderText="Fecha y Hora" HeaderStyle-CssClass="gridCenteredHeader" ItemStyle-CssClass="gridCellCentered" />
                                 <asp:TemplateField HeaderText="Acciones" ItemStyle-CssClass="gridButtonColumn" HeaderStyle-CssClass="gridCenteredHeader">
                                     <ItemTemplate>
                                         <div class="buttons-flex-container">
+
                                             <asp:Button ID="btnEliminarGrid" runat="server" Text="Cancelar" CssClass="btn btn-eliminar"
                                                 CommandName="SeleccionarParaCancelar"
-                                                CommandArgument='<%# GetCommandArgument(Eval("IdTurno"), Eval("FechaHora")) %>' />
-                                            <asp:Button ID="btnIniciarGrid" runat="server" Text="Iniciar" CssClass="btn btn-primary" Style="background-color: #20c997; color: white; border: none;" 
-                                                onmouseover="this.style.backgroundColor='#1a9f78'" onmouseout="this.style.backgroundColor='#20c997'"
+                                                CommandArgument='<%# GetCommandArgument(Eval("IdTurno"), Eval("FechaHora"), Eval("Mascota.IdMascota")) %>' />
+                                            
+                                            <asp:Button ID="btnIniciarGrid" runat="server" Text="Iniciar" CssClass="btn btn-iniciar"
                                                 CommandName="IniciarTurno"
-                                                CommandArgument='<%# GetCommandArgument(Eval("IdTurno"), Eval("FechaHora")) %>' />
-
+                                                CommandArgument='<%# GetCommandArgument(Eval("IdTurno"), Eval("FechaHora"), Eval("Mascota.IdMascota")) %>' />
                                         </div>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -282,7 +244,7 @@
         </Triggers>
     </asp:UpdatePanel>
 
-<%--    MODAL PARA CONFIRMAR ELIMINACIÓN--%>
+<%--    <%-- MODAL DE ÉXITO 
     <asp:Panel ID="modalExito" CssClass="modal fade" runat="server" TabIndex="-1" aria-labelledby="modalExitoLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 shadow">
@@ -299,6 +261,6 @@
                 </div>
             </div>
         </div>
-    </asp:Panel>
+    </asp:Panel>--%>
 
 </asp:Content>

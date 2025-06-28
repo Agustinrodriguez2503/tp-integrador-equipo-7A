@@ -169,5 +169,35 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public string buscarDueño(int idMascota)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string dni = null;
+            try
+            {
+                datos.setearConsulta("SELECT DniDueño FROM Mascotas WHERE IDMascota = @IDMascota");
+                datos.setearParametro("@IDMascota", idMascota);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    dni = (string)datos.Lector["DniDueño"];
+                }
+
+                return dni;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
