@@ -18,6 +18,8 @@ namespace dominio
         public string Estado { get; set; }
         public bool Activo { get; set; }
 
+        public string NombreVeterinario { get; set; }
+
         //public string DescripcionTurno
         //{
         //    get

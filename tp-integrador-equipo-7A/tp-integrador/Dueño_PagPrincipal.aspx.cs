@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using dominio;
 using helpers;
 using negocio;
+using WebGrease;
 
 namespace tp_integrador
 {
@@ -25,12 +26,17 @@ namespace tp_integrador
                     Dueño dueño = new Dueño();
 
                     dueño = devolverDueño(dueño);
+                    List<Mascota> mascotas = mascotaNegocio.listar(dueño.Dni);
 
                     lblBienvenido.Text = dueño.nombreCompleto();
-                    gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
+                    gvMascotas.DataSource = mascotas;
                     gvMascotas.DataBind();
 
+                    TurnoNegocio turnoNegocio = new TurnoNegocio();
+                    List<Turno> turnosParaMostrar = turnoNegocio.listarTurnosConMascotaYVeterinario(dueño.Dni);
 
+                    repProximosTurnos.DataSource = turnosParaMostrar;
+                    repProximosTurnos.DataBind();
                 }
                 catch (Exception ex)
                 {

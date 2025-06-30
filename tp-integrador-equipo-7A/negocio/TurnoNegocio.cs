@@ -61,7 +61,7 @@ namespace negocio
         {
             List<Turno> lista = new List<Turno>();
             AccesoDatos datos = new AccesoDatos();
-
+            
             try
             {
                 if(estado != "TODO")
@@ -102,6 +102,69 @@ namespace negocio
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public List<Turno> listarTurnosConMascotaYVeterinario(string dniDueño, string estado = "TODO")
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                string consulta = @"
+            SELECT t.IDTurno, t.MatriculaVeterinario, t.IDMascota, t.FechaHora, t.Estado, t.Activo,
+                   m.Nombre AS NombreMascota,
+                   v.Apellido AS ApellidoVet
+            FROM Turnos t
+            INNER JOIN Mascotas m ON t.IDMascota = m.IDMascota
+            INNER JOIN Dueños d ON m.DniDueño = d.Dni
+            INNER JOIN Veterinarios v ON t.MatriculaVeterinario = v.Matricula
+            WHERE d.Dni = @dniDueño AND t.Activo = 1 AND t.FechaHora > GETDATE()
+        ";
+
+                if (estado != "TODO")
+                {
+                    consulta += " AND t.Estado = @estado";
+                }
+
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@dniDueño", dniDueño);
+                if (estado != "TODO")
+                {
+                    datos.setearParametro("@estado", estado);
+                }
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Turno aux = new Turno();
+                    aux.IdTurno = (int)datos.Lector["IDTurno"];
+                    aux.MatriculaVeterinario = datos.Lector["MatriculaVeterinario"].ToString();
+
+                    aux.Mascota = new Mascota();
+                    aux.Mascota.IDMascota = (int)datos.Lector["IDMascota"];
+                    aux.Mascota.Nombre = datos.Lector["NombreMascota"].ToString();
+
+                    aux.FechaHora = (DateTime)datos.Lector["FechaHora"];
+                    aux.Estado = datos.Lector["Estado"].ToString();
+                    aux.Activo = (bool)datos.Lector["Activo"];
+
+                    aux.NombreVeterinario = "Dr. " + datos.Lector["ApellidoVet"].ToString();
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally

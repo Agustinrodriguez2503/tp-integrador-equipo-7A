@@ -103,20 +103,6 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-
-        <%------------------- TURNOS PROXIMOS ----------------------%>
-        <asp:Repeater ID="repProximosTurnos" runat="server">
-            <ItemTemplate>
-                <div class="card text-center mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title"><%#Eval("Nombre")%></h5>
-                        <h5 class="card-title"><%#"Dr." + Eval("Apellido")%></h5>
-                        <p class="card-text"><%#Eval("FechaHora")%></p>
-                        <a href="#" class="btn btn-primary">Cancelar</a>
-                    </div>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
         <!------------------------ ACCIONES DEL DUEÑO ------------------------>
         <div class="row g-4 justify-content-center">
             <div class="col-md-6 col-lg-4">
@@ -147,6 +133,25 @@
                 </a>
             </div>
         </div>
+        <div>
+            <h1 class="text-center mb-3">Proximos Turnos.</h1>
+        </div>
+        <div class="row" runat="server">
+            <asp:Repeater ID="repProximosTurnos" runat="server">
+                <ItemTemplate>
+                    <div class="col-3 mb-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title"><%# Eval("Mascota.Nombre") %></h5>
+                                <h5 class="card-title"><%# Eval("NombreVeterinario") %></h5>
+                                <p class="card-text"><%# Eval("FechaHora", "{0:dd/MM/yyyy HH:mm}") %></p>
+                                <a href="#" class="btn btn-primary">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
         <div class="row g-4 justify-content-center mt-1">
             <div class="col-md-6 col-lg-4">
                 <asp:LinkButton ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" CssClass="card-link-custom">
@@ -159,6 +164,7 @@
             </div>
         </div>
     </div>
+
 
     <!------------------------ MODAL DE ALTA O MODIFICACION DE MASCOTA ------------------------>
     <div class="modal fade" id="modalAltaMascota" tabindex="-1" aria-labelledby="modalAltaMascotaLabel" aria-hidden="true">
