@@ -56,7 +56,7 @@
                             CommandName="Eliminar"
                             OnClick="btnHabilitarVet_Click"
                             CssClass="btn btn-danger btn-sm fw-bold"
-                            OnClientClick="return confirm('¿Estás seguro de eliminar esta mascota?');">
+                            OnClientClick="return confirm('¿Estás seguro de eliminar este recepcionista?');">
                             <i class="bi bi-trash"></i> Eliminar
                         </asp:LinkButton>
 

@@ -339,7 +339,29 @@ namespace tp_integrador
         }
         protected void btnHabilitarRec_Click(object sender, EventArgs e)
         {
+            RecepcionistaNegocio recepcionistaNegocio = new RecepcionistaNegocio();
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                int legajo = int.Parse(btn.CommandArgument);
+                string accion = btn.CommandName;
 
+                if (legajo != 0)
+                {
+                    if (accion == "Habilitar")
+                        recepcionistaNegocio.Habilitar_O_Eliminar(legajo, 1);
+                    else if (accion == "Eliminar")
+                        recepcionistaNegocio.Habilitar_O_Eliminar(legajo);
+
+                    gvRecepcionistas.DataSource = recepcionistaNegocio.listar();
+                    gvRecepcionistas.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
 
@@ -373,7 +395,29 @@ namespace tp_integrador
         }
         protected void btnHabilitarDueño_Click(object sender, EventArgs e)
         {
+            DueñoNegocio dueñoNegocio = new DueñoNegocio();
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                string dni = btn.CommandArgument;
+                string accion = btn.CommandName;
 
+                if (dni != null)
+                {
+                    if (accion == "Habilitar")
+                        dueñoNegocio.Habilitar_O_Eliminar(dni, 1);
+                    else if (accion == "Eliminar")
+                        dueñoNegocio.Habilitar_O_Eliminar(dni);
+
+                    gvDueños.DataSource = dueñoNegocio.listar();
+                    gvDueños.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         protected void btnRegistrarDueño_Click(object sender, EventArgs e)

@@ -29,6 +29,8 @@ namespace tp_integrador
                     lblBienvenido.Text = dueño.nombreCompleto();
                     gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
                     gvMascotas.DataBind();
+
+
                 }
                 catch (Exception ex)
                 {

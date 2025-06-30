@@ -151,5 +151,26 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void Habilitar_O_Eliminar(int legajo, int estado = 0)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Recepcionistas SET Activo = @estado WHERE Legajo = @legajo");
+                datos.setearParametro("@estado", estado);
+                datos.setearParametro("@legajo", legajo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

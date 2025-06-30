@@ -157,5 +157,26 @@ namespace negocio
                 }
             }
         }
+
+        public void Habilitar_O_Eliminar(string dni, int estado = 0)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Dueños SET Activo = @estado WHERE Dni = @dni");
+                datos.setearParametro("@estado", estado);
+                datos.setearParametro("@dni", dni);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

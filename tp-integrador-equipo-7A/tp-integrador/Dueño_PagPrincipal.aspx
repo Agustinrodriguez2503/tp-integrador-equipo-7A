@@ -104,6 +104,19 @@
             </Columns>
         </asp:GridView>
 
+        <%------------------- TURNOS PROXIMOS ----------------------%>
+        <asp:Repeater ID="repProximosTurnos" runat="server">
+            <ItemTemplate>
+                <div class="card text-center mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%#Eval("Nombre")%></h5>
+                        <h5 class="card-title"><%#"Dr." + Eval("Apellido")%></h5>
+                        <p class="card-text"><%#Eval("FechaHora")%></p>
+                        <a href="#" class="btn btn-primary">Cancelar</a>
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
         <!------------------------ ACCIONES DEL DUEÑO ------------------------>
         <div class="row g-4 justify-content-center">
             <div class="col-md-6 col-lg-4">
