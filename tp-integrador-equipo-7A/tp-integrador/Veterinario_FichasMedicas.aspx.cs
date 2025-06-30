@@ -197,5 +197,16 @@ namespace tp_integrador
 
             Response.Redirect("Veterinario_TurnosPendientes.aspx");
         }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+
+            //Si no se accediò desde turno "Iniciar", que envìe al usuario a la pag principal
+            if (Request.QueryString["idTurno"] == null && Request.QueryString["idMascota"] == null)
+                Response.Redirect("Veterinario_PagPrincipal.aspx");
+
+            //Si accediò desde turnospendientes "Iniciar", que devuelva al usuario a turnospendientes
+            Response.Redirect("Veterinario_TurnosPendientes.aspx");
+        }
     }
 }

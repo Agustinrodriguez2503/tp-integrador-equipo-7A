@@ -139,5 +139,10 @@ namespace tp_integrador
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Error", scriptError, true);
             }
         }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Veterinario_PagPrincipal.aspx");
+        }
     }
 }

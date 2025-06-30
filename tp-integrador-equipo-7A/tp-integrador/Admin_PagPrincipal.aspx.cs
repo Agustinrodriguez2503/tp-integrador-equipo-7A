@@ -17,34 +17,34 @@ namespace tp_integrador
         {
             if (!IsPostBack)
             {
-                if (!(Seguridad.sesionActiva(Session["usuario"])) || (!Seguridad.isAdmin(Session["usuario"])))
-                    Response.Redirect("IniciarSesion.aspx", false);
-                else
+                //if (!(Seguridad.sesionActiva(Session["usuario"])) || (!Seguridad.isAdmin(Session["usuario"])))
+                //    Response.Redirect("IniciarSesion.aspx", false);
+                //else
+                //{
+                try
                 {
-                    try
-                    {
-                        VeterinarioNegocio veterinarioNegocio = new VeterinarioNegocio();
-                        RecepcionistaNegocio recepcionistaNegocio = new RecepcionistaNegocio();
-                        DueñoNegocio dueñoNegocio = new DueñoNegocio();
+                    VeterinarioNegocio veterinarioNegocio = new VeterinarioNegocio();
+                    RecepcionistaNegocio recepcionistaNegocio = new RecepcionistaNegocio();
+                    DueñoNegocio dueñoNegocio = new DueñoNegocio();
 
-                        gvVeterinarios.DataSource = veterinarioNegocio.listar();
-                        gvVeterinarios.DataBind();
+                    gvVeterinarios.DataSource = veterinarioNegocio.listar();
+                    gvVeterinarios.DataBind();
 
-                        gvRecepcionistas.DataSource = recepcionistaNegocio.listar();
-                        gvRecepcionistas.DataBind();
+                    gvRecepcionistas.DataSource = recepcionistaNegocio.listar();
+                    gvRecepcionistas.DataBind();
 
-                        gvDueños.DataSource = dueñoNegocio.listar();
-                        gvDueños.DataBind();
-                    }
-                    catch (Exception ex)
-                    {
-
-                        throw ex;
-                    }
+                    gvDueños.DataSource = dueñoNegocio.listar();
+                    gvDueños.DataBind();
                 }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+                //}
 
             }
-            
+
         }
 
 
@@ -71,16 +71,22 @@ namespace tp_integrador
                 VeterinarioNegocio negocioVeterinario = new VeterinarioNegocio();
                 Veterinario nuevoVeterianario = negocioVeterinario.listar(txtMatricula.Text).Find(x => x.Matricula == txtMatricula.Text);
 
-                if (nuevoVeterianario != null)
-                {
-                    divAlertaVeterinario.Visible = true;
-                    lblValidacion_registroVeterinario.Text = "Ya existe un Veterinario registrado con la matricula: " + txtMatricula.Text;
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaVeterinario')); modal.show();", true);
-                    return;
 
+                string modificarVet = ViewState["modificarVet"].ToString();
+                if (modificarVet != "Modificar")
+                {
+                    if (nuevoVeterianario != null)
+                    {
+                        divAlertaVeterinario.Visible = true;
+                        lblValidacion_registroVeterinario.Text = "Ya existe un Veterinario registrado con la matricula: " + txtMatricula.Text;
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaVeterinario')); modal.show();", true);
+                        return;
+
+                    }
                 }
 
-                
+
+
                 UsuarioNegocio negocioUsuario = new UsuarioNegocio();
                 Usuario nuevoUsuario = new Usuario();
                 nuevoVeterianario = new Veterinario();
@@ -93,28 +99,52 @@ namespace tp_integrador
                 nuevoVeterianario.Telefono = txtTelefonoVet.Text;
                 nuevoVeterianario.Imagen = txtImagenVet.Text;
 
-                // Para generarle un usuario con su primer nombre y los ultimos 3 digitos de su DNI
-                //Obtenemos el primer nombre
-                string primerApellido = nuevoVeterianario.Apellido.Split(' ')[0];
+                if (modificarVet != "Modificar")
+                {
+                    // Para generarle un usuario con su primer nombre y los ultimos 3 digitos de su DNI
+                    //Obtenemos el primer nombre
+                    string primerApellido = nuevoVeterianario.Apellido.Split(' ')[0];
 
-                //obtenemos los ultimos 3 digitos del DNI
-                string ultimos3 = nuevoVeterianario.Dni.Length >= 3
-                    ? nuevoVeterianario.Dni.Substring(nuevoVeterianario.Dni.Length - 3)
-                    : nuevoVeterianario.Dni;  // Si el DNI tiene menos de 3 dígitos, devuelve lo que haya
+                    //obtenemos los ultimos 3 digitos del DNI
+                    string ultimos3 = nuevoVeterianario.Dni.Length >= 3
+                        ? nuevoVeterianario.Dni.Substring(nuevoVeterianario.Dni.Length - 3)
+                        : nuevoVeterianario.Dni;  // Si el DNI tiene menos de 3 dígitos, devuelve lo que haya
 
-                nuevoVeterianario.Usuario = primerApellido + ultimos3;
-                nuevoUsuario.User = primerApellido + ultimos3;
-                nuevoUsuario.Pass = txtDniVet.Text;
-                nuevoUsuario.Rol = 3;
+                    nuevoVeterianario.Usuario = primerApellido + ultimos3;
+                    nuevoUsuario.User = primerApellido + ultimos3;
+                    nuevoUsuario.Pass = txtDniVet.Text;
+                    nuevoUsuario.Rol = 3;
 
-                // Registramos el Usuario del dueño en la Base de Datos.
-                negocioUsuario.Agregar(nuevoUsuario);
+                    // Registramos el Usuario del dueño en la Base de Datos.
+
+                    negocioUsuario.Agregar(nuevoUsuario);
+                }
+
+
                 //Ahora podemos registrar el Dueño ya que el Usuario se encuentra registrado y es FK en Dueño.
-                negocioVeterinario.Agregar(nuevoVeterianario);
+                if (modificarVet == "Modificar")
+                {
+                    negocioVeterinario.Modificar(nuevoVeterianario);
 
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionExitosa",
+                    "Swal.fire({" +
+                    "    icon: 'success'," +
+                    "    title: '¡Modificado!'," +
+                    "    text: 'El Veterinario fue modificado correctamente.'," +
+                    "    showConfirmButton: true," +
+                    //"    timer: 1500" +             // la alerta se cierra automáticamente después de 1.5 segundos
+                    "}).then(function() {" +
+                    "    window.location.href = 'Admin_PagPrincipal.aspx';" +
+                    "});", true);
+                }
+                else
+                {
+                    negocioVeterinario.Agregar(nuevoVeterianario);
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",
                     "setTimeout(function() { Swal.fire({ icon: 'success', title: '¡Registrado!', " +
                     "text: 'El Veterinario fue registrado correctamente.' }); }, 300);", true);
+                }
 
 
 
@@ -128,7 +158,33 @@ namespace tp_integrador
         }
         protected void btnModificarVet_Click(object sender, EventArgs e)
         {
+            LinkButton btn = (LinkButton)sender;
+            string matricula = btn.CommandArgument;
+            string accion = btn.CommandName;
+            ViewState["modificarVet"] = accion;
 
+            if (matricula != null)
+            {
+                if (accion == "Modificar")
+                {
+                    VeterinarioNegocio veterinarioNegocio = new VeterinarioNegocio();
+                    List<Veterinario> listaVeterinario = veterinarioNegocio.listar(matricula);
+                    Veterinario modificar = listaVeterinario[0];
+
+                    txtNombreVet.Text = modificar.Nombre;
+                    txtApellidoVet.Text = modificar.Apellido;
+                    txtDniVet.Text = modificar.Dni;
+                    txtTelefonoVet.Text = modificar.Telefono;
+                    txtCorreoVet.Text = modificar.Correo;
+                    txtImagenVet.Text = modificar.Imagen;
+                    txtMatricula.Text = matricula;
+
+                    btnRegistroVeterinario.Text = "Modificar Veterinario";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaVeterinario')); modal.show();", true);
+                }
+
+
+            }
         }
         protected void btnHabilitarVet_Click(object sender, EventArgs e)
         {
@@ -157,9 +213,6 @@ namespace tp_integrador
             }
         }
 
-
-
-         
         protected void btnRegistroRecepcionista_Click(object sender, EventArgs e)
         {
             try
@@ -181,14 +234,18 @@ namespace tp_integrador
                 RecepcionistaNegocio negocioRecep = new RecepcionistaNegocio();
                 Recepcionista nuevoRecep = negocioRecep.listar(txtDniRec.Text).Find(x => x.DNI == txtDniRec.Text);
 
-                if (nuevoRecep != null)
+                string modificarRec = ViewState["modificarRec"].ToString();
+                if (modificarRec != "Modificar")
                 {
-                    divAlertaVeterinario.Visible = true;
-                    lblValidacion_registroVeterinario.Text = "Ya existe un Recepcionista registrado con el DNI : " + txtDniRec.Text;
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaRecepcionista')); modal.show();", true);
-                    return;
-
+                    if (nuevoRecep != null)
+                    {
+                        divAlertaVeterinario.Visible = true;
+                        lblValidacion_registroVeterinario.Text = "Ya existe un Recepcionista registrado con el DNI : " + txtDniRec.Text;
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaRecepcionista')); modal.show();", true);
+                        return;
+                    }
                 }
+
 
                 UsuarioNegocio negocioUsuario = new UsuarioNegocio();
                 Usuario nuevoUsuario = new Usuario();
@@ -200,29 +257,50 @@ namespace tp_integrador
                 nuevoRecep.Correo = txtCorreoRec.Text;
                 nuevoRecep.Telefono = txtTelefonoRec.Text;
 
-                // Para generarle un usuario con su primer nombre y los ultimos 3 digitos de su DNI
-                // Obtenemos el primer nombre
-                string primerApellido = nuevoRecep.Apellido.Split(' ')[0];
+                if (modificarRec != "Modificar")
+                {
+                    // Para generarle un usuario con su primer nombre y los ultimos 3 digitos de su DNI
+                    // Obtenemos el primer nombre
+                    string primerApellido = nuevoRecep.Apellido.Split(' ')[0];
 
-                //obtenemos los ultimos 3 digitos del DNI
-                string ultimos3 = nuevoRecep.DNI.Length >= 3
-                    ? nuevoRecep.DNI.Substring(nuevoRecep.DNI.Length - 3)
-                    : nuevoRecep.DNI;  // Si el DNI tiene menos de 3 dígitos, devuelve lo que haya
+                    //obtenemos los ultimos 3 digitos del DNI
+                    string ultimos3 = nuevoRecep.DNI.Length >= 3
+                        ? nuevoRecep.DNI.Substring(nuevoRecep.DNI.Length - 3)
+                        : nuevoRecep.DNI;  // Si el DNI tiene menos de 3 dígitos, devuelve lo que haya
 
-                nuevoRecep.Usuario = primerApellido + ultimos3;
-                nuevoUsuario.User = primerApellido + ultimos3;
-                nuevoUsuario.Pass = txtDniRec.Text;
-                nuevoUsuario.Rol = 2;
+                    nuevoRecep.Usuario = primerApellido + ultimos3;
+                    nuevoUsuario.User = primerApellido + ultimos3;
+                    nuevoUsuario.Pass = txtDniRec.Text;
+                    nuevoUsuario.Rol = 2;
 
-                // Registramos el Usuario del recepcionista en la Base de Datos.
-                negocioUsuario.Agregar(nuevoUsuario);
-                //Ahora podemos registrar el recepcionista ya que el Usuario se encuentra registrado y es FK en recepcionista.
-                negocioRecep.Agregar(nuevoRecep);
+                    // Registramos el Usuario del recepcionista en la Base de Datos.
+                    negocioUsuario.Agregar(nuevoUsuario);
+                }
 
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",
+                //Ahora podemos registrar el Dueño ya que el Usuario se encuentra registrado y es FK en Dueño.
+                if (modificarRec == "Modificar")
+                {
+                    negocioRecep.Modificar(nuevoRecep);
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionExitosa",
+                    "Swal.fire({" +
+                    "    icon: 'success'," +
+                    "    title: '¡Modificado!'," +
+                    "    text: 'El Recepcionista fue modificado correctamente.'," +
+                    "    showConfirmButton: true," +
+                    //"    timer: 1500" +             // la alerta se cierra automáticamente después de 1.5 segundos
+                    "}).then(function() {" +
+                    "    window.location.href = 'Admin_PagPrincipal.aspx';" +
+                    "});", true);
+                }
+                else
+                {
+                    negocioRecep.Agregar(nuevoRecep);
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",
                     "setTimeout(function() { Swal.fire({ icon: 'success', title: '¡Registrado!', " +
                     "text: 'El Recepcionista fue registrado correctamente.' }); }, 300);", true);
-
+                }
             }
             catch (Exception ex)
             {
@@ -233,7 +311,31 @@ namespace tp_integrador
         }
         protected void btnModificarRec_Click(object sender, EventArgs e)
         {
+            LinkButton btn = (LinkButton)sender;
+            string dni = btn.CommandArgument;
+            string accion = btn.CommandName;
+            ViewState["modificarRec"] = accion;
 
+            if (dni != null)
+            {
+                if (accion == "Modificar")
+                {
+                    RecepcionistaNegocio recepcionistaNegocio = new RecepcionistaNegocio();
+                    List<Recepcionista> listaRecepcionista = recepcionistaNegocio.listar(dni);
+                    Recepcionista modificar = listaRecepcionista[0];
+
+                    txtNombreRec.Text = modificar.Nombre;
+                    txtApellidoRec.Text = modificar.Apellido;
+                    txtDniRec.Text = modificar.DNI;
+                    txtTelefonoRec.Text = modificar.Telefono;
+                    txtCorreoRec.Text = modificar.Correo;
+
+                    btnRegistroRecepcionista.Text = "Modificar Recepcionista";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaRecepcionista')); modal.show();", true);
+                }
+
+
+            }
         }
         protected void btnHabilitarRec_Click(object sender, EventArgs e)
         {
@@ -244,9 +346,37 @@ namespace tp_integrador
 
         protected void btnModificarDueño_Click(object sender, EventArgs e)
         {
+            LinkButton btn = (LinkButton)sender;
+            string dni = btn.CommandArgument;
+            string accion = btn.CommandName;
+            ViewState["modificarDue"] = accion;
 
+            if (dni != null)
+            {
+                if (accion == "Modificar")
+                {
+                    DueñoNegocio dueñoaNegocio = new DueñoNegocio();
+                    List<Dueño> listaDueño = dueñoaNegocio.listar(dni);
+                    Dueño modificar = listaDueño[0];
+
+                    txtNombre.Text = modificar.Nombre;
+                    txtApellido.Text = modificar.Apellido;
+                    txtDni.Text = modificar.Dni;
+                    txtTelefono.Text = modificar.Telefono;
+                    txtCorreo.Text = modificar.Correo;
+                    txtDomicilio.Text = modificar.Domicilio;
+
+                    btnRegistroDueño.Text = "Modificar Dueño";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
+                }
+            }
         }
         protected void btnHabilitarDueño_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnRegistrarDueño_Click(object sender, EventArgs e)
         {
 
         }

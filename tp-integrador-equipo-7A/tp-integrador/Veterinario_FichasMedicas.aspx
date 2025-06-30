@@ -101,8 +101,7 @@
 
 
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click"
-                    Style="background-color: #20c997; color: white; border: none; padding: 10px 20px; 
-                    border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;"
+                    Style="background-color: #20c997; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;"
                     onmouseover="this.style.backgroundColor='#1a9f78'"
                     onmouseout="this.style.backgroundColor='#20c997'" />
 
@@ -205,6 +204,15 @@
                 <% } %>
             </div>
         </div>
+
+        <div style="display: flex; justify-content: center; padding: 20px 0;">
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-primary" OnClick="btnVolver_Click"
+                Style="background-color: #20c997; margin-top: 20px; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;"
+                onmouseover="this.style.backgroundColor='#1a9f78'"
+                onmouseout="this.style.backgroundColor='#20c997'" />
+        </div>
+
+
     </div>
 
     <%-- MODAL PARA REGISTRAR NUEVA VISITA --%>

@@ -125,6 +125,7 @@
                 color: #333;
                 vertical-align: middle;
             }
+
                 .gridViewStyle td.gridCellCentered {
                     text-align: center;
                 }
@@ -198,7 +199,7 @@
                                             <asp:Button ID="btnEliminarGrid" runat="server" Text="Cancelar" CssClass="btn btn-eliminar"
                                                 CommandName="SeleccionarParaCancelar"
                                                 CommandArgument='<%# GetCommandArgument(Eval("IdTurno"), Eval("FechaHora"), Eval("Mascota.IdMascota")) %>' />
-                                            
+
                                             <asp:Button ID="btnIniciarGrid" runat="server" Text="Iniciar" CssClass="btn btn-iniciar"
                                                 CommandName="IniciarTurno"
                                                 CommandArgument='<%# GetCommandArgument(Eval("IdTurno"), Eval("FechaHora"), Eval("Mascota.IdMascota")) %>' />
@@ -214,6 +215,14 @@
                 <asp:AsyncPostBackTrigger ControlID="txtFecha" EventName="TextChanged" />
             </Triggers>
         </asp:UpdatePanel>
+
+        <div style="display: flex; justify-content: center; padding: 10px 0;">
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-primary" OnClick="btnVolver_Click"
+                Style="background-color: #20c997; margin-top: 20px; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;"
+                onmouseover="this.style.backgroundColor='#1a9f78'"
+                onmouseout="this.style.backgroundColor='#20c997'" />
+        </div>
+
     </div>
 
     <%-- MODAL DE CONFIRMACIÓN --%>
@@ -243,24 +252,4 @@
             <asp:AsyncPostBackTrigger ControlID="gvTurnos" EventName="RowCommand" />
         </Triggers>
     </asp:UpdatePanel>
-
-<%--    <%-- MODAL DE ÉXITO 
-    <asp:Panel ID="modalExito" CssClass="modal fade" runat="server" TabIndex="-1" aria-labelledby="modalExitoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-4 shadow">
-                <div class="modal-header bg-success text-white rounded-top-4">
-                    <h5 class="modal-title fw-semibold" id="modalExitoLabel">
-                        <i class="fas fa-check-circle me-2"></i>Operación Exitosa
-                    </h5>
-                </div>
-                <div class="modal-body">
-                    <p class="fs-5 text-center py-3">El turno ha sido cancelado correctamente.</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-success btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Aceptar</button>
-                </div>
-            </div>
-        </div>
-    </asp:Panel>--%>
-
 </asp:Content>

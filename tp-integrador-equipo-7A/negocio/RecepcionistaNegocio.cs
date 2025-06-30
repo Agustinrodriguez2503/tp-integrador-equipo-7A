@@ -128,11 +128,11 @@ namespace negocio
         {
             AccesoDatos datos = new AccesoDatos();
             try
-            {
+            { 
                 // Modifica en tabla Articulos
-                datos.setearConsulta("UPDATE Recepcionistas SET Usuario = @Usuario, Nombre = @Nombre, Apellido = @Apellido, Dni = @Dni, Telefono = @Telefono, Correo = @Correo WHERE Legajo = @Legajo");
+                datos.setearConsulta("UPDATE Recepcionistas SET Nombre = @Nombre, Apellido = @Apellido, Dni = @Dni, Telefono = @Telefono, Correo = @Correo WHERE Dni = @Dni");
                 datos.setearParametro("@Legajo", modificar.Legajo);
-                datos.setearParametro("@Usuario", modificar.Usuario);
+                //datos.setearParametro("@Usuario", modificar.Usuario);
                 datos.setearParametro("@Nombre", modificar.Nombre);
                 datos.setearParametro("@Apellido", modificar.Apellido);
                 datos.setearParametro("@Dni", modificar.DNI);

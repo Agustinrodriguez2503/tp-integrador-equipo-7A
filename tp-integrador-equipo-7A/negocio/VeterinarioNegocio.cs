@@ -93,15 +93,15 @@ namespace negocio
             try
             {
 
-                datos.setearConsulta("UPDATE Veterinarios SET Usuario = @Usuario, Nombre = @Nombre, Apellido = @Apellido, Dni = @Dni, Telefono = @Telefono, Correo = @Correo, Activo = @Activo WHERE Matricula = @Matricula");
+                datos.setearConsulta("UPDATE Veterinarios SET Nombre = @Nombre, Apellido = @Apellido, Dni = @Dni, Telefono = @Telefono, Correo = @Correo WHERE Matricula = @Matricula");
                 datos.setearParametro("@Matricula", modificar.Matricula);
-                datos.setearParametro("@Usuario", modificar.Usuario);
+                //datos.setearParametro("@Usuario", modificar.Usuario);
                 datos.setearParametro("@Nombre", modificar.Nombre);
                 datos.setearParametro("@Apellido", modificar.Apellido);
                 datos.setearParametro("@Dni", modificar.Dni);
                 datos.setearParametro("@Telefono", modificar.Telefono);
                 datos.setearParametro("@Correo", modificar.Correo);
-                datos.setearParametro("@Activo", modificar.Estado);
+                //datos.setearParametro("@Activo", modificar.Estado);
                 datos.ejecutarAccion();
 
             }
