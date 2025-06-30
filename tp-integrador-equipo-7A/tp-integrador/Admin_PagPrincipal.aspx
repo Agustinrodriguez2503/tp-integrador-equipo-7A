@@ -441,7 +441,7 @@
                 </div>
 
                 <div class="modal-footer bg-white rounded-bottom-4 d-flex justify-content-between px-4 py-3">
-                    <asp:Button ID="btnRegistroDueño" runat="server" ValidationGroup="registrarDueño" Text="Registrar Dueño" CssClass="btn btn-success btn-lg px-4 rounded-pill" CausesValidation="true" OnClick="btnRegistrarDueño_Click" />
+                    <asp:Button ID="btnRegistroDueño" runat="server" ValidationGroup="registrarDueño" Text="Registrar Dueño" CssClass="btn btn-success btn-lg px-4 rounded-pill" CausesValidation="true" OnClick="btnRegistroDueño_Click" />
                     <button type="button" class="btn btn-outline-secondary btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Cancelar</button>
                 </div>
 

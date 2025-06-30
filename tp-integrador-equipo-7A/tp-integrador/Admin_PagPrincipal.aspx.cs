@@ -364,7 +364,103 @@ namespace tp_integrador
             }
         }
 
+        protected void btnRegistroDueño_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
+                List<TextBox> campos = new List<TextBox> { txtNombre, txtApellido, txtDni, txtTelefono, txtCorreo, txtDomicilio };
 
+                //Funcion LINQ "All". En este caso pregunta si NO son nulos o tiene espcios en blanco.
+                bool todosCompletos = campos.All(c => !string.IsNullOrWhiteSpace(c.Text));
+
+                if (!todosCompletos)
+                {
+                    divAlerta.Visible = true;
+                    lblValidacion_registroDueño.Text = "Restan campos por completar";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
+                    return;
+                }
+
+                DueñoNegocio negocioDueño = new DueñoNegocio();
+                Dueño nuevoDueño = negocioDueño.listar(txtDni.Text).Find(x => x.Dni == txtDni.Text);
+
+                string modificarDueño = ViewState["modificarDue"].ToString();
+                if (modificarDueño != "Modificar")
+                {
+                    if (modificarDueño != null)
+                    {
+                        divAlerta.Visible = true;
+                        lblValidacion_registroDueño.Text = "Ya existe un Dueño registrado con el DNI : " + txtDni.Text;
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalRegistrarDueño')); modal.show();", true);
+                        return;
+                    }
+                }
+
+
+                UsuarioNegocio negocioUsuario = new UsuarioNegocio();
+                Usuario nuevoUsuario = new Usuario();
+                nuevoDueño = new Dueño();
+
+                nuevoDueño.Nombre = txtNombre.Text;
+                nuevoDueño.Apellido = txtApellido.Text.Trim();
+                nuevoDueño.Dni = txtDni.Text;
+                nuevoDueño.Correo = txtCorreo.Text;
+                nuevoDueño.Telefono = txtTelefono.Text;
+                nuevoDueño.Domicilio = txtDomicilio.Text;
+
+                if (modificarDueño != "Modificar")
+                {
+                    // Para generarle un usuario con su primer nombre y los ultimos 3 digitos de su DNI
+                    // Obtenemos el primer nombre
+                    string primerApellido = nuevoDueño.Apellido.Split(' ')[0];
+
+                    //obtenemos los ultimos 3 digitos del DNI
+                    string ultimos3 = nuevoDueño.Dni.Length >= 3
+                        ? nuevoDueño.Dni.Substring(nuevoDueño.Dni.Length - 3)
+                        : nuevoDueño.Dni;  // Si el DNI tiene menos de 3 dígitos, devuelve lo que haya
+
+                    nuevoDueño.Usuario = primerApellido + ultimos3;
+                    nuevoUsuario.User = primerApellido + ultimos3;
+                    nuevoUsuario.Pass = txtDni.Text;
+                    nuevoUsuario.Rol = 1;
+
+                    // Registramos el Usuario del recepcionista en la Base de Datos.
+                    negocioUsuario.Agregar(nuevoUsuario);
+                }
+
+                //Ahora podemos registrar el Dueño ya que el Usuario se encuentra registrado y es FK en Dueño.
+                if (modificarDueño == "Modificar")
+                {
+                    negocioDueño.Modificar(nuevoDueño);
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionExitosa",
+                    "Swal.fire({" +
+                    "    icon: 'success'," +
+                    "    title: '¡Modificado!'," +
+                    "    text: 'El Dueño fue modificado correctamente.'," +
+                    "    showConfirmButton: true," +
+                    //"    timer: 1500" +             // la alerta se cierra automáticamente después de 1.5 segundos
+                    "}).then(function() {" +
+                    "    window.location.href = 'Admin_PagPrincipal.aspx';" +
+                    "});", true);
+                }
+                else
+                {
+                    negocioDueño.AgregarDueño(nuevoDueño);
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",
+                    "setTimeout(function() { Swal.fire({ icon: 'success', title: '¡Registrado!', " +
+                    "text: 'El Dueño fue registrado correctamente.' }); }, 300);", true);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
 
         protected void btnModificarDueño_Click(object sender, EventArgs e)
         {
@@ -418,11 +514,6 @@ namespace tp_integrador
 
                 throw ex;
             }
-        }
-
-        protected void btnRegistrarDueño_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
