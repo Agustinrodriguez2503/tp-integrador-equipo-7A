@@ -11,9 +11,8 @@ namespace tp_integrador
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string pagina = System.IO.Path.GetFileName(Request.Path);
 
-            Response.Write("<script>console.log('Página actual: " + pagina + "');</script>");
+            string pagina = System.IO.Path.GetFileName(Request.Path);
 
             if (pagina == "IniciarSesion")
             {

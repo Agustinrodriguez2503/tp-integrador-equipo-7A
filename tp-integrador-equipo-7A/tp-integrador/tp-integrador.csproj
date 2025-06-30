@@ -121,6 +121,9 @@
     <Content Include="Dueño_RecuperoPassword.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Banner.png" />
+    <Content Include="Images\Donacion.png" />
+    <Content Include="Images\Horarios.png" />
     <Content Include="Images\logo_return.png" />
     <Content Include="Images\logo_sesion.png" />
     <Content Include="Images\logo_veterinaria.png" />
