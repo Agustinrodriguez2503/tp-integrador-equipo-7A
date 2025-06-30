@@ -31,9 +31,7 @@ namespace tp_integrador
                         List<Mascota> mascotas = mascotaNegocio.listar(dueño.Dni);
 
                         lblBienvenido.Text = dueño.nombreCompleto();
-                        gvMascotas.DataSource = mascotas;
-                        gvMascotas.DataBind();
-
+                        cargarMascotas(mascotas);
                         cargarTurnos();
                     }
                     catch (Exception ex)
@@ -44,19 +42,8 @@ namespace tp_integrador
                 }
             }
         }
-
-        private void cargarTurnos()
-        {
-
-            Dueño dueño = new Dueño();
-            dueño = devolverDueño();
-
-            TurnoNegocio turnoNegocio = new TurnoNegocio();
-            List<Turno> turnos = turnoNegocio.listarTurnosConMascotaYVeterinario(dueño.Dni, "PENDIENTE");
-
-            repProximosTurnos.DataSource = turnos;
-            repProximosTurnos.DataBind();
-        }
+        
+        // CANCELAR TURNO
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             TurnoNegocio turnoNegocio = new TurnoNegocio();
@@ -74,6 +61,7 @@ namespace tp_integrador
                 throw ex;
             }
         }
+        // REGISTRO DE MASCOTA
         protected void btnRegistroMascota_Click(object sender, EventArgs e)
         {
             try
@@ -145,8 +133,7 @@ namespace tp_integrador
                     mascotaNegocio.Agregar(mascota);
 
                 // Refrescar grilla
-                gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
-                gvMascotas.DataBind();
+                cargarMascotas(mascotaNegocio.listar(dueño.Dni));
 
                 // Mensaje de éxito
                 string titulo = esModificacion ? "¡Modificación exitosa!" : "¡Alta de mascota exitosa!";
@@ -170,6 +157,7 @@ namespace tp_integrador
                 throw ex;
             }
         }
+        // CARGA DE DATOS PARA MODIFICAR MASCOTA
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             MascotaNegocio mascotaNegocio = new MascotaNegocio();
@@ -203,6 +191,7 @@ namespace tp_integrador
             }
 
         }
+        // ELIMINAR MASCOTA
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             MascotaNegocio mascotaNegocio = new MascotaNegocio();
@@ -220,8 +209,7 @@ namespace tp_integrador
                     DueñoNegocio dueñoNegocio = new DueñoNegocio();
                     Dueño dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
 
-                    gvMascotas.DataSource = mascotaNegocio.listar(dueño.Dni);
-                    gvMascotas.DataBind();
+                    cargarMascotas(mascotaNegocio.listar(dueño.Dni));
                 }
             }
             catch (Exception ex)
@@ -230,6 +218,7 @@ namespace tp_integrador
                 throw ex;
             }
         }
+        // CARGA DE DATOS PARA MODIFICAR CLIENTE
         protected void datosCliente_Click(object sender, EventArgs e)
         {
             try
@@ -253,6 +242,7 @@ namespace tp_integrador
                 throw ex;
             }
         }
+        // MODIFICACION DE CLIENTE
         protected void btnGuardarDatosCliente_Click(object sender, EventArgs e)
         {
             Dueño dueño = new Dueño();
@@ -304,6 +294,7 @@ namespace tp_integrador
                 throw ex;
             }
         }
+        // REDIRECCIÓN A TURNOS
         protected void btnTurno_Click(object sender, EventArgs e)
         {
             try
@@ -320,6 +311,7 @@ namespace tp_integrador
                 throw ex;
             }
         }
+        // REDIRECCIÓN A FICHAS
         protected void btnFicha_Click(object sender, EventArgs e)
         {
             Dueño dueño = new Dueño();
@@ -339,6 +331,13 @@ namespace tp_integrador
                 throw ex;
             }
         }
+        // CERRAR SESIÓN
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Remove("usuario");
+            Response.Redirect("IniciarSesion.aspx");
+        }
+        // DEVOLVER EL DUEÑO QUE INICIO SESIÓN
         protected Dueño devolverDueño()
         {
             Dueño dueño = new Dueño();
@@ -352,13 +351,24 @@ namespace tp_integrador
             }
             return null;
         }
-
-        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        // CARGAR TARJETAS CON TURNOS PROXIMOS
+        private void cargarTurnos()
         {
-            Session.Remove("usuario");
-            Response.Redirect("IniciarSesion.aspx");
+
+            Dueño dueño = new Dueño();
+            dueño = devolverDueño();
+
+            TurnoNegocio turnoNegocio = new TurnoNegocio();
+            List<Turno> turnos = turnoNegocio.listarTurnosConMascotaYVeterinario(dueño.Dni, "PENDIENTE");
+
+            repProximosTurnos.DataSource = turnos;
+            repProximosTurnos.DataBind();
         }
-
-
+        // CARGAR GRILLA CON MASCOTAS
+        private void cargarMascotas(List<Mascota> mascotas)
+        {
+            gvMascotas.DataSource = mascotas;
+            gvMascotas.DataBind();
+        }
     }
 }
