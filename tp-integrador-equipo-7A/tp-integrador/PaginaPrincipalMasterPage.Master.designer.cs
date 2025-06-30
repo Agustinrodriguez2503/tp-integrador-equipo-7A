@@ -42,6 +42,24 @@ namespace tp_integrador
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl contenedorInicio;
 
         /// <summary>
+        /// Control acercaDe.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor acercaDe;
+
+        /// <summary>
+        /// Control contacto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor contacto;
+
+        /// <summary>
         /// Control contenedorLogin.
         /// </summary>
         /// <remarks>

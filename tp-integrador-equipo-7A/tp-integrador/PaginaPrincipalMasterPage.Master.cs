@@ -17,6 +17,8 @@ namespace tp_integrador
             if (pagina == "IniciarSesion")
             {
                 contenedorLogin.Visible = false;
+                acercaDe.Visible = false;
+                contacto.Visible = false;
             }
             if (pagina == "Dueño_PagPrincipal")
             {

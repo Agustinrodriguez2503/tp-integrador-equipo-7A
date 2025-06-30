@@ -61,10 +61,10 @@ namespace negocio
         {
             List<Turno> lista = new List<Turno>();
             AccesoDatos datos = new AccesoDatos();
-            
+
             try
             {
-                if(estado != "TODO")
+                if (estado != "TODO")
                 {
                     datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE MatriculaVeterinario = @matricula AND Estado = @estado AND Activo = 1");
                     datos.setearParametro("@estado", estado);
@@ -80,7 +80,7 @@ namespace negocio
 
 
 
-                    datos.ejecutarLectura();
+                datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
@@ -118,27 +118,25 @@ namespace negocio
             try
             {
                 string consulta = @"
-            SELECT t.IDTurno, t.MatriculaVeterinario, t.IDMascota, t.FechaHora, t.Estado, t.Activo,
-                   m.Nombre AS NombreMascota,
-                   v.Apellido AS ApellidoVet
-            FROM Turnos t
-            INNER JOIN Mascotas m ON t.IDMascota = m.IDMascota
-            INNER JOIN Dueños d ON m.DniDueño = d.Dni
-            INNER JOIN Veterinarios v ON t.MatriculaVeterinario = v.Matricula
-            WHERE d.Dni = @dniDueño AND t.Activo = 1 AND t.FechaHora > GETDATE()
-        ";
+                SELECT t.IDTurno, t.MatriculaVeterinario, t.IDMascota, t.FechaHora, t.Estado, t.Activo,
+                       m.Nombre AS NombreMascota,
+                       v.Apellido AS ApellidoVet
+                FROM Turnos t
+                INNER JOIN Mascotas m ON t.IDMascota = m.IDMascota
+                INNER JOIN Dueños d ON m.DniDueño = d.Dni
+                INNER JOIN Veterinarios v ON t.MatriculaVeterinario = v.Matricula
+                WHERE d.Dni = @dniDueño AND t.Activo = 1 AND t.FechaHora > GETDATE()
+            ";
 
                 if (estado != "TODO")
                 {
                     consulta += " AND t.Estado = @estado";
+                    datos.setearParametro("@estado", estado);
                 }
 
                 datos.setearConsulta(consulta);
                 datos.setearParametro("@dniDueño", dniDueño);
-                if (estado != "TODO")
-                {
-                    datos.setearParametro("@estado", estado);
-                }
+
 
                 datos.ejecutarLectura();
 

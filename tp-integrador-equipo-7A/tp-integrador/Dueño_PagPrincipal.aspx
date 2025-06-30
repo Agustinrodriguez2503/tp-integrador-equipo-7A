@@ -145,7 +145,14 @@
                                 <h5 class="card-title"><%# Eval("Mascota.Nombre") %></h5>
                                 <h5 class="card-title"><%# Eval("NombreVeterinario") %></h5>
                                 <p class="card-text"><%# Eval("FechaHora", "{0:dd/MM/yyyy HH:mm}") %></p>
-                                <a href="#" class="btn btn-primary">Cancelar</a>
+                                <asp:LinkButton ID="btnCancelar" runat="server"
+                                    CommandArgument='<%# Eval("IDTurno") %>'
+                                    OnClick="btnCancelar_Click"
+                                    CssClass="btn btn-danger btn-sm fw-bold"
+                                    OnClientClick="return confirm('¿Esta seguro que desea cancelar su turno?');">
+                                    <i class="bi bi-x-circle"></i> Cancelar Turno
+                                </asp:LinkButton>
+
                             </div>
                         </div>
                     </div>

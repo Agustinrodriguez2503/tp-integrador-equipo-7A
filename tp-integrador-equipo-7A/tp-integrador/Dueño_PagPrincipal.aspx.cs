@@ -15,34 +15,63 @@ namespace tp_integrador
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Seguridad.sesionActiva(Session["usuario"])))
-                Response.Redirect("IniciarSesion.aspx", false);
-            else
+            if (!IsPostBack)
             {
-                try
+                if (!(Seguridad.sesionActiva(Session["usuario"])))
+                    Response.Redirect("IniciarSesion.aspx", false);
+                else
                 {
-                    Mascota mascota = new Mascota();
-                    MascotaNegocio mascotaNegocio = new MascotaNegocio();
-                    Dueño dueño = new Dueño();
+                    try
+                    {
+                        Mascota mascota = new Mascota();
+                        MascotaNegocio mascotaNegocio = new MascotaNegocio();
+                        Dueño dueño = new Dueño();
 
-                    dueño = devolverDueño(dueño);
-                    List<Mascota> mascotas = mascotaNegocio.listar(dueño.Dni);
+                        dueño = devolverDueño();
+                        List<Mascota> mascotas = mascotaNegocio.listar(dueño.Dni);
 
-                    lblBienvenido.Text = dueño.nombreCompleto();
-                    gvMascotas.DataSource = mascotas;
-                    gvMascotas.DataBind();
+                        lblBienvenido.Text = dueño.nombreCompleto();
+                        gvMascotas.DataSource = mascotas;
+                        gvMascotas.DataBind();
 
-                    TurnoNegocio turnoNegocio = new TurnoNegocio();
-                    List<Turno> turnosParaMostrar = turnoNegocio.listarTurnosConMascotaYVeterinario(dueño.Dni);
+                        cargarTurnos();
+                    }
+                    catch (Exception ex)
+                    {
 
-                    repProximosTurnos.DataSource = turnosParaMostrar;
-                    repProximosTurnos.DataBind();
+                        throw ex;
+                    }
                 }
-                catch (Exception ex)
-                {
+            }
+        }
 
-                    throw ex;
-                }
+        private void cargarTurnos()
+        {
+
+            Dueño dueño = new Dueño();
+            dueño = devolverDueño();
+
+            TurnoNegocio turnoNegocio = new TurnoNegocio();
+            List<Turno> turnos = turnoNegocio.listarTurnosConMascotaYVeterinario(dueño.Dni, "PENDIENTE");
+
+            repProximosTurnos.DataSource = turnos;
+            repProximosTurnos.DataBind();
+        }
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            TurnoNegocio turnoNegocio = new TurnoNegocio();
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                int idTurno = Convert.ToInt32(btn.CommandArgument);
+
+                turnoNegocio.modificarEstado(idTurno, "CANCELADO");
+                cargarTurnos();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
         protected void btnRegistroMascota_Click(object sender, EventArgs e)
@@ -53,7 +82,7 @@ namespace tp_integrador
                     return;
 
                 Dueño dueño = new Dueño();
-                dueño = devolverDueño(dueño);
+                dueño = devolverDueño();
                 MascotaNegocio mascotaNegocio = new MascotaNegocio();
                 Mascota mascota;
 
@@ -206,7 +235,7 @@ namespace tp_integrador
             try
             {
                 Dueño dueño = new Dueño();
-                dueño = devolverDueño(dueño); 
+                dueño = devolverDueño();
 
                 txtNombre.Text = dueño.Nombre;
                 txtApellido.Text = dueño.Apellido;
@@ -216,7 +245,7 @@ namespace tp_integrador
                 txtDni.Text = dueño.Dni;
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModalDatosCliente", "var modal = new bootstrap.Modal(document.getElementById('modalDatosCliente')); modal.show();", true);
-                
+
             }
             catch (Exception ex)
             {
@@ -230,7 +259,7 @@ namespace tp_integrador
             DueñoNegocio dueñoNegocio = new DueñoNegocio();
             try
             {
-                dueño = devolverDueño(dueño);
+                dueño = devolverDueño();
 
                 //Guardamos en un listado de TexBox todos los campos que necesitamos verificar si estan completos.
                 List<TextBox> campos = new List<TextBox> { txtNombre, txtApellido, txtDni, txtTelefono, txtCorreo, txtDomicilio };
@@ -297,12 +326,12 @@ namespace tp_integrador
             try
             {
                 //PASAJE DNI
-                dueño = devolverDueño(dueño);
+                dueño = devolverDueño();
 
                 string dni = dueño.Dni;
                 Session.Add("DniDueño", dni);
                 Response.Redirect("Veterinario_FichasMedicas.aspx", false);
-                
+
             }
             catch (Exception ex)
             {
@@ -310,8 +339,9 @@ namespace tp_integrador
                 throw ex;
             }
         }
-        protected Dueño devolverDueño(Dueño dueño)
+        protected Dueño devolverDueño()
         {
+            Dueño dueño = new Dueño();
             DueñoNegocio dueñoNegocio = new DueñoNegocio();
             if (Session["usuario"] != null)
             {
@@ -328,5 +358,7 @@ namespace tp_integrador
             Session.Remove("usuario");
             Response.Redirect("IniciarSesion.aspx");
         }
+
+
     }
 }
