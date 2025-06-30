@@ -33,8 +33,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                Session.Add("error", ex);
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
 
         }
@@ -61,8 +61,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                Session.Add("error", ex);
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
 
 
@@ -100,8 +100,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                Session.Add("error", ex);
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
 
         }
@@ -122,8 +122,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                Session.Add("error", ex);
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
 
         }

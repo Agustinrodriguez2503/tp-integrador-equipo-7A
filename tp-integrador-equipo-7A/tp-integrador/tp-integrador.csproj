@@ -119,12 +119,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="Dueño_PagPrincipal.aspx" />
     <Content Include="Dueño_RecuperoPassword.aspx" />
+    <Content Include="ErrorPage.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\Banner.png" />
     <Content Include="Images\Donacion.png" />
+    <Content Include="Images\Error.png" />
     <Content Include="Images\Horarios.png" />
-    <Content Include="Images\logo_return.png" />
     <Content Include="Images\logo_sesion.png" />
     <Content Include="Images\logo_veterinaria.png" />
     <Content Include="IniciarSesion.aspx" />
@@ -220,6 +221,13 @@
     </Compile>
     <Compile Include="Dueño_RecuperoPassword.aspx.designer.cs">
       <DependentUpon>Dueño_RecuperoPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

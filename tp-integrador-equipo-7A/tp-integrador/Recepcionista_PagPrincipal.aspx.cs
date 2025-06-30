@@ -66,8 +66,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
 
         }
@@ -89,16 +89,26 @@ namespace tp_integrador
         
         protected void btnBuscarTurno_Click(object sender, EventArgs e)
         {
-
-            if (ddlMascota.SelectedItem != null && !string.IsNullOrEmpty(ddlMascota.SelectedItem.Value))
+            try
             {
-                int idMascota = int.Parse(ddlMascota.SelectedItem.Value);
-                Session["IDMascota"] = idMascota;
-                Response.Redirect("Turnos.aspx", false);
+                if (ddlMascota.SelectedItem != null && !string.IsNullOrEmpty(ddlMascota.SelectedItem.Value))
+                {
+                    int idMascota = int.Parse(ddlMascota.SelectedItem.Value);
+                    Session["IDMascota"] = idMascota;
+                    Response.Redirect("Turnos.aspx", false);
+
+                }
+
+                lbl_ddlMascotas.Visible = true;
 
             }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
+            }
 
-            lbl_ddlMascotas.Visible = true;
+
         }
 
         protected void ddlMascota_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,7 +190,8 @@ namespace tp_integrador
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
 
         }
@@ -194,18 +205,27 @@ namespace tp_integrador
 
         protected void btnBuscarMascota_Click(object sender, EventArgs e)
         {
-            DueñoNegocio negocioDueño = new DueñoNegocio();
-            Dueño dueñoEncontrado = new Dueño();
-            dueñoEncontrado = negocioDueño.listar(txtBuscarMascota.Text).Find(x => x.Dni == txtBuscarMascota.Text);
-
-            if (dueñoEncontrado == null)
+            try
             {
-                lblInfoBuscarMascota.Text = "El DNI ingresado no pertenece a un dueño registrado.";
-                lblInfoBuscarMascota.Visible = true;
-                return;
-            }
+                DueñoNegocio negocioDueño = new DueñoNegocio();
+                Dueño dueñoEncontrado = new Dueño();
+                dueñoEncontrado = negocioDueño.listar(txtBuscarMascota.Text).Find(x => x.Dni == txtBuscarMascota.Text);
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaMascota')); modal.show();", true);
+                if (dueñoEncontrado == null)
+                {
+                    lblInfoBuscarMascota.Text = "El DNI ingresado no pertenece a un dueño registrado.";
+                    lblInfoBuscarMascota.Visible = true;
+                    return;
+                }
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModal", "var modal = new bootstrap.Modal(document.getElementById('modalAltaMascota')); modal.show();", true);
+
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
+            }
 
         }
 
@@ -270,8 +290,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
             
         }

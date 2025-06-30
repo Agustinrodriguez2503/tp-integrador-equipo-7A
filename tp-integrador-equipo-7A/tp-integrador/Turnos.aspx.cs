@@ -27,9 +27,11 @@ namespace tp_integrador
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
+
             }
-            
+
         }
 
         protected void seleccionarVeterinario_Command(object sender, CommandEventArgs e)
@@ -43,7 +45,7 @@ namespace tp_integrador
 
 
 
-                List<Turno> turnosOcupados = negocioTurnos.listar_turnosOcupados(matricula);
+                List<Turno> turnosOcupados = negocioTurnos.listar_turnosOcupados(matricula, "PENDIENTE");
                 List<DateTime> turnosDisponibles = generarTurnos.generarTurnosPosibles();
                 List<DateTime> turnosMostrar = generarTurnos.generarTurnosPosibles();
                 
@@ -82,8 +84,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
             
 
@@ -107,8 +109,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
 
@@ -120,6 +122,13 @@ namespace tp_integrador
                 Turno turnoSeleccionado = new Turno();
                 turnoSeleccionado.FechaHora = (DateTime)dgvTurnos.SelectedDataKey.Value;
                 turnoSeleccionado.Mascota = new Mascota();
+
+                if (Session["IDMascota"] == null)
+                {
+                    Session["Error"] = "No se encuentra logueado, inicie sesión por favor.";
+                    Response.Redirect("ErrorPage.aspx", false);
+                    return;
+                }
                 turnoSeleccionado.Mascota.IDMascota = (int)Session["IDMascota"];
                 turnoSeleccionado.MatriculaVeterinario = (string)Session["VeteSeleccionado"];
 
@@ -166,8 +175,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
 
         }
