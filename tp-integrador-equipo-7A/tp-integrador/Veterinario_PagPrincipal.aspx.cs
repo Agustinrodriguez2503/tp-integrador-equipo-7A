@@ -14,29 +14,28 @@ namespace tp_integrador
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario usuario = (Usuario)Session["usuario"];
+
             if (!(Seguridad.sesionActiva(Session["usuario"])))
-                Response.Redirect("IniciarSesion.aspx", false);
-
-            if (Session["usuario"] != null)
             {
-                try
-                {
-                    VeterinarioNegocio veterinarioNegocio = new VeterinarioNegocio();
-                    Veterinario veterinario = new Veterinario();
+                Response.Redirect("IniciarSesion.aspx", false);
+            }
+            else if (usuario.Rol == 3)
+            {
+                VeterinarioNegocio veterinarioNegocio = new VeterinarioNegocio();
+                Veterinario veterinario = new Veterinario();
 
-                    Usuario usuario = (Usuario)Session["usuario"];
-                    veterinario = veterinarioNegocio.listarPorUser(usuario.User)[0];
 
-                    //Me guardo en session al veterinario logueado
-                    Session["veterinario"] = veterinario;
+                veterinario = veterinarioNegocio.listarPorUser(usuario.User)[0];
 
-                    lblBienvenidoVet.Text = veterinario.Nombre + " " + veterinario.Apellido;
-                }
-                catch (Exception ex)
-                {
+                //Me guardo en session al veterinario logueado
+                Session["veterinario"] = veterinario;
 
-                    throw ex;
-                }
+                lblBienvenidoVet.Text = veterinario.Nombre + " " + veterinario.Apellido;
+            }
+            else
+            {
+                Response.Redirect("ErrorPage.aspx");
             }
         }
     }

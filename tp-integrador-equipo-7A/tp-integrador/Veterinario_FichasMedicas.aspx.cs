@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using dominio;
+using helpers;
 using Microsoft.Ajax.Utilities;
 using negocio;
 
@@ -18,6 +19,8 @@ namespace tp_integrador
         public List<Mascota> listaMascotas { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!(Seguridad.sesionActiva(Session["usuario"])))
+                Response.Redirect("IniciarSesion.aspx", false);
 
             //if (!IsPostBack)
             //{
@@ -201,12 +204,30 @@ namespace tp_integrador
         protected void btnVolver_Click(object sender, EventArgs e)
         {
 
-            //Si no se accediò desde turno "Iniciar", que envìe al usuario a la pag principal
-            if (Request.QueryString["idTurno"] == null && Request.QueryString["idMascota"] == null)
-                Response.Redirect("Veterinario_PagPrincipal.aspx");
+            Usuario usuario = (Usuario)Session["usuario"];
 
             //Si accediò desde turnospendientes "Iniciar", que devuelva al usuario a turnospendientes
-            Response.Redirect("Veterinario_TurnosPendientes.aspx");
+            if ((Request.QueryString["idTurno"] != null && Request.QueryString["idMascota"] != null) && (usuario.Rol == 3))
+                Response.Redirect("Veterinario_TurnosPendientes.aspx");
+
+            //Si no accedió desde turnospendientes, ver que tipo de usuario es
+
+            if (usuario.Rol == 1)
+            {
+                Response.Redirect("Dueño_PagPrincipal.aspx", false);
+            }
+            else if (usuario.Rol == 2)
+            {
+                Response.Redirect("Recepcionista_PagPrincipal.aspx", false);
+            }
+            else if (usuario.Rol == 3)
+            {
+                Response.Redirect("Veterinario_PagPrincipal.aspx", false);
+            }
+            else if (usuario.Rol == 4)
+            {
+                Response.Redirect("Admin_PagPrincipal.aspx", false);
+            }
         }
     }
 }

@@ -187,15 +187,23 @@
         <asp:UpdatePanel ID="upTurnosGrid" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div class="filter-section">
-                    <div class="filter-header"><i class="fas fa-clock" style="margin-right: 10px;"></i>Turnos Pendientes</div>
-                    <div class="grid-container" style="margin-top: 10px;">
+                    <div class="filter-header">
+                        <div style="display: flex; align-items: center;">
+                            <i class="fas fa-clock" style="margin-right: 10px;"></i>
+                            <span>Turnos Pendientes</span>
+                        </div>
+                        <div style="margin-left: auto;">
+                            <asp:Button ID="btnAbrirModalReporte" runat="server" Text="Generar Reporte" CssClass="btn btn-light" OnClick="btnAbrirModalReporte_Click" />
+                        </div>
+                    </div>
+                    <div class="grid-container">
                         <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="gridViewStyle" OnRowCommand="gvTurnos_RowCommand">
                             <Columns>
                                 <asp:BoundField DataField="DescripcionTurno" HeaderText="Fecha y Hora" HeaderStyle-CssClass="gridCenteredHeader" ItemStyle-CssClass="gridCellCentered" />
+                                <asp:BoundField DataField="Estado" HeaderText="Estado" HeaderStyle-CssClass="gridCenteredHeader" ItemStyle-CssClass="gridCellCentered" />
                                 <asp:TemplateField HeaderText="Acciones" ItemStyle-CssClass="gridButtonColumn" HeaderStyle-CssClass="gridCenteredHeader">
                                     <ItemTemplate>
                                         <div class="buttons-flex-container">
-
                                             <asp:Button ID="btnEliminarGrid" runat="server" Text="Cancelar" CssClass="btn btn-eliminar"
                                                 CommandName="SeleccionarParaCancelar"
                                                 CommandArgument='<%# GetCommandArgument(Eval("IdTurno"), Eval("FechaHora"), Eval("Mascota.IdMascota")) %>' />
@@ -207,6 +215,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
+                            <EmptyDataRowStyle CssClass="emptyDataRow" />
                         </asp:GridView>
                     </div>
                 </div>
@@ -215,6 +224,8 @@
                 <asp:AsyncPostBackTrigger ControlID="txtFecha" EventName="TextChanged" />
             </Triggers>
         </asp:UpdatePanel>
+    </div>
+    </asp:UpdatePanel>
 
         <div style="display: flex; justify-content: center; padding: 10px 0;">
             <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-primary" OnClick="btnVolver_Click"
@@ -252,4 +263,46 @@
             <asp:AsyncPostBackTrigger ControlID="gvTurnos" EventName="RowCommand" />
         </Triggers>
     </asp:UpdatePanel>
+
+    <%-- Modal para generar el reporte --%>
+    <asp:UpdatePanel ID="upModalReporte" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <div class="modal fade" id="modalReporte" runat="server" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content rounded-4 shadow">
+                        <div class="modal-header modal-header-principal rounded-top-4">
+                            <h5 class="modal-title"><i class="fas fa-file-pdf me-2"></i>Generar Reporte de Turnos</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="<%= txtFechaDesde.ClientID %>" class="form-label fw-semibold">Desde:</label>
+                                    <asp:TextBox ID="txtFechaDesde" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvDesde" runat="server" ControlToValidate="txtFechaDesde"
+                                        ErrorMessage="Fecha 'Desde' es requerida." ForeColor="Red" Display="Dynamic" ValidationGroup="ReporteGroup" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="<%= txtFechaHasta.ClientID %>" class="form-label fw-semibold">Hasta:</label>
+                                    <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvHasta" runat="server" ControlToValidate="txtFechaHasta"
+                                        ErrorMessage="Fecha 'Hasta' es requerida." ForeColor="Red" Display="Dynamic" ValidationGroup="ReporteGroup" />
+                                </div>
+                                <div class="col-12">
+                                    <asp:CustomValidator ID="cvFechas" runat="server" OnServerValidate="cvFechas_ServerValidate"
+                                        ErrorMessage="La fecha 'Desde' no puede ser posterior a la fecha 'Hasta'." ForeColor="Red" Display="Dynamic" ValidationGroup="ReporteGroup" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <asp:Button ID="btnGenerarReporte" runat="server" Text="Generar PDF" OnClick="btnGenerarReporte_Click" ValidationGroup="ReporteGroup" CssClass="btn btn-principal" />
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+
 </asp:Content>
