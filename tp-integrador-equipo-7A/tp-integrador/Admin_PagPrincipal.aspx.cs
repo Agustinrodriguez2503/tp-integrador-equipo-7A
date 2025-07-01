@@ -13,8 +13,10 @@ namespace tp_integrador
 {
     public partial class Admin_PagPrincipal : System.Web.UI.Page
     {
+        public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            FiltroAvanzado = chkAvanzado.Checked;
             if (!IsPostBack)
             {
                 //if (!(Seguridad.sesionActiva(Session["usuario"])) || (!Seguridad.isAdmin(Session["usuario"])))
@@ -26,15 +28,20 @@ namespace tp_integrador
                     VeterinarioNegocio veterinarioNegocio = new VeterinarioNegocio();
                     RecepcionistaNegocio recepcionistaNegocio = new RecepcionistaNegocio();
                     DueñoNegocio dueñoNegocio = new DueñoNegocio();
+                    Session.Add("listaVeterinarios", veterinarioNegocio.listar());
+                    Session.Add("listaRecepcionistas", recepcionistaNegocio.listar());
+                    Session.Add("listaDueños", dueñoNegocio.listar());
 
-                    gvVeterinarios.DataSource = veterinarioNegocio.listar();
+
+                    gvVeterinarios.DataSource = Session["listaVeterinarios"];
                     gvVeterinarios.DataBind();
 
-                    gvRecepcionistas.DataSource = recepcionistaNegocio.listar();
+                    gvRecepcionistas.DataSource = Session["listaRecepcionistas"];
                     gvRecepcionistas.DataBind();
 
-                    gvDueños.DataSource = dueñoNegocio.listar();
+                    gvDueños.DataSource = Session["listaDueños"];
                     gvDueños.DataBind();
+
                 }
                 catch (Exception ex)
                 {
@@ -508,6 +515,60 @@ namespace tp_integrador
                     gvDueños.DataSource = dueñoNegocio.listar();
                     gvDueños.DataBind();
                 }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        protected void txtFiltroDueño_TextChanged(object sender, EventArgs e)
+        {
+            List<Dueño> dueños = (List<Dueño>)Session["listaDueños"];
+            List<Dueño> dueñoFiltrados = dueños.FindAll(x => x.Apellido.ToUpper().Contains(txtFiltroDueño.Text.ToUpper()));
+
+            gvDueños.DataSource = dueñoFiltrados;
+            gvDueños.DataBind();
+
+        }
+
+        protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltroAvanzado = chkAvanzado.Checked;
+            txtFiltroDueño.Enabled = !FiltroAvanzado;
+
+        }
+
+        protected void txtFiltroRec_TextChanged(object sender, EventArgs e)
+        {
+            List<Recepcionista> recepcionistas  = (List<Recepcionista>)Session["listaRecepcionistas"];
+            List<Recepcionista> recepcionistasFiltrados = recepcionistas.FindAll(x => x.Apellido.ToUpper().Contains(txtFiltroRec.Text.ToUpper()));
+
+            gvRecepcionistas.DataSource = recepcionistasFiltrados;
+            gvRecepcionistas.DataBind();
+        }
+
+        protected void txtFiltroVet_TextChanged(object sender, EventArgs e)
+        {
+            List<Veterinario> veterinarios = (List<Veterinario>)Session["listaVeterinarios"];
+            List<Veterinario> veterinariosFiltrados = veterinarios.FindAll(x => x.Apellido.ToUpper().Contains(txtFiltroVet.Text.ToUpper()));
+
+            gvVeterinarios.DataSource = veterinariosFiltrados;
+            gvVeterinarios.DataBind();
+        }
+
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DueñoNegocio dueñoNegocio = new DueñoNegocio();
+                gvDueños.DataSource = dueñoNegocio.Filtrar(ddlCampo.SelectedItem.ToString(), 
+                    ddlCriterio.SelectedItem.ToString(), 
+                    txtFiltroAvanzado.Text, 
+                    ddlEstado.SelectedItem.ToString());
+                gvDueños.DataBind();
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -167,6 +168,93 @@ namespace negocio
                 datos.setearParametro("@estado", estado);
                 datos.setearParametro("@dni", dni);
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+    
+        public List<Dueño> Filtrar(string campo, string criterio, string filtro, string estado)
+        {
+            List<Dueño> dueños = new List<Dueño> ();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "Select Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio, Activo From Dueños Where ";
+                if (campo == "DNI")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "Dni like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += "Dni like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "Dni like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+                else if (campo == "Nombre")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "Nombre like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += "Nombre like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "Nombre like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+                else if (campo == "Usuario")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "Usuario like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += "Usuario like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "Usuario like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+                if (estado == "Activo")
+                    consulta += " AND Activo = 1";
+                else if (estado == "Inactivo")
+                    consulta += " AND Activo = 0";
+
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Dueño aux = new Dueño();
+                    aux.Dni = (string)datos.Lector["Dni"];
+                    aux.Usuario = (string)datos.Lector["Usuario"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.Correo = (string)datos.Lector["Correo"];
+                    aux.Domicilio = (string)datos.Lector["Domicilio"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
+
+                    dueños.Add(aux);
+                }
+                return dueños;
             }
             catch (Exception ex)
             {
