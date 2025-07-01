@@ -314,15 +314,15 @@ namespace tp_integrador
         // REDIRECCIÓN A FICHAS
         protected void btnFicha_Click(object sender, EventArgs e)
         {
-            Dueño dueño = new Dueño();
+            LinkButton btn = (LinkButton)sender;
+            
             try
             {
-                //PASAJE DNI
-                dueño = devolverDueño();
 
-                string dni = dueño.Dni;
-                Session.Add("DniDueño", dni);
-                Response.Redirect("Veterinario_FichasMedicas.aspx", false);
+                //mando por url el id de la mascota
+                int idMascota = int.Parse(btn.CommandArgument);
+
+                Response.Redirect($"Veterinario_FichasMedicas.aspx?idMascota={idMascota}");
 
             }
             catch (Exception ex)

@@ -156,7 +156,24 @@ namespace tp_integrador
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Veterinario_PagPrincipal.aspx");
+            Usuario usuario = (Usuario)Session["usuario"];
+
+            if (usuario.Rol == 1)
+            {
+                Response.Redirect("Dueño_PagPrincipal.aspx", false);
+            }
+            else if (usuario.Rol == 2)
+            {
+                Response.Redirect("Recepcionista_PagPrincipal.aspx", false);
+            }
+            else if (usuario.Rol == 3)
+            {
+                Response.Redirect("Veterinario_PagPrincipal.aspx", false);
+            }
+            else if (usuario.Rol == 4)
+            {
+                Response.Redirect("Admin_PagPrincipal.aspx", false);
+            }
         }
 
         protected void btnAbrirModalReporte_Click(object sender, EventArgs e)

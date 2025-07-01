@@ -25,17 +25,24 @@ namespace tp_integrador
             //if (!IsPostBack)
             //{
             btnRegistrarVisita.Visible = false;
-            if (Request.QueryString["idTurno"] != null && Request.QueryString["idMascota"] != null)
-            {
-                btnRegistrarVisita.Visible = true;
-                btnBuscar.Visible = false;
-                string idTurnoString = Request.QueryString["idTurno"];
-                string idMascotaString = Request.QueryString["idMascota"];
-                int idTurno = Convert.ToInt32(idTurnoString);
-                int idMascota = Convert.ToInt32(idMascotaString);
 
-                ViewState["IDTurno"] = idTurno;
+            //if (Request.QueryString["idTurno"] != null && Request.QueryString["idMascota"] != null)
+            if (Request.QueryString["idMascota"] != null)
+            {
+                btnBuscar.Visible = false;
+
+                string idMascotaString = Request.QueryString["idMascota"];
+                int idMascota = Convert.ToInt32(idMascotaString);
                 ViewState["IDMascota"] = idMascota;
+
+                //En el caso de que se acceda desde Veterinarios_TurnosPendientes guardamos el idTurno
+                if (Request.QueryString["idTurno"] != null)
+                {
+                    string idTurnoString = Request.QueryString["idTurno"];
+                    int idTurno = Convert.ToInt32(idTurnoString);
+                    ViewState["IDTurno"] = idTurno;
+                    btnRegistrarVisita.Visible = true;
+                }
 
                 FichaNegocio dni = new FichaNegocio();
                 string dniDueño = dni.buscarDueño(idMascota);
@@ -70,9 +77,6 @@ namespace tp_integrador
 
                 txtFiltroFicha.Enabled = false;
                 ddlFiltroFicha.Enabled = false;
-
-
-
             }
             //}
         }
