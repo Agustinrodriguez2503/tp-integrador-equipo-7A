@@ -234,9 +234,9 @@
                         <div class="col-md-3">
                             <label for="ddlCriterio" class="form-label fw-semibold">Criterio</label>
                             <asp:DropDownList ID="ddlCriterio" runat="server" CssClass="form-select">
-                                <asp:ListItem Text="Empieza con: " />
-                                <asp:ListItem Text="Contiene: " />
-                                <asp:ListItem Text="Termina con: " />
+                                <asp:ListItem Text="Empieza con" />
+                                <asp:ListItem Text="Contiene" />
+                                <asp:ListItem Text="Termina con" />
                             </asp:DropDownList>
                         </div>
 
