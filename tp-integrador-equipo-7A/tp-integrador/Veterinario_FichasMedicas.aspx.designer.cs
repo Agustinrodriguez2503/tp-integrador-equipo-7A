@@ -114,6 +114,15 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.Label lblNombreDueño;
 
         /// <summary>
+        /// Control lblApellidoDueño.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblApellidoDueño;
+
+        /// <summary>
         /// Control lblTelefonoDueño.
         /// </summary>
         /// <remarks>
@@ -139,6 +148,15 @@ namespace tp_integrador
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRegistrarVisita;
+
+        /// <summary>
+        /// Control btnDescargarPDF.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnDescargarPDF;
 
         /// <summary>
         /// Control btnVolver.

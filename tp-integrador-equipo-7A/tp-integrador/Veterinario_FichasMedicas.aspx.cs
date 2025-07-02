@@ -42,6 +42,7 @@ namespace tp_integrador
                     int idTurno = Convert.ToInt32(idTurnoString);
                     ViewState["IDTurno"] = idTurno;
                     btnRegistrarVisita.Visible = true;
+                    btnDescargarPDF.Visible = false;
                 }
 
                 FichaNegocio dni = new FichaNegocio();
@@ -69,6 +70,7 @@ namespace tp_integrador
 
                 //Datos Dueño
                 lblNombreDueño.Text = DatosDueño.Nombre;
+                lblApellidoDueño.Text = DatosDueño.Apellido;
                 lblTelefonoDueño.Text = DatosDueño.Telefono.ToString();
                 lblCorreoDueño.Text = DatosDueño.Correo;
 
@@ -84,11 +86,6 @@ namespace tp_integrador
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
 
-            //Page.Validate("BusquedaGroup");
-            //if (!Page.IsValid)
-            //{
-            //    return;
-            //}
             try
             {
                 string textoIngresado = txtFiltroFicha.Text.Trim();
@@ -106,6 +103,7 @@ namespace tp_integrador
                         lblPeso.Text = "";
                         lblRaza.Text = "";
                         lblNombreDueño.Text = "";
+                        lblApellidoDueño.Text = "";
                         lblTelefonoDueño.Text = "";
                         lblCorreoDueño.Text = "";
                     }
@@ -135,6 +133,7 @@ namespace tp_integrador
 
                         //Datos Dueño
                         lblNombreDueño.Text = DatosDueño.Nombre;
+                        lblApellidoDueño.Text = DatosDueño.Apellido;
                         lblTelefonoDueño.Text = DatosDueño.Telefono.ToString();
                         lblCorreoDueño.Text = DatosDueño.Correo;
                     }
@@ -162,6 +161,7 @@ namespace tp_integrador
                 lblPeso.Text = "";
                 lblRaza.Text = "";
                 lblNombreDueño.Text = "";
+                lblApellidoDueño.Text = "";
                 lblTelefonoDueño.Text = "";
                 lblCorreoDueño.Text = "";
                 ddlFiltroFicha.Items.Clear();
@@ -233,5 +233,38 @@ namespace tp_integrador
                 Response.Redirect("Admin_PagPrincipal.aspx", false);
             }
         }
+
+        protected void btnDescargarPDF_Click(object sender, EventArgs e)
+        {
+            if (ViewState["IDMascota"] != null)
+            {
+                int idMascota = (int)ViewState["IDMascota"];
+
+                FichaNegocio fichaNegocio = new FichaNegocio();
+                string dniDueño = fichaNegocio.buscarDueño(idMascota);
+
+                MascotaNegocio mascotaNegocio = new MascotaNegocio();
+                Mascota mascota = mascotaNegocio.listar(dniDueño).FirstOrDefault(m => m.IDMascota == idMascota);
+
+                DueñoNegocio dueñoNegocio = new DueñoNegocio();
+                Dueño dueño = dueñoNegocio.listar(dniDueño).FirstOrDefault();
+
+                List<Ficha> historial = fichaNegocio.listarFichasPorMascota(dniDueño, idMascota);
+
+                if (mascota != null && dueño != null)
+                {
+                    //Generar el PDF
+                    byte[] pdfBytes = Servicios.GenerarPdfHistorialMascota(mascota, dueño, historial);
+
+                    //Enviar el PDF al navegador para descarga
+                    Response.Clear();
+                    Response.ContentType = "application/pdf";
+                    Response.AddHeader("content-disposition", $"attachment;filename=Ficha_{mascota.Nombre.Replace(" ", "_")}.pdf");
+                    Response.BinaryWrite(pdfBytes);
+                    Response.End();
+                }
+            }
+        }
+
     }
 }

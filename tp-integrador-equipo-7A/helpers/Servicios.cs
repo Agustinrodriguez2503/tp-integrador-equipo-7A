@@ -5,6 +5,11 @@ using System.Text;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using dominio;
+using System.IO;
+using System.Xml.Linq;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace helpers
 {
@@ -88,6 +93,96 @@ namespace helpers
             {
 
                 throw ex;
+            }
+        }
+
+        public static byte[] GenerarPdfHistorialMascota(Mascota mascota, Dueño dueño, List<Ficha> historial)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                Document document = new Document(PageSize.A4, 40, 40, 60, 40);
+                PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
+                document.Open();
+
+                //Título
+                Font titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD, new BaseColor(32, 201, 151)); // #20c997
+                Paragraph title = new Paragraph("Historial de Visitas Veterinarias", titleFont)
+                {
+                    Alignment = Element.ALIGN_CENTER,
+                    SpacingAfter = 20
+                };
+                document.Add(title);
+
+                //Datos de la Mascota y Dueño
+                PdfPTable infoTable = new PdfPTable(2) { WidthPercentage = 100, SpacingAfter = 25 };
+                infoTable.DefaultCell.Border = Rectangle.NO_BORDER;
+
+                Font boldFont = FontFactory.GetFont("Arial", 10, Font.BOLD);
+                Font normalFont = FontFactory.GetFont("Arial", 10);
+
+                // Columna Izquierda: Datos Mascota
+                PdfPCell cellMascota = new PdfPCell { Border = Rectangle.NO_BORDER };
+                cellMascota.AddElement(new Paragraph("Datos de la Mascota", boldFont));
+                cellMascota.AddElement(new Paragraph($"Nombre: {mascota.Nombre}", normalFont));
+                cellMascota.AddElement(new Paragraph($"Especie: {mascota.Tipo} - Raza: {mascota.Raza}", normalFont));
+                cellMascota.AddElement(new Paragraph($"Sexo: {mascota.Sexo} - Edad: {mascota.Edad} años", normalFont));
+                infoTable.AddCell(cellMascota);
+
+                // Columna Derecha: Datos Dueño
+                PdfPCell cellDueño = new PdfPCell { Border = Rectangle.NO_BORDER };
+                cellDueño.AddElement(new Paragraph("Datos del Dueño", boldFont));
+                cellDueño.AddElement(new Paragraph($"Nombre y Apellido: {dueño.Nombre} {dueño.Apellido}", normalFont));
+                cellDueño.AddElement(new Paragraph($"Teléfono: {dueño.Telefono}", normalFont));
+                cellDueño.AddElement(new Paragraph($"Email: {dueño.Correo}", normalFont));
+                infoTable.AddCell(cellDueño);
+
+                document.Add(infoTable);
+
+                //Tabla con el Historial de Visitas
+                PdfPTable historyTable = new PdfPTable(2);
+                historyTable.WidthPercentage = 100;
+                historyTable.SetWidths(new float[] { 1f, 4f });
+
+                //Encabezados de la tabla
+                Font headerFont = FontFactory.GetFont("Arial", 10, Font.BOLD, BaseColor.WHITE);
+                string[] headers = { "Fecha", "Descripción de la Visita" };
+                foreach (string header in headers)
+                {
+                    PdfPCell cell = new PdfPCell(new Phrase(header, headerFont))
+                    {
+                        BackgroundColor = new BaseColor(32, 201, 151),
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        Padding = 5
+                    };
+                    historyTable.AddCell(cell);
+                }
+
+                //Filas con los datos
+                if (historial.Any())
+                {
+                    foreach (var ficha in historial)
+                    {
+                        historyTable.AddCell(new Phrase(ficha.Turno.FechaHora.ToString("dd/MM/yyyy"), normalFont));
+                        historyTable.AddCell(new Phrase(ficha.Descripcion, normalFont));
+                    }
+                }
+                else
+                {
+                    PdfPCell noDataCell = new PdfPCell(new Phrase("No hay visitas registradas en el historial.", normalFont))
+                    {
+                        Colspan = 2,
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        Padding = 10,
+                        Border = Rectangle.NO_BORDER
+                    };
+                    historyTable.AddCell(noDataCell);
+                }
+
+                document.Add(historyTable);
+                document.Close();
+                writer.Close();
+
+                return memoryStream.ToArray();
             }
         }
 

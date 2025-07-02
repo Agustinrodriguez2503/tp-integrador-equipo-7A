@@ -1,38 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\",
+  "WorkspaceRootPath": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\maria\\desktop\\programacion 30-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\recepcionista_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\recepcionista_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\nahue\\downloads\\tpi progra iii\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\veterinario_fichasmedicas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\veterinario_fichasmedicas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\maria\\desktop\\programacion 30-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\recepcionista_pagprincipal.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\recepcionista_pagprincipal.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BACDD235-D264-4004-9B71-1FCCD2DE9171}|helpers\\helpers.csproj|c:\\users\\nahue\\downloads\\tpi progra iii\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\helpers\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BACDD235-D264-4004-9B71-1FCCD2DE9171}|helpers\\helpers.csproj|solutionrelative:helpers\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\maria\\desktop\\programacion 30-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\turnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\turnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|c:\\users\\maria\\desktop\\programacion 30-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\dominio\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C60566D8-1C3C-408E-A463-DA21BF7611F5}|dominio\\dominio.csproj|solutionrelative:dominio\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|c:\\users\\maria\\desktop\\programacion 30-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|solutionrelative:negocio\\turnonegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\maria\\desktop\\programacion 30-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\turnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\turnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\due\u00F1o_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\due\u00F1o_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|c:\\users\\maria\\desktop\\programacion 30-6\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\negocio\\due\u00F1onegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9F4B385-1E26-427D-ACEA-9A123E51EF43}|negocio\\negocio.csproj|solutionrelative:negocio\\due\u00F1onegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\nahue\\downloads\\tpi progra iii\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\veterinario_fichasmedicas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\veterinario_fichasmedicas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,110 +22,49 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Due\u00F1o_PagPrincipal.aspx",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Due\u00F1o_PagPrincipal.aspx",
-              "RelativeDocumentMoniker": "tp-integrador\\Due\u00F1o_PagPrincipal.aspx",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Due\u00F1o_PagPrincipal.aspx",
-              "RelativeToolTip": "tp-integrador\\Due\u00F1o_PagPrincipal.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-01T18:12:22.884Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Recepcionista_PagPrincipal.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Recepcionista_PagPrincipal.aspx.cs",
-              "RelativeDocumentMoniker": "tp-integrador\\Recepcionista_PagPrincipal.aspx.cs",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Recepcionista_PagPrincipal.aspx.cs",
-              "RelativeToolTip": "tp-integrador\\Recepcionista_PagPrincipal.aspx.cs",
-              "ViewState": "AgIAAE0BAAAAAAAAAAAowEsAAAAyAAAAAAAAAA==",
+              "Title": "Servicios.cs",
+              "DocumentMoniker": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\helpers\\Servicios.cs",
+              "RelativeDocumentMoniker": "helpers\\Servicios.cs",
+              "ToolTip": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\helpers\\Servicios.cs",
+              "RelativeToolTip": "helpers\\Servicios.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAL4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-01T20:12:31.534Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Recepcionista_PagPrincipal.aspx",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Recepcionista_PagPrincipal.aspx",
-              "RelativeDocumentMoniker": "tp-integrador\\Recepcionista_PagPrincipal.aspx",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Recepcionista_PagPrincipal.aspx",
-              "RelativeToolTip": "tp-integrador\\Recepcionista_PagPrincipal.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-01T20:10:57.684Z",
+              "WhenOpened": "2025-07-02T01:42:18.37Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Turnos.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Turnos.aspx.cs",
-              "RelativeDocumentMoniker": "tp-integrador\\Turnos.aspx.cs",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Turnos.aspx.cs",
-              "RelativeToolTip": "tp-integrador\\Turnos.aspx.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAowHMAAAAAAAAAAAAAAA==",
+              "Title": "Veterinario_FichasMedicas.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Veterinario_FichasMedicas.aspx.cs",
+              "RelativeDocumentMoniker": "tp-integrador\\Veterinario_FichasMedicas.aspx.cs",
+              "ToolTip": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Veterinario_FichasMedicas.aspx.cs*",
+              "RelativeToolTip": "tp-integrador\\Veterinario_FichasMedicas.aspx.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-01T22:14:45.054Z",
+              "WhenOpened": "2025-07-02T01:43:42.628Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TurnoNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\TurnoNegocio.cs",
-              "RelativeDocumentMoniker": "negocio\\TurnoNegocio.cs",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\TurnoNegocio.cs",
-              "RelativeToolTip": "negocio\\TurnoNegocio.cs",
-              "ViewState": "AgIAALwAAAAAAAAAAAAgwM4AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-01T20:42:09.188Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Due\u00F1oNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\Due\u00F1oNegocio.cs",
-              "RelativeDocumentMoniker": "negocio\\Due\u00F1oNegocio.cs",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\negocio\\Due\u00F1oNegocio.cs",
-              "RelativeToolTip": "negocio\\Due\u00F1oNegocio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-01T19:56:17.862Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Turno.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Turno.cs",
-              "RelativeDocumentMoniker": "dominio\\Turno.cs",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\dominio\\Turno.cs",
-              "RelativeToolTip": "dominio\\Turno.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAYwBwAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-01T21:08:47.066Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Turnos.aspx",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Turnos.aspx",
-              "RelativeDocumentMoniker": "tp-integrador\\Turnos.aspx",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion 30-6\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Turnos.aspx",
-              "RelativeToolTip": "tp-integrador\\Turnos.aspx",
+              "DocumentIndex": 0,
+              "Title": "Veterinario_FichasMedicas.aspx",
+              "DocumentMoniker": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Veterinario_FichasMedicas.aspx",
+              "RelativeDocumentMoniker": "tp-integrador\\Veterinario_FichasMedicas.aspx",
+              "ToolTip": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Veterinario_FichasMedicas.aspx*",
+              "RelativeToolTip": "tp-integrador\\Veterinario_FichasMedicas.aspx*",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-01T22:14:38.251Z",
+              "WhenOpened": "2025-07-02T01:43:40.094Z",
               "EditorCaption": ""
             }
           ]

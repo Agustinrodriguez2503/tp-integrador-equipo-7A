@@ -558,3 +558,7 @@ C:\Users\agustin\Desktop\tp nuevo\tp-integrador-equipo-7A\tp-integrador-equipo-7
 C:\Users\agustin\Desktop\tp nuevo\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\obj\Debug\tp-integ.AC736151.Up2Date
 C:\Users\agustin\Desktop\tp nuevo\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\obj\Debug\tp-integrador.dll
 C:\Users\agustin\Desktop\tp nuevo\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\obj\Debug\tp-integrador.pdb
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\bin\itextsharp.dll
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\bin\BouncyCastle.Cryptography.dll
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\bin\itextsharp.xml
+C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\bin\BouncyCastle.Cryptography.xml

@@ -156,6 +156,10 @@
                             <asp:Label ID="lblNombreDueño" runat="server"></asp:Label>
                         </div>
                         <div>
+                            <label style="font-weight: bold;">Apellido:</label>
+                            <asp:Label ID="lblApellidoDueño" runat="server"></asp:Label>
+                        </div>
+                        <div>
                             <label style="font-weight: bold;">Telefono:</label>
                             <asp:Label ID="lblTelefonoDueño" runat="server"></asp:Label>
                         </div>
@@ -179,6 +183,13 @@
                 <div>
                     <asp:Button ID="btnRegistrarVisita" runat="server" Text="Registrar Visita"
                         CssClass="btn btn-secondary" OnClick="btnRegistrarVisita_Click" />
+
+                    <asp:LinkButton ID="btnDescargarPDF" runat="server"
+                        CssClass="btn btn-secondary" OnClick="btnDescargarPDF_Click">
+    
+                        <i class="fas fa-file-pdf" aria-hidden="true"></i> Descargar PDF
+
+                    </asp:LinkButton>
                 </div>
 
             </div>
