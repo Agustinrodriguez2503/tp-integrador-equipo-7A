@@ -33,7 +33,7 @@ namespace tp_integrador
                 lbl_ddlMascotas.Visible = false;
                 btnBuscarTurno.Enabled = false;
                 ddlMascota.Items.Clear();
-                
+
                 // Corroboramos que el TexBox no se encuentre nulo o vacio.
                 if (string.IsNullOrEmpty(txtDueño.Text))
                 {
@@ -97,7 +97,7 @@ namespace tp_integrador
 
             cargarTurnosSinFiltros(negocioTurno.listarTurnosConMascotaYVeterinario());
             Session["TurnosFiltrados"] = negocioTurno.listarTurnosConMascotaYVeterinario();
-         
+
 
         }
 
@@ -107,9 +107,9 @@ namespace tp_integrador
             upPanelTurnos.Visible = false;
 
         }
-       
-        
-        
+
+
+
         protected void btnBuscarTurno_Click(object sender, EventArgs e)
         {
             try
@@ -316,7 +316,7 @@ namespace tp_integrador
                 Session["Error"] = ex.Message.ToString();
                 Response.Redirect("ErrorPage.aspx");
             }
-            
+
         }
 
 
@@ -342,7 +342,7 @@ namespace tp_integrador
 
         protected void btnLimpiarBuscarFiltros_Click(object sender, EventArgs e)
         {
-            TurnoNegocio negocioTurno = new TurnoNegocio(); 
+            TurnoNegocio negocioTurno = new TurnoNegocio();
 
             if (string.IsNullOrEmpty(txtBuscarTurno.Text))
             {
@@ -351,10 +351,25 @@ namespace tp_integrador
                 return;
             }
 
+            if (ddlEstadoFiltro.SelectedValue == "Seleccione")
+            {
+                lbl_ddlEstadoFiltro.Text = "Seleccione el criterio para filtar";
+                lbl_ddlEstadoFiltro.Visible = true;
+                return;
+            }
+
 
             string estadoTurno = rblEstadoTurno.SelectedValue;
             string criterioTurno = ddlEstadoFiltro.SelectedValue;
             string valorTurno = txtBuscarTurno.Text;
+
+            DateTime fechaBuscada;
+            if (criterioTurno == "Fecha")
+            {
+                fechaBuscada = DateTime.Parse(valorTurno);
+                valorTurno = fechaBuscada.ToString("yyyy-MM-dd");
+            }
+
 
             cargarTurnosSinFiltros(negocioTurno.filtrarTurnos(estadoTurno, criterioTurno, valorTurno));
             Session["TurnosFiltrados"] = negocioTurno.filtrarTurnos(estadoTurno, criterioTurno, valorTurno);
@@ -362,14 +377,49 @@ namespace tp_integrador
 
         }
 
-        
-        
+
+
         protected void cargarTurnosSinFiltros(List<Turno> listaTurnos)
         {
 
             gvTurnos.DataSource = listaTurnos;
             gvTurnos.DataBind();
             gvTurnos.Visible = true;
+        }
+
+        protected void rblEstadoTurno_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string estadoTurno = rblEstadoTurno.SelectedValue;
+            TurnoNegocio negocioTurno = new TurnoNegocio();
+            List<Turno> turnosFiltrados;
+
+            if (estadoTurno == "TODO")
+                turnosFiltrados = negocioTurno.listarTurnosConMascotaYVeterinario("TODO", "TODO");
+            else if (estadoTurno == "PENDIENTE")
+                turnosFiltrados = negocioTurno.listarTurnosConMascotaYVeterinario("TODO", "PENDIENTE");
+            else if (estadoTurno == "CANCELADO")
+                turnosFiltrados = negocioTurno.listarTurnosConMascotaYVeterinario("TODO", "CANCELADO");
+            else if (estadoTurno == "REALIZADO")
+                turnosFiltrados = negocioTurno.listarTurnosConMascotaYVeterinario("TODO", "REALIZADO");
+            else
+                turnosFiltrados = negocioTurno.listarTurnosConMascotaYVeterinario("TODO", "COBRADO");
+
+
+            cargarTurnosSinFiltros(turnosFiltrados);
+            Session["TurnosFiltrados"] = turnosFiltrados;
+
+        }
+
+        protected void ddlEstadoFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lbl_ddlEstadoFiltro.Visible = false;
+            if (ddlEstadoFiltro.SelectedValue == "Veterinario")
+                lblBuscarPor.Text = "Ingrese el apellido del Veterinario para filtrar:";
+            else if (ddlEstadoFiltro.SelectedValue == "Mascota")
+                lblBuscarPor.Text = "Ingrese el nombre de la Mascota para filtrar:";
+            else
+                lblBuscarPor.Text = "Ingrese la fecha que desea filtrar con el siguiente formato: dd/mm/aaaa: ";
+
         }
     }
 }

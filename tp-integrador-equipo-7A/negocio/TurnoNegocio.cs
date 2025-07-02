@@ -215,14 +215,14 @@ namespace negocio
             try
             {
                 string consulta = @"
-                    SELECT t.IDTurno, t.MatriculaVeterinario, t.IDMascota, t.FechaHora, t.Estado, t.Activo,
-                           m.Nombre AS NombreMascota,
-                           v.Apellido AS ApellidoVet
-                    FROM Turnos t
-                    INNER JOIN Mascotas m ON t.IDMascota = m.IDMascota
-                    INNER JOIN Dueños d ON m.DniDueño = d.Dni
-                    INNER JOIN Veterinarios v ON t.MatriculaVeterinario = v.Matricula
-                    WHERE t.Activo = 1";
+            SELECT t.IDTurno, t.MatriculaVeterinario, t.IDMascota, t.FechaHora, t.Estado, t.Activo,
+                   m.Nombre AS NombreMascota,
+                   v.Apellido AS ApellidoVet
+            FROM Turnos t
+            INNER JOIN Mascotas m ON t.IDMascota = m.IDMascota
+            INNER JOIN Dueños d ON m.DniDueño = d.Dni
+            INNER JOIN Veterinarios v ON t.MatriculaVeterinario = v.Matricula
+            WHERE t.Activo = 1";
 
                 if (criterio == "Veterinario")
                 {
@@ -236,11 +236,11 @@ namespace negocio
                 }
                 else
                 {
-                    consulta += " AND t.FechaHora = @valor";
+                    consulta += " AND CAST(t.FechaHora AS DATE) = @valor";
                     datos.setearParametro("@valor", valor);
                 }
 
-                if(estado != "TODO")
+                if (estado != "TODO")
                 {
                     consulta += " AND t.Estado = @estado";
                     datos.setearParametro("@estado", estado);
@@ -280,6 +280,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
 
 
 

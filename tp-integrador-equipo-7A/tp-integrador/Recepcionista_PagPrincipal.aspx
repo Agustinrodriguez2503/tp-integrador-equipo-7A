@@ -123,16 +123,15 @@
             font-weight: 500;
         }
 
-        .pager-custom a:hover {
-            background-color: #20c997;
-            color: white;
-        }
+            .pager-custom a:hover {
+                background-color: #20c997;
+                color: white;
+            }
 
         .pager-custom span {
             background-color: #20c997;
             color: white;
         }
-
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -299,12 +298,13 @@
                                                 RepeatDirection="Horizontal"
                                                 CssClass="btn-group d-flex flex-wrap gap-2"
                                                 AutoPostBack="true"
-                                                RepeatLayout="Flow">
+                                                RepeatLayout="Flow"
+                                                OnSelectedIndexChanged="rblEstadoTurno_SelectedIndexChanged">
                                                 <asp:ListItem Text="Pendientes" Value="PENDIENTE" />
                                                 <asp:ListItem Text="Cancelados" Value="CANCELADO" />
                                                 <asp:ListItem Text="Realizados" Value="REALIZADO" />
                                                 <asp:ListItem Text="Cobrados" Value="COBRADO" />
-                                                <asp:ListItem Text="Todos" Value="TODO" />
+                                                <asp:ListItem Text="Todos" Value="TODO" Selected="True" />
                                             </asp:RadioButtonList>
                                         </div>
 
@@ -316,27 +316,19 @@
                                                 runat="server"
                                                 CssClass="form-select form-select-lg shadow-sm rounded-3"
                                                 AutoPostBack="true"
-                                                ValidationGroup="FiltroTurnos">
+                                                ValidationGroup="FiltroTurnos"
+                                                OnSelectedIndexChanged="ddlEstadoFiltro_SelectedIndexChanged">
                                                 <asp:ListItem Text="-- Seleccione un criterio --" Value="Seleccione" Selected="True" />
                                                 <asp:ListItem Text="Fecha" Value="Fecha" />
                                                 <asp:ListItem Text="Veterinario" Value="Veterinario" />
                                                 <asp:ListItem Text="Mascota" Value="Mascota" />
                                             </asp:DropDownList>
-                                            <asp:RequiredFieldValidator
-                                                ID="rfvEstadoFiltro"
-                                                runat="server"
-                                                ControlToValidate="ddlEstadoFiltro"
-                                                InitialValue="Seleccione"
-                                                ErrorMessage="Debe seleccionar un criterio."
-                                                CssClass="text-danger fw-semibold d-block mt-1"
-                                                Display="Dynamic"
-                                                EnableClientScript="true"
-                                                ValidationGroup="FiltroTurnos" />
+                                            <asp:Label Text="Ingrese:" CssClass="form-label fw-semibold text-danger fst-italic" runat="server" ID="lbl_ddlEstadoFiltro" Visible="false" />
                                         </div>
 
                                         <!-- Buscador y botón -->
                                         <div class="col-12">
-                                            <label id="lblBuscarPor" class="form-label fw-semibold">Ingrese:</label>
+                                            <asp:Label Text="Ingrese:" CssClass="form-label fw-semibold" runat="server" ID="lblBuscarPor" />
                                             <div class="input-group input-group-lg shadow-sm rounded-3">
                                                 <asp:TextBox
                                                     ID="txtBuscarTurno"
@@ -350,10 +342,11 @@
                                                     Text="Buscar"
                                                     CssClass="btn btn-outline-secondary"
                                                     OnClick="btnLimpiarBuscarFiltros_Click"
-                                                    ValidationGroup="FiltroTurnos"/>
+                                                    ValidationGroup="FiltroTurnos" />
 
                                             </div>
                                         </div>
+
 
 
                                         <!-- GRIDVIEW -->

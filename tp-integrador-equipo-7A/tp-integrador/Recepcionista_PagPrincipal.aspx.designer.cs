@@ -123,13 +123,22 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.DropDownList ddlEstadoFiltro;
 
         /// <summary>
-        /// Control rfvEstadoFiltro.
+        /// Control lbl_ddlEstadoFiltro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEstadoFiltro;
+        protected global::System.Web.UI.WebControls.Label lbl_ddlEstadoFiltro;
+
+        /// <summary>
+        /// Control lblBuscarPor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBuscarPor;
 
         /// <summary>
         /// Control txtBuscarTurno.
