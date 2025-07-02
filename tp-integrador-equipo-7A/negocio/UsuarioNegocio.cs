@@ -101,7 +101,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("Select Usuario, IDRol, Clave, Activa From Usuarios Where Usuario = @user AND Clave = @pass");
+                datos.setearConsulta("Select Usuario, IDRol, Clave, Activa From Usuarios Where Usuario = @user AND Clave = @pass AND Activa = 1");
                 datos.setearParametro("@user", usuario.User);
                 datos.setearParametro("@pass", usuario.Pass);
 
