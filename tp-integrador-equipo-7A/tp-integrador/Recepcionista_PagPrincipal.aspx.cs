@@ -30,19 +30,35 @@ namespace tp_integrador
 
             try
             {
-                string dniDueño = txtDueño.Text;
-                List<Mascota> mascotas = new List<Mascota>();
-                mascotas = negocioMascota.listar(dniDueño);
                 lbl_ddlMascotas.Visible = false;
                 btnBuscarTurno.Enabled = false;
                 ddlMascota.Items.Clear();
-
-                if (!FuncionesGenericas.validaTexto(txtDueño.Text))
+                
+                // Corroboramos que el TexBox no se encuentre nulo o vacio.
+                if (string.IsNullOrEmpty(txtDueño.Text))
                 {
                     lblDniNoValido.Text = "Ingrese el DNI del dueño de la mascota.";
                     lblDniNoValido.Visible = true;
                     return;
                 }
+
+                DueñoNegocio negocioDueño = new DueñoNegocio();
+                Dueño dueñoSeleccionado = negocioDueño.listar(txtDueño.Text).Find(x => x.Dni == txtDueño.Text);
+
+                //Corroboramos que exista dueño registrado con el DNI ingresado
+                if (dueñoSeleccionado == null)
+                {
+                    lblDniNoValido.Text = "No existe Dueño registrado con el DNI ingresado";
+                    lblDniNoValido.Visible = true;
+                    return;
+
+                }
+
+
+                List<Mascota> mascotas = new List<Mascota>();
+                mascotas = negocioMascota.listar(txtDueño.Text);
+
+
 
                 if (mascotas != null && mascotas.Count > 0)
                 {
@@ -56,7 +72,7 @@ namespace tp_integrador
                 }
                 else
                 {
-                    lblDniNoValido.Text = "El DNI ingresado no pertenece a un Dueño registrado.";
+                    lblDniNoValido.Text = "El Dueño ingresado no posee mascostas registradas.";
                     lblDniNoValido.Visible = true;
                     ddlMascota.Enabled = false;
                 }
@@ -76,6 +92,13 @@ namespace tp_integrador
         {
             panelRegistrar.Visible = false;
             upPanelTurnos.Visible = true;
+
+            TurnoNegocio negocioTurno = new TurnoNegocio();
+
+            cargarTurnosSinFiltros(negocioTurno.listarTurnosConMascotaYVeterinario());
+            Session["TurnosFiltrados"] = negocioTurno.listarTurnosConMascotaYVeterinario();
+         
+
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
@@ -296,5 +319,57 @@ namespace tp_integrador
             
         }
 
+
+        protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                List<Turno> turnos = Session["TurnosFiltrados"] as List<Turno>;
+                if (turnos != null)
+                {
+                    gvTurnos.PageIndex = e.NewPageIndex;
+                    gvTurnos.DataSource = turnos;
+                    gvTurnos.DataBind();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
+            }
+        }
+
+        protected void btnLimpiarBuscarFiltros_Click(object sender, EventArgs e)
+        {
+            TurnoNegocio negocioTurno = new TurnoNegocio(); 
+
+            if (string.IsNullOrEmpty(txtBuscarTurno.Text))
+            {
+                cargarTurnosSinFiltros(negocioTurno.listarTurnosConMascotaYVeterinario());
+                Session["TurnosFiltrados"] = negocioTurno.listarTurnosConMascotaYVeterinario();
+                return;
+            }
+
+
+            string estadoTurno = rblEstadoTurno.SelectedValue;
+            string criterioTurno = ddlEstadoFiltro.SelectedValue;
+            string valorTurno = txtBuscarTurno.Text;
+
+            cargarTurnosSinFiltros(negocioTurno.filtrarTurnos(estadoTurno, criterioTurno, valorTurno));
+            Session["TurnosFiltrados"] = negocioTurno.filtrarTurnos(estadoTurno, criterioTurno, valorTurno);
+
+
+        }
+
+        
+        
+        protected void cargarTurnosSinFiltros(List<Turno> listaTurnos)
+        {
+
+            gvTurnos.DataSource = listaTurnos;
+            gvTurnos.DataBind();
+            gvTurnos.Visible = true;
+        }
     }
 }

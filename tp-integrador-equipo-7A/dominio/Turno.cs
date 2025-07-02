@@ -20,13 +20,6 @@ namespace dominio
 
         public string NombreVeterinario { get; set; }
 
-        //public string DescripcionTurno
-        //{
-        //    get
-        //    {
-        //        return $"🗓️ {FechaHora:dddd dd/MM/yyyy} - ⏰ {FechaHora:HH:mm}";
-        //    }
-        //}
 
         //Armé este para que se vean mejor los datos en la lista de turnos, eliminenlo si les rompe el código
         public string DescripcionTurno

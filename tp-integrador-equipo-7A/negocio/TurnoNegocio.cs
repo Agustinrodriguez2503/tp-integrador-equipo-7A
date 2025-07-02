@@ -110,32 +110,59 @@ namespace negocio
             }
         }
 
-        public List<Turno> listarTurnosConMascotaYVeterinario(string dniDueño, string estado = "TODO")
+        public List<Turno> listarTurnosConMascotaYVeterinario(string dniDueño = "TODO", string estado = "TODO")
         {
             List<Turno> lista = new List<Turno>();
             AccesoDatos datos = new AccesoDatos();
+            string consulta;
 
             try
             {
-                string consulta = @"
-                SELECT t.IDTurno, t.MatriculaVeterinario, t.IDMascota, t.FechaHora, t.Estado, t.Activo,
-                       m.Nombre AS NombreMascota,
-                       v.Apellido AS ApellidoVet
-                FROM Turnos t
-                INNER JOIN Mascotas m ON t.IDMascota = m.IDMascota
-                INNER JOIN Dueños d ON m.DniDueño = d.Dni
-                INNER JOIN Veterinarios v ON t.MatriculaVeterinario = v.Matricula
-                WHERE d.Dni = @dniDueño AND t.Activo = 1 AND t.FechaHora > GETDATE()
-            ";
 
-                if (estado != "TODO")
+                if(dniDueño != "TODO")
                 {
-                    consulta += " AND t.Estado = @estado";
-                    datos.setearParametro("@estado", estado);
-                }
 
-                datos.setearConsulta(consulta);
-                datos.setearParametro("@dniDueño", dniDueño);
+                    consulta = @"
+                    SELECT t.IDTurno, t.MatriculaVeterinario, t.IDMascota, t.FechaHora, t.Estado, t.Activo,
+                           m.Nombre AS NombreMascota,
+                           v.Apellido AS ApellidoVet
+                    FROM Turnos t
+                    INNER JOIN Mascotas m ON t.IDMascota = m.IDMascota
+                    INNER JOIN Dueños d ON m.DniDueño = d.Dni
+                    INNER JOIN Veterinarios v ON t.MatriculaVeterinario = v.Matricula
+                    WHERE d.Dni = @dniDueño AND t.Activo = 1 AND t.FechaHora > GETDATE()
+                     ";
+                    
+                    if (estado != "TODO")
+                    {
+                        consulta += " AND t.Estado = @estado";
+                        datos.setearParametro("@estado", estado);
+                    }
+
+                    datos.setearConsulta(consulta);
+                    datos.setearParametro("@dniDueño", dniDueño);
+                }
+                else
+                {
+                    consulta = @"
+                    SELECT t.IDTurno, t.MatriculaVeterinario, t.IDMascota, t.FechaHora, t.Estado, t.Activo,
+                           m.Nombre AS NombreMascota,
+                           v.Apellido AS ApellidoVet
+                    FROM Turnos t
+                    INNER JOIN Mascotas m ON t.IDMascota = m.IDMascota
+                    INNER JOIN Dueños d ON m.DniDueño = d.Dni
+                    INNER JOIN Veterinarios v ON t.MatriculaVeterinario = v.Matricula
+                    WHERE t.Activo = 1
+                     ";
+                   
+                    if (estado != "TODO")
+                    {
+                        consulta += " AND t.Estado = @estado";
+                        datos.setearParametro("@estado", estado);
+                    }
+
+                    datos.setearConsulta(consulta);
+                }
 
 
                 datos.ejecutarLectura();
@@ -170,6 +197,82 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public List<Turno> filtrarTurnos(string estado, string criterio, string valor)
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                string consulta = @"
+                    SELECT t.IDTurno, t.MatriculaVeterinario, t.IDMascota, t.FechaHora, t.Estado, t.Activo,
+                           m.Nombre AS NombreMascota,
+                           v.Apellido AS ApellidoVet
+                    FROM Turnos t
+                    INNER JOIN Mascotas m ON t.IDMascota = m.IDMascota
+                    INNER JOIN Dueños d ON m.DniDueño = d.Dni
+                    INNER JOIN Veterinarios v ON t.MatriculaVeterinario = v.Matricula
+                    WHERE t.Activo = 1";
+
+                if (criterio == "Veterinario")
+                {
+                    consulta += " AND v.Apellido = @valor";
+                    datos.setearParametro("@valor", valor);
+                }
+                else if (criterio == "Mascota")
+                {
+                    consulta += " AND m.Nombre = @valor";
+                    datos.setearParametro("@valor", valor);
+                }
+                else
+                {
+                    consulta += " AND t.FechaHora = @valor";
+                    datos.setearParametro("@valor", valor);
+                }
+
+                if(estado != "TODO")
+                {
+                    consulta += " AND t.Estado = @estado";
+                    datos.setearParametro("@estado", estado);
+                }
+
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Turno aux = new Turno();
+                    aux.IdTurno = (int)datos.Lector["IDTurno"];
+                    aux.MatriculaVeterinario = datos.Lector["MatriculaVeterinario"].ToString();
+
+                    aux.Mascota = new Mascota();
+                    aux.Mascota.IDMascota = (int)datos.Lector["IDMascota"];
+                    aux.Mascota.Nombre = datos.Lector["NombreMascota"].ToString();
+
+                    aux.FechaHora = (DateTime)datos.Lector["FechaHora"];
+                    aux.Estado = datos.Lector["Estado"].ToString();
+                    aux.Activo = (bool)datos.Lector["Activo"];
+
+                    aux.NombreVeterinario = "Dr. " + datos.Lector["ApellidoVet"].ToString();
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
 
         public void Agregar(Turno nuevo)
         {
