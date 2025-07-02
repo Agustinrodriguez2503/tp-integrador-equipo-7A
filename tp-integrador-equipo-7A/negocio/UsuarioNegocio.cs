@@ -124,5 +124,25 @@ namespace negocio
                 datos.cerrarConexion(); 
             }
         }
+        public void Habilitar_O_Eliminar(string usuario, int estado = 0)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Usuarios SET Activa = @estado WHERE Usuario = @usuario");
+                datos.setearParametro("@estado", estado);
+                datos.setearParametro("@usuario", usuario);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

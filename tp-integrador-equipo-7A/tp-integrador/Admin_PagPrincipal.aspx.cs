@@ -499,6 +499,7 @@ namespace tp_integrador
         protected void btnHabilitarDueño_Click(object sender, EventArgs e)
         {
             DueñoNegocio dueñoNegocio = new DueñoNegocio();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
                 LinkButton btn = (LinkButton)sender;
@@ -508,9 +509,16 @@ namespace tp_integrador
                 if (dni != null)
                 {
                     if (accion == "Habilitar")
+                    {
                         dueñoNegocio.Habilitar_O_Eliminar(dni, 1);
+                        usuarioNegocio.Habilitar_O_Eliminar(dueñoNegocio.listar(dni)[0].Usuario, 1);
+                    }
                     else if (accion == "Eliminar")
+                    {
                         dueñoNegocio.Habilitar_O_Eliminar(dni);
+                        usuarioNegocio.Habilitar_O_Eliminar(dueñoNegocio.listar(dni)[0].Usuario);
+                    }
+                        
 
                     gvDueños.DataSource = dueñoNegocio.listar();
                     gvDueños.DataBind();
