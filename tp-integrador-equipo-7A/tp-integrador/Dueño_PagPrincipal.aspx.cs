@@ -206,7 +206,7 @@ namespace tp_integrador
 
                 if (id > 0)
                 {
-                    if (turnoNegocio.listar("PENDIENTE", id).Count > 1)
+                    if (turnoNegocio.listar("PENDIENTE", id).Count == 0)
                     {
                         Mascota nueva = new Mascota();
                         mascotaNegocio.Eliminar(id);
