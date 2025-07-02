@@ -468,7 +468,6 @@ namespace tp_integrador
             }
 
         }
-
         protected void btnModificarDueño_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
@@ -540,14 +539,12 @@ namespace tp_integrador
             gvDueños.DataBind();
 
         }
-
         protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
         {
             FiltroAvanzado = chkAvanzado.Checked;
             txtFiltroDueño.Enabled = !FiltroAvanzado;
 
         }
-
         protected void txtFiltroRec_TextChanged(object sender, EventArgs e)
         {
             List<Recepcionista> recepcionistas  = (List<Recepcionista>)Session["listaRecepcionistas"];
@@ -556,7 +553,6 @@ namespace tp_integrador
             gvRecepcionistas.DataSource = recepcionistasFiltrados;
             gvRecepcionistas.DataBind();
         }
-
         protected void txtFiltroVet_TextChanged(object sender, EventArgs e)
         {
             List<Veterinario> veterinarios = (List<Veterinario>)Session["listaVeterinarios"];
@@ -565,8 +561,6 @@ namespace tp_integrador
             gvVeterinarios.DataSource = veterinariosFiltrados;
             gvVeterinarios.DataBind();
         }
-
-
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             try
