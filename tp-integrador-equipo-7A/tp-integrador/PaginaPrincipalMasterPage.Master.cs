@@ -43,6 +43,14 @@ namespace tp_integrador
             {
                 contenedorCerrarSesion.Visible = false;
             }
+            if (pagina == "ErrorPage")
+            {
+                contenedorInicio.Visible = false;
+                contenedorLogin.Visible = false;
+                contenedorCerrarSesion.Visible = false;
+                acercaDe.Visible = false;
+                contacto.Visible = false;
+            }
         }
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)

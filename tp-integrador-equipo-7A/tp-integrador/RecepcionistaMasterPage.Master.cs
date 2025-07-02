@@ -26,6 +26,11 @@ namespace tp_integrador
                 contenedorLogin.Visible = true;
                 contenedorReturn.Visible = false;
             }
+            if (pagina == "Recepcionista_Cobros")
+            {
+                contenedorLogin.Visible = false;
+                contenedorReturn.Visible = true;
+            }
 
         }
 

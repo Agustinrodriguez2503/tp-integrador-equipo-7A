@@ -10,7 +10,7 @@ namespace negocio
 {
     public class RecepcionistaNegocio
     {
-        public List<Recepcionista> listar(string dni = "")
+        public List<Recepcionista> listar(string dni = "", int legajo = 0)
         {
             List<Recepcionista> lista = new List<Recepcionista>();
             AccesoDatos datos = new AccesoDatos();
@@ -24,8 +24,15 @@ namespace negocio
                 }
                 else
                 {
-                    datos.setearConsulta("SELECT Legajo, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Recepcionistas");
-
+                    if (legajo != 0)
+                    {
+                        datos.setearConsulta("SELECT Legajo, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Recepcionistas WHERE Legajo = @legajo");
+                        datos.setearParametro("@legajo", legajo);
+                    }
+                    else
+                    {
+                        datos.setearConsulta("SELECT Legajo, Usuario, Nombre, Apellido, Dni, Telefono, Correo, Activo FROM Recepcionistas");
+                    }
                 }
 
                     datos.ejecutarLectura();

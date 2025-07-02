@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -196,6 +197,7 @@ namespace tp_integrador
         protected void btnHabilitarVet_Click(object sender, EventArgs e)
         {
             VeterinarioNegocio veterinarioNegocio = new VeterinarioNegocio();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
                 LinkButton btn = (LinkButton)sender;
@@ -205,9 +207,16 @@ namespace tp_integrador
                 if (matricula != null)
                 {
                     if (accion == "Habilitar")
+                    {
                         veterinarioNegocio.Habilitar_O_Eliminar(matricula, 1);
+                        usuarioNegocio.Habilitar_O_Eliminar(veterinarioNegocio.listar(matricula)[0].Usuario, 1);
+                    }
+
                     else if (accion == "Eliminar")
+                    {
                         veterinarioNegocio.Habilitar_O_Eliminar(matricula);
+                        usuarioNegocio.Habilitar_O_Eliminar(veterinarioNegocio.listar(matricula)[0].Usuario);
+                    }
 
                     gvVeterinarios.DataSource = veterinarioNegocio.listar();
                     gvVeterinarios.DataBind();
@@ -347,6 +356,7 @@ namespace tp_integrador
         protected void btnHabilitarRec_Click(object sender, EventArgs e)
         {
             RecepcionistaNegocio recepcionistaNegocio = new RecepcionistaNegocio();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
                 LinkButton btn = (LinkButton)sender;
@@ -356,9 +366,15 @@ namespace tp_integrador
                 if (legajo != 0)
                 {
                     if (accion == "Habilitar")
+                    {
                         recepcionistaNegocio.Habilitar_O_Eliminar(legajo, 1);
+                        usuarioNegocio.Habilitar_O_Eliminar(recepcionistaNegocio.listar("",legajo)[0].Usuario, 1);
+                    }
                     else if (accion == "Eliminar")
+                    {
                         recepcionistaNegocio.Habilitar_O_Eliminar(legajo);
+                        usuarioNegocio.Habilitar_O_Eliminar(recepcionistaNegocio.listar("",legajo)[0].Usuario);
+                    }
 
                     gvRecepcionistas.DataSource = recepcionistaNegocio.listar();
                     gvRecepcionistas.DataBind();

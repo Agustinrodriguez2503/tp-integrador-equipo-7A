@@ -19,7 +19,7 @@ namespace tp_integrador
                 {
                     TurnoNegocio turnoNegocio = new TurnoNegocio();
 
-                    List<Turno> turnosss = turnoNegocio.listar("PENDIENTE");
+                    List<Turno> turnosss = turnoNegocio.listar("REALIZADO");
                     Session["ListaTurnos"] = turnosss;
 
                     ddlTurnos.DataSource = turnosss;
@@ -56,7 +56,24 @@ namespace tp_integrador
 
                 negocioCobro.Agregar(nuevo);
 
+                string titulo = "¡Cobro exitoso!";
+                string mensaje = "El cobro ha sido registrado exitosamente.";
 
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "cobroExito", $@"
+            Swal.fire({{
+                title: '{titulo}',
+                text: '{mensaje}',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            }}).then((result) => {{
+                if (result.isConfirmed) {{
+                    window.location.href = 'Recepcionista_PagPrincipal.aspx';
+                }}
+            }});", true);
+
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "cobroExitoso",
+                //"setTimeout(function() { Swal.fire({ icon: 'success', title: '¡Cobro exitoso!', " +
+                //"text: 'El cobro fue registrado correctamente.' }); }, 300);", true);
 
             }
             catch (Exception ex)

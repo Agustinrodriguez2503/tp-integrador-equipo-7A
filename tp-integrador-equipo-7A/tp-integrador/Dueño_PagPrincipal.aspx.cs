@@ -55,7 +55,7 @@ namespace tp_integrador
                 int idTurno = Convert.ToInt32(btn.CommandArgument);
 
                 turnoNegocio.modificarEstado(idTurno, "CANCELADO");
-                turnoNegocio.EliminarLogico(idTurno);
+                //turnoNegocio.EliminarLogico(idTurno);
                 cargarTurnos();
             }
             catch (Exception ex)
@@ -372,8 +372,7 @@ namespace tp_integrador
         // CARGAR TARJETAS CON TURNOS PROXIMOS
         private void cargarTurnos()
         {
-            Dueño dueño = new Dueño();
-            dueño = devolverDueño();
+            Dueño dueño = devolverDueño();
 
             TurnoNegocio turnoNegocio = new TurnoNegocio();
             List<Turno> turnos = turnoNegocio.listarTurnosConMascotaYVeterinario(dueño.Dni, "PENDIENTE");
@@ -382,9 +381,15 @@ namespace tp_integrador
             {
                 repProximosTurnos.DataSource = turnos;
                 repProximosTurnos.DataBind();
+
+                lblCantidadTurnos.Text = $"Turnos pendientes: {turnos.Count}";
+                lblCantidadTurnos.Visible = true;
             }
             else
             {
+                repProximosTurnos.DataSource = null;
+                repProximosTurnos.DataBind();
+
                 lblCantidadTurnos.Text = "Usted no tiene turnos pendientes.";
                 lblCantidadTurnos.Visible = true;
             }
