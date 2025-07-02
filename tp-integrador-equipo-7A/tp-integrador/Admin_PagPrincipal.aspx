@@ -12,11 +12,11 @@
         <asp:UpdatePanel runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div class="container border rounded p-4 shadow-sm bg-white">
-                    <h5 class="mb-4 text-primary fw-bold">Filtro de Recepcionistas</h5>
+                    <h5 class="mb-4 text-primary fw-bold">Filtro de Veterinarios</h5>
 
                     <div class="row align-items-end g-3">
                         <div class="col-md-6">
-                            <label for="txtFiltroVet" class="form-label fw-semibold">Filtrar por nombre</label>
+                            <label for="txtFiltroVet" class="form-label fw-semibold">Filtrar por apellido</label>
                             <asp:TextBox ID="txtFiltroVet" AutoPostBack="true" CssClass="form-control" runat="server"
                                 OnTextChanged="txtFiltroVet_TextChanged"></asp:TextBox>
                         </div>
@@ -57,30 +57,37 @@
                             <asp:TemplateField HeaderText="Acciones">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemTemplate>
+
+                                    <%-- Boton habilitar (se muestra solo si esta inactivo) --%>
                                     <asp:LinkButton ID="btnHabilitarVet" runat="server"
                                         CommandArgument='<%# Eval("Matricula") %>'
                                         CommandName="Habilitar"
                                         OnClick="btnHabilitarVet_Click"
-                                        CssClass="btn btn-primary btn-sm fw-bold me-1">
-                                <i class="bi bi-check-circle"></i> Habilitar
+                                        CssClass="btn btn-primary btn-sm fw-bold me-1"
+                                        Visible='<%# !(bool)Eval("Estado") %>'>
+            <i class="bi bi-check-circle"></i> Habilitar
                                     </asp:LinkButton>
 
+                                    <!-- Botón Modificar -->
                                     <asp:LinkButton ID="btnModificarVet" runat="server"
                                         CommandArgument='<%# Eval("Matricula") %>'
                                         CommandName="Modificar"
                                         OnClick="btnModificarVet_Click"
                                         CssClass="btn btn-success btn-sm fw-bold me-1">
-                                <i class="bi bi-pencil-square"></i> Modificar
+            <i class="bi bi-pencil-square"></i> Modificar
                                     </asp:LinkButton>
 
+                                    <!-- Boton eliminar (se muestra solo si esta activo) -->
                                     <asp:LinkButton ID="btnEliminarVet" runat="server"
                                         CommandArgument='<%# Eval("Matricula") %>'
                                         CommandName="Eliminar"
                                         OnClick="btnHabilitarVet_Click"
                                         CssClass="btn btn-danger btn-sm fw-bold"
-                                        OnClientClick="return confirm('¿Estás seguro de eliminar este veterinario?');">
-                                <i class="bi bi-trash"></i> Eliminar
+                                        OnClientClick="return confirm('¿Estás seguro de eliminar este veterinario?');"
+                                        Visible='<%# (bool)Eval("Estado") %>'>
+            <i class="bi bi-trash"></i> Eliminar
                                     </asp:LinkButton>
+
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -107,7 +114,7 @@
 
                     <div class="row align-items-end g-3">
                         <div class="col-md-6">
-                            <label for="txtFiltroRec" class="form-label fw-semibold">Filtrar por nombre</label>
+                            <label for="txtFiltroRec" class="form-label fw-semibold">Filtrar por apellido</label>
                             <asp:TextBox ID="txtFiltroRec" AutoPostBack="true" CssClass="form-control" runat="server"
                                 OnTextChanged="txtFiltroRec_TextChanged"></asp:TextBox>
                         </div>
@@ -152,7 +159,8 @@
                                         CommandArgument='<%# Eval("Legajo") %>'
                                         CommandName="Habilitar"
                                         OnClick="btnHabilitarRec_Click"
-                                        CssClass="btn btn-primary btn-sm fw-bold me-1">
+                                        CssClass="btn btn-primary btn-sm fw-bold me-1"
+                                        Visible='<%# !(bool)Eval("Estado") %>'>
                                 <i class="bi bi-check-circle"></i> Habilitar
                                     </asp:LinkButton>
 
@@ -169,6 +177,7 @@
                                         CommandName="Eliminar"
                                         OnClick="btnHabilitarRec_Click"
                                         CssClass="btn btn-danger btn-sm fw-bold"
+                                        Visible='<%# (bool)Eval("Estado") %>'
                                         OnClientClick="return confirm('¿Estás seguro de eliminar este recepcionista?');">
                                 <i class="bi bi-trash"></i> Eliminar
                                     </asp:LinkButton>
@@ -299,7 +308,8 @@
                                         CommandArgument='<%# Eval("Dni") %>'
                                         CommandName="Habilitar"
                                         OnClick="btnHabilitarDueño_Click"
-                                        CssClass="btn btn-primary btn-sm fw-bold me-1">
+                                        CssClass="btn btn-primary btn-sm fw-bold me-1"
+                                        Visible='<%# !(bool)Eval("Activo") %>'>
                                 <i class="bi bi-check-circle"></i> Habilitar
                                     </asp:LinkButton>
 
@@ -316,7 +326,8 @@
                                         CommandName="Eliminar"
                                         OnClick="btnHabilitarDueño_Click"
                                         CssClass="btn btn-danger btn-sm fw-bold"
-                                        OnClientClick="return confirm('¿Estás seguro de eliminar este dueño?');">
+                                        OnClientClick="return confirm('¿Estás seguro de eliminar este dueño?');"
+                                        Visible='<%# (bool)Eval("Activo") %>'>
                                 <i class="bi bi-trash"></i> Eliminar
                                     </asp:LinkButton>
                                 </ItemTemplate>
@@ -592,6 +603,5 @@
     </div>
 
 
-
-
 </asp:Content>
+
