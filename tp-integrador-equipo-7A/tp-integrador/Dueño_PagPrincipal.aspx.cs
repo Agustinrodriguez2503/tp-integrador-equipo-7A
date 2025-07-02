@@ -31,6 +31,8 @@ namespace tp_integrador
                         List<Mascota> mascotas = mascotaNegocio.listar(dueño.Dni);
 
                         lblBienvenido.Text = dueño.nombreCompleto();
+
+
                         cargarMascotas(mascotas);
                         cargarTurnos();
                     }
@@ -42,7 +44,7 @@ namespace tp_integrador
                 }
             }
         }
-        
+
         // CANCELAR TURNO
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -53,6 +55,7 @@ namespace tp_integrador
                 int idTurno = Convert.ToInt32(btn.CommandArgument);
 
                 turnoNegocio.modificarEstado(idTurno, "CANCELADO");
+                turnoNegocio.EliminarLogico(idTurno);
                 cargarTurnos();
             }
             catch (Exception ex)
@@ -195,6 +198,7 @@ namespace tp_integrador
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             MascotaNegocio mascotaNegocio = new MascotaNegocio();
+            TurnoNegocio turnoNegocio = new TurnoNegocio();
             try
             {
                 LinkButton btn = (LinkButton)sender;
@@ -202,14 +206,34 @@ namespace tp_integrador
 
                 if (id > 0)
                 {
-                    Mascota nueva = new Mascota();
-                    mascotaNegocio.Eliminar(id);
+                    if (turnoNegocio.listar("PENDIENTE", id).Count > 1)
+                    {
+                        Mascota nueva = new Mascota();
+                        mascotaNegocio.Eliminar(id);
 
-                    Usuario usuario = (Usuario)Session["usuario"];
-                    DueñoNegocio dueñoNegocio = new DueñoNegocio();
-                    Dueño dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
+                        Usuario usuario = (Usuario)Session["usuario"];
+                        DueñoNegocio dueñoNegocio = new DueñoNegocio();
+                        Dueño dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
 
-                    cargarMascotas(mascotaNegocio.listar(dueño.Dni));
+                        cargarMascotas(mascotaNegocio.listar(dueño.Dni));
+                    }
+                    else
+                    {
+                        string titulo = "¡No se pudo eliminar la mascota!";
+                        string mensaje = "La mascota que intenta eliminar tiene turnos pendientes.";
+
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertaError", $@"
+            Swal.fire({{
+                title: '{titulo}',
+                text: '{mensaje}',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            }}).then((result) => {{
+                if (result.isConfirmed) {{
+                    window.location.href = 'Dueño_PagPrincipal.aspx';
+                }}
+            }});", true);
+                    }
                 }
             }
             catch (Exception ex)
@@ -315,7 +339,7 @@ namespace tp_integrador
         protected void btnFicha_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
-            
+
             try
             {
 
@@ -330,12 +354,6 @@ namespace tp_integrador
 
                 throw ex;
             }
-        }
-        // CERRAR SESIÓN
-        protected void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            Session.Remove("usuario");
-            Response.Redirect("IniciarSesion.aspx");
         }
         // DEVOLVER EL DUEÑO QUE INICIO SESIÓN
         protected Dueño devolverDueño()
@@ -354,21 +372,38 @@ namespace tp_integrador
         // CARGAR TARJETAS CON TURNOS PROXIMOS
         private void cargarTurnos()
         {
-
             Dueño dueño = new Dueño();
             dueño = devolverDueño();
 
             TurnoNegocio turnoNegocio = new TurnoNegocio();
             List<Turno> turnos = turnoNegocio.listarTurnosConMascotaYVeterinario(dueño.Dni, "PENDIENTE");
 
-            repProximosTurnos.DataSource = turnos;
-            repProximosTurnos.DataBind();
+            if (turnos.Count > 0)
+            {
+                repProximosTurnos.DataSource = turnos;
+                repProximosTurnos.DataBind();
+            }
+            else
+            {
+                lblCantidadTurnos.Text = "Usted no tiene turnos pendientes.";
+                lblCantidadTurnos.Visible = true;
+            }
+
         }
         // CARGAR GRILLA CON MASCOTAS
         private void cargarMascotas(List<Mascota> mascotas)
         {
-            gvMascotas.DataSource = mascotas;
-            gvMascotas.DataBind();
+            if (mascotas.Count > 0)
+            {
+                gvMascotas.DataSource = mascotas;
+                gvMascotas.DataBind();
+            }
+            else
+            {
+                lblCantidadMascotas.Text = "Usted no tiene mascotas registradas.";
+                lblCantidadMascotas.Visible = true;
+            }
+
         }
     }
 }

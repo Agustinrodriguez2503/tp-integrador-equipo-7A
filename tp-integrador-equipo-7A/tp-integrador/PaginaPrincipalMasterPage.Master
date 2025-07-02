@@ -42,6 +42,11 @@
                         </div>
                     </div>
 
+                    <div id="contenedorCerrarSesion" runat="server" class="d-flex align-items-center text-nowrap">
+                        <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar Sesión"
+                            CssClass="btn btn-outline-light btn-sm fw-semibold px-3 py-2 rounded-pill" OnClick="btnCerrarSesion_Click" />
+                    </div>
+
                     <!-- Login -->
                     <div id="contenedorLogin" runat="server" class="d-flex align-items-center text-nowrap">
                         <img src="/images/logo_sesion.png" alt="User Icon" width="32" height="32" class="me-2">

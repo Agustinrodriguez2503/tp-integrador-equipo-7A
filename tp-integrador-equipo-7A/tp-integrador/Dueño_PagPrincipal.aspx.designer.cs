@@ -33,6 +33,15 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.Label lblBienvenido;
 
         /// <summary>
+        /// Control lblCantidadMascotas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCantidadMascotas;
+
+        /// <summary>
         /// Control gvMascotas.
         /// </summary>
         /// <remarks>
@@ -51,6 +60,15 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.LinkButton datosCliente;
 
         /// <summary>
+        /// Control lblCantidadTurnos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCantidadTurnos;
+
+        /// <summary>
         /// Control repProximosTurnos.
         /// </summary>
         /// <remarks>
@@ -58,15 +76,6 @@ namespace tp_integrador
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater repProximosTurnos;
-
-        /// <summary>
-        /// Control btnCerrarSesion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCerrarSesion;
 
         /// <summary>
         /// Control txtNombreMascota.

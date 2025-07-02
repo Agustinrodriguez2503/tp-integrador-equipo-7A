@@ -17,6 +17,7 @@ namespace tp_integrador
             if (pagina == "IniciarSesion")
             {
                 contenedorLogin.Visible = false;
+                contenedorCerrarSesion.Visible = false;
                 acercaDe.Visible = false;
                 contacto.Visible = false;
             }
@@ -24,6 +25,7 @@ namespace tp_integrador
             {
                 contenedorLogin.Visible = false;
                 contenedorInicio.Visible = false;
+                contenedorCerrarSesion.Visible = true;
             }
 
             if (pagina == "Dueño_RecuperoPassword")
@@ -35,8 +37,20 @@ namespace tp_integrador
             {
                 contenedorLogin.Visible = false;
                 contenedorInicio.Visible = false;
+                contenedorCerrarSesion.Visible = true;
             }
-
+            if (pagina == "PaginaPrincipal")
+            {
+                contenedorCerrarSesion.Visible = false;
+            }
         }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+
+            Session.Abandon();
+            Response.Redirect("IniciarSesion.aspx", false);
+        }
+
     }
 }

@@ -9,7 +9,7 @@ namespace negocio
 {
     public class TurnoNegocio
     {
-        public List<Turno> listar(string estado = "")
+        public List<Turno> listar(string estado = "", int idMascota = 0)
         {
             List<Turno> lista = new List<Turno>();
             AccesoDatos datos = new AccesoDatos();
@@ -19,13 +19,22 @@ namespace negocio
                 if (estado == "")
                 {
                     datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos");
-
                 }
                 else
                 {
-                    datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE Estado = @estado");
-                    datos.setearParametro("@estado", estado);
+                    if (idMascota == 0)
+                    {
+                        datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE Estado = @estado");
+                        datos.setearParametro("@estado", estado);
+                    }
+                    else
+                    {
+                        datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE IDMascota = @idMascota AND Estado = @estado AND Activo = 1");
+                        datos.setearParametro("@idMascota", idMascota);
+                        datos.setearParametro("@estado", estado);
+                    }
                 }
+
 
                 datos.ejecutarLectura();
 
@@ -323,15 +332,14 @@ namespace negocio
             }
         }
 
-        public void EliminarLogico(Turno modificar)
+        public void EliminarLogico(int idTurno)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("UPDATE Turnos SET Activo = @Activo WHERE IDTurno = @IDTurno");
-                datos.setearParametro("@IDTurno", modificar.IdTurno);
-                datos.setearParametro("@Activo", 0);
+                datos.setearConsulta("UPDATE Turnos SET Activo = 0 WHERE IDTurno = @IDTurno");
+                datos.setearParametro("@IDTurno", idTurno);
                 datos.ejecutarAccion();
             }
             catch (Exception)

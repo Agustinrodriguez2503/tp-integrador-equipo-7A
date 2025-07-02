@@ -45,6 +45,7 @@
             CssClass="h3 text-center text-secondary mb-5 fw-bold d-block text-dark"
             Text=""></asp:Label>
         <!------------------------ LISTADO DE MASCOTAS ------------------------>
+        <asp:Label ID="lblCantidadMascotas" runat="server" CssClass="h3 text-center text-secondary mb-5 fw-bold d-block text-dark" Text=""></asp:Label>
         <asp:GridView ID="gvMascotas" runat="server" CssClass="table text-center align-middle" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre">
@@ -76,19 +77,19 @@
                             <asp:LinkButton ID="btnTurno" runat="server" CssClass="btn btn-primary btn-sm fw-bold"
                                 CommandArgument='<%# Eval("IDMascota") %>'
                                 OnClick="btnTurno_Click">
-                            <i class="bi bi-calendar-check"></i> Turno
+                        <i class="bi bi-calendar-check"></i> Turno
                             </asp:LinkButton>
 
                             <asp:LinkButton ID="btnFicha" runat="server" CssClass="btn btn-info btn-sm fw-bold"
                                 CommandArgument='<%# Eval("IDMascota") %>'
                                 OnClick="btnFicha_Click">
-                            <i class="bi bi-file-earmark-text"></i> Ficha
+                        <i class="bi bi-file-earmark-text"></i> Ficha
                             </asp:LinkButton>
 
                             <asp:LinkButton ID="btnModificar" runat="server" CssClass="btn btn-success btn-sm fw-bold"
                                 CommandArgument='<%# Eval("IDMascota") %>'
                                 OnClick="btnModificar_Click">
-                            <i class="bi bi-pencil-square"></i> Modificar
+                        <i class="bi bi-pencil-square"></i> Modificar
                             </asp:LinkButton>
 
                             <asp:LinkButton ID="btnEliminar" runat="server"
@@ -96,7 +97,7 @@
                                 OnClick="btnEliminar_Click"
                                 CssClass="btn btn-danger btn-sm fw-bold"
                                 OnClientClick="return confirm('¿Estás seguro de eliminar esta mascota?');">
-                            <i class="bi bi-trash"></i> Eliminar
+                        <i class="bi bi-trash"></i> Eliminar
                             </asp:LinkButton>
                         </div>
                     </ItemTemplate>
@@ -116,11 +117,11 @@
             </div>
             <div class="col-md-6 col-lg-4">
                 <asp:LinkButton ID="datosCliente" OnClick="datosCliente_Click" runat="server" CssClass="card-link-custom">
-                <div class="card custom-card h-100 text-center card-verde-agua">
-                    <div class="card-body">
-                        <h5 class="card-title">MIS DATOS</h5>
-                    </div>
+            <div class="card custom-card h-100 text-center card-verde-agua">
+                <div class="card-body">
+                    <h5 class="card-title">MIS DATOS</h5>
                 </div>
+            </div>
                 </asp:LinkButton>
             </div>
             <div class="col-md-6 col-lg-4">
@@ -133,10 +134,11 @@
                 </a>
             </div>
         </div>
-        <div>
-            <h1 class="text-center mb-3">Proximos Turnos.</h1>
+        <div class="my-5">
+            <h1 class="text-center">Próximos Turnos.</h1>
         </div>
         <div class="row" runat="server">
+            <asp:Label ID="lblCantidadTurnos" runat="server" CssClass="h3 text-center text-secondary mb-5 fw-bold d-block text-dark" Text=""></asp:Label>
             <asp:Repeater ID="repProximosTurnos" runat="server">
                 <ItemTemplate>
                     <div class="col-3 mb-4">
@@ -150,7 +152,7 @@
                                     OnClick="btnCancelar_Click"
                                     CssClass="btn btn-danger btn-sm fw-bold"
                                     OnClientClick="return confirm('¿Esta seguro que desea cancelar su turno?');">
-                                    <i class="bi bi-x-circle"></i> Cancelar Turno
+                                <i class="bi bi-x-circle"></i> Cancelar Turno
                                 </asp:LinkButton>
 
                             </div>
@@ -158,17 +160,6 @@
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
-        </div>
-        <div class="row g-4 justify-content-center mt-1">
-            <div class="col-md-6 col-lg-4">
-                <asp:LinkButton ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" CssClass="card-link-custom">
-                    <div class="card custom-card h-100 text-center card-verde-agua">
-                        <div class="card-body">
-                            <h5 class="card-title">CERRAR SESIÓN</h5>
-                        </div>
-                    </div>
-                </asp:LinkButton>
-            </div>
         </div>
     </div>
 
@@ -222,7 +213,7 @@
                             <!-- Peso -->
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold" for="txtPesoMascota">Peso</label>
-                                <asp:TextBox ID="txtPesoMascota" runat="server" ValidationGroup="registrarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: 6 (kg)." TextMode="Number" />
+                                <asp:TextBox ID="txtPesoMascota" runat="server" ValidationGroup="registrarMascota" CssClass="form-control form-control-lg shadow-sm rounded-3 placeholder-custom" placeholder="Ej: 6 (kg)." />
                                 <asp:RequiredFieldValidator ID="rfvPesoMascota" runat="server" ControlToValidate="txtPesoMascota" ValidationGroup="registrarMascota" ErrorMessage="El peso es obligatorio."
                                     CssClass="text-danger small fst-italic" Display="Dynamic" />
                                 <asp:RegularExpressionValidator ID="revPeso" runat="server" ControlToValidate="txtPesoMascota" ValidationGroup="registrarMascota" ErrorMessage="Ingrese un peso válido. (ej: 6 o 6.5)."
@@ -371,5 +362,6 @@
             </div>
         </div>
     </div>
+
 
 </asp:Content>

@@ -200,3 +200,7 @@ C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-eq
 C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\itextsharp.dll
 C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\nahue\Downloads\TPI Progra III\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\itextsharp.xml
+C:\Users\agustin\Desktop\Nueva carpeta\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\agustin\Desktop\Nueva carpeta\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\itextsharp.dll
+C:\Users\agustin\Desktop\Nueva carpeta\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\agustin\Desktop\Nueva carpeta\tp-integrador-equipo-7A\tp-integrador-equipo-7A\helpers\bin\Debug\itextsharp.xml
