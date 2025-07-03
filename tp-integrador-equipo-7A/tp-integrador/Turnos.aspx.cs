@@ -48,7 +48,7 @@ namespace tp_integrador
                 List<Turno> turnosOcupados = negocioTurnos.listar_turnosOcupados(matricula, "PENDIENTE");
                 List<DateTime> turnosDisponibles = generarTurnos.generarTurnosPosibles();
                 List<DateTime> turnosMostrar = generarTurnos.generarTurnosPosibles();
-                
+
                 VeterinarioNegocio negocioVeterinario = new VeterinarioNegocio();
                 Veterinario vet = negocioVeterinario.listar(matricula).FirstOrDefault();
                 if (vet != null)
@@ -87,7 +87,7 @@ namespace tp_integrador
                 Session["Error"] = ex.Message.ToString();
                 Response.Redirect("ErrorPage.aspx");
             }
-            
+
 
 
         }
@@ -140,9 +140,23 @@ namespace tp_integrador
 
                 string mensajeJS = $"<strong>{mascotaSeleccionada.Nombre}</strong> tiene un turno para el <strong>{turnoSeleccionado.FechaHora:dddd dd/MM/yyyy - HH:mm}</strong> con el Vet. <strong>{veterinarioSeleccionado.nombreCompleto()}</strong>.";
 
-
+                //Verificamos que el turno seleccionado no se encuentre CANCELADO
                 TurnoNegocio negocioTurno = new TurnoNegocio();
-                negocioTurno.Agregar(turnoSeleccionado);
+                List<Turno> verificarTurno = negocioTurno.listarTurno_porVetyFecha(turnoSeleccionado.MatriculaVeterinario, turnoSeleccionado.FechaHora);
+
+                if (verificarTurno != null && verificarTurno.Any())
+                {
+                    turnoSeleccionado.IdTurno = verificarTurno[0].IdTurno;
+                    negocioTurno.modificarTurno(turnoSeleccionado);
+                }
+                else
+                {
+                    negocioTurno.Agregar(turnoSeleccionado);
+
+                }
+
+
+
 
                 Usuario usuario = (Usuario)Session["usuario"];
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",

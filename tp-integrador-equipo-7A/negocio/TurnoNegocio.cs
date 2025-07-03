@@ -66,6 +66,49 @@ namespace negocio
             }
         }
 
+        public List<Turno> listarTurno_porVetyFecha(string matricula, DateTime fechaHora)
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                datos.setearConsulta("SELECT IDTurno, MatriculaVeterinario, IDMascota, FechaHora, Estado, Activo FROM Turnos WHERE MatriculaVeterinario = @matricula  AND FechaHora = @fechaHora");
+                datos.setearParametro("@matricula", matricula);
+                datos.setearParametro("@fechaHora", fechaHora);
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Turno aux = new Turno();
+                    aux.IdTurno = (int)datos.Lector["IDTurno"];
+                    aux.MatriculaVeterinario = (string)datos.Lector["MatriculaVeterinario"];
+                    aux.Mascota = new Mascota();
+                    aux.Mascota.IDMascota = (int)datos.Lector["IDMascota"];
+                    aux.FechaHora = (DateTime)datos.Lector["FechaHora"];
+                    aux.Estado = (string)datos.Lector["Estado"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
+
+                    lista.Add(aux);
+
+                }
+
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public List<Turno> listar_turnosOcupados(string matricula, string estado = "TODO")
         {
             List<Turno> lista = new List<Turno>();
@@ -128,7 +171,7 @@ namespace negocio
             try
             {
 
-                if(dniDueño != "TODO")
+                if (dniDueño != "TODO")
                 {
 
                     consulta = @"
@@ -141,7 +184,7 @@ namespace negocio
                     INNER JOIN Veterinarios v ON t.MatriculaVeterinario = v.Matricula
                     WHERE d.Dni = @dniDueño AND t.Activo = 1 AND t.FechaHora > GETDATE()
                      ";
-                    
+
                     if (estado != "TODO")
                     {
                         consulta += " AND t.Estado = @estado";
@@ -163,7 +206,7 @@ namespace negocio
                     INNER JOIN Veterinarios v ON t.MatriculaVeterinario = v.Matricula
                     WHERE t.Activo = 1
                      ";
-                   
+
                     if (estado != "TODO")
                     {
                         consulta += " AND t.Estado = @estado";
@@ -226,13 +269,11 @@ namespace negocio
 
                 if (criterio == "Veterinario")
                 {
-                    consulta += " AND v.Apellido = @valor";
-                    datos.setearParametro("@valor", valor);
+                    consulta += " AND v.Apellido like '%" + valor + "%'";
                 }
                 else if (criterio == "Mascota")
                 {
-                    consulta += " AND m.Nombre = @valor";
-                    datos.setearParametro("@valor", valor);
+                    consulta += " AND m.Nombre like '%" + valor + "%'";
                 }
                 else
                 {
@@ -283,7 +324,6 @@ namespace negocio
 
 
 
-
         public void Agregar(Turno nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -308,14 +348,14 @@ namespace negocio
             }
         }
 
-        public void Modificar(Turno modificar)
+        public void modificarTurno(Turno modificar)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
 
-                datos.setearConsulta("UPDATE Turnos SET MatriculaVeterinario = @MatriculaVeterinario, IDMascota = @IDMascota, FechaHora = @FechaHora WHERE IDTurno = @IDTurno");
-
+                datos.setearConsulta("UPDATE Turnos SET MatriculaVeterinario = @MatriculaVeterinario, IDMascota = @IDMascota, FechaHora = @FechaHora, Estado = 'PENDIENTE' WHERE IDTurno = @IDTurno");
+                datos.setearParametro("@IDTurno", modificar.IdTurno);
                 datos.setearParametro("@MatriculaVeterinario", modificar.MatriculaVeterinario);
                 datos.setearParametro("@IDMascota", modificar.Mascota.IDMascota);
                 datos.setearParametro("@FechaHora", modificar.FechaHora);
@@ -407,4 +447,5 @@ namespace negocio
 
     }
 }
+
 
