@@ -56,24 +56,24 @@ namespace tp_integrador
 
                 negocioCobro.Agregar(nuevo);
 
+                //se le cambia el estado una vez cobrado el turno "REALIZADO"
+                TurnoNegocio turno = new TurnoNegocio();
+                turno.modificarEstado(nuevo.IDTurno, "COBRADO");
+
                 string titulo = "¡Cobro exitoso!";
                 string mensaje = "El cobro ha sido registrado exitosamente.";
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "cobroExito", $@"
-            Swal.fire({{
-                title: '{titulo}',
-                text: '{mensaje}',
-                icon: 'success',
-                confirmButtonText: 'Aceptar'
-            }}).then((result) => {{
-                if (result.isConfirmed) {{
-                    window.location.href = 'Recepcionista_PagPrincipal.aspx';
-                }}
-            }});", true);
-
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "cobroExitoso",
-                //"setTimeout(function() { Swal.fire({ icon: 'success', title: '¡Cobro exitoso!', " +
-                //"text: 'El cobro fue registrado correctamente.' }); }, 300);", true);
+                Swal.fire({{
+                    title: '{titulo}',
+                    text: '{mensaje}',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                }}).then((result) => {{
+                    if (result.isConfirmed) {{
+                        window.location.href = 'Recepcionista_PagPrincipal.aspx';
+                    }}
+                }});", true);
 
             }
             catch (Exception ex)
