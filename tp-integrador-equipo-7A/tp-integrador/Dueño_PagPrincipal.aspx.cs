@@ -201,21 +201,36 @@ namespace tp_integrador
             TurnoNegocio turnoNegocio = new TurnoNegocio();
             try
             {
-                LinkButton btn = (LinkButton)sender;
-                int id = int.Parse(btn.CommandArgument);
+                //LinkButton btn = (LinkButton)sender;
+                //int id = int.Parse(btn.CommandArgument);
+                int idMascota = (int)Session["IDMascotaEliminar"];
 
-                if (id > 0)
+                if (idMascota > 0)
                 {
-                    if (turnoNegocio.listar("PENDIENTE", id).Count == 0)
+                    if (turnoNegocio.listar("PENDIENTE", idMascota).Count == 0)
                     {
                         Mascota nueva = new Mascota();
-                        mascotaNegocio.Eliminar(id);
+                        mascotaNegocio.Eliminar(idMascota);
 
                         Usuario usuario = (Usuario)Session["usuario"];
                         DueñoNegocio dueñoNegocio = new DueñoNegocio();
                         Dueño dueño = dueñoNegocio.listarPorUser(usuario.User)[0];
 
                         cargarMascotas(mascotaNegocio.listar(dueño.Dni));
+                        string titulo = "¡Eliminación Exitosa!";
+                        string mensaje = "La mascota fue eliminada correctamente.";
+
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertaExito", $@"
+                Swal.fire({{
+                    title: '{titulo}',
+                    text: '{mensaje}',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                }}).then((result) => {{
+                    if (result.isConfirmed) {{
+                        window.location.href = 'Dueño_PagPrincipal.aspx';
+                    }}
+                }});", true);
                     }
                     else
                     {
@@ -223,16 +238,16 @@ namespace tp_integrador
                         string mensaje = "La mascota que intenta eliminar tiene turnos pendientes.";
 
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "alertaError", $@"
-            Swal.fire({{
-                title: '{titulo}',
-                text: '{mensaje}',
-                icon: 'error',
-                confirmButtonText: 'Aceptar'
-            }}).then((result) => {{
-                if (result.isConfirmed) {{
-                    window.location.href = 'Dueño_PagPrincipal.aspx';
-                }}
-            }});", true);
+                Swal.fire({{
+                    title: '{titulo}',
+                    text: '{mensaje}',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                }}).then((result) => {{
+                    if (result.isConfirmed) {{
+                        window.location.href = 'Dueño_PagPrincipal.aspx';
+                    }}
+                }});", true);
                     }
                 }
             }
@@ -241,6 +256,14 @@ namespace tp_integrador
 
                 throw ex;
             }
+        }
+        protected void btnEliminar_Command(object sender, CommandEventArgs e)
+        {
+            int idMascota = Convert.ToInt32(e.CommandArgument);
+            Session["IDMascotaEliminar"] = idMascota;
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "modalEliminar", "var modal = new bootstrap.Modal(document.getElementById('modalConfirmarEliminar')); modal.show();", true);
+            // ScriptManager.RegisterStartupScript(this, this.GetType(), "modalEliminar", "$('#modalConfirmarEliminar').modal('show');", true);
         }
         // CARGA DE DATOS PARA MODIFICAR CLIENTE
         protected void datosCliente_Click(object sender, EventArgs e)

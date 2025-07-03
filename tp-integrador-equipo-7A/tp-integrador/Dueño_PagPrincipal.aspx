@@ -96,11 +96,11 @@
 
                             <asp:LinkButton ID="btnEliminar" runat="server"
                                 CommandArgument='<%# Eval("IDMascota") %>'
-                                OnClick="btnEliminar_Click"
-                                CssClass="btn btn-danger btn-sm fw-bold"
-                                OnClientClick="return confirm('¿Estás seguro de eliminar esta mascota?');">
-                        <i class="bi bi-trash"></i> Eliminar
+                                OnCommand="btnEliminar_Command"
+                                CssClass="btn btn-danger btn-sm fw-bold">
+                                <i class="bi bi-trash"></i> Eliminar
                             </asp:LinkButton>
+
                         </div>
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -364,6 +364,36 @@
             </div>
         </div>
     </div>
+
+    <%----------------- MODARL DE CONFIRMACION DE ELIMINACION -----------------------%>
+
+    <asp:UpdatePanel ID="upModalEliminar" runat="server">
+        <ContentTemplate>
+            <div class="modal fade" id="modalConfirmarEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content rounded-4 shadow">
+                        <div class="modal-header bg-danger text-white rounded-top-4">
+                            <h5 class="modal-title fw-semibold" id="modalEliminarLabel">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>Confirmar eliminación
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Estás seguro que deseas eliminar esta mascota?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar"
+                                CssClass="btn btn-secondary"
+                                OnClientClick="$('#modalConfirmarEliminar').modal('hide'); return false;" />
+                            <asp:Button ID="btnConfirmarEliminar" runat="server" Text="Eliminar"
+                                CssClass="btn btn-danger"
+                                OnClick="btnEliminar_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 
 
 </asp:Content>
