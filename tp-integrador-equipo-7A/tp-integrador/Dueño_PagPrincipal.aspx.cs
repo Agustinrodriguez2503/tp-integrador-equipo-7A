@@ -51,9 +51,6 @@ namespace tp_integrador
             TurnoNegocio turnoNegocio = new TurnoNegocio();
             try
             {
-                //LinkButton btn = (LinkButton)sender;
-                //int idTurno = Convert.ToInt32(btn.CommandArgument);
-
                 int idTurno = (int)Session["IDTurnoEliminar"];
 
                 turnoNegocio.modificarEstado(idTurno, "CANCELADO");

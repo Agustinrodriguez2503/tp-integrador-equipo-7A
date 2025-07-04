@@ -45,6 +45,8 @@
     <Compile Include="Ficha.cs" />
     <Compile Include="Mascota.cs" />
     <Compile Include="Cobros.cs" />
+    <Compile Include="Mensaje.cs" />
+    <Compile Include="Mensajeria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recepcionista.cs" />
     <Compile Include="Rol.cs" />
