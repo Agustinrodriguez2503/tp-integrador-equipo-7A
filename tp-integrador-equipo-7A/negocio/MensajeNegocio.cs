@@ -27,7 +27,6 @@ namespace negocio
                     aux.IDConversacion = (int)datos.Lector["IDConversacion"];
                     aux.IDMensaje = (int)datos.Lector["IDMensaje"];
                     aux.Emisor = (string)datos.Lector["Emisor"];
-                    aux.Receptor = (string)datos.Lector["Receptor"];
                     aux.Contenido = (string)datos.Lector["Contenido"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
                     aux.Activo = (bool)datos.Lector["Activo"];
@@ -47,5 +46,31 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void mensajeNuevo(Mensaje nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT INTO Mensajes (IDMensaje, Emisor, Contenido) VALUES (@idMensaje, @emisor, @contenido)");
+                datos.setearParametro("@idMensaje", nuevo.IDMensaje);
+                datos.setearParametro("@emisor", nuevo.Emisor);
+                datos.setearParametro("@contenido", nuevo.Contenido);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
+
 }
+

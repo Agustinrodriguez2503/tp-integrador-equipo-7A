@@ -455,11 +455,13 @@ namespace tp_integrador
 
         }
 
+
+
         private void cargarChats()
         {
             MensajeriaNegocio mensajeriaNegocio = new MensajeriaNegocio();
 
-            rptChats.DataSource = mensajeriaNegocio.listarChats();
+            rptChats.DataSource = mensajeriaNegocio.listarChats(((Usuario)Session["usuario"]).User);
             rptChats.DataBind();
 
         }
@@ -489,6 +491,29 @@ namespace tp_integrador
             rptMensajes.DataBind();
 
         }
+
+        protected void btnEnviarMensaje_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtMensajeNuevo.Text) && !string.IsNullOrWhiteSpace(hfIDMensajeSeleccionado.Value))
+            {
+                int idMensaje = int.Parse(hfIDMensajeSeleccionado.Value);
+
+                Mensaje nuevo = new Mensaje
+                {
+                    IDMensaje = idMensaje,
+                    Emisor = ((Usuario)Session["usuario"]).User,
+                    Contenido = txtMensajeNuevo.Text,
+                    Fecha = DateTime.Now
+                };
+
+                MensajeNegocio negocioMensaje = new MensajeNegocio();
+                negocioMensaje.mensajeNuevo(nuevo);
+
+                txtMensajeNuevo.Text = "";
+                cargarMensajesDeChat(idMensaje);
+            }
+        }
+
 
     }
 }

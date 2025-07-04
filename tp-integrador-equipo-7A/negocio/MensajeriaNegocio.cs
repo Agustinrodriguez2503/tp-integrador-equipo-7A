@@ -9,14 +9,15 @@ namespace negocio
 {
     public class MensajeriaNegocio
     {
-        public List<Mensajeria> listarChats()
+        public List<Mensajeria> listarChats(string usuario)
         {
             List<Mensajeria> lista = new List<Mensajeria>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT IDMensaje, Asunto, Usuario, UltimoMensaje, Fecha, Activo FROM Mensajeria");
+                datos.setearConsulta("SELECT IDMensaje, Asunto, Usuario, UltimoMensaje, Fecha, Activo FROM Mensajeria WHERE Usuario = @usuario");
+                datos.setearParametro("@usuario", usuario);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -44,5 +45,29 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public void conversacionNueva(Mensajeria nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT INTO Mensajeria (Asunto, Usuario, UltimoMensaje) VALUES (@asunto, @usuario, @ultimoMensaje)");
+                datos.setearParametro("@idMensaje", nuevo.Asunto);
+                datos.setearParametro("@emisor", nuevo.Usuario);
+                datos.setearParametro("@contenido", nuevo.UltimoMensaje);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

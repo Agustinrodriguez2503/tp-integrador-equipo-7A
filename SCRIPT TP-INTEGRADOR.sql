@@ -134,7 +134,7 @@ CREATE TABLE Mensajeria (
     Asunto VARCHAR(100) NOT NULL,
 	Usuario VARCHAR(25) NOT NULL,
 	UltimoMensaje VARCHAR(500) NOT NULL,
-	Fecha DATETIME NOT NULL
+	Fecha DATETIME NOT NULL DEFAULT GETDATE()
 );
 GO
 -- TABLA MENSAJES
@@ -142,12 +142,10 @@ CREATE TABLE Mensajes (
     IDConversacion INT PRIMARY KEY IDENTITY(1,1),
     IDMensaje INT NOT NULL,
     Emisor VARCHAR(25) NOT NULL,
-    Receptor VARCHAR(25) NOT NULL,
     Contenido VARCHAR(500) NOT NULL,
     Fecha DATETIME NOT NULL DEFAULT GETDATE(),
     FOREIGN KEY (IDMensaje) REFERENCES Mensajeria(IDMensaje),
     FOREIGN KEY (Emisor) REFERENCES Usuarios(Usuario),
-    FOREIGN KEY (Receptor) REFERENCES Usuarios(Usuario)
 );
 GO
 

@@ -424,7 +424,6 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
-    <!-- MODAL DE MENSAJERÍA -->
     <div class="modal fade" id="modalMensajeria" tabindex="-1" aria-labelledby="modalMensajeriaLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <!-- Más ancho -->
@@ -446,7 +445,7 @@
                                         CssClass="list-group-item list-group-item-action">
             
                                         <div class="fw-semibold"><%# Eval("Usuario") %></div>
-                                        <div class="small text-muted text-truncate"><%# Eval("UltimoMensaje") %></div>
+                                        <div class="small text-muted text-truncate"><%# Eval("Asunto") %></div>
                                         <div class="small text-muted"><%# Eval("Fecha", "{0:g}") %></div>
                                     </asp:LinkButton>
                                     <asp:Label ID="lblUsuario" runat="server" Text='<%# Eval("Usuario") %>' CssClass="d-none" />
@@ -458,7 +457,7 @@
                         <div class="col-8 d-flex flex-column" style="max-height: 70vh;">
                             <!-- Encabezado del chat (opcional) -->
                             <div class="border-bottom mb-2 pb-2">
-                                <h6 class="mb-0 fw-bold">Conversación con: <span id="nombreChat">[Nombre del usuario]</span></h6>
+                                <h6 class="mb-0 fw-bold">Conversación con: <span id="nombreChat"></span></h6>
                             </div>
 
                             <!-- Área de conversación -->
@@ -478,7 +477,11 @@
                             <!-- Caja para escribir nuevo mensaje -->
                             <div class="mt-auto">
                                 <asp:TextBox ID="txtMensajeNuevo" runat="server" CssClass="form-control mb-2" TextMode="MultiLine" Rows="3" placeholder="Escribe tu mensaje..." />
-                                <asp:Button ID="btnEnviarMensaje" runat="server" CssClass="btn btn-primary w-100" Text="Enviar" />
+
+                                <div class="d-flex gap-2">
+                                    <asp:Button ID="btnEnviarMensaje" runat="server" CssClass="btn btn-primary flex-fill" Text="Enviar" OnClick="btnEnviarMensaje_Click" />
+                                    <asp:Button ID="btnNuevaConversacion" runat="server" CssClass="btn btn-secondary flex-fill" Text="Nueva conversación" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -486,5 +489,6 @@
             </div>
         </div>
     </div>
+
 
 </asp:Content>

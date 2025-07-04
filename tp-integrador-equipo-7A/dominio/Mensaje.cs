@@ -11,9 +11,9 @@ namespace dominio
         public int IDConversacion { get; set; }
         public int IDMensaje { get; set; }
         public string Emisor { get; set; }
-        public string Receptor { get; set; }
         public string Contenido { get; set; }
         public DateTime Fecha { get; set; }
         public bool Activo { get; set; }
+
     }
 }
