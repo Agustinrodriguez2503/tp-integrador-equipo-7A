@@ -201,26 +201,93 @@ INSERT INTO Mascotas (DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza
 
 -- TURNOS
 -- Fecha de hoy: supongamos es '2025-06-06'
-INSERT INTO Turnos (MatriculaVeterinario, IDMascota, FechaHora) VALUES
-('VET001', 1, '2025-06-01 10:00'), -- Anterior
-('VET001', 2, '2025-06-02 11:00'), -- Anterior
-('VET002', 3, '2025-06-03 09:30'), -- Anterior
-('VET002', 4, '2025-06-07 12:00'),
-('VET003', 1, '2025-06-08 10:00'),
-('VET003', 2, '2025-06-09 11:00'),
-('VET001', 3, '2025-06-10 15:00'),
-('VET002', 4, '2025-06-11 16:00');
+INSERT INTO Turnos (MatriculaVeterinario, IDMascota, FechaHora, Estado) VALUES
+('VET002', 6, '2025-05-23 14:13:45', 'CANCELADO'),
+('VET001', 7, '2025-05-14 10:47:45', 'CANCELADO'),
+('VET003', 4, '2025-06-03 17:42:45', 'CANCELADO'),
+('VET001', 1, '2025-06-05 10:15:45', 'CANCELADO'),
+('VET003', 3, '2025-06-21 12:08:45', 'CANCELADO'),
+('VET001', 1, '2025-06-22 14:19:45', 'CANCELADO'),
+('VET001', 4, '2025-06-18 11:18:45', 'CANCELADO'),
+('VET003', 7, '2025-05-27 13:08:45', 'CANCELADO'),
+('VET002', 8, '2025-06-24 16:24:45', 'CANCELADO'),
+('VET002', 6, '2025-06-17 12:42:45', 'CANCELADO'),
+('VET001', 6, '2025-07-29 15:00:45', 'PENDIENTE'),
+('VET003', 3, '2025-07-12 14:23:45', 'PENDIENTE'),
+('VET002', 5, '2025-07-15 13:01:45', 'PENDIENTE'),
+('VET002', 4, '2025-07-20 11:11:45', 'PENDIENTE'),
+('VET001', 5, '2025-07-03 12:47:45', 'PENDIENTE'),
+('VET003', 1, '2025-08-01 09:17:45', 'PENDIENTE'),
+('VET002', 4, '2025-08-07 17:34:45', 'PENDIENTE'),
+('VET001', 5, '2025-07-10 13:47:45', 'PENDIENTE'),
+('VET001', 3, '2025-07-28 12:01:45', 'PENDIENTE'),
+('VET003', 5, '2025-07-26 10:53:45', 'PENDIENTE'),
+('VET002', 2, '2025-07-01 14:30:45', 'PENDIENTE'),
+('VET002', 8, '2025-06-06 11:45:45', 'PENDIENTE'),
+('VET003', 2, '2025-07-31 12:38:45', 'PENDIENTE'),
+('VET003', 5, '2025-07-25 15:22:45', 'PENDIENTE'),
+('VET002', 4, '2025-08-08 10:45:45', 'PENDIENTE'),
+('VET003', 6, '2025-06-13 10:01:45', 'REALIZADO'),
+('VET002', 4, '2025-05-26 12:47:45', 'REALIZADO'),
+('VET002', 6, '2025-06-16 15:36:45', 'REALIZADO'),
+('VET001', 3, '2025-06-30 11:22:45', 'REALIZADO'),
+('VET003', 6, '2025-06-04 13:49:45', 'REALIZADO'),
+('VET002', 5, '2025-06-11 10:02:45', 'REALIZADO'),
+('VET001', 3, '2025-05-25 14:05:45', 'REALIZADO'),
+('VET002', 7, '2025-06-09 17:15:45', 'REALIZADO'),
+('VET003', 1, '2025-06-19 12:10:45', 'REALIZADO'),
+('VET001', 4, '2025-05-28 10:00:45', 'REALIZADO'),
+('VET003', 2, '2025-06-14 15:30:45', 'REALIZADO'),
+('VET001', 7, '2025-06-23 16:43:45', 'REALIZADO'),
+('VET002', 5, '2025-06-27 09:57:45', 'COBRADO'),
+('VET003', 1, '2025-06-02 14:44:45', 'COBRADO'),
+('VET001', 4, '2025-06-19 11:45:45', 'COBRADO'),
+('VET003', 6, '2025-06-03 15:13:45', 'COBRADO'),
+('VET003', 7, '2025-06-05 17:00:45', 'COBRADO'),
+('VET002', 8, '2025-06-06 13:12:45', 'COBRADO'),
+('VET003', 5, '2025-06-08 15:01:45', 'COBRADO'),
+('VET001', 2, '2025-06-10 16:40:45', 'COBRADO'),
+('VET003', 8, '2025-06-14 11:55:45', 'COBRADO'),
+('VET002', 3, '2025-06-01 13:22:45', 'COBRADO');
+
 
 -- FICHACONSULTA (solo para turnos anteriores: IDs 1, 2 y 3)
 INSERT INTO FichaConsulta (IDTurno, Descripcion) VALUES
-(1, 'Consulta por resfrío leve.'),
-(2, 'Vacunación anual.'),
-(3, 'Chequeo general, sin novedades.');
+(27, 'Control general y aplicación de vacunas anuales'),
+(28, 'Revisión por cojera en pata trasera derecha'),
+(29, 'Consulta por pérdida de apetito y vómitos'),
+(30, 'Desparasitación interna y externa'),
+(31, 'Limpieza de oídos por otitis leve'),
+(32, 'Revisión post operatoria de castración'),
+(33, 'Corte de uñas y limpieza dental'),
+(34, 'Consulta por sarpullido en la zona del abdomen'),
+(35, 'Aplicación de vacuna antirrábica'),
+(36, 'Revisión por secreción ocular'),
+(37, 'Aplicación de refuerzo de vacuna séxtuple'),
+(38, 'Consulta por caída de pelo excesiva'),
+(39, 'Extracción de cuerpo extraño del hocico'),
+(40, 'Seguimiento de tratamiento por artrosis'),
+(42, 'Control de fiebre y decaimiento general'),
+(43, 'Aplicación de pipeta antiparasitaria'),
+(44, 'Control prequirúrgico para esterilización'),
+(45, 'Consulta por tos persistente'),
+(46, 'Examen de sangre de rutina'),
+(47, 'Consulta por temblores y espasmos musculares');
+
+
 
 -- COBROS (turnos anteriores 1, 2 y 3, recepcionistas con legajo 100 y 101)
 INSERT INTO Cobros (IDTurno, LegajoRecepcionista, FormaPago, Costo, NroComprobante) VALUES
-(1, 100, 'Efectivo', 3500.00, 'SIN-COMPROBANTE'),
-(2, 100, 'Tarjeta', 4000.00, 'T-0001'),
-(3, 101, 'Transferencia', 3200.00,'C-0222');
+(38, 100, 'Efectivo', 4589.22, 'COMP001'),
+(39, 100, 'Crédito', 4648.26, 'COMP002'),
+(40, 100, 'Débito', 2935.05, 'COMP003'),
+(41, 101, 'Débito', 4885.34, 'COMP004'),
+(42, 101, 'Débito', 4983.43, 'COMP005'),
+(43, 100, 'Débito', 1440.73, 'COMP006'),
+(44, 101, 'Débito', 4920.63, 'COMP007'),
+(45, 100, 'Efectivo', 1023.82, 'COMP008'),
+(46, 100, 'Crédito', 2132.36, 'COMP009'),
+(47, 100, 'Crédito', 3944.22, 'COMP010');
+
 
 
