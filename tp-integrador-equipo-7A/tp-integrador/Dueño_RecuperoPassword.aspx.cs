@@ -25,19 +25,21 @@ namespace tp_integrador
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             Usuario usuario = new Usuario();
 
-            if (Session["contacto"] != null)
+            try
             {
-                string contacto = (string)Session["contacto"];
-           
-                dueño = dueñoNegocio.listarPorUser(contacto)[0];
-                usuario = usuarioNegocio.ListarUnoTodos(dueño.Usuario)[0];
-
-                if (txtNuevaClave.Text == txtConfirmarClave.Text)
+                if (Session["contacto"] != null)
                 {
+                    string contacto = (string)Session["contacto"];
 
-                    usuario.Pass = txtConfirmarClave.Text;
-                    usuarioNegocio.Modificar(usuario);
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "cambioClave", @"
+                    dueño = dueñoNegocio.listarPorUser(contacto)[0];
+                    usuario = usuarioNegocio.ListarUnoTodos(dueño.Usuario)[0];
+
+                    if (txtNuevaClave.Text == txtConfirmarClave.Text)
+                    {
+
+                        usuario.Pass = txtConfirmarClave.Text;
+                        usuarioNegocio.Modificar(usuario);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "cambioClave", @"
                     Swal.fire({
                         title: '¡Modificación de clave!',
                         text: 'Su contraseña fue modificada exitosamente.',
@@ -49,13 +51,20 @@ namespace tp_integrador
                         }
                     });
                 ", true);
-                }
-                else
-                {
-                    lblClaves.Visible = true;
-                    lblClaves.Text = "Las claves no coinciden.";
+                    }
+                    else
+                    {
+                        lblClaves.Visible = true;
+                        lblClaves.Text = "Las claves no coinciden.";
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
+            }
+
         }
     }
 }

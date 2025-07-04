@@ -20,39 +20,38 @@ namespace tp_integrador
             FiltroAvanzado = chkAvanzado.Checked;
             if (!IsPostBack)
             {
-                //if (!(Seguridad.sesionActiva(Session["usuario"])) || (!Seguridad.isAdmin(Session["usuario"])))
-                //    Response.Redirect("IniciarSesion.aspx", false);
-                //else
-                //{
-                try
+                if (!(Seguridad.sesionActiva(Session["usuario"])) || (!Seguridad.isAdmin(Session["usuario"])))
+                    Response.Redirect("IniciarSesion.aspx", false);
+                else
                 {
-                    VeterinarioNegocio veterinarioNegocio = new VeterinarioNegocio();
-                    RecepcionistaNegocio recepcionistaNegocio = new RecepcionistaNegocio();
-                    DueñoNegocio dueñoNegocio = new DueñoNegocio();
-                    Session.Add("listaVeterinarios", veterinarioNegocio.listar());
-                    Session.Add("listaRecepcionistas", recepcionistaNegocio.listar());
-                    Session.Add("listaDueños", dueñoNegocio.listar());
+                    try
+                    {
+                        VeterinarioNegocio veterinarioNegocio = new VeterinarioNegocio();
+                        RecepcionistaNegocio recepcionistaNegocio = new RecepcionistaNegocio();
+                        DueñoNegocio dueñoNegocio = new DueñoNegocio();
+                        Session.Add("listaVeterinarios", veterinarioNegocio.listar());
+                        Session.Add("listaRecepcionistas", recepcionistaNegocio.listar());
+                        Session.Add("listaDueños", dueñoNegocio.listar());
 
 
-                    gvVeterinarios.DataSource = Session["listaVeterinarios"];
-                    gvVeterinarios.DataBind();
+                        gvVeterinarios.DataSource = Session["listaVeterinarios"];
+                        gvVeterinarios.DataBind();
 
-                    gvRecepcionistas.DataSource = Session["listaRecepcionistas"];
-                    gvRecepcionistas.DataBind();
+                        gvRecepcionistas.DataSource = Session["listaRecepcionistas"];
+                        gvRecepcionistas.DataBind();
 
-                    gvDueños.DataSource = Session["listaDueños"];
-                    gvDueños.DataBind();
+                        gvDueños.DataSource = Session["listaDueños"];
+                        gvDueños.DataBind();
 
+                    }
+                    catch (Exception ex)
+                    {
+                        Session["Error"] = ex.Message.ToString();
+                        Response.Redirect("ErrorPage.aspx");
+                    }
                 }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
-                //}
 
             }
-
         }
 
 
@@ -159,8 +158,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
 
         }
@@ -224,8 +223,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
 
@@ -320,8 +319,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
 
         }
@@ -368,12 +367,12 @@ namespace tp_integrador
                     if (accion == "Habilitar")
                     {
                         recepcionistaNegocio.Habilitar_O_Eliminar(legajo, 1);
-                        usuarioNegocio.Habilitar_O_Eliminar(recepcionistaNegocio.listar("",legajo)[0].Usuario, 1);
+                        usuarioNegocio.Habilitar_O_Eliminar(recepcionistaNegocio.listar("", legajo)[0].Usuario, 1);
                     }
                     else if (accion == "Eliminar")
                     {
                         recepcionistaNegocio.Habilitar_O_Eliminar(legajo);
-                        usuarioNegocio.Habilitar_O_Eliminar(recepcionistaNegocio.listar("",legajo)[0].Usuario);
+                        usuarioNegocio.Habilitar_O_Eliminar(recepcionistaNegocio.listar("", legajo)[0].Usuario);
                     }
 
                     gvRecepcionistas.DataSource = recepcionistaNegocio.listar();
@@ -382,8 +381,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
 
@@ -479,8 +478,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
 
         }
@@ -533,7 +532,7 @@ namespace tp_integrador
                         dueñoNegocio.Habilitar_O_Eliminar(dni);
                         usuarioNegocio.Habilitar_O_Eliminar(dueñoNegocio.listar(dni)[0].Usuario);
                     }
-                        
+
 
                     gvDueños.DataSource = dueñoNegocio.listar();
                     gvDueños.DataBind();
@@ -541,8 +540,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
 
@@ -563,7 +562,7 @@ namespace tp_integrador
         }
         protected void txtFiltroRec_TextChanged(object sender, EventArgs e)
         {
-            List<Recepcionista> recepcionistas  = (List<Recepcionista>)Session["listaRecepcionistas"];
+            List<Recepcionista> recepcionistas = (List<Recepcionista>)Session["listaRecepcionistas"];
             List<Recepcionista> recepcionistasFiltrados = recepcionistas.FindAll(x => x.Apellido.ToUpper().Contains(txtFiltroRec.Text.ToUpper()));
 
             gvRecepcionistas.DataSource = recepcionistasFiltrados;
@@ -582,16 +581,16 @@ namespace tp_integrador
             try
             {
                 DueñoNegocio dueñoNegocio = new DueñoNegocio();
-                gvDueños.DataSource = dueñoNegocio.Filtrar(ddlCampo.SelectedItem.ToString(), 
-                    ddlCriterio.SelectedItem.ToString(), 
-                    txtFiltroAvanzado.Text, 
+                gvDueños.DataSource = dueñoNegocio.Filtrar(ddlCampo.SelectedItem.ToString(),
+                    ddlCriterio.SelectedItem.ToString(),
+                    txtFiltroAvanzado.Text,
                     ddlEstado.SelectedItem.ToString());
                 gvDueños.DataBind();
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
     }

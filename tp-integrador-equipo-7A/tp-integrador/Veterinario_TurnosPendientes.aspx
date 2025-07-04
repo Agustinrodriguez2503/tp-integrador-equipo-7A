@@ -269,7 +269,7 @@
     </asp:UpdatePanel>
 
     <%-- Modal para generar el reporte --%>
-<%--    <asp:UpdatePanel ID="upModalReporte" runat="server" UpdateMode="Conditional">
+    <asp:UpdatePanel ID="upModalReporte" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="modal fade" id="modalReporte" runat="server" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -306,7 +306,7 @@
                 </div>
             </div>
         </ContentTemplate>
-    </asp:UpdatePanel>--%>
+    </asp:UpdatePanel>
 
 
 </asp:Content>

@@ -52,8 +52,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
         protected void btnRegistro_Click(object sender, EventArgs e)
@@ -140,8 +140,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
         protected void btnRecuperarClave_Click(object sender, EventArgs e)
@@ -180,8 +180,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
     }

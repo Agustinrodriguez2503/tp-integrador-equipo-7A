@@ -38,8 +38,8 @@ namespace tp_integrador
                     }
                     catch (Exception ex)
                     {
-
-                        throw ex;
+                        Session["Error"] = ex.Message.ToString();
+                        Response.Redirect("ErrorPage.aspx");
                     }
                 }
             }
@@ -60,8 +60,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
         // REGISTRO DE MASCOTA
@@ -157,7 +157,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
         // CARGA DE DATOS PARA MODIFICAR MASCOTA
@@ -189,8 +190,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
 
         }
@@ -253,8 +254,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
         protected void btnEliminar_Command(object sender, CommandEventArgs e)
@@ -285,8 +286,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
         // MODIFICACION DE CLIENTE
@@ -337,8 +338,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
         // REDIRECCIÓN A TURNOS
@@ -355,7 +356,8 @@ namespace tp_integrador
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
         // REDIRECCIÓN A FICHAS
@@ -374,8 +376,8 @@ namespace tp_integrador
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
             }
         }
         // DEVOLVER EL DUEÑO QUE INICIO SESIÓN
