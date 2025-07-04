@@ -402,7 +402,43 @@ namespace negocio
                 datos.setearParametro("@Estado", estado);
 
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        //Cree este metodo para implementar la validación de la filas afectadas
+        public bool modificarEstadoValidacion(int idTurno, string estado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.setearConsulta("UPDATE Turnos SET Estado = @Estado WHERE IDTurno = @IDTurno");
+
+                datos.setearParametro("@IDTurno", idTurno);
+                datos.setearParametro("@Estado", estado);
+
+                //me guardo el int que me retorna el metodo
+                int filasAfectadas = datos.ejecutarAccionInt();
+
+                if(filasAfectadas > 0)
+                {
+                    //hubieron filas afectadas
+                    return true;
+                }
+                else
+                {
+                    //NO hubieron filas afectadas (para el false le podemos meter un modal de error en el metodo que se use)
+                    return false;
+                }
             }
             catch (Exception ex)
             {

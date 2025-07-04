@@ -65,6 +65,22 @@ namespace negocio
             }
         }
 
+        //Cree uno nuevo para implementar la validación de las filas afectadas en la bd
+        public int ejecutarAccionInt()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                return comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public void cerrarConexion()
         {
             if (lector != null)

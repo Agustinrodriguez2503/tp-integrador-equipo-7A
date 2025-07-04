@@ -15,6 +15,7 @@ namespace tp_integrador
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             Usuario usuario = (Usuario)Session["usuario"];
 
             if (!(Seguridad.sesionActiva(Session["usuario"])))
@@ -26,7 +27,7 @@ namespace tp_integrador
                 if (!IsPostBack)
                 {
                     txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                    CargarTurnos();
+                    CargarTurnos();                
                 }
             }
             else
@@ -115,25 +116,25 @@ namespace tp_integrador
             {
                 if (ViewState["IdTurnoParaCancelar"] != null)
                 {
+                    
                     int idTurno = (int)ViewState["IdTurnoParaCancelar"];
                     DateTime fechaTurno = (DateTime)ViewState["FechaTurnoParaCancelar"];
                     TurnoNegocio negocio = new TurnoNegocio();
 
                     string correoCliente = negocio.mailEliminacion(idTurno);
-                    negocio.modificarEstado(idTurno, "CANCELADO");
-
+                    negocio.modificarEstadoValidacion(idTurno, "CANCELADO");
 
                     //ENVIO DE MAIL
-                    //if (!string.IsNullOrEmpty(correoCliente))
-                    //{
-                    //    try
-                    //    {
-                    //        Servicios.enviarMailTurnoEliminado(correoCliente, fechaTurno);
-                    //    }
-                    //    catch (Exception)
-                    //    {
-                    //    }
-                    //}
+                    if (!string.IsNullOrEmpty(correoCliente))
+                    {
+                        try
+                        {
+                            Servicios.enviarMailTurnoEliminado(correoCliente, fechaTurno);
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
 
                     ViewState["IdTurnoParaCancelar"] = null;
                     ViewState["FechaTurnoParaCancelar"] = null;
@@ -144,7 +145,9 @@ namespace tp_integrador
                     string scriptExito = $"$('#{modalConfirmacion.ClientID}').modal('hide'); " +
                                          "$('.modal-backdrop').remove(); " +
                                          "$('body').removeClass('modal-open'); ";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowSuccessModal", scriptExito, true);
+                    ScriptManager.RegisterStartupScript(upModalConfirmacion, upModalConfirmacion.GetType(), "ShowSuccessModal", scriptExito, true);
+
+                    Response.Redirect("Veterinario_TurnosPendientes.aspx");
                 }
             }
             catch (Exception ex)

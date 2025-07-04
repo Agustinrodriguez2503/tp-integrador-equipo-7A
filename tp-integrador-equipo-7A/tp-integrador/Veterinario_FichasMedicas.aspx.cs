@@ -115,6 +115,9 @@ namespace tp_integrador
                         bool parseSuccess = int.TryParse(ddlFiltroFicha.SelectedValue, out idMascotaSeleccionado);
                         Mascota DatosMascota = listaMascotas.FirstOrDefault(m => m.IDMascota == idMascotaSeleccionado);
 
+                        //me guardo en session el idMascota para poder usarlo después en btnDescargarPDF_Click
+                        ViewState["IDMascota"] = idMascotaSeleccionado;
+
                         FichaNegocio negocio = new FichaNegocio();
                         listaFichas = negocio.listarFichasPorMascota(txtFiltroFicha.Text, idMascotaSeleccionado);
                         Ficha fichaSeleccionada = listaFichas.FirstOrDefault();
@@ -139,10 +142,10 @@ namespace tp_integrador
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
 

@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         body, html {
             margin: 0;
@@ -252,8 +254,10 @@
                         </div>
                         <div class="modal-footer justify-content-center">
                             <asp:Button ID="btnConfirmarCancelacion" runat="server" Text="Confirmar"
-                                CssClass="btn btn-danger btn-lg px-4 rounded-pill" OnClick="btnConfirmarCancelacion_Click" />
-                            <button type="button" class="btn btn-outline-secondary btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Cerrar</button>
+                                CssClass="btn btn-danger btn-lg px-4 rounded-pill" OnClick="btnConfirmarCancelacion_Click" 
+                                OnClientClick="this.disabled=true; this.value='Procesando...';document.getElementById(this.parentElement.querySelector('[data-bs-dismiss=\'modal\']').id).disabled=true;"
+                                UseSubmitBehavior="false" />
+                            <button type="button" id="btnCerrarModal" runat="server" class="btn btn-outline-secondary btn-lg px-4 rounded-pill" data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -265,7 +269,7 @@
     </asp:UpdatePanel>
 
     <%-- Modal para generar el reporte --%>
-    <asp:UpdatePanel ID="upModalReporte" runat="server" UpdateMode="Conditional">
+<%--    <asp:UpdatePanel ID="upModalReporte" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="modal fade" id="modalReporte" runat="server" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -302,7 +306,7 @@
                 </div>
             </div>
         </ContentTemplate>
-    </asp:UpdatePanel>
+    </asp:UpdatePanel>--%>
 
 
 </asp:Content>
