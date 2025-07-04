@@ -128,6 +128,26 @@ CREATE TABLE Cobros(
     FOREIGN KEY (LegajoRecepcionista) REFERENCES Recepcionistas(Legajo)
 );
 GO
+-- TABLA MENSAJERIA
+CREATE TABLE Mensajeria (
+    IDMensaje INT PRIMARY KEY IDENTITY(1,1),
+    Asunto VARCHAR(100) NOT NULL
+);
+GO
+-- TABLA MENSAJES
+CREATE TABLE Mensajes (
+    IDConversacion INT PRIMARY KEY IDENTITY(1,1),
+    IDMensaje INT NOT NULL,
+    Emisor VARCHAR(25) NOT NULL,
+    Receptor VARCHAR(25) NOT NULL,
+    Contenido VARCHAR(500) NOT NULL,
+    Fecha DATETIME NOT NULL DEFAULT GETDATE(),
+    FOREIGN KEY (IDMensaje) REFERENCES Mensajeria(IDMensaje),
+    FOREIGN KEY (Emisor) REFERENCES Usuarios(Usuario),
+    FOREIGN KEY (Receptor) REFERENCES Usuarios(Usuario)
+);
+GO
+
 
 ------------------------------------------------- REGISTROS! ----------------------------------------------
 
@@ -144,7 +164,9 @@ INSERT INTO Usuarios (Usuario, IDRol, Clave) VALUES
 ('due1', 1, 'clavedue1'),
 ('due2', 1, 'clavedue2'),
 ('due3', 1, 'clavedue3'),
-('admin', 1, 'admin');
+('due4', 1, 'clavedue4'),
+('agustin', 1, 'claveagustin'),
+('admin', 4, 'admin');
 
 -- VETERINARIOS
 INSERT INTO Veterinarios (Matricula, Usuario, Nombre, Apellido, Dni, Telefono, Correo, UrlImagen) VALUES
@@ -159,16 +181,22 @@ INSERT INTO Recepcionistas (Usuario, Nombre, Apellido, Dni, Telefono, Correo) VA
 
 -- DUEÑOS
 INSERT INTO Dueños (Dni, Usuario, Nombre, Apellido, Telefono, Correo, Domicilio) VALUES
-('50000001', 'due1', 'María', 'Rodríguez', '6666-1111', 'maria@due.com', 'Calle 1 123'),
-('50000002', 'due2', 'Jorge', 'Ramírez', '6666-2222', 'jorge@due.com', 'Calle 2 456'),
-('50000003', 'due3', 'Lucía', 'Martínez', '6666-3333', 'lucia@due.com', 'Calle 3 789');
+('50000001', 'due1', 'María', 'Rodríguez', '11 6666-1111', 'maria@due.com', 'Pichincha 123, Lanus'),
+('50000002', 'due2', 'Jorge', 'Ramírez', '11 6666-2222', 'jorge@due.com', 'Corrientes 456, Avellaneda'),
+('50000003', 'due3', 'Lucía', 'Martínez', '15 6666-3333', 'lucia@due.com', 'Venezuela 789, Ramos Mejia'),
+('50000004', 'due4', 'Jose', 'Fernandez', '15 6666-4444', 'jose@due.com', 'Argentina 123, Pilar'),
+('50000005', 'agustin', 'Agustin', 'Rodriguez', '11 6666-5555', 'agustinrodriguez2503@gmail.com', 'Juncal 456, Moreno');
 
 -- MASCOTAS
 INSERT INTO Mascotas (DniDueño, Nombre, Edad, FechaNacimiento, Peso, Tipo, Raza, Sexo) VALUES
 ('50000001', 'Firulais', 4, '2020-01-10', 12.5, 'Perro', 'Labrador', 'Macho'),
 ('50000001', 'Mishi', 2, '2022-06-05', 4.2, 'Gato', 'Siamés', 'Hembra'),
 ('50000002', 'Toby', 6, '2018-03-22', 10.0, 'Perro', 'Beagle', 'Macho'),
-('50000003', 'Luna', 1, '2023-02-15', 3.8, 'Gato', 'Persa', 'Hembra');
+('50000003', 'Luna', 1, '2023-02-15', 3.8, 'Gato', 'Persa', 'Hembra'),
+('50000004', 'Bonnie', 6, '2019-05-02', 9, 'Perro', 'BullDog', 'Hembra'),
+('50000004', 'Corona', 3, '2022-05-02', 6, 'Gato', 'Tricolor', 'Hembra'),
+('50000005', 'Gina', 3, '2022-05-03', 3, 'Gato', 'Tricolor', 'Hembra'),
+('50000005', 'Pipino', 5, '2020-05-03', 1.2, 'Loro', 'Perico', 'Macho');
 
 -- TURNOS
 -- Fecha de hoy: supongamos es '2025-06-06'

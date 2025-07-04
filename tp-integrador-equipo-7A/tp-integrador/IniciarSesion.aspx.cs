@@ -133,7 +133,7 @@ namespace tp_integrador
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = 'IniciarSesion.aspx';
+                        window.location.href = this.close() /*'IniciarSesion.aspx'*/;
                     }
                 });
             ", true);

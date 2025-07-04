@@ -365,7 +365,7 @@
         </div>
     </div>
 
-    <%----------------- MODARL DE CONFIRMACION DE ELIMINACION -----------------------%>
+    <%----------------- MODAL DE CONFIRMACION DE ELIMINACION -----------------------%>
 
     <asp:UpdatePanel ID="upModalEliminar" runat="server">
         <ContentTemplate>

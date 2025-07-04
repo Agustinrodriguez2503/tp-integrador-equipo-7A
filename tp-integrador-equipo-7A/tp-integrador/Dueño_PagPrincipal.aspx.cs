@@ -367,11 +367,16 @@ namespace tp_integrador
 
             try
             {
-
-                //mando por url el id de la mascota
                 int idMascota = int.Parse(btn.CommandArgument);
 
-                Response.Redirect($"Veterinario_FichasMedicas.aspx?idMascota={idMascota}");
+                Session.Add("IDMascota", idMascota);
+                Response.Redirect("Veterinario_FichasMedicas.aspx", false);
+
+                //mando por url el id de la mascota
+
+                //int idMascota = int.Parse(btn.CommandArgument);
+
+                //Response.Redirect($"Veterinario_FichasMedicas.aspx?idMascota={idMascota}");
 
             }
             catch (Exception ex)
