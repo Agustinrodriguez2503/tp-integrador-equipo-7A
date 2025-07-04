@@ -127,7 +127,7 @@
                 </asp:LinkButton>
             </div>
             <div class="col-md-6 col-lg-4">
-                <a href="#" class="card-link-custom">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalMensajeria" class="card-link-custom">
                     <div class="card custom-card h-100 text-center card-verde-agua">
                         <div class="card-body">
                             <h5 class="card-title">MENSAJERIA</h5>
@@ -394,7 +394,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
-        <%----------------- MODAL DE CANCELACION DE TURNO -----------------------%>
+    <%----------------- MODAL DE CANCELACION DE TURNO -----------------------%>
 
     <asp:UpdatePanel ID="upCancelarTurno" runat="server">
         <ContentTemplate>
@@ -424,5 +424,67 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
+    <!-- MODAL DE MENSAJERÍA -->
+    <div class="modal fade" id="modalMensajeria" tabindex="-1" aria-labelledby="modalMensajeriaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <!-- Más ancho -->
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="modalMensajeriaLabel">Mensajería</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <!-- COLUMNA IZQUIERDA: Lista de chats -->
+                        <div class="col-4 border-end" style="max-height: 70vh; overflow-y: auto;">
+                            <asp:Repeater ID="rptChats" runat="server" OnItemCommand="rptChats_ItemCommand">
+
+                                <ItemTemplate>
+                                    <asp:LinkButton runat="server" ID="btnChat" CommandName="AbrirChat"
+                                        CommandArgument='<%# Eval("IDMensaje") %>'
+                                        CssClass="list-group-item list-group-item-action">
+            
+                                        <div class="fw-semibold"><%# Eval("Usuario") %></div>
+                                        <div class="small text-muted text-truncate"><%# Eval("UltimoMensaje") %></div>
+                                        <div class="small text-muted"><%# Eval("Fecha", "{0:g}") %></div>
+                                    </asp:LinkButton>
+                                    <asp:Label ID="lblUsuario" runat="server" Text='<%# Eval("Usuario") %>' CssClass="d-none" />
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                        <asp:HiddenField ID="hfIDMensajeSeleccionado" runat="server" />
+                        <!-- COLUMNA DERECHA: Chat activo -->
+                        <div class="col-8 d-flex flex-column" style="max-height: 70vh;">
+                            <!-- Encabezado del chat (opcional) -->
+                            <div class="border-bottom mb-2 pb-2">
+                                <h6 class="mb-0 fw-bold">Conversación con: <span id="nombreChat">[Nombre del usuario]</span></h6>
+                            </div>
+
+                            <!-- Área de conversación -->
+                            <div class="flex-grow-1 overflow-auto mb-3 p-2 border rounded bg-light" id="chatScroll" style="min-height: 300px;">
+                                <asp:Repeater ID="rptMensajes" runat="server">
+                                    <ItemTemplate>
+                                        <div class='mb-2'>
+                                            <div class="p-2 rounded-3 d-inline-block bg-white shadow-sm">
+                                                <strong><%# Eval("Emisor") %></strong>: <%# Eval("Contenido") %>
+                                            </div>
+                                            <div class="small text-muted"><%# Eval("Fecha", "{0:g}") %></div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+
+                            <!-- Caja para escribir nuevo mensaje -->
+                            <div class="mt-auto">
+                                <asp:TextBox ID="txtMensajeNuevo" runat="server" CssClass="form-control mb-2" TextMode="MultiLine" Rows="3" placeholder="Escribe tu mensaje..." />
+                                <asp:Button ID="btnEnviarMensaje" runat="server" CssClass="btn btn-primary w-100" Text="Enviar" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </asp:Content>

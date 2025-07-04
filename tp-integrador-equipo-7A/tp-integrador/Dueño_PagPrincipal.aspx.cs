@@ -15,34 +15,34 @@ namespace tp_integrador
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.sesionActiva(Session["usuario"]))
+            {
+                Response.Redirect("IniciarSesion.aspx", false);
+                return;
+            }
+
             if (!IsPostBack)
             {
-                if (!(Seguridad.sesionActiva(Session["usuario"])))
-                    Response.Redirect("IniciarSesion.aspx", false);
-                else
+                try
                 {
-                    try
-                    {
-                        Mascota mascota = new Mascota();
-                        MascotaNegocio mascotaNegocio = new MascotaNegocio();
-                        Dueño dueño = new Dueño();
+                    Mascota mascota = new Mascota();
+                    MascotaNegocio mascotaNegocio = new MascotaNegocio();
+                    Dueño dueño = devolverDueño();
 
-                        dueño = devolverDueño();
-                        List<Mascota> mascotas = mascotaNegocio.listar(dueño.Dni);
+                    List<Mascota> mascotas = mascotaNegocio.listar(dueño.Dni);
+                    lblBienvenido.Text = dueño.nombreCompleto();
 
-                        lblBienvenido.Text = dueño.nombreCompleto();
-
-
-                        cargarMascotas(mascotas);
-                        cargarTurnos();
-                    }
-                    catch (Exception ex)
-                    {
-                        Session["Error"] = ex.Message.ToString();
-                        Response.Redirect("ErrorPage.aspx");
-                    }
+                    cargarMascotas(mascotas);
+                    cargarTurnos();
+                    cargarChats();
+                }
+                catch (Exception ex)
+                {
+                    Session["Error"] = ex.Message;
+                    Response.Redirect("ErrorPage.aspx");
                 }
             }
+
         }
 
         // CANCELAR TURNO
@@ -386,16 +386,11 @@ namespace tp_integrador
 
             try
             {
-                int idMascota = int.Parse(btn.CommandArgument);
-
-                Session.Add("IDMascota", idMascota);
-                Response.Redirect("Veterinario_FichasMedicas.aspx", false);
-
                 //mando por url el id de la mascota
 
-                //int idMascota = int.Parse(btn.CommandArgument);
+                int idMascota = int.Parse(btn.CommandArgument);
 
-                //Response.Redirect($"Veterinario_FichasMedicas.aspx?idMascota={idMascota}");
+                Response.Redirect($"Veterinario_FichasMedicas.aspx?idMascota={idMascota}", false);
 
             }
             catch (Exception ex)
@@ -460,6 +455,40 @@ namespace tp_integrador
 
         }
 
+        private void cargarChats()
+        {
+            MensajeriaNegocio mensajeriaNegocio = new MensajeriaNegocio();
+
+            rptChats.DataSource = mensajeriaNegocio.listarChats();
+            rptChats.DataBind();
+
+        }
+        protected void rptChats_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "AbrirChat")
+            {
+                int idMensaje = Convert.ToInt32(e.CommandArgument);
+                hfIDMensajeSeleccionado.Value = idMensaje.ToString();
+
+                cargarMensajesDeChat(idMensaje);
+
+                Label lblNombreUsuario = (Label)e.Item.FindControl("lblUsuario");
+                string nombreUsuario = lblNombreUsuario != null ? lblNombreUsuario.Text : "Usuario";
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "actualizarNombreChat", $"document.getElementById('nombreChat').innerText = '{nombreUsuario}';", true);
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "abrirModal", "$('#modalMensajeria').modal('show');", true);
+            }
+        }
+
+        private void cargarMensajesDeChat(int idMensaje)
+        {
+            MensajeNegocio negocioMensaje = new MensajeNegocio();
+
+            rptMensajes.DataSource = negocioMensaje.listarConversarionPorID(idMensaje);
+            rptMensajes.DataBind();
+
+        }
 
     }
 }

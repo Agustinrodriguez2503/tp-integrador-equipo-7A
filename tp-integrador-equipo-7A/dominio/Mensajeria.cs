@@ -10,5 +10,9 @@ namespace dominio
     {
         public int IDMensaje { get; set; }
         public string Asunto { get; set; }
+        public string Usuario { get; set; }
+        public string UltimoMensaje { get; set; }
+        public DateTime Fecha { get; set; }
+        public bool Activo { get; set; }
     }
 }

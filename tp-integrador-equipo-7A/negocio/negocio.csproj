@@ -46,6 +46,8 @@
     <Compile Include="DueñoNegocio.cs" />
     <Compile Include="FichaNegocio.cs" />
     <Compile Include="MascotaNegocio.cs" />
+    <Compile Include="MensajeNegocio.cs" />
+    <Compile Include="MensajeriaNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecepcionistaNegocio.cs" />
     <Compile Include="RolNegocio.cs" />
