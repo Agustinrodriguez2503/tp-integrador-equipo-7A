@@ -135,8 +135,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <asp:ScriptManager runat="server" ID="sm_PaginaInicialRecep"></asp:ScriptManager>
+   <asp:ScriptManager runat="server" ID="sm_PaginaInicialRecep"></asp:ScriptManager>
 
     <%----------------------------------MENU PRINCIPAL----------------------------------------%>
     <div class="container my-5">
@@ -267,7 +266,7 @@
                                 </div>
                             </div>
 
-                            <!-- SECCIÓN DE CONSULTA -->
+                            <!------------------ SECCIÓN DE CONSULTA ---------------------->
                             <div class="card border-0 shadow-lg rounded-4 mt-5">
                                 <div class="card-body bg-light p-4">
 
@@ -334,8 +333,9 @@
                                                     CssClass="btn btn-outline-secondary"
                                                     OnClick="btnLimpiarBuscarFiltros_Click"
                                                     ValidationGroup="FiltroTurnos" />
-
                                             </div>
+                                            <asp:Label Text="Ingrese:" CssClass="form-label fw-semibold text-danger fst-italic" runat="server" ID="lblValorFiltro" Visible="false" />
+
                                         </div>
 
 
@@ -398,9 +398,23 @@
                                             <asp:Button ID="btnAgregarMascota" runat="server" Text="Mascota" CssClass="btn btn-outline-success btn-lg rounded-pill px-4" OnClick="btnAgregarMascota_Click" />
 
                                             <%--SE SOLICITA EL DNI DEL DUEÑO, SE CORROBORA QUE EXISTA Y SE ABRE EL MODAL PARA REGISTRAR MASCOTA--%>
-                                            <div class="input-group mt-2" style="min-width: 250px">
-                                                <asp:TextBox ID="txtBuscarMascota" Visible="false" runat="server" AutoPostBack="true" OnTextChanged="txtBuscarMascota_TextChanged" CssClass="form-control form-control-lg shadow-sm rounded-start-3" placeholder="Ingrese DNI del dueño" />
-                                                <asp:Button ID="btnBuscarMascota" Visible="false" runat="server" Text="+" CssClass="btn btn-outline-secondary btn-lg px-3 rounded-end-3" OnClick="btnBuscarMascota_Click" />
+                                            <div class="input-group mt-2 flex-grow-1" style="min-width: 300px; max-width: 500px;">
+                                                <asp:TextBox 
+                                                    ID="txtBuscarMascota" 
+                                                    Visible="false" 
+                                                    runat="server" 
+                                                    AutoPostBack="true" 
+                                                    OnTextChanged="txtBuscarMascota_TextChanged" 
+                                                    CssClass="form-control form-control-lg shadow-sm rounded-start-3 flex-grow-1" 
+                                                    placeholder="Ingrese DNI del dueño" />
+    
+                                                <asp:Button 
+                                                    ID="btnBuscarMascota" 
+                                                    Visible="false" 
+                                                    runat="server" 
+                                                    Text="+" 
+                                                    CssClass="btn btn-outline-secondary btn-lg px-3 rounded-end-3" 
+                                                    OnClick="btnBuscarMascota_Click" />
                                             </div>
                                             <asp:Label ID="lblInfoBuscarMascota" runat="server" CssClass="text-danger small fst-italic mt-1 ms-1 d-block" Visible="false" />
                                         </div>
@@ -629,7 +643,6 @@
         </div>
 
     </div>
-
 
 
 </asp:Content>

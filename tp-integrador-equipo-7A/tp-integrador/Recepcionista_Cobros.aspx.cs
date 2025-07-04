@@ -28,7 +28,13 @@ namespace tp_integrador
                     ddlTurnos.DataBind();
 
                     ddlTurnos.Items.Insert(0, new ListItem("-- Seleccionar un turno --", ""));
+
+                    CobroNegocio negocioCobro = new CobroNegocio();
+                    cargarCobros(negocioCobro.listarCobrosRealizado());
+                    Session["CobrosRealizados"] = negocioCobro.listarCobrosRealizado();
+
                 }
+
 
             }
             catch (Exception ex)
@@ -47,6 +53,14 @@ namespace tp_integrador
             try
             {
                 Usuario recepcionista = (Usuario)Session["usuario"];
+                if (recepcionista == null)
+                {
+                    Session["Error"] = "Debe estar registrado/a como recepcionista para realizar un cobro.";
+                    Response.Redirect("ErrorPage.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
+
+                }
                 Recepcionista seleccionado = negocioRecep.buscarRecepcionista_Usuario(recepcionista.User);
                 nuevo.IDTurno = (int)Session["turnoSeleccionado"];
                 nuevo.LegajoRecepcionista = seleccionado.Legajo;
@@ -143,6 +157,88 @@ namespace tp_integrador
                 Response.Redirect("ErrorPage.aspx");
             }
 
+        }
+
+        protected void btnFiltrarCobros_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CobroNegocio negocioCobro = new CobroNegocio();
+                lbl_ddlFiltro.Visible = false;
+                lblFiltroValor.Visible = false;
+
+                if (string.IsNullOrEmpty(txtValorFiltroCobros.Text))
+                {
+                    cargarCobros(negocioCobro.listarCobrosRealizado());
+                    Session["CobrosRealizados"] = negocioCobro.listarCobrosRealizado();
+                    return;
+                }
+
+                if (ddlFiltroCobros.SelectedValue == "Seleccione")
+                {
+                    lbl_ddlFiltro.Text = "Seleccione el criterio para filtar";
+                    lbl_ddlFiltro.Visible = true;
+                    return;
+                }
+
+                string criterio = ddlFiltroCobros.SelectedValue;
+                string valor = txtValorFiltroCobros.Text;
+
+                if (criterio == "Fecha")
+                {
+                    DateTime fechaBuscada;
+                    if (!DateTime.TryParseExact(valor, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out fechaBuscada))
+                    {
+                        lblFiltroValor.Text = "Ingrese una fecha válida en formato dd/MM/yyyy";
+                        lblFiltroValor.Visible = true;
+                        return;
+                    }
+
+                    valor = fechaBuscada.ToString("yyyy-MM-dd");
+                }
+
+
+                cargarCobros(negocioCobro.listarCobrosRealizado(criterio, valor));
+                Session["CobrosRealizados"] = negocioCobro.listarCobrosRealizado(criterio, valor);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
+            }
+
+
+        }
+
+        protected void gvCobros_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                List<Cobros> cobros = Session["CobrosRealizados"] as List<Cobros>;
+                if (cobros != null)
+                {
+                    gvCobros.PageIndex = e.NewPageIndex;
+                    cargarCobros(cobros);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex.Message.ToString();
+                Response.Redirect("ErrorPage.aspx");
+            }
+
+        }
+
+        protected void cargarCobros(List<Cobros> listaCobros)
+        {
+
+            gvCobros.DataSource = listaCobros;
+            gvCobros.DataBind();
+            gvCobros.Visible = true;
         }
     }
 }

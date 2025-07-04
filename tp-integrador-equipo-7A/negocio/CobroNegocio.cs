@@ -46,6 +46,65 @@ namespace negocio
             }
         }
 
+        public List<Cobros> listarCobrosRealizado(string criterio = "", string valor = "")
+        {
+            List<Cobros> lista = new List<Cobros>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                string consulta = "SELECT C.IDCobro, T.FechaHora, M.DniDueño, M.Nombre, C.FormaPago, C.Costo FROM Cobros C " +
+                                  "INNER JOIN Turnos T ON C.IDTurno = T.IDTurno " +
+                                  "INNER JOIN Mascotas M ON T.IDMascota = M.IDMascota";
+
+                if (criterio == "")
+                {
+                    datos.setearConsulta(consulta);
+
+                }
+                else
+                {
+                    if (criterio == "DNI")
+                    {
+                        consulta += " Where M.DniDueño = @valor";
+                    }
+                    else
+                    {
+                        consulta += " Where CAST(T.FechaHora AS DATE) = @valor";
+                    }
+                    datos.setearConsulta(consulta);
+                    datos.setearParametro("@valor", valor);
+                }
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Cobros aux = new Cobros();
+                    aux.IDCobro = (int)datos.Lector["IDCobro"];
+                    aux.FechaHora = (DateTime)datos.Lector["FechaHora"];
+                    aux.DNIDueño = (string)datos.Lector["DniDueño"];
+                    aux.nombreMascota = (string)datos.Lector["Nombre"];
+                    aux.FormaPago = (string)datos.Lector["FormaPago"];
+                    aux.Costo = (decimal)datos.Lector["Costo"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
         public void Agregar(Cobros nuevo)
         {
             AccesoDatos datos = new AccesoDatos();

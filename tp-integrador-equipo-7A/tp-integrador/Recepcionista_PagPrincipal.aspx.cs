@@ -95,7 +95,7 @@ namespace tp_integrador
 
             TurnoNegocio negocioTurno = new TurnoNegocio();
 
-            cargarTurnosSinFiltros(negocioTurno.listarTurnosConMascotaYVeterinario());
+            cargarTurnos(negocioTurno.listarTurnosConMascotaYVeterinario());
             Session["TurnosFiltrados"] = negocioTurno.listarTurnosConMascotaYVeterinario();
 
 
@@ -297,17 +297,17 @@ namespace tp_integrador
                 negocioMascota.Agregar(nuevaMascota);
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "modificacionMascotaExitosa", @"
-                        Swal.fire({
-                            title: '¡Alta de mascota exitosa!',
-                            text: 'Su mascota ha sido dada de alta exitosamente.',
-                            icon: 'success',
-                            confirmButtonText: 'Aceptar'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = 'Recepcionista_PagPrincipal.aspx';
-                            }
-                        });
-                    ", true);
+                    Swal.fire({
+                        title: '¡Alta de mascota exitosa!',
+                        text: 'Su mascota ha sido dada de alta exitosamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'Recepcionista_PagPrincipal.aspx';
+                        }
+                    });
+                ", true);
 
 
             }
@@ -343,10 +343,11 @@ namespace tp_integrador
         protected void btnLimpiarBuscarFiltros_Click(object sender, EventArgs e)
         {
             TurnoNegocio negocioTurno = new TurnoNegocio();
+            lblValorFiltro.Visible = false;
 
             if (string.IsNullOrEmpty(txtBuscarTurno.Text))
             {
-                cargarTurnosSinFiltros(negocioTurno.listarTurnosConMascotaYVeterinario());
+                cargarTurnos(negocioTurno.listarTurnosConMascotaYVeterinario());
                 Session["TurnosFiltrados"] = negocioTurno.listarTurnosConMascotaYVeterinario();
                 return;
             }
@@ -363,15 +364,20 @@ namespace tp_integrador
             string criterioTurno = ddlEstadoFiltro.SelectedValue;
             string valorTurno = txtBuscarTurno.Text;
 
-            DateTime fechaBuscada;
+
             if (criterioTurno == "Fecha")
             {
-                fechaBuscada = DateTime.Parse(valorTurno);
-                valorTurno = fechaBuscada.ToString("yyyy-MM-dd");
+                DateTime fechaBuscada;
+                if (!DateTime.TryParseExact(valorTurno, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out fechaBuscada))
+                {
+                    lblValorFiltro.Text = "Ingrese una fecha válida en formato dd/MM/yyyy";
+                    lblValorFiltro.Visible = true;
+                    return;
+                }
             }
 
 
-            cargarTurnosSinFiltros(negocioTurno.filtrarTurnos(estadoTurno, criterioTurno, valorTurno));
+            cargarTurnos(negocioTurno.filtrarTurnos(estadoTurno, criterioTurno, valorTurno));
             Session["TurnosFiltrados"] = negocioTurno.filtrarTurnos(estadoTurno, criterioTurno, valorTurno);
 
 
@@ -379,7 +385,7 @@ namespace tp_integrador
 
 
 
-        protected void cargarTurnosSinFiltros(List<Turno> listaTurnos)
+        protected void cargarTurnos(List<Turno> listaTurnos)
         {
 
             gvTurnos.DataSource = listaTurnos;
@@ -390,6 +396,7 @@ namespace tp_integrador
         protected void rblEstadoTurno_SelectedIndexChanged(object sender, EventArgs e)
         {
             string estadoTurno = rblEstadoTurno.SelectedValue;
+            lblValorFiltro.Visible = false;
             TurnoNegocio negocioTurno = new TurnoNegocio();
             List<Turno> turnosFiltrados;
 
@@ -405,7 +412,7 @@ namespace tp_integrador
                 turnosFiltrados = negocioTurno.listarTurnosConMascotaYVeterinario("TODO", "COBRADO");
 
 
-            cargarTurnosSinFiltros(turnosFiltrados);
+            cargarTurnos(turnosFiltrados);
             Session["TurnosFiltrados"] = turnosFiltrados;
 
         }

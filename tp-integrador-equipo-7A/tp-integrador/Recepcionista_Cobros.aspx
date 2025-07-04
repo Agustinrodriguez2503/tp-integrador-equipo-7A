@@ -99,96 +99,173 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <asp:ScriptManager ID="ScriptManager1" runat="server" />
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />
 
     <div class="container my-5">
 
-        <!-- ENCABEZADO -->
-        <div class="text-center mb-5">
-            <h2 class="fw-bold text-verde-agua">Registrar Cobro</h2>
-            <p class="text-muted">Complete los siguientes datos para registrar el cobro del turno</p>
-        </div>
-
-        <!-- SELECCIÓN DE TURNO -->
-        <div class="mb-4">
-            <asp:DropDownList ID="ddlTurnos" runat="server"
-                CssClass="form-label fw-semibold ddl-estetico"
-                AutoPostBack="true" OnSelectedIndexChanged="ddlTurnos_SelectedIndexChanged">
-            </asp:DropDownList>
-        </div>
-
-        <!-- RESUMEN DEL TURNO -->
-        <div class="card shadow-sm rounded-4 mb-5">
-            <div class="card-header bg-verde-agua text-white rounded-top-4">
-                <h5 class="mb-0 fw-semibold"><i class="bi bi-info-circle-fill me-2"></i>Resumen del Turno</h5>
-            </div>
-
-            <div class="card-body bg-light">
-                <div class="row g-4">
-
-                    <div class="col-md-4">
-                        <div class="info-box">
-                            <asp:Label ID="lblVeterinario" runat="server" CssClass="label">Veterinario</asp:Label>
-                            <asp:Label ID="lblNombreVete" runat="server" CssClass="value"></asp:Label>
-                            <asp:Label ID="lblMatriculaVete" runat="server" CssClass="text-muted small"></asp:Label>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="info-box">
-                            <asp:Label ID="lblMascota" runat="server" CssClass="label">Mascota</asp:Label>
-                            <asp:Label ID="lblNombreMascota" runat="server" CssClass="value"></asp:Label>
-                            <asp:Label ID="lblDatoMascota" runat="server" CssClass="text-muted small"></asp:Label>
-
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="info-box">
-                            <asp:Label ID="lblDuenio" runat="server" CssClass="label">Dueño</asp:Label>
-                            <asp:Label ID="lblNombreDuenio" runat="server" CssClass="value"></asp:Label>
-                            <asp:Label ID="lblDatoDuenio" runat="server" CssClass="text-muted small"></asp:Label>
-                        </div>
-                    </div>
-
+        <!-- SECCIÓN: NUEVO COBRO -->
+        <section class="mb-5">
+            <div class="p-4 rounded-4 shadow bg-white border border-light-subtle">
+                <div class="mb-4 border-bottom pb-2">
+                    <h3 class="fw-bold text-success mb-1"><i class="bi bi-wallet-fill me-2"></i>Registrar Cobro</h3>
+                    <p class="text-muted mb-0">Complete los siguientes datos para registrar el cobro del turno</p>
                 </div>
-            </div>
-        </div>
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                                <!-- SELECCIÓN DE TURNO -->
+                                <div class="mb-4">
+                                    <asp:DropDownList ID="ddlTurnos" runat="server"
+                                        CssClass="form-select form-select-lg shadow-sm rounded-3"
+                                        AutoPostBack="true" OnSelectedIndexChanged="ddlTurnos_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
 
-        <!-- FORMULARIO DE COBRO -->
-        <div class="row g-4">
-            <div class="col-md-4">
-                <label class="form-label fw-semibold">Forma de Pago</label>
-                <asp:DropDownList ID="ddlFormaPago" runat="server" CssClass="form-select shadow-sm" OnSelectedIndexChanged="ddlFormaPago_SelectedIndexChanged" AutoPostBack="true">
-                    <asp:ListItem Text="-- Seleccionar --" Value="" />
-                    <asp:ListItem Text="Efectivo" />
-                    <asp:ListItem Text="Tarjeta" />
-                    <asp:ListItem Text="Transferencia" />
-                </asp:DropDownList>
-            </div>
+                                <!-- RESUMEN DEL TURNO -->
+                                <div class="row g-4 mb-5">
+                                    <div class="col-md-4">
+                                        <div class="bg-light rounded-3 p-3 border-start border-3 border-success shadow-sm">
+                                            <small class="text-muted">Veterinario</small>
+                                            <h6 class="fw-semibold mb-0">
+                                                <asp:Label ID="lblNombreVete" runat="server" /></h6>
+                                            <span class="text-muted small">
+                                                <asp:Label ID="lblMatriculaVete" runat="server" /></span>
+                                        </div>
+                                    </div>
 
-            <div class="col-md-4">
-                <label class="form-label fw-semibold">Nro. Comprobante</label>
-                <asp:TextBox ID="tbxComprobante" runat="server" CssClass="form-control shadow-sm" Enabled="false"></asp:TextBox>
-            </div>
+                                    <div class="col-md-4">
+                                        <div class="bg-light rounded-3 p-3 border-start border-3 border-primary shadow-sm">
+                                            <small class="text-muted">Mascota</small>
+                                            <h6 class="fw-semibold mb-0">
+                                                <asp:Label ID="lblNombreMascota" runat="server" /></h6>
+                                            <span class="text-muted small">
+                                                <asp:Label ID="lblDatoMascota" runat="server" /></span>
+                                        </div>
+                                    </div>
 
-            <div class="col-md-4">
-                <label class="form-label fw-semibold">Costo ($)</label>
-                <asp:TextBox ID="tbxImporte" runat="server" CssClass="form-control shadow-sm"></asp:TextBox>
-            </div>
-        </div>
+                                    <div class="col-md-4">
+                                        <div class="bg-light rounded-3 p-3 border-start border-3 border-info shadow-sm">
+                                            <small class="text-muted">Dueño</small>
+                                            <h6 class="fw-semibold mb-0">
+                                                <asp:Label ID="lblNombreDuenio" runat="server" /></h6>
+                                            <span class="text-muted small">
+                                                <asp:Label ID="lblDatoDuenio" runat="server" /></span>
+                                        </div>
+                                    </div>
+                                </div>
 
-        <!-- BOTÓN -->
-        <div class="d-grid mt-5">
-            <asp:Button
-                ID="btnRegistrarCobro"
-                runat="server"
-                Text="Registrar Cobro"
-                CssClass="btn-cobro-hover btn-lg fw-semibold shadow-sm"
-                OnClick="btnRegistrarCobro_Click"
-                UseSubmitBehavior="false" />
-        </div>
+                                <!-- FORMULARIO -->
+                                <div class="row g-4">
+                                            <div class="col-md-4">
+                                                <label class="form-label fw-semibold">Forma de Pago</label>
+                                                <asp:DropDownList ID="ddlFormaPago" runat="server" CssClass="form-select shadow-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlFormaPago_SelectedIndexChanged">
+                                                    <asp:ListItem Text="-- Seleccionar --" Value="" />
+                                                    <asp:ListItem Text="Efectivo" />
+                                                    <asp:ListItem Text="Tarjeta" />
+                                                    <asp:ListItem Text="Transferencia" />
+                                                </asp:DropDownList>
+                                            </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-semibold">Nro. Comprobante</label>
+                                        <asp:TextBox ID="tbxComprobante" runat="server" CssClass="form-control shadow-sm" Enabled="false" />
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-semibold">Costo ($)</label>
+                                        <asp:TextBox ID="tbxImporte" runat="server" CssClass="form-control shadow-sm" />
+                                    </div>
+                                </div>
+
+                                <!-- BOTÓN -->
+                                <div class="d-grid mt-4">
+                                    <asp:Button
+                                        ID="btnRegistrarCobro"
+                                        runat="server"
+                                        Text="Registrar Cobro"
+                                        CssClass="btn btn-success btn-lg fw-semibold shadow-sm" 
+                                        OnClick="btnRegistrarCobro_Click"/>
+                                </div>
+                            </div>
+                        </section>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
+               
+
+        <!-- SECCIÓN: HISTORIAL -->
+        <section>
+            <div class="p-4 rounded-4 shadow bg-white border border-light-subtle">
+                <div class="mb-4 border-bottom pb-2 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="fw-bold text-primary mb-1"><i class="bi bi-journal-text me-2"></i>Historial de Cobros</h3>
+                        <p class="text-muted mb-0">Listado de cobros registrados con filtros disponibles</p>
+                    </div>
+                </div>
+
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Filtrar por:</label>
+                                <asp:Label CssClass="form-label fw-semibold text-danger fst-italic" runat="server" ID="lbl_ddlFiltro" Visible="false" />
+                                <asp:DropDownList ID="ddlFiltroCobros" runat="server" CssClass="form-select shadow-sm">
+                                    <asp:ListItem Text="-- Seleccione un criterio --" Value="Seleccione" />
+                                    <asp:ListItem Text="Fecha" Value="Fecha" />
+                                    <asp:ListItem Text="DNI del Dueño" Value="DNI" />
+                                </asp:DropDownList>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Valor: </label>
+                                <asp:Label CssClass="form-label fw-semibold text-danger fst-italic" runat="server" ID="lblFiltroValor" Visible="false" />
+                                <asp:TextBox ID="txtValorFiltroCobros" runat="server" CssClass="form-control shadow-sm" placeholder="Ej: 25/06/2025 o 12345678" onkeypress="return soloNumeros(event)" />
+                            </div>
+
+                            <div class="col-md-4 d-flex align-items-end">
+                                <asp:Button ID="btnFiltrarCobros" runat="server" Text="Filtrar" CssClass="btn btn-outline-primary shadow-sm fw-semibold px-4 w-100" OnClick="btnFiltrarCobros_Click" />
+                            </div>
+                        </div>
+
+                        <!-- GRILLA -->
+                        <asp:GridView
+                            ID="gvCobros"
+                            runat="server"
+                            CssClass="table table-hover table-bordered table-striped shadow-sm rounded-3 overflow-hidden"
+                            AutoGenerateColumns="false"
+                            EmptyDataText="No se registraron cobros aún."
+                            HeaderStyle-CssClass="table-primary fw-semibold text-center"
+                            RowStyle-CssClass="align-middle"
+                            AllowPaging="true"
+                            PageSize="5"
+                            OnPageIndexChanging="gvCobros_PageIndexChanging">
+                            <Columns>
+                                <asp:BoundField DataField="FechaHora" HeaderText="Fecha y Hora" DataFormatString="{0:dd/MM/yyyy HH:mm}" />
+                                <asp:BoundField DataField="DNIDueño" HeaderText="Dueño" />
+                                <asp:BoundField DataField="nombreMascota" HeaderText="Mascota" />
+                                <asp:BoundField DataField="FormaPago" HeaderText="Forma de Pago" />
+                                <asp:BoundField DataField="Costo" HeaderText="Costo" DataFormatString="${0:N2}" HtmlEncode="false" />
+                            </Columns>
+                            <PagerStyle CssClass="pager-custom" HorizontalAlign="Center" />
+                        </asp:GridView>
+
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
+
+
+            </div>
+        </section>
 
     </div>
+   
+ <%--   ---------------------  Para que no deje ingresas letras en el DNI cuando se filtra --------------------%>
+    
+    <script type="text/javascript">
+    function soloNumeros(e) {
+        var tecla = e.key;
+        return /^[0-9]$/.test(tecla) || e.keyCode === 8; // permite backspace
+    }
+    </script>
+
 
 </asp:Content>

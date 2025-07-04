@@ -15,7 +15,11 @@ namespace dominio
         public string FormaPago { get; set; }
         public string Comprobante { get; set; }
         public decimal Costo { get; set; }
+        public string DNIDueño { get; set; }
+        public string nombreMascota { get; set; }
+        public DateTime FechaHora { get; set; }
         public bool Activo { get; set; }
 
     }
+
 }

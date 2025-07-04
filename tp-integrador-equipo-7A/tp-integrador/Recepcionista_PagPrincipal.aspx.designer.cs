@@ -159,6 +159,15 @@ namespace tp_integrador
         protected global::System.Web.UI.WebControls.Button btnLimpiarBuscarFiltros;
 
         /// <summary>
+        /// Control lblValorFiltro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValorFiltro;
+
+        /// <summary>
         /// Control gvTurnos.
         /// </summary>
         /// <remarks>
