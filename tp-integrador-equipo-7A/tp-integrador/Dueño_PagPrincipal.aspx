@@ -151,9 +151,8 @@
                                 <p class="card-text"><%# Eval("FechaHora", "{0:dd/MM/yyyy HH:mm}") %></p>
                                 <asp:LinkButton ID="btnCancelar" runat="server"
                                     CommandArgument='<%# Eval("IDTurno") %>'
-                                    OnClick="btnCancelar_Click"
-                                    CssClass="btn btn-danger btn-sm fw-bold"
-                                    OnClientClick="return confirm('¿Esta seguro que desea cancelar su turno?');">
+                                    OnCommand="btnCancelar_Command"
+                                    CssClass="btn btn-danger btn-sm fw-bold">
                                 <i class="bi bi-x-circle"></i> Cancelar Turno
                                 </asp:LinkButton>
 
@@ -388,6 +387,36 @@
                             <asp:Button ID="btnConfirmarEliminar" runat="server" Text="Eliminar"
                                 CssClass="btn btn-danger"
                                 OnClick="btnEliminar_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+        <%----------------- MODAL DE CANCELACION DE TURNO -----------------------%>
+
+    <asp:UpdatePanel ID="upCancelarTurno" runat="server">
+        <ContentTemplate>
+            <div class="modal fade" id="modalCancelarTurno" tabindex="-1" aria-labelledby="modalCancelarLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content rounded-4 shadow">
+                        <div class="modal-header bg-danger text-white rounded-top-4">
+                            <h5 class="modal-title fw-semibold" id="modalCancelarLabel">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>Confirmar cancelación.
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Estás seguro que deseas cancelar este turno?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnConfirmar" runat="server" Text="Cancelar"
+                                CssClass="btn btn-secondary"
+                                OnClientClick="$('#modalCancelarTurno').modal('hide'); return false;" />
+                            <asp:Button ID="btnCancelarTurno" runat="server" Text="Eliminar"
+                                CssClass="btn btn-danger"
+                                OnClick="btnCancelar_Click" />
                         </div>
                     </div>
                 </div>

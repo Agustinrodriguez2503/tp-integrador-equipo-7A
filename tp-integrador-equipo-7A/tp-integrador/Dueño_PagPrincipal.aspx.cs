@@ -51,18 +51,41 @@ namespace tp_integrador
             TurnoNegocio turnoNegocio = new TurnoNegocio();
             try
             {
-                LinkButton btn = (LinkButton)sender;
-                int idTurno = Convert.ToInt32(btn.CommandArgument);
+                //LinkButton btn = (LinkButton)sender;
+                //int idTurno = Convert.ToInt32(btn.CommandArgument);
+
+                int idTurno = (int)Session["IDTurnoEliminar"];
 
                 turnoNegocio.modificarEstado(idTurno, "CANCELADO");
-                //turnoNegocio.EliminarLogico(idTurno);
                 cargarTurnos();
+
+                string titulo = "¡Cancelación exitosa!";
+                string mensaje = "El turno ha sido cancelado correctamente.";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertaExito", $@"
+            Swal.fire({{
+                title: '{titulo}',
+                text: '{mensaje}',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            }}).then((result) => {{
+                if (result.isConfirmed) {{
+                    window.location.href = 'Dueño_PagPrincipal.aspx';
+                }}
+            }});", true);
             }
             catch (Exception ex)
             {
                 Session["Error"] = ex.Message.ToString();
                 Response.Redirect("ErrorPage.aspx");
             }
+        }
+        protected void btnCancelar_Command(object sender, CommandEventArgs e)
+        {
+            int idTurnoEliminar = Convert.ToInt32(e.CommandArgument);
+            Session["IDTurnoEliminar"] = idTurnoEliminar;
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "modalCancelar", "var modal = new bootstrap.Modal(document.getElementById('modalCancelarTurno')); modal.show();", true);
         }
         // REGISTRO DE MASCOTA
         protected void btnRegistroMascota_Click(object sender, EventArgs e)
@@ -264,7 +287,6 @@ namespace tp_integrador
             Session["IDMascotaEliminar"] = idMascota;
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "modalEliminar", "var modal = new bootstrap.Modal(document.getElementById('modalConfirmarEliminar')); modal.show();", true);
-            // ScriptManager.RegisterStartupScript(this, this.GetType(), "modalEliminar", "$('#modalConfirmarEliminar').modal('show');", true);
         }
         // CARGA DE DATOS PARA MODIFICAR CLIENTE
         protected void datosCliente_Click(object sender, EventArgs e)
@@ -440,5 +462,7 @@ namespace tp_integrador
             }
 
         }
+
+
     }
 }
