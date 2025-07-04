@@ -194,9 +194,9 @@
                             <i class="fas fa-clock" style="margin-right: 10px;"></i>
                             <span>Turnos Pendientes</span>
                         </div>
-                        <div style="margin-left: auto;">
+<%--                        <div style="margin-left: auto;">
                             <asp:Button ID="btnAbrirModalReporte" runat="server" Text="Generar Reporte" CssClass="btn btn-light" OnClick="btnAbrirModalReporte_Click" />
-                        </div>
+                        </div>--%>
                     </div>
                     <div class="grid-container">
                         <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="gridViewStyle" OnRowCommand="gvTurnos_RowCommand">
@@ -269,7 +269,7 @@
     </asp:UpdatePanel>
 
     <%-- Modal para generar el reporte --%>
-    <asp:UpdatePanel ID="upModalReporte" runat="server" UpdateMode="Conditional">
+<%--    <asp:UpdatePanel ID="upModalReporte" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="modal fade" id="modalReporte" runat="server" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -306,7 +306,7 @@
                 </div>
             </div>
         </ContentTemplate>
-    </asp:UpdatePanel>
+    </asp:UpdatePanel>--%>
 
 
 </asp:Content>

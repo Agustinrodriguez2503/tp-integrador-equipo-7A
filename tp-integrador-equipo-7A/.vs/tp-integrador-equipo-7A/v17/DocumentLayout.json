@@ -1,14 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\maria\\Desktop\\Programacion 2-7\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\",
+  "WorkspaceRootPath": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\maria\\desktop\\programacion 2-7\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\recepcionista_pagprincipal.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\recepcionista_pagprincipal.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\nahue\\downloads\\tpi progra iii\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\veterinariomasterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\veterinariomasterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\maria\\desktop\\programacion 2-7\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\recepcionista_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\recepcionista_pagprincipal.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|c:\\users\\nahue\\downloads\\tpi progra iii\\tp-integrador-equipo-7a\\tp-integrador-equipo-7a\\tp-integrador\\veterinariomasterpage.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE9F237C-E08A-433F-8147-A2939AFFA534}|tp-integrador\\tp-integrador.csproj|solutionrelative:tp-integrador\\veterinariomasterpage.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +18,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Recepcionista_PagPrincipal.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion 2-7\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Recepcionista_PagPrincipal.aspx.cs",
-              "RelativeDocumentMoniker": "tp-integrador\\Recepcionista_PagPrincipal.aspx.cs",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion 2-7\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Recepcionista_PagPrincipal.aspx.cs",
-              "RelativeToolTip": "tp-integrador\\Recepcionista_PagPrincipal.aspx.cs",
-              "ViewState": "AgIAAHcBAAAAAAAAAAAowIgBAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T21:30:55.575Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Recepcionista_PagPrincipal.aspx",
-              "DocumentMoniker": "C:\\Users\\maria\\Desktop\\Programacion 2-7\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Recepcionista_PagPrincipal.aspx",
-              "RelativeDocumentMoniker": "tp-integrador\\Recepcionista_PagPrincipal.aspx",
-              "ToolTip": "C:\\Users\\maria\\Desktop\\Programacion 2-7\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\Recepcionista_PagPrincipal.aspx",
-              "RelativeToolTip": "tp-integrador\\Recepcionista_PagPrincipal.aspx",
+              "Title": "VeterinarioMasterPage.Master.cs",
+              "DocumentMoniker": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\VeterinarioMasterPage.Master.cs",
+              "RelativeDocumentMoniker": "tp-integrador\\VeterinarioMasterPage.Master.cs",
+              "ToolTip": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\VeterinarioMasterPage.Master.cs",
+              "RelativeToolTip": "tp-integrador\\VeterinarioMasterPage.Master.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T21:47:00.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "VeterinarioMasterPage.Master",
+              "DocumentMoniker": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\VeterinarioMasterPage.Master",
+              "RelativeDocumentMoniker": "tp-integrador\\VeterinarioMasterPage.Master",
+              "ToolTip": "C:\\Users\\nahue\\Downloads\\TPI Progra III\\tp-integrador-equipo-7A\\tp-integrador-equipo-7A\\tp-integrador\\VeterinarioMasterPage.Master",
+              "RelativeToolTip": "tp-integrador\\VeterinarioMasterPage.Master",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-04T21:30:29.186Z",
+              "WhenOpened": "2025-07-04T21:46:48.732Z",
               "EditorCaption": ""
             }
           ]

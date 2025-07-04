@@ -15,7 +15,7 @@ namespace tp_integrador
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             Usuario usuario = (Usuario)Session["usuario"];
 
             if (!(Seguridad.sesionActiva(Session["usuario"])))
@@ -27,7 +27,7 @@ namespace tp_integrador
                 if (!IsPostBack)
                 {
                     txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                    CargarTurnos();                
+                    CargarTurnos();
                 }
             }
             else
@@ -116,7 +116,7 @@ namespace tp_integrador
             {
                 if (ViewState["IdTurnoParaCancelar"] != null)
                 {
-                    
+
                     int idTurno = (int)ViewState["IdTurnoParaCancelar"];
                     DateTime fechaTurno = (DateTime)ViewState["FechaTurnoParaCancelar"];
                     TurnoNegocio negocio = new TurnoNegocio();
@@ -179,73 +179,73 @@ namespace tp_integrador
             }
         }
 
-        protected void btnAbrirModalReporte_Click(object sender, EventArgs e)
-        {
-            txtFechaDesde.Text = string.Empty;
-            txtFechaHasta.Text = string.Empty;
-            upModalReporte.Update();
+        //protected void btnAbrirModalReporte_Click(object sender, EventArgs e)
+        //{
+        //    txtFechaDesde.Text = string.Empty;
+        //    txtFechaHasta.Text = string.Empty;
+        //    upModalReporte.Update();
 
-            string script = $"$('#{modalReporte.ClientID}').modal('show');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowReportModal", script, true);
-        }
+        //    string script = $"$('#{modalReporte.ClientID}').modal('show');";
+        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowReportModal", script, true);
+        //}
 
-        protected void cvFechas_ServerValidate(object source, ServerValidateEventArgs args)
-        {
+        //protected void cvFechas_ServerValidate(object source, ServerValidateEventArgs args)
+        //{
 
-            //valido que la fecha desde no sea posterior a la fecha hasta
-            DateTime desde, hasta;
-            if (DateTime.TryParse(txtFechaDesde.Text, out desde) && DateTime.TryParse(txtFechaHasta.Text, out hasta))
-            {
-                args.IsValid = hasta >= desde;
-            }
-            else
-            {
-                args.IsValid = false;
-            }
-        }
+        //    //valido que la fecha desde no sea posterior a la fecha hasta
+        //    DateTime desde, hasta;
+        //    if (DateTime.TryParse(txtFechaDesde.Text, out desde) && DateTime.TryParse(txtFechaHasta.Text, out hasta))
+        //    {
+        //        args.IsValid = hasta >= desde;
+        //    }
+        //    else
+        //    {
+        //        args.IsValid = false;
+        //    }
+        //}
 
-        protected void btnGenerarReporte_Click(object sender, EventArgs e)
-        {
-            //Page.Validate("ReporteGroup");
-            //if (!Page.IsValid)
-            //{
-            //    // Si la validación falla, mantenemos el modal abierto
-            //    upModalReporte.Update();
-            //    string script = $"$('#{modalReporte.ClientID}').modal('show');";
-            //    ScriptManager.RegisterStartupScript(this, this.GetType(), "KeepReportModal", script, true);
-            //    return;
-            //}
+        //protected void btnGenerarReporte_Click(object sender, EventArgs e)
+        //{
+        //Page.Validate("ReporteGroup");
+        //if (!Page.IsValid)
+        //{
+        //    // Si la validación falla, mantenemos el modal abierto
+        //    upModalReporte.Update();
+        //    string script = $"$('#{modalReporte.ClientID}').modal('show');";
+        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "KeepReportModal", script, true);
+        //    return;
+        //}
 
-            //DateTime fechaDesde = Convert.ToDateTime(txtFechaDesde.Text);
-            //DateTime fechaHasta = Convert.ToDateTime(txtFechaHasta.Text);
+        //DateTime fechaDesde = Convert.ToDateTime(txtFechaDesde.Text);
+        //DateTime fechaHasta = Convert.ToDateTime(txtFechaHasta.Text);
 
-            //TurnoNegocio negocio = new TurnoNegocio();
-            //Veterinario veterinario = (Veterinario)Session["veterinario"];
+        //TurnoNegocio negocio = new TurnoNegocio();
+        //Veterinario veterinario = (Veterinario)Session["veterinario"];
 
-            //// Obtiene todos los turnos pendientes y luego filtra por fecha en memoria
-            //List<Turno> todosLosTurnos = negocio.listar_turnosOcupados(veterinario.Matricula, "PENDIENTE");
-            //List<Turno> turnosParaReporte = todosLosTurnos
-            //    .Where(t => t.FechaHora.Date >= fechaDesde.Date && t.FechaHora.Date <= fechaHasta.Date)
-            //    .ToList();
+        //// Obtiene todos los turnos pendientes y luego filtra por fecha en memoria
+        //List<Turno> todosLosTurnos = negocio.listar_turnosOcupados(veterinario.Matricula, "PENDIENTE");
+        //List<Turno> turnosParaReporte = todosLosTurnos
+        //    .Where(t => t.FechaHora.Date >= fechaDesde.Date && t.FechaHora.Date <= fechaHasta.Date)
+        //    .ToList();
 
-            //if (turnosParaReporte.Any())
-            //{
-            //    byte[] pdfBytes = ReporteHelper.GenerarPdfTurnos(turnosParaReporte, fechaDesde, fechaHasta);
+        //if (turnosParaReporte.Any())
+        //{
+        //    byte[] pdfBytes = ReporteHelper.GenerarPdfTurnos(turnosParaReporte, fechaDesde, fechaHasta);
 
-            //    Response.Clear();
-            //    Response.ContentType = "application/pdf";
-            //    Response.AddHeader("content-disposition", "attachment;filename=Reporte_Turnos_Pendientes.pdf");
-            //    Response.BinaryWrite(pdfBytes);
-            //    Response.End();
-            //}
-            //else
-            //{
-            //    // Opcional: Mostrar un mensaje si no hay turnos en el rango
-            //    // Por ahora, simplemente cerramos el modal.
-            //    string scriptCierre = $"$('#{modalReporte.ClientID}').modal('hide');";
-            //    ScriptManager.RegisterStartupScript(this, this.GetType(), "HideReportModal", scriptCierre, true);
-            //}
-        }
+        //    Response.Clear();
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("content-disposition", "attachment;filename=Reporte_Turnos_Pendientes.pdf");
+        //    Response.BinaryWrite(pdfBytes);
+        //    Response.End();
+        //}
+        //else
+        //{
+        //    // Opcional: Mostrar un mensaje si no hay turnos en el rango
+        //    // Por ahora, simplemente cerramos el modal.
+        //    string scriptCierre = $"$('#{modalReporte.ClientID}').modal('hide');";
+        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "HideReportModal", scriptCierre, true);
+        //}
+        //}
 
 
     }
