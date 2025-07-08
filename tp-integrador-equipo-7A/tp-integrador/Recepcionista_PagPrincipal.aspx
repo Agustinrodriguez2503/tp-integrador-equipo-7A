@@ -184,7 +184,7 @@
 
         <div class="row g-4 justify-content-center mt-2">
             <div class="col-md-6 col-lg-4">
-                <a href="fichas.aspx" class="card-link-custom">
+                <a href="Veterinario_FichasMedicas.aspx" class="card-link-custom">
                     <div class="card custom-card h-100 text-center card-verde-agua">
                         <div class="card-body">
                             <h5 class="card-title">FICHAS MÉDICAS</h5>

@@ -898,3 +898,7 @@ C:\Users\agustin\Desktop\TP PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-
 C:\Users\agustin\Desktop\TP PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\obj\Debug\tp-integ.AC736151.Up2Date
 C:\Users\agustin\Desktop\TP PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\obj\Debug\tp-integrador.dll
 C:\Users\agustin\Desktop\TP PROGRA\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\obj\Debug\tp-integrador.pdb
+C:\Users\maria\Desktop\Programacion\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\bin\itextsharp.dll
+C:\Users\maria\Desktop\Programacion\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\bin\BouncyCastle.Cryptography.dll
+C:\Users\maria\Desktop\Programacion\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\bin\itextsharp.xml
+C:\Users\maria\Desktop\Programacion\tp-integrador-equipo-7A\tp-integrador-equipo-7A\tp-integrador\bin\BouncyCastle.Cryptography.xml

@@ -18,6 +18,11 @@ namespace tp_integrador
 
             try
             {
+                if (!(Seguridad.sesionActiva(Session["usuario"])))
+                {
+                    Response.Redirect("IniciarSesion.aspx", false);
+                    return;
+                }
                 VeterinarioNegocio negocioVeterinario = new VeterinarioNegocio();
                 listaVeterinario = negocioVeterinario.listar();
                 repVeterinarios.DataSource = listaVeterinario;
